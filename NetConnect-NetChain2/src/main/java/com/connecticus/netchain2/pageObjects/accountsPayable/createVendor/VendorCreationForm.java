@@ -13,6 +13,10 @@ public class VendorCreationForm {
 	Common.sendKeys("NEW_VENDOR_COMPANY_PROFILE1_XPATH", value);
 	}
 	
+       
+	
+	
+	
     public void setOurMission(String value) {
     	Common.sendKeys("NEW_VENDOR_COMPANY_PROFILE2_XPATH", value);
     	
