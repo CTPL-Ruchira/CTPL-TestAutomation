@@ -4,7 +4,7 @@ import com.connecticus.engine.Common;
 
 /**
  * API's for Vendor Creation Form
- * @author Ruchira
+ * @author Ruchira.Mhaisurkar
  * 
  *
  */
@@ -44,4 +44,6 @@ public class VendorCreationForm {
     public void clickNextButton() {
     	Common.click("COMPANY_PROFILE_NEXT_BUTTON_XPATH");
     }
+    
+    
 }
