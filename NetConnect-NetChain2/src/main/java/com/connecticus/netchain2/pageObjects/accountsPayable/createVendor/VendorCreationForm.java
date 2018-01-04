@@ -4,7 +4,7 @@ import com.connecticus.engine.Common;
 
 /**
  * API's for Vendor Creation Form
- * @author Ruchira
+ * @author Ruchira.Mhaisurkar
  * 
  *
  */
@@ -13,6 +13,10 @@ public class VendorCreationForm {
 	public void setOurCompany(String value) {
 	Common.sendKeys("NEW_VENDOR_COMPANY_PROFILE1_XPATH", value);
 	}
+	
+       
+	
+	
 	
     public void setOurMission(String value) {
     	Common.sendKeys("NEW_VENDOR_COMPANY_PROFILE2_XPATH", value);
@@ -40,4 +44,6 @@ public class VendorCreationForm {
     public void clickNextButton() {
     	Common.click("COMPANY_PROFILE_NEXT_BUTTON_XPATH");
     }
+    
+    
 }
