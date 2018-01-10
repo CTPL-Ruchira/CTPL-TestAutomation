@@ -11,6 +11,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -184,6 +185,8 @@ public class Common {
 		ele.clear();
 		ele.sendKeys(value);
 	}
+	
+	
 
 	// Select
 	public static void select(String locator, String value){
@@ -258,4 +261,11 @@ public class Common {
 			throw new RuntimeException("INVALID LOCATOR: " + locator + "\n" + invalidLocatorMessage);
 		}
 	}
+	
+	 //Method to append random string with vendor name
+	 public static String generateRandomString(String value) {
+		 String randomString = RandomStringUtils.randomAlphabetic(8); 
+		 return value.concat("_"+randomString);
+		 
+	 }
 }
