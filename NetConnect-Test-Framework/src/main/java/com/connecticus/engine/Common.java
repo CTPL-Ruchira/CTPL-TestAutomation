@@ -76,7 +76,7 @@ public class Common {
 
 		driver.manage().window().maximize();
 	}
-
+	
 	public static WebDriver getDriver(){
 		return driver;
 	}
@@ -102,7 +102,6 @@ public class Common {
 	public static void quit(){		
 		driver.quit();
 	}
-
 	public static void setObjectMapFile(String configFilePath){
 		objectMapProps = new Properties();
 		InputStream fis;
@@ -258,4 +257,25 @@ public class Common {
 			throw new RuntimeException("INVALID LOCATOR: " + locator + "\n" + invalidLocatorMessage);
 		}
 	}
+	
+	//This method will select value from dropdown if tag is div
+		public static void selectFromDropdown(String dropLocator, String valueLocator, String value)
+		{
+			WebElement eleDrop = getElement(dropLocator);
+			eleDrop.click();
+			List<WebElement> listElem=getElements(valueLocator);
+						
+			for(WebElement ele: listElem)
+			{
+				if(ele.getText().equals(value))
+				{
+					ele.click();
+					break;
+				}
+				
+			}
+			
+			
+			
+		}
 }
