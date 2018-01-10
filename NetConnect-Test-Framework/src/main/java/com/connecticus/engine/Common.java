@@ -29,6 +29,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 /**
  * Library for common APIs 
  * 
@@ -43,6 +44,7 @@ public class Common {
 	private static String baseUrl;
 	private static String screenshotsFolder;
 	private static WebDriverWait wait;
+	
 
 	public static void sleep(int millSec){
 		try {
@@ -202,8 +204,16 @@ public class Common {
 	// getText
 	public static String getText(String locator){
 		return getElement(locator).getText();
+		
 	}
-
+	public static String getAttribute(String locator){
+		return getElement(locator).getAttribute("Value");
+	}
+	/*//GetTitle
+	public static String getTitle()
+	{
+		return getDriver().getTitle();
+	}*/
 	// dragAndDrop
 	public static void dragAndDrop(String sourceLocator, String targetLocator){
 		Actions actions = new Actions(driver);

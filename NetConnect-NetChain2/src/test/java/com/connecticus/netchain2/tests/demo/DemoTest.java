@@ -7,8 +7,8 @@ import org.testng.annotations.Test;
 
 import com.connecticus.engine.BaseTestCase;
 import com.connecticus.engine.Common;
+import com.connecticus.netchain2.pageObjects.accountsPayable.createInvoice.Invoice;
 import com.connecticus.netchain2.pageObjects.accountsPayable.createVendor.VendorCreationForm;
-import com.connecticus.netchain2.pageObjects.accountsPayable.invoice.Invoice;
 import com.connecticus.netchain2.pageObjects.common.apCreation.APModuleCreation;
 import com.connecticus.netchain2.pageObjects.common.landingPage.LandingPage;
 import com.connecticus.netchain2.pageObjects.common.loginPage.LoginPage;
