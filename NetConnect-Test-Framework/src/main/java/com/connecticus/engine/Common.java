@@ -295,9 +295,7 @@ public class Common {
 				}
 				
 			}
-			
-			
-			
+						
 		}
 		
 		public static WebElement findElement(String locator){
