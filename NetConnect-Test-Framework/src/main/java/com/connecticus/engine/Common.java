@@ -272,6 +272,13 @@ public class Common {
 	}
 	
 
+	public static WebElement findElement(String locator){
+		By by =By.xpath(locator);
+		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+		return ele;
+	}
+
+
 	 //Method to append random string with vendor name
 	 public static String generateRandomString(String value) {
 		 String randomString = RandomStringUtils.randomAlphabetic(8); 
@@ -300,10 +307,4 @@ public class Common {
 			
 		}
 		
-		public static WebElement findElement(String locator){
-			By by =By.xpath(locator);
-			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-			return ele;
-		}
-
-}
+	}
