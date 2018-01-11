@@ -258,4 +258,10 @@ public class Common {
 			throw new RuntimeException("INVALID LOCATOR: " + locator + "\n" + invalidLocatorMessage);
 		}
 	}
+	
+	public static WebElement findElement(String locator){
+		By by =By.xpath(locator);
+		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+		return ele;
+	}
 }
