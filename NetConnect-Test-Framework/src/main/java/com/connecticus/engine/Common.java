@@ -299,5 +299,11 @@ public class Common {
 			
 			
 		}
+		
+		public static WebElement findElement(String locator){
+			By by =By.xpath(locator);
+			WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+			return ele;
+		}
 
 }
