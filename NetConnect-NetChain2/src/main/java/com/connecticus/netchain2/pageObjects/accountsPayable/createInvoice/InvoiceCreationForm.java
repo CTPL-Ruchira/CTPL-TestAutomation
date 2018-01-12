@@ -49,7 +49,7 @@ public class InvoiceCreationForm {
 	
 	//Select Product and services 
 	public void SelectProductAndServicesDrp(String value) {
-		Common.select("CREATE_INVOICE_PRODUCT_SERVICES_XPATH", value);
+		Common.select("CREATE_INVOICE_SELECT_PRODUCT_XPATH", value); 
 	}
 	
 	// Select Item details department
@@ -61,10 +61,10 @@ public class InvoiceCreationForm {
 			Common.select("CREATE_INVOICE_BOOKING_AMOUNT_XPATH", value);
 			}
 	 
-	 //Select PO number
+	/* //Select PO number
 	 public void SelectPONumber(String value) {
 		Common.select("CREATE_INVOICE_PO_NO_XPATH", value);
-	}
+	}*/
 	
 	 // Select Invoice description
 	public void Invoice_Description(String value) {
@@ -107,7 +107,7 @@ public class InvoiceCreationForm {
     
     //Create Rule invoice
     public void CreateRule_CancelButton() {
-    	Common.click("INVOICE_CREATE_RULE_CANCEL_BUTTON_XPATH");
+    	Common.click("Invoice_CreateRule_Cancel_Button_XPATH");
   	}
   }
 
