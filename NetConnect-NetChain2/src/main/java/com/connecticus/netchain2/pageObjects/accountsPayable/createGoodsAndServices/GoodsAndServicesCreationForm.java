@@ -3,6 +3,7 @@ package com.connecticus.netchain2.pageObjects.accountsPayable.createGoodsAndServ
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
+import org.testng.Reporter;
 
 import com.connecticus.engine.BaseTestCase;
 import com.connecticus.engine.Common;
@@ -106,6 +107,7 @@ public class GoodsAndServicesCreationForm {
 			if(value1.equalsIgnoreCase(actualValue))
 			{
 				System.out.println("Product is added Successfully");
+				Reporter.log("Product is added Successfully");
 				flag=true;
 				break;
 			}
