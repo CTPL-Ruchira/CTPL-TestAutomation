@@ -30,6 +30,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.connecticus.utils.CustomException.KeywordException;
+
 
 /**
  * Library for common APIs 
@@ -244,7 +246,14 @@ public class Common {
 
 	public static WebElement getElement(String locator){
 		By by = getBy(locator);
-		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+		WebElement ele;
+		try {
+		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+		}
+		catch(Exception e) {
+		throw new KeywordException("Element Not Found: Locator Name - " +locator+ " And Locator Value - " +getObjectValue(locator), e);
+		
+		}
 		return ele;
 	}	
 
