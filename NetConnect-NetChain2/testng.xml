@@ -24,12 +24,16 @@
 	
 	<test name="MyTests">	
 		<packages>
-			<package name="com.connecticus.netchain2.tests.demo" />
+			<package name="com.connecticus.netchain2.tests" />
 		</packages>
 		
 		<classes>
 			<class name="com.connecticus.netchain2.tests.automationSetUp.AutomationSetup" />
 		</classes>
+		
+		<listeners>
+    		<listener class-name="com.connecticus.testListnerAdapter.TestNGListner" />
+  		</listeners>
 	</test>
 	
 </suite>
