@@ -6,7 +6,7 @@
   <name>NetChain2 Automation</name>
   <description>NetChain2 Automatoin Using NetConnect-Test-Framework</description>
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -97,7 +97,7 @@
                      <groupId>com.connecticus</groupId>
                      <artifactId>NetConnect-Test-Framework</artifactId>
                      <version>0.0.1-SNAPSHOT</version>
-                     <systemPath>C:\Users\Administrator\.m2\repository\com\connecticus\NetConnect-Test-Framework\0.0.1-SNAPSHOT\NetConnect-Test-Framework-0.0.1-SNAPSHOT.jar</systemPath>
+                     <systemPath>C:\Users\lenovo\.m2\repository\com\connecticus\NetConnect-Test-Framework\0.0.1-SNAPSHOT\NetConnect-Test-Framework-0.0.1-SNAPSHOT.jar</systemPath>
                      <scope>system</scope>
 
               </dependency>
