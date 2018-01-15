@@ -212,6 +212,7 @@ public class Common {
 	public static String getAttribute(String locator){
 		return getElement(locator).getAttribute("Value");
 	}
+	
 	/*//GetTitle
 	public static String getTitle()
 	{
