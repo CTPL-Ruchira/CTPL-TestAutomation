@@ -6,13 +6,13 @@ import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.connecticus.engine.BaseTestCase;
-import com.connecticus.engine.Common;
-import com.connecticus.utils.CustomAnnotation.TestDetails;
+import com.netChain2.engine.BaseTestCase;
+import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.Invoice;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
+import com.netChain2.utils.CustomAnnotation.TestDetails;
 
 public class CreateInvoice {
 	private ArrayList<String> testData;
