@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 import com.connecticus.engine.BaseTestCase;
 import com.connecticus.engine.Common;
 import com.connecticus.netchain2.pageObjects.accountsPayable.createVendor.VendorCreationForm;
-import com.connecticus.netchain2.pageObjects.accountsPayable.invoice.Invoice;
+import com.connecticus.netchain2.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
 import com.connecticus.netchain2.pageObjects.common.apCreation.APModuleCreation;
 import com.connecticus.netchain2.pageObjects.common.landingPage.LandingPage;
 import com.connecticus.netchain2.pageObjects.common.loginPage.LoginPage;
@@ -64,7 +64,7 @@ public class CreateVendor extends BaseTestCase{
 
 	//POSITIVE TEST CASE
 	public void VendorCreation() {
-		Invoice invoice = new Invoice();
+		InvoiceCreationForm invoice = new InvoiceCreationForm();
 
 		APModuleCreation apModule = invoice.createNew();
 		Common.sleep(2000);
@@ -136,7 +136,7 @@ public class CreateVendor extends BaseTestCase{
 	@Test
 	public void VendorCreationNegative() {
 		
-		Invoice invoice = new Invoice();
+		InvoiceCreationForm invoice = new InvoiceCreationForm();
 		Common.sleep(6000);
 		APModuleCreation apModule = invoice.createNew();
 		Common.sleep(2000);
