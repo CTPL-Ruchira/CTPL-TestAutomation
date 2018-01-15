@@ -1,6 +1,4 @@
-package com.connecticus.netchain2.pageObjects.common.loginPage;
-
-import org.openqa.selenium.WebElement;
+package com.netChain2.selenium.pageObjects.common.loginPage;
 
 import com.connecticus.engine.Common;
 

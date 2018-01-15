@@ -1,4 +1,4 @@
-package com.connecticus.netchain2.pageObjects.common.JavaScriptOperation;
+package com.netChain2.selenium.pageObjects.common.JavaScriptOperation;
 
 import java.io.File;
 import java.util.Scanner;

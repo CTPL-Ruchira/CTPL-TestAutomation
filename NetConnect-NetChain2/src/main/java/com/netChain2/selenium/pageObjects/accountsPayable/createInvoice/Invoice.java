@@ -1,4 +1,4 @@
-package com.connecticus.netchain2.pageObjects.accountsPayable.createInvoice;
+package com.netChain2.selenium.pageObjects.accountsPayable.createInvoice;
 
 import com.connecticus.engine.Common;
 import com.connecticus.netchain2.pageObjects.common.apCreation.APModuleCreation;

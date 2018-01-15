@@ -1,4 +1,4 @@
-package com.connecticus.netchain2.pageObjects.common.logout;
+package com.netChain2.selenium.pageObjects.common.logout;
 
 import com.connecticus.engine.Common;
 
