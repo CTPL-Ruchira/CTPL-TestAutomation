@@ -32,7 +32,7 @@
 		</classes>
 		
 		<listeners>
-    		<listener class-name="com.netChain.testListnerAdapter.TestNGListner" />
+    		<listener class-name="com.netChain2.testListnerAdapter.TestNGListner" />
   		</listeners>
 	</test>
 	
