@@ -1,5 +1,5 @@
-com\connecticus\engine\Common.class
-com\connecticus\engine\BaseTestCase.class
-com\connecticus\testListnerAdapter\TestNGListner.class
-com\connecticus\utils\CustomAnnotation\TestDetails.class
-com\connecticus\utils\CustomException\KeywordException.class
+com\netChain\utils\CustomAnnotation\TestDetails.class
+com\netChain\engine\BaseTestCase.class
+com\netChain\testListnerAdapter\TestNGListner.class
+com\netChain\engine\Common.class
+com\netChain\utils\CustomException\KeywordException.class
