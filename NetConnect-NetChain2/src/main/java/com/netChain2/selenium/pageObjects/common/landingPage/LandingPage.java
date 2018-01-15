@@ -2,7 +2,7 @@ package com.netChain2.selenium.pageObjects.common.landingPage;
 
 import org.openqa.selenium.WebElement;
 
-import com.connecticus.engine.Common;
+import com.netChain2.engine.Common;
 
 public class LandingPage {
 	
