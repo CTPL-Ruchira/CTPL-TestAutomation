@@ -15,6 +15,7 @@ import com.connecticus.engine.BaseTestCase;
 import com.connecticus.engine.Common;
 import com.connecticus.netchain2.pageObjects.accountsPayable.createInvoice.Invoice;
 import com.connecticus.netchain2.pageObjects.accountsPayable.createVendor.VendorCreationForm;
+import com.connecticus.netchain2.pageObjects.common.JavaScriptOperation.JavaScriptUtils;
 import com.connecticus.netchain2.pageObjects.common.apCreation.APModuleCreation;
 import com.connecticus.netchain2.pageObjects.common.landingPage.LandingPage;
 import com.connecticus.netchain2.pageObjects.common.loginPage.LoginPage;
@@ -30,9 +31,18 @@ public class DemoTest extends BaseTestCase{
 	public void setUp() {
 		testData = Common.getTestData("NetchainTest.Login");
 		testData1 = Common.getTestData("NetchainTest.CreateVendor");
-		testData2 = Common.getTestData("NetchainTest.CreateVendorNeg");
+		//testData2 = Common.getTestData("NetchainTest.CreateVendorNeg");
+		
+		
+		
 		
 		LandingPage landingPage = new LandingPage();
+		
+		JavaScriptUtils.jQueryDragAndDrop("p:contains(\"Invoice Acceptance\")", "div[class=\"workflowDropZone\"]");
+		
+		JavaScriptUtils.jQueryDragAndDrop("p:contains(\"Invoice Approval\")", "div[class=\"workflowDropZone\"]");
+		
+		
 		boolean check1 = landingPage.isLoginButtonDisplayed();
 		
 		

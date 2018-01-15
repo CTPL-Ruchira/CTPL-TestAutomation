@@ -16,7 +16,7 @@
 	
 	<parameter name="url" value="http://ec2-13-59-144-161.us-east-2.compute.amazonaws.com:3000/" />
 	
-	<parameter name="pageLoadTimeOutInSec" value="60" />
+	<parameter name="pageLoadTimeOutInSec" value="300" />
 	
 	<parameter name="elementLoadingTimeout" value="20" />
 	
@@ -24,7 +24,7 @@
 	
 	<test name="MyTests">	
 		<packages>
-			<package name="com.connecticus.netchain2.tests" />
+			<package name="com.connecticus.netchain2.tests.demo" />
 		</packages>
 		
 		<classes>

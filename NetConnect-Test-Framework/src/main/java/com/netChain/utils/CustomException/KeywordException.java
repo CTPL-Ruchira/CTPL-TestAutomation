@@ -1,4 +1,4 @@
-package com.connecticus.utils.CustomException;
+package com.netChain.utils.CustomException;
 
 public class KeywordException extends RuntimeException {
 	
