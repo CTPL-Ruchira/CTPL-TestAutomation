@@ -1,4 +1,4 @@
-package com.netChain.utils.CustomAnnotation;
+package com.netChain2.utils.CustomAnnotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

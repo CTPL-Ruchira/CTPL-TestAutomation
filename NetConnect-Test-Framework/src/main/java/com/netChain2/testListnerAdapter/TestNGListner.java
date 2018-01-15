@@ -1,4 +1,4 @@
-package com.netChain.testListnerAdapter;
+package com.netChain2.testListnerAdapter;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
