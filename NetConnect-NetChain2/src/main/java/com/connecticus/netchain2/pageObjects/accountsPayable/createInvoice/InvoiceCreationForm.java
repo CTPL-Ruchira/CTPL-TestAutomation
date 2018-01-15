@@ -11,7 +11,7 @@ public class InvoiceCreationForm {
 		return new APModuleCreation();
 	}
 	
-	//set product and services 
+	//Set product and services 
 	public void setProductsAndServices(String value){
     	Common.sendKeys("NEW_VENDOR_COMPANY_PROFILE3_XPATH", value);
     }
@@ -22,8 +22,8 @@ public class InvoiceCreationForm {
 	}
 	
 	//select invoice number
-	public String getTextValueInvoiceNo() {
-  		return Common.getText("INVOICE_NUMBER_XPATH");
+	public String getAttributeValueInvoiceNo() {
+  		return Common.getAttribute("INVOICE_NUMBER_XPATH");
     
     }
 	
@@ -36,7 +36,11 @@ public class InvoiceCreationForm {
 	public void SelectLocation(String value) {
 		Common.select("SELECT_INVOICE_LOCATION_XPATH", value);
 		}
-	 
+	//Select account booking account 
+	public void SelectBookingAccount(String value) {
+		Common.select("DROPDOWN_BOOKING_ACCOUNT_INVOICE_XPATH", value);
+		} 
+	
 	// Select Account Description
 	public void AccountDetails_Description(String value) {
 	 Common.sendKeys("CREATE_INVOICE_DESC_TEXT_BOX_XPATH", value);
@@ -47,50 +51,126 @@ public class InvoiceCreationForm {
 	Common.sendKeys("CREATE_INVOICE_AMOUNT_FIELD_XPATH", value);
 	 }
 	
-	//Select Product and services 
+	//Select Product and services for product1
 	public void SelectProductAndServicesDrp(String value) {
-		Common.select("CREATE_INVOICE_PRODUCT_SERVICES_XPATH", value);
+		Common.select("CREATE_INVOICE_SELECT_PRODUCT_XPATH", value); 
 	}
 	
-	// Select Item details department
+	// Select Item details department for product1
 	public void SelectItemDetailsDepartment(String value) {
 			Common.select("CREATE_INVOICE_ITEM_DETAILS_DEPARTMENT_XPATH", value);
 		}
-	 //Select Booking Amount
-	 public void SelectBookingAmount(String value) {
-			Common.select("CREATE_INVOICE_BOOKING_AMOUNT_XPATH", value);
+	 
+	//Select Booking Amount for product1
+	 public void SelectBookingAccount_Item(String value) {
+			Common.select("CREATE_INVOICE_BOOKING_ACCOUNT_XPATH", value);
 			}
 	 
-	 //Select PO number
+	/* //Select PO number
 	 public void SelectPONumber(String value) {
 		Common.select("CREATE_INVOICE_PO_NO_XPATH", value);
-	}
+	}*/
 	
-	 // Select Invoice description
+	 // Select Invoice description for product1
 	public void Invoice_Description(String value) {
     Common.sendKeys("CREATE_INVOICE_DESC_FIELD_XPATH", value);
     }
 	
-	//select Measure
+	//Send Measure for product1
 	 public void Invoice_SelectMeasure(String value) {
 	 Common.sendKeys("CREATE_INVOICE_MEASURE_XPATH", value);
    }
-	 //Select Quantity
+	 //Select Quantity for product1
     public void Invoice_Quantity(String value) {
 	 Common.sendKeys("CREATE_INVOICE_QTY_XPATH", value);
    }
   
-    //Select Invoice Rate
+    //Select Invoice Rate for 1st product
     public void Invoice_Rate(String value) {
 	 Common.sendKeys("CREATE_INVOICE_RATE_XPATH", value);
    }
 
-    //Send Message to Vendor 
-    public void Invoice_MessageToVendor(String value) {
+    // Add line button for adding new product
+    public void Add_Line_Button() {
+   	 Common.click("CREATE_INVOICE_ADD_LINE_ITEM_DETAILS_XPATH");
+     Common.sleep(5000);
+    }
+
+    //Select 2nd product from product dropdown
+    public void SelectProductAndServicesDrp2(String value) {
+		Common.select("CREATE_INVOICE_SELECT_PRODUCT_DROPDOWN2_XPATH", value); 
+	}
+    
+
+     //Select Booking Amount for 2nd product
+     public void SelectBookingAccount2_Item(String value) {
+		Common.select("CREATE_INVOICE_BOOKING_ACCOUNT_2_XPATH", value);
+		}
+
+     //Send description for 2nd product
+    public void Invoice_Description2(String value) {
+        Common.sendKeys("CREATE_INVOICE_SELECT_DESCRIPTION_2_XPATH", value);
+        }
+  
+    //Send Measure for 2nd product
+  	 public void Invoice_SelectMeasure2(String value) {
+  	 Common.sendKeys("CREATE_INVOICE_MEASURE_2_XPATH", value);
+  	}
+    
+  	 //Select Quantity for 2nd product
+      public void Invoice_Quantity2(String value) {
+  	  Common.sendKeys("CREATE_INVOICE_QTY_2_XPATH", value);
+  	  }
+    
+      //Select Rate for 2nd product
+       public void Invoice_Rate2(String value) {
+  	   Common.sendKeys("CREATE_INVOICE_RATE_2_XPATH", value);
+  	  }
+  	 
+      // Add line button for adding 3rd product
+       public void Add_Line_Button_2() {
+      	 Common.click("CREATE_INVOICE_ADD_LINE_ITEM_DETAILS_2_XPATH");
+         Common.sleep(5000);
+       } 
+     
+       //Select 3rd product from item dropdown 
+    public void SelectProductAndServicesDrp3(String value) {
+		Common.select("CREATE_INVOICE_SELECT_PRODUCT_DROPDOWN3_XPATH", value); 
+	}
+    
+      //Select Booking Amount for 3rd product
+	 public void SelectBookingAccount3_Item(String value) {
+			Common.select("CREATE_INVOICE_BOOKING_ACCOUNT_3_XPATH", value);
+			}
+    
+	//Send description for 3rd product
+	 public void Invoice_Description3(String value) {
+	        Common.sendKeys("CREATE_INVOICE_SELECT_DESCRIPTION_3_XPATH", value);
+	        }
+	 
+	 //Send measure for 3rd product
+	 public void Invoice_SelectMeasure3(String value) {
+	  	 Common.sendKeys("CREATE_INVOICE_MEASURE_3_XPATH", value);
+	  	}
+    
+	//Select Quantity for 3rd product
+     public void Invoice_Quantity3(String value) {
+ 	  Common.sendKeys("CREATE_INVOICE_QTY_3_XPATH", value);
+ 	  }
+   
+
+     //Select Rate for 3rd product
+      public void Invoice_Rate3(String value) {
+ 	   Common.sendKeys("CREATE_INVOICE_RATE_3_XPATH", value);
+ 	  }
+ 	 
+    
+      //Send Message to Vendor 
+      public void Invoice_MessageToVendor(String value) {
 	   Common.sendKeys("INVOICE_MSG_TO_VENDOR_XPATH", value);
    }
   
-    //Send memo
+    //Send Memo
     public void Invoice_Memo(String value) {
 	   Common.sendKeys("INVOICE_MEMO_XPATH", value);
   }   
@@ -105,7 +185,7 @@ public class InvoiceCreationForm {
     
     }
     
-    //Create Rule invoice
+    //Create Rule invoice cancel button
     public void CreateRule_CancelButton() {
     	Common.click("INVOICE_CREATE_RULE_CANCEL_BUTTON_XPATH");
   	}

@@ -11,7 +11,9 @@ public class APModuleCreation {
 	
 	public void clickNewVendorLink() {
 		Common.click("NEW_VENDOR_LINKTEXT");
-		
+		}
+	public void clickNewInvoicelink() {
+		Common.click("CREATE_NEW_INVOICE_LINK_XPATH");
 	}
 	
 	public void clickNewInvoicelink() {
