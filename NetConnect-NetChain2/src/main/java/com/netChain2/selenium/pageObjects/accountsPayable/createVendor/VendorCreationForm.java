@@ -5,7 +5,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.connecticus.engine.Common;
+import com.netChain2.engine.Common;
+
+
 
 /**
  * API's for Vendor Creation Form
