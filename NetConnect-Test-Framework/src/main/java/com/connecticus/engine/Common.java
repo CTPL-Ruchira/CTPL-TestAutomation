@@ -208,8 +208,8 @@ public class Common {
 		return getElement(locator).getText();
 		
 	}
-	public static String getAttribute(String locator){
-		return getElement(locator).getAttribute("Value");
+	public static String getAttribute(String locator, String attributeName){
+		return getElement(locator).getAttribute(attributeName);
 	}
 	/*//GetTitle
 	public static String getTitle()
@@ -302,9 +302,7 @@ public class Common {
 				}
 				
 			}
-			
-			
-			
+						
 		}
 		
 	}
