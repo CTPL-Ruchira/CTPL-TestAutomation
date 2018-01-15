@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 import org.openqa.selenium.JavascriptExecutor;
 
-import com.connecticus.engine.Common;
+import com.netChain2.engine.Common;
+
 
 public class JavaScriptUtils {
 	
