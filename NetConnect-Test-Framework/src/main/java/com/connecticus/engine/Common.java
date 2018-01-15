@@ -209,9 +209,7 @@ public class Common {
 		return getElement(locator).getText();
 		
 	}
-	public static String getAttribute(String locator){
-		return getElement(locator).getAttribute("Value");
-	}
+	
 	
 	/*//GetTitle
 	public static String getTitle()
@@ -308,16 +306,11 @@ public class Common {
 			
 			
 		}
-		
-		/*
-		 * This method will round number to two decimal digit
-		 * */
+		////
 		public static double roundNumberToTwoDecimalValue(double number)
 		{
 			DecimalFormat f = new DecimalFormat("##.00");
 			return Double.parseDouble(f.format(number));
-			
-			
 		}
 		
 		public static double multiplyTwoDoubleNumbers(double firstNumber, double secondNumber)
@@ -325,5 +318,13 @@ public class Common {
 			return firstNumber*secondNumber;
 			
 		}
+		
+		public static String getAttribute(String locator){
+			return getElement(locator).getAttribute("Value");
+		}
+		public static String getAttribute(String locator, String attributeName){
+			return getElement(locator).getAttribute(attributeName);
+		}
+		
 		
 	}
