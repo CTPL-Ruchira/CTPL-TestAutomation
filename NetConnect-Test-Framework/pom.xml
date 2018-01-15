@@ -7,7 +7,7 @@
 	<name>Connecticus Test FrameWork</name>
 	<description>Connecticus Test FrameWork</description>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+		<!--  <sourceDirectory>src</sourceDirectory>-->
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
