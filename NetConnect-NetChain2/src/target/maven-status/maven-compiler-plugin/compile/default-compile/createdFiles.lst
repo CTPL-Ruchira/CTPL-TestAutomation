@@ -1,6 +1,0 @@
-com\connecticus\netchain2\pageObjects\common\apCreation\APModuleCreation.class
-com\connecticus\netchain2\pageObjects\common\landingPage\LandingPage.class
-com\connecticus\netchain2\tests\demo\DemoTest.class
-com\connecticus\netchain2\tests\automationSetUp\AutomationSetup.class
-com\connecticus\netchain2\pageObjects\common\loginPage\LoginPage.class
-com\connecticus\netchain2\pageObjects\accountsPayable\invoice\Invoice.class
