@@ -7,7 +7,7 @@ import org.testng.Reporter;
 
 import com.connecticus.engine.BaseTestCase;
 import com.connecticus.engine.Common;
-import com.connecticus.netchain2.pageObjects.accountsPayable.createInvoice.Invoice;
+import com.connecticus.netchain2.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
 import com.connecticus.netchain2.pageObjects.common.apCreation.APModuleCreation;
 import com.connecticus.netchain2.pageObjects.common.landingPage.LandingPage;
 import com.connecticus.netchain2.pageObjects.common.loginPage.LoginPage;
@@ -44,7 +44,7 @@ public class CreateInvoice {
 		Common.sleep(2000);
 		
 		//click to create new
-		Invoice invoice = new Invoice();
+		InvoiceCreationForm invoice = new InvoiceCreationForm();
 		APModuleCreation apModule = invoice.createNew();
 		Common.sleep(2000);
 		
