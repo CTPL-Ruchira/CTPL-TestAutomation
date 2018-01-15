@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.connecticus</groupId>
+	<groupId>com.netChain</groupId>
 	<artifactId>NetConnect-Test-Framework</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Connecticus Test FrameWork</name>
-	<description>Connecticus Test FrameWork</description>
+	<name>NetChain2 Test FrameWork</name>
+	<description>NetChain2 Test FrameWork</description>
 	<build>
 		
 		<plugins>
