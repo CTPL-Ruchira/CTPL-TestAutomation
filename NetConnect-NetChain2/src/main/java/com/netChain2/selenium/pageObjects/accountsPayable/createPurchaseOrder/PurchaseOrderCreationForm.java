@@ -1,9 +1,11 @@
-package com.connecticus.netchain2.pageObjects.accountsPayable.createPurchaseOrder;
+package com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder;
 
 import org.openqa.selenium.WebElement;
-import com.connecticus.engine.BaseTestCase;
-import com.connecticus.engine.Common;
-import com.connecticus.netchain2.pageObjects.common.apCreation.APModuleCreation;
+
+import com.netChain2.engine.BaseTestCase;
+import com.netChain2.engine.Common;
+import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
+
 
 /**
  * API's for Purchase Order Creation Form
