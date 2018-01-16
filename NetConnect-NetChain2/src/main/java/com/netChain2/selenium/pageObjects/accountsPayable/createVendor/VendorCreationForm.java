@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Reporter;
 
 import com.netChain2.engine.Common;
 
@@ -273,6 +274,30 @@ public class VendorCreationForm {
 		savebutton.click();
 
 	}
+	
+	public Boolean verifyVendorOnList(String expectedVendorName) 
+	 {
+	  boolean flag=false;
+	  Common.sleep(6000);
+	  Common.sendKeys("INVOICE_SEARCH_BAR_XPATH", expectedVendorName);
+	  Common.sleep(1000);
+	  String actualVendorNameOnList=Common.getText("CREATED_VENDOR_NAME_IN_LIST_XPATH");
+	  //String actualVendorNameOnList="companyName";
+	  if(actualVendorNameOnList.equals(expectedVendorName))
+	  {
+	   flag=true;
+	   System.out.println("Vendor displayed on list");
+	   Reporter.log("Vendor present on list");
+	  }
+	  else
+	  {
+	   System.out.println("Vendor not created");
+
+	  }
+
+	  return flag;
+
+	 }
 	
 	 //Getting the company name
 	 public String getCompanyName()
