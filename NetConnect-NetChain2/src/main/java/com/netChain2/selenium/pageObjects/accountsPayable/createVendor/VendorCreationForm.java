@@ -276,8 +276,4 @@ public class VendorCreationForm {
 	public void verifyVendorOnList() {
 		
 	}
-
-
-
-
 }
