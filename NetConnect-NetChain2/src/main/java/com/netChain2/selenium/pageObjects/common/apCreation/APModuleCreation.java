@@ -1,6 +1,6 @@
-package com.netChain2.selenium.pageObjects.common.apCreation;
+package com.connecticus.netchain2.pageObjects.common.apCreation;
 
-import com.netChain2.engine.Common;
+import com.connecticus.engine.Common;
 
 public class APModuleCreation {
 	
@@ -11,11 +11,15 @@ public class APModuleCreation {
 	
 	public void clickNewVendorLink() {
 		Common.click("NEW_VENDOR_LINKTEXT");
-		
-	}
+		}
 	
-	public void clickNewInvoicelink() {
+	public void clickNewInvoice() {
 		Common.click("NEW_INVOICE_XPATH");
+	}
+
+	public void clickPurchaseLink() {
+		Common.click("NEW_PURCHASE_ORDER_LINK");
+		
 	}
 
 }
