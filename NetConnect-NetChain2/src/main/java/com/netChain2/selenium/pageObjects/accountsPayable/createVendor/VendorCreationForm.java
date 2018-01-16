@@ -304,4 +304,11 @@ public class VendorCreationForm {
 	 {
 	  return companyName;
 	 }
+	 
+	 public String setCompanyName(String value)
+	 {
+	  companyName=Common.generateRandomString(value);
+	  return companyName;
+	 }
+
 }
