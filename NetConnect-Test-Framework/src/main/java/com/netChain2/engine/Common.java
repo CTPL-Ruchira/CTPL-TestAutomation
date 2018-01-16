@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -282,6 +283,13 @@ public class Common {
 	}
 	
 
+	public static WebElement findElement(String locator){
+		By by =By.xpath(locator);
+		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+		return ele;
+	}
+
+
 	 //Method to append random string with vendor name
 	 public static String generateRandomString(String value) {
 		 String randomString = RandomStringUtils.randomAlphabetic(8); 
@@ -303,11 +311,27 @@ public class Common {
 					ele.click();
 					break;
 				}
-				
+			
 			}
-			
-			
+		}
+		
+		public static double roundNumberToTwoDecimalValue(double number)
+		{
+			DecimalFormat f = new DecimalFormat("##.00");
+			return Double.parseDouble(f.format(number));
+		}
+		
+		public static double multiplyTwoDoubleNumbers(double firstNumber, double secondNumber)
+		{
+			return firstNumber*secondNumber;
 			
 		}
+		
+		
+		public static String getAttribute(String locator, String attributeName){
+			return getElement(locator).getAttribute(attributeName);
+		}
+		
 
+	 
 }
