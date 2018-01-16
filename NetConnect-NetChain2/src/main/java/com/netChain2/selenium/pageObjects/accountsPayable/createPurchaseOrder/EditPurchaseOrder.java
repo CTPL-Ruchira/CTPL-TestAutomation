@@ -1,11 +1,13 @@
-package com.connecticus.netchain2.pageObjects.accountsPayable.createPurchaseOrder;
+package com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
-import com.connecticus.engine.BaseTestCase;
-import com.connecticus.engine.Common;
+import com.netChain2.engine.BaseTestCase;
+import com.netChain2.engine.Common;
+
+
 
 public class EditPurchaseOrder 
 {
