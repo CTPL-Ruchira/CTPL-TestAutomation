@@ -1,9 +1,6 @@
 package com.connecticus.netchain2.pageObjects.accountsPayable.createPurchaseOrder;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-
 import com.connecticus.engine.BaseTestCase;
 import com.connecticus.engine.Common;
 import com.connecticus.netchain2.pageObjects.common.apCreation.APModuleCreation;
@@ -21,8 +18,19 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	private static double qty;
 	private static double rt;
 	private static double amount;
-	private static int flag;
+	private static int flag=1;
+	private static double previousAmount;
+	private static double currentAmount;
+	private static int poNumber;
 	
+	public static int getPoNumber() {
+		return poNumber;
+	}
+
+	public static void setPoNumber() {
+		PurchaseOrderCreationForm.poNumber = Integer.parseInt(Common.getAttribute("PO_NUMBER_XPATH"));
+	}
+
 	public static double getQty() {
 		return qty;
 	}
@@ -49,97 +57,78 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	public void selectLocation(String locationName)
 	{
 		Common.select("LOCATION_DROPDOWN_XPATH", locationName);
+		setPoNumber();
 	}
 	
-	public void selectProductOrServices(String productName)
+	public void selectProductOrServices(String productName, int flag)
 	{
-		Common.select("PRODUCT_SERVICES_DROPDOWN_XPATH", productName);
+		String dropLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[1]";
+		
+		String valueLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[1]/option[text()='"+productName+"']";
+		selectDropdownValues(dropLocator, valueLocator);
+		
 	}
 	
-	public void selectProductOrServicesSecondItem(String productName)
+	public void selectDropdownValues(String dropLocator, String valueLocator)
 	{
-		Common.select("PRODUCT_SERVICES_DROPDOWN_SECOND_XPATH", productName);
+		WebElement dropElement=Common.findElement(dropLocator);
+		
+		dropElement.click();
+		WebElement valElement=Common.findElement(valueLocator);
+		
+		valElement.click();
+		
 	}
 	
-	public void selectProductOrServicesThirdItem(String productName)
+		
+	public void selectDepartment(String departmentName, int flag)
 	{
-		Common.select("PRODUCT_SERVICES_DROPDOWN_THIRD_XPATH", productName);
+		String dropLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[2]";
+		
+		String valueLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[2]/option[text()='"+departmentName+"']";
+		selectDropdownValues(dropLocator, valueLocator);
+		
+				
 	}
 	
-	public void selectDepartment(String departmentName)
+	public void selectBookingAccount(String bookingAccountName, int flag)
 	{
-		Common.select("PURCHASE_ORDER_DEPARTMENT_DROPDOWN_XPATH", departmentName);
+		String dropLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[3]";
+		
+		String valueLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[3]/option[text()='"+bookingAccountName+"']";
+		selectDropdownValues(dropLocator, valueLocator);
+		
+		
 	}
 	
-	public void selectDepartmentSecondItem(String departmentName)
+	public void setDescription(String description, int flag)
 	{
-		Common.select("PURCHASE_ORDER_DEPARTMENT_DROPDOWN_SECOND_XPATH", departmentName);
+		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductDescription')]";
+		WebElement descElement=Common.findElement(descLocator);
+		descElement.sendKeys(description);
+		
 	}
 	
-	public void selectDepartmentThirdItem(String departmentName)
+	public void setQualtity(String quantity, int flag)
 	{
-		Common.select("PURCHASE_ORDER_DEPARTMENT_DROPDOWN_THIRD_XPATH", departmentName);
+		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductQuantity')]";
+		WebElement descElement=Common.findElement(descLocator);
+		descElement.sendKeys(quantity);
+		
+		
 	}
 	
-	public void selectBookingAccount(String bookingAccountName)
+	public void setRate(String rate, int flag)
 	{
-		Common.select("BOOKING_ACCOUNT_DROPDOWN_XPATH", bookingAccountName);
+		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductRate')]";
+		WebElement descElement=Common.findElement(descLocator);
+		descElement.sendKeys(rate);
+		
+		Common.click("PO_ITEM_AMOUNT_TEXT_XPATH");
+		
 	}
 	
-	public void selectBookingAccountSecondItem(String bookingAccountName)
-	{
-		Common.select("BOOKING_ACCOUNT_DROPDOWN_SECOND_XPATH", bookingAccountName);
-	}
 	
-	public void selectBookingAccountThirdItem(String bookingAccountName)
-	{
-		Common.select("BOOKING_ACCOUNT_DROPDOWN_THIRD_XPATH", bookingAccountName);
-	}
-	
-	public void setDescription(String description)
-	{
-		Common.sendKeys("DESCRIPTION_FIELD_XPATH", description);
-	}
-	
-	public void setDescriptionSecondItem(String description)
-	{
-		Common.sendKeys("DESCRIPTION_FIELD_SECOND_XPATH", description);
-	}
-	
-	public void setDescriptionThirdItem(String description)
-	{
-		Common.sendKeys("DESCRIPTION_FIELD_THIRD_XPATH", description);
-	}
-	
-	public void setQualtity(String quantity)
-	{
-		Common.sendKeys("QTY_FIELD_XPATH", quantity);
-	}
-	
-	public void setQualtitySecondItem(String quantity)
-	{
-		Common.sendKeys("QTY_FIELD_SECOND_XPATH", quantity);
-	}
-	
-	public void setQualtityThirdItem(String quantity)
-	{
-		Common.sendKeys("QTY_FIELD_THIRD_XPATH", quantity);
-	}
-	
-	public void setRate(String rate)
-	{
-		Common.sendKeys("RATE_FIELD_XPATH", rate);
-	}
-	
-	public void setRateSecondItem(String rate)
-	{
-		Common.sendKeys("RATE_FIELD_SECOND_XPATH", rate);
-	}
-	
-	public void setRateThirdItem(String rate)
-	{
-		Common.sendKeys("RATE_FIELD_THIRD_XPATH", rate);
-	}
 	
 	public void setMessageToVendor(String message)
 	{
@@ -174,15 +163,17 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	public double calculateTotalAmount(String quantity, String rate)
 	{
+		
 		qty=Common.roundNumberToTwoDecimalValue(Double.parseDouble(quantity));
 		rt=Common.roundNumberToTwoDecimalValue(Double.parseDouble(rate));
-		System.out.println("Calculated"+Common.roundNumberToTwoDecimalValue(Common.multiplyTwoDoubleNumbers(qty, rt)));
+		
 		amount=Common.roundNumberToTwoDecimalValue(Common.multiplyTwoDoubleNumbers(qty, rt));
 		return amount;
 	}
 	
 	public void verifyCalculatedTotalAmmount(double enteredQuality, double enteredRate, double calculatedAmount)
 	{
+		String temp;
 		Common.sleep(4000);
 		
 		System.out.println("QTY = "+Common.getAttribute("QTY_FIELD_XPATH", "value"));
@@ -193,15 +184,14 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		double qualityInDouble=Double.parseDouble(Common.getAttribute("QTY_FIELD_XPATH", "value"));
 		double rateInDouble=Double.parseDouble(Common.getAttribute("RATE_FIELD_XPATH", "value"));
 		double amountInDouble=Double.parseDouble(Common.getAttribute("PO_AMOUNT_INPUTFIELD_XPATH", "value"));
+		String amountDisplayed=Common.getText("PO_AMOUNT_XPATH");
 		
-		System.out.println("C_QTY = "+enteredQuality);
-		System.out.println("C_RATE ="+enteredRate);
-		System.out.println("C_AMMOUNT ="+calculatedAmount);
+		temp="$"+Double.toString(previousAmount);
 		
 		BaseTestCase.assertTrue(compareTwoValues(enteredQuality,qualityInDouble), "Quality entered in incorrect");
 		BaseTestCase.assertTrue(compareTwoValues(enteredRate,rateInDouble), "Rate entered in incorrect");
 		BaseTestCase.assertTrue(compareTwoValues(calculatedAmount,amountInDouble), "Amount entered in incorrect");
-		
+		BaseTestCase.assertTrue(compareTwoValues(temp, amountDisplayed),"Total Amount didnot matched");
 		
 	}
 	
@@ -209,51 +199,49 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	{
 		if(value1==value2)
 		{
-			System.out.println("true is printed");
 			return true;
 			
 		}else {
-			System.out.println("false is printed");
+			
 			return false;
 			}
 		
 	}
 	
-	public void setItemDetailsForFirstItem(String productName, String departmentName, String bookingAccountName, String description, String quantity, String rate)
+	public boolean compareTwoValues(String value1, String value2)
 	{
-		
-		selectProductOrServices(productName);
-		selectDepartment(departmentName);
-		selectBookingAccount(bookingAccountName);
-		setDescription(description);
-		setQualtity(quantity);
-		setRate(rate);
-		
+		if(value1.equals(value2))
+		{
+			return true;
+			
+		}else {
+			
+			return false;
+			}
 		
 	}
 	
-	public void setItemDetailsforSecondItem(String productName, String departmentName, String bookingAccountName, String description, String quantity, String rate)
+	public void setItemDetails(String productName, String departmentName, String bookingAccountName, String description, String quantity, String rate)
 	{
 		
-		selectProductOrServicesSecondItem(productName);
-		selectDepartmentSecondItem(departmentName);
-		selectBookingAccountSecondItem(bookingAccountName);
-		setDescriptionSecondItem(description);
-		setQualtitySecondItem(quantity);
-		setRateSecondItem(rate);
+		selectProductOrServices(productName, flag);
+		selectDepartment(departmentName, flag);
+		selectBookingAccount(bookingAccountName, flag);
+		setDescription(description, flag);
+		setQualtity(quantity, flag);
+		setRate(rate, flag);
+		Common.sleep(5000);
+		currentAmount=Double.parseDouble(Common.getAttribute("PO_AMOUNT_INPUTFIELD_XPATH", "value"));
+		currentAmount=previousAmount+currentAmount;
+		previousAmount=currentAmount;
+		System.out.println("Current Amount"+currentAmount);
+		System.out.println("Previous Amount"+previousAmount);
+		flag=flag+1;
 		
+		calculateTotalAmount(quantity, rate);
 		
-	}
 	
-	public void setItemDetailsforThirdItem(String productName, String departmentName, String bookingAccountName, String description, String quantity, String rate)
-	{
-		
-		selectProductOrServicesThirdItem(productName);
-		selectDepartmentThirdItem(departmentName);
-		selectBookingAccountThirdItem(bookingAccountName);
-		setDescriptionThirdItem(description);
-		setQualtityThirdItem(quantity);
-		setRateThirdItem(rate);
+	
 		
 		
 	}
