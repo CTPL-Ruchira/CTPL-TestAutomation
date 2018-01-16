@@ -18,6 +18,7 @@ import com.netChain2.engine.Common;
 public class VendorCreationForm {
 
 	WebDriver driver=Common.getDriver();
+	private String companyName;
 
 	public void setOurCompany(String value) {
 		Common.sendKeys("NEW_VENDOR_COMPANY_PROFILE1_XPATH", value);
@@ -273,7 +274,9 @@ public class VendorCreationForm {
 
 	}
 	
-	public void verifyVendorOnList() {
-		
-	}
+	 //Getting the company name
+	 public String getCompanyName()
+	 {
+	  return companyName;
+	 }
 }
