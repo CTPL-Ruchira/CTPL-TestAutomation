@@ -89,9 +89,6 @@ public class CreateGoodsAndServices {
 		//Check Product is Added Or Not	
 		goodsAndServices.verifyProductName("CHECK_PRODUCT_ADDED_XPATH", expectedProdName);		
 	 }
-	 @AfterClass
-	 public void closeBrowser() {
-		 Common.getDriver().close();
-	 }
+	
 
 }
