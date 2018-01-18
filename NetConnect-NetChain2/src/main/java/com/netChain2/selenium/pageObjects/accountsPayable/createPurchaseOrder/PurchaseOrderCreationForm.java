@@ -1,4 +1,4 @@
-package com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder;
+	package com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder;
 
 import org.openqa.selenium.WebElement;
 
@@ -21,10 +21,18 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	private static double rt;
 	private static double amount;
 	private static int flag=1;
+	private static int secondFlag=1, thirdFlag=1;
 	private static double previousAmount;
 	private static double currentAmount;
 	private static int poNumber;
+	private static WebElement qualityElement;
+	private static WebElement rateElement;
+	private WebElement amountElement;
 	
+	
+	public static double getPreviousAmount() {
+		return previousAmount;
+	}
 	public static int getPoNumber() {
 		return poNumber;
 	}
@@ -114,8 +122,20 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	public void setQualtity(String quantity, int flag)
 	{
 		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductQuantity')]";
-		WebElement descElement=Common.findElement(descLocator);
-		descElement.sendKeys(quantity);
+		qualityElement=Common.findElement(descLocator);
+		qualityElement.sendKeys(quantity);
+		
+		
+	}
+	
+	public static String getQualtity()
+	{
+		String descLocator="//div[@class='productService']/div[@class='Line']["+secondFlag+"]/input[contains(@id,'selectedProductQuantity')]";
+		qualityElement=Common.findElement(descLocator);
+		secondFlag=secondFlag+1;
+		
+		return qualityElement.getAttribute("value");
+		
 		
 		
 	}
@@ -123,12 +143,29 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	public void setRate(String rate, int flag)
 	{
 		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductRate')]";
-		WebElement descElement=Common.findElement(descLocator);
-		descElement.sendKeys(rate);
-		
+		rateElement=Common.findElement(descLocator);
+		rateElement.sendKeys(rate);
+		Common.sleep(1000);
 		Common.click("PO_ITEM_AMOUNT_TEXT_XPATH");
 		
 	}
+	
+	public static String getRate()
+	{
+		String descLocator="//div[@class='productService']/div[@class='Line']["+thirdFlag+"]/input[contains(@id,'selectedProductRate')]";
+		rateElement=Common.findElement(descLocator);
+		thirdFlag=thirdFlag+1;
+		
+		return rateElement.getAttribute("value");
+		
+	}
+	
+	//public WebElement getAmount(int flag)
+	//{
+	//	String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
+	//	amountElement=Common.findElement(descLocator);
+	//	return amountElement;
+	//}
 	
 	
 	
@@ -173,30 +210,25 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		return amount;
 	}
 	
-	public void verifyCalculatedTotalAmmount(double enteredQuality, double enteredRate, double calculatedAmount)
+	public boolean verifyRoundingOfNumbers(String actualValue, double expectedValue)
 	{
-		String temp;
-		Common.sleep(4000);
 		
-		System.out.println("QTY = "+Common.getAttribute("QTY_FIELD_XPATH", "value"));
-		System.out.println("RATE ="+Common.getAttribute("RATE_FIELD_XPATH", "value"));
-		System.out.println("AMMOUNT ="+Common.getAttribute("PO_AMOUNT_INPUTFIELD_XPATH", "value"));
-		System.out.println("PO AMMOUNT = "+Common.getText("PO_AMOUNT_XPATH"));
+		System.out.println("actualValue--"+actualValue+"_");
+		System.out.println("expectedValue--"+expectedValue+"_");
 		
-		double qualityInDouble=Double.parseDouble(Common.getAttribute("QTY_FIELD_XPATH", "value"));
-		double rateInDouble=Double.parseDouble(Common.getAttribute("RATE_FIELD_XPATH", "value"));
-		double amountInDouble=Double.parseDouble(Common.getAttribute("PO_AMOUNT_INPUTFIELD_XPATH", "value"));
-		String amountDisplayed=Common.getText("PO_AMOUNT_XPATH");
-		
-		temp="$"+Double.toString(previousAmount);
-		
-		BaseTestCase.assertTrue(compareTwoValues(enteredQuality,qualityInDouble), "Quality entered in incorrect");
-		BaseTestCase.assertTrue(compareTwoValues(enteredRate,rateInDouble), "Rate entered in incorrect");
-		BaseTestCase.assertTrue(compareTwoValues(calculatedAmount,amountInDouble), "Amount entered in incorrect");
-		BaseTestCase.assertTrue(compareTwoValues(temp, amountDisplayed),"Total Amount didnot matched");
+		if(actualValue.equals(String.valueOf(expectedValue)))
+		{
+			return true;
+			
+		}else {
+			
+			return false;
+			}
+				
 		
 	}
 	
+		
 	public boolean compareTwoValues(double value1, double value2)
 	{
 		if(value1==value2)
@@ -232,8 +264,9 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		setDescription(description, flag);
 		setQualtity(quantity, flag);
 		setRate(rate, flag);
+		
 		Common.sleep(5000);
-		currentAmount=Double.parseDouble(Common.getAttribute("PO_AMOUNT_INPUTFIELD_XPATH", "value"));
+		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
 		currentAmount=previousAmount+currentAmount;
 		previousAmount=currentAmount;
 		System.out.println("Current Amount"+currentAmount);
@@ -241,10 +274,33 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		flag=flag+1;
 		
 		calculateTotalAmount(quantity, rate);
-		
+			
+	}
 	
-	
+	public String getTotalAmountCalculated(int flag)
+	{
+		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
+		qualityElement=Common.findElement(descLocator);
+		return qualityElement.getAttribute("value");
 		
+	}
+	
+	public boolean verifyTotalAmountCalculatedAndShown(double Amount)
+	{
+		
+		String amountDisplayed=Common.getText("PO_AMOUNT_XPATH");
+		
+		String appendDollarSign="$"+Common.roundNumberToTwoDecimalValue(Amount);
+		System.out.println("appendDollarSign"+appendDollarSign);
+		System.out.println("amountDisplayed"+amountDisplayed);
+		if(appendDollarSign.equals(amountDisplayed))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		
 	}
 	
