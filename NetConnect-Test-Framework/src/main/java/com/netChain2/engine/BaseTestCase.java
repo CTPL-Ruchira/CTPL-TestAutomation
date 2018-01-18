@@ -2,6 +2,7 @@ package com.netChain2.engine;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.testng.Assert;
 
@@ -21,4 +22,11 @@ public abstract class BaseTestCase {
 		
 		Assert.assertTrue(expression, messageOnFailure);
 	}
+	
+	
+	public static String uniquify(String stringToUniquify) {
+		Long timeInMS = Calendar.getInstance().getTimeInMillis();
+		return stringToUniquify.concat("_"+timeInMS.toString());
+		}
+	
 }
