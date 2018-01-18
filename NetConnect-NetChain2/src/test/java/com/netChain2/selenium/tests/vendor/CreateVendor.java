@@ -113,7 +113,9 @@ public class CreateVendor extends BaseTestCase{
 		//Check and test title of the Vendor list
 
 		String ActualTitleValue=Common.getDriver().getTitle();
+		System.out.println(ActualTitleValue);
 		String ExpectedTitleValue=testData1.get(27);
+		System.out.println(ExpectedTitleValue);
 		
 		if(ActualTitleValue.equals(ExpectedTitleValue)) {
 			BaseTestCase.assertTrue(true, "Redirected to vendor list,vendor created succesfully");
@@ -183,11 +185,11 @@ public class CreateVendor extends BaseTestCase{
 
 		vendorCreation.vendorDetailsTab(testData2.get(10), testData2.get(11), testData2.get(12), testData2.get(13), testData2.get(14), testData2.get(15), testData2.get(16), testData2.get(17), testData2.get(18), testData2.get(19), testData2.get(20), testData2.get(21), testData2.get(22), testData2.get(23), testData2.get(24), testData2.get(25), testData2.get(26));
 
-		//Check and test title of the Vendor list
+		//Check and test the negative alert message
 
 		String getalerttext=Common.getText("VENDOR_NEGATIVE_ALERT_MSG_XPATH");
 		String actualalerttext="Email Address cannot be empty";
-		//String ExpectedTitleValue=testData2.get(27);
+		String ExpectedTitleValue=testData2.get(27);
 		
 
 		if(getalerttext.equals(actualalerttext)) {
@@ -200,7 +202,6 @@ public class CreateVendor extends BaseTestCase{
 
 
 	}
-
 
 
 }
