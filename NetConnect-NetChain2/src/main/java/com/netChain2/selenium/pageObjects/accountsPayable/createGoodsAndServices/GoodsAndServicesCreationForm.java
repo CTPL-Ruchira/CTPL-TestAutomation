@@ -95,7 +95,7 @@ public class GoodsAndServicesCreationForm {
 		Common.click("GOODS_AND_SERVICES_SAVE_BUTTON_XPATH");
 	} 
 	//Check Product Is Matched or not
-	public void verifyProductName(String valueLoc,String value1) {
+	public boolean verifyProductName(String valueLoc,String value1) {
 		
 		boolean flag=false;
 		List<WebElement> prodList=Common.getElements(valueLoc);			
@@ -110,10 +110,12 @@ public class GoodsAndServicesCreationForm {
 				System.out.println("Product is added Successfully");
 				Reporter.log("Product is added Successfully");
 				flag=true;
-				break;
+				
+				return flag;	
 			}
 			
 		  }
-		BaseTestCase.assertTrue(flag, "Product name is not present");
-		  }		
-	}
+		return flag;
+		
+		  }			
+}
