@@ -19,12 +19,15 @@ import com.netChain2.utils.CustomAnnotation.TestDetails;
 
 public class CreatePurchaseOrder extends BaseTestCase{
 	private ArrayList<String> testData;
-	private ArrayList<String> invoiceData;
+	private ArrayList<String> invoiceData,invoiceData2,invoiceData3;
 	@BeforeClass
 	public void setUp() {
 		System.out.println("Into Demo setup");
 		testData = Common.getTestData("NetchainTest.Login");
 		invoiceData = Common.getTestData("NetchainTest.CreateInvoice");
+		invoiceData = Common.getTestData("NetchainTest.CreateInvoice");
+		invoiceData2 = Common.getTestData("NetchainTest.CreateInvoice2");
+		invoiceData3 = Common.getTestData("NetchainTest.CreateInvoice3");
 	}
 
 	 @Test
@@ -52,21 +55,42 @@ public class CreatePurchaseOrder extends BaseTestCase{
 		Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", invoiceData.get(0));
 		purchaseOrder.selectLocation(invoiceData.get(2));
 		
+		//Set items for First line
 		purchaseOrder.setItemDetails(invoiceData.get(6),invoiceData.get(7),invoiceData.get(8),invoiceData.get(9), invoiceData.get(11), invoiceData.get(12));
 		purchaseOrder.addMoreItem();
-		purchaseOrder.verifyCalculatedTotalAmmount(PurchaseOrderCreationForm.getQty(), PurchaseOrderCreationForm.getRt(), PurchaseOrderCreationForm.getAmount());
-		purchaseOrder.setItemDetails(invoiceData.get(6),invoiceData.get(7),invoiceData.get(8),invoiceData.get(9), invoiceData.get(11), invoiceData.get(12));
-		purchaseOrder.addMoreItem();
-		purchaseOrder.verifyCalculatedTotalAmmount(PurchaseOrderCreationForm.getQty(), PurchaseOrderCreationForm.getRt(), PurchaseOrderCreationForm.getAmount());
-		purchaseOrder.setItemDetails(invoiceData.get(6),invoiceData.get(7),invoiceData.get(8),invoiceData.get(9), invoiceData.get(11), invoiceData.get(12));
-		purchaseOrder.verifyCalculatedTotalAmmount(PurchaseOrderCreationForm.getQty(), PurchaseOrderCreationForm.getRt(), PurchaseOrderCreationForm.getAmount());
+		boolean isQuantityRoundedForFirstLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getQualtity(), PurchaseOrderCreationForm.getQty());
+		assertTrue(isQuantityRoundedForFirstLine, "Quantity is not rounded in two decimal digits for first Line");
+		boolean isRateRoundedForFirstLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getRate(), PurchaseOrderCreationForm.getRt());
+		assertTrue(isRateRoundedForFirstLine, "Amount is not rounded in two decimal digits for first Line");
+		
+		boolean isAmountRoundedForFirstLine=purchaseOrder.verifyTotalAmountCalculatedAndShown(PurchaseOrderCreationForm.getPreviousAmount());
+		assertTrue(isAmountRoundedForFirstLine, "Amount is not rounded in two decimal digits for first Line");
 				
+		//Set items for Second line
+		purchaseOrder.setItemDetails(invoiceData2.get(6),invoiceData2.get(7),invoiceData2.get(8),invoiceData2.get(9), invoiceData2.get(11), invoiceData2.get(12));
+		purchaseOrder.addMoreItem();
+		boolean isQuantityRoundedForSecondLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getQualtity(), PurchaseOrderCreationForm.getQty());
+		assertTrue(isQuantityRoundedForSecondLine, "Quantity is not rounded in two decimal digits for second Line");
+		boolean isRateRoundedForSecondLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getRate(), PurchaseOrderCreationForm.getRt());
+		assertTrue(isRateRoundedForSecondLine, "Rate is not rounded in two decimal digits for second Line");
+		boolean isAmountRoundedForSecondLine=purchaseOrder.verifyTotalAmountCalculatedAndShown(PurchaseOrderCreationForm.getPreviousAmount());
+		assertTrue(isAmountRoundedForSecondLine, "Amount is not rounded in two decimal digits for second Line");
+		
+		//Set items for Third line
+		purchaseOrder.setItemDetails(invoiceData3.get(6),invoiceData3.get(7),invoiceData3.get(8),invoiceData3.get(9), invoiceData3.get(11), invoiceData3.get(12));
+		boolean isQuantityRoundedForThirdLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getQualtity(), PurchaseOrderCreationForm.getQty());
+		assertTrue(isQuantityRoundedForThirdLine, "Quantity is not rounded in two decimal digits for third Line");
+		boolean isRateRoundedForThirdLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getRate(), PurchaseOrderCreationForm.getRt());
+		assertTrue(isRateRoundedForThirdLine, "Rate is not rounded in two decimal digits for third Line");
+		boolean isAmountRoundedForThirdLine=purchaseOrder.verifyTotalAmountCalculatedAndShown(PurchaseOrderCreationForm.getPreviousAmount());
+		assertTrue(isAmountRoundedForThirdLine, "Amount is not rounded in two decimal digits for third Line");
+		
+		
 		purchaseOrder.setMessageToVendor(invoiceData.get(13));
 		purchaseOrder.setMemo(invoiceData.get(14));
 		purchaseOrder.setApprovalBy(invoiceData.get(15));
 		purchaseOrder.setShipBy(invoiceData.get(16));
-		
-		purchaseOrder.verifyCalculatedTotalAmmount(PurchaseOrderCreationForm.getQty(), PurchaseOrderCreationForm.getRt(), PurchaseOrderCreationForm.getAmount());
+				
 		purchaseOrder.savePurchaseOrder();
 		
 		Common.sleep(9000);
