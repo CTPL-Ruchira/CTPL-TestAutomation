@@ -1,6 +1,8 @@
 	package com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
@@ -27,10 +29,22 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	private static int poNumber;
 	private static WebElement qualityElement;
 	private static WebElement rateElement;
+
 	
+	
+	private String amountElement;
+	
+	
+	public String getAmountElement() {
+		return amountElement;
+	}
 	public static String getPreviousAmount() {
 		return String.valueOf(previousAmount);
 	}
+	/*public static double getPreviousAmount() {
+		return previousAmount;
+
+	}*/
 	
 	public static int getPoNumber() {
 		return poNumber;
@@ -145,6 +159,17 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		return rateElement.getAttribute("value");
 	}
 	
+
+	public String getAmountForLine(int flag)
+	{
+		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
+		return Common.findElement(descLocator).getAttribute("value");
+		
+	}
+	
+	
+	
+
 	public void setMessageToVendor(String message)
 	{
 		Common.sendKeys("VENDOR_MESSAGE_XPATH", message);
@@ -235,6 +260,10 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		setDescription(description, flag);
 		setQualtity(quantity, flag);
 		setRate(rate, flag);
+
+		Common.sleep(3000);
+		amountElement=getAmountForLine(flag);
+
 		Common.sleep(5000);
 		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
 		currentAmount=previousAmount+currentAmount;
@@ -270,8 +299,53 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 	}
 	
+
 	public String getTotalAmountDisplayed()
 	{
 		return Common.getText("PO_AMOUNT_XPATH");
 	}
+
+	
+	public void addProductRuntime(String runtimeProdName,String value)
+	{
+		System.out.println("Into addProductRuntime");
+		openModal();
+		enterProductNameInModal(runtimeProdName);
+		Common.sleep(2000);
+		selectCategory(value);
+		
+		
+	}
+	
+	public void openModal() 
+	{
+		System.out.println("Into openModal");
+		String dropLocator="//div[@class='productService']/div[@class='Line'][1]/select[1]";
+		
+		String valueLocatorRuntimeProduct="//div[@class='productService']/div[@class='Line'][1]/select[1]/option[text()=' ADD NEW PRODUCT/SERVICE ']";
+		selectDropdownValues(dropLocator, valueLocatorRuntimeProduct);
+	}
+	
+	public void enterProductNameInModal(String runtimeProdName) 
+	{
+		Common.sleep(2000);
+		Common.sendKeys("PO_RUNTIME_PROD_NAME_IN_MODAL_XPATH", runtimeProdName);
+	}
+	
+	public void selectCategory(String value) 
+	{
+		System.out.println("value"+value);
+		Common.click("PO_RUNTIME_INVENTORY_TEXT_XPATH");
+		Common.click("PO_RUNTIME_OPEN_CATEGORY_DROPDOWN_XPATH");
+		Common.click("PO_RUNTIME_SELECT_CAT_FROM_DROPDOWN_XPATH");
+		//selectDropdownValues("PO_RUNTIME_OPEN_CATEGORY_DROPDOWN_XPATH", "PO_RUNTIME_SELECT_CAT_FROM_DROPDOWN_XPATH");
+		Common.sleep(3000);
+		Common.sendKeys("PO_RUNTIME_CATEGORY_TEXTBOX_XPATH", value);
+				
+	}
+	
+	
+	
+	
+
 }
