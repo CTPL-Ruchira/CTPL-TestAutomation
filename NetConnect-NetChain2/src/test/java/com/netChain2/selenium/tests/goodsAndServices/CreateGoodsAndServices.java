@@ -1,20 +1,14 @@
 package com.netChain2.selenium.tests.goodsAndServices;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import org.openqa.selenium.WebElement;
-import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createGoodsAndServices.GoodsAndServicesCreationForm;
 import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
-import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
 
 
@@ -90,12 +84,11 @@ public class CreateGoodsAndServices {
 		
 		//click save Button
 		goodsAndServices.clickSaveButton();
-		Common.sleep(6000);
+		Common.sleep(7000);
 		
 		//Check Product is Added Or Not	
-		boolean status=goodsAndServices.verifyProductName("CHECK_PRODUCT_ADDED_XPATH", expectedProdName);
-		BaseTestCase.assertTrue(status, "Product name is not present");
-		
-		LogoutFromPage.logout();
+		goodsAndServices.verifyProductName("CHECK_PRODUCT_ADDED_XPATH", expectedProdName);		
 	 }
+	
+
 }
