@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
+import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationListActions;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
@@ -29,22 +30,23 @@ public class CreateInvoice extends BaseTestCase {
 	private ArrayList<String> testDataVendorList;
 	private ArrayList<String> testDataInvoice2;
 	private ArrayList<String> testDataInvoice3;
-	private String invoiceNo;
+	private static String invoiceNo;
 	
+	
+
 	@BeforeClass
 	public void setUp() {
 		testData = Common.getTestData("NetchainTest.Login");
 		//testData1=Common.getTestData("NetchainTest.CreateVendor");
-		testDataInvoice=Common.getTestData("NetchainTest.CreateInvoice");
-	    testDataInvoiceList=Common.getTestData("NetchainTest.invListSearchBar");
+	   testDataInvoice=Common.getTestData("NetchainTest.CreateInvoice");
+        testDataInvoiceList=Common.getTestData("NetchainTest.invListSearchBar");
 	    testDataVendorList=Common.getTestData("NetchainTest.InvoiceListVendor");
-	    testDataInvoice2=Common.getTestData("NetchainTest.CreateInvoice2");
+         testDataInvoice2=Common.getTestData("NetchainTest.CreateInvoice2");
 	    testDataInvoice3=Common.getTestData("NetchainTest.CreateInvoice3");
 	}
 
-	 @Test
-     @TestDetails(author="Roshni.Mehta", description="Create New Invoice")
-	 
+     @Test
+	@TestDetails(author="Roshni.Mehta", description="Create New Invoice") 
 	
 	  public void testCreateInvoice() {
 		 
@@ -77,9 +79,9 @@ public class CreateInvoice extends BaseTestCase {
 	    Common.sleep(6000);
 	    
 	    //Get Invoice number
-	     String invoiceNo=invoice.getAttributeValueInvoiceNo();
+	    String invoiceNo=invoice.getAttributeValueInvoiceNo();
 		System.out.println("Invoice number" +invoiceNo);
-	    
+		
 		//Select value from Net Term 
 		invoice.SelectNetTerm(testDataInvoice.get(1));
 		
@@ -165,7 +167,7 @@ public class CreateInvoice extends BaseTestCase {
 	
 		  boolean check2= ExpectedAlertMessage.equals(ActualAlertMessage);
 		  BaseTestCase.assertTrue(check2, "Invoice creation failed");
-		  Common.sleep(6000);
+	       Common.sleep(6000);
 		  Reporter.log("Invoice was created successfully");
 		  
 		  //Invoice Create rule click on cancel button
@@ -173,10 +175,12 @@ public class CreateInvoice extends BaseTestCase {
 	 
 		   //Log out
 		   LogoutFromPage.logout();
-			
+		}
+		
 
-	 }
-		 
-	  
-}
+
+	
+
+	
+}	
 
