@@ -26,10 +26,11 @@ public class InvoiceActions extends BaseTestCase{
 	public String invoiceNo;
 	public String invoicetotalAmount;
 	public String invoicetotalAmountRoundoff;
+	
 	@BeforeClass
 	public void setUp() {
 		testData = Common.getTestData("NetchainTest.Login");
-		//testData1=Common.getTestData("NetchainTest.CreateVendor");
+	
 	   testDataInvoiceActions=Common.getTestData("NetchainTest.CreateInvoiceActions");
         testDataInvoiceList=Common.getTestData("NetchainTest.invListSearchBar");
 	    testDataVendorList=Common.getTestData("NetchainTest.InvoiceListVendor");

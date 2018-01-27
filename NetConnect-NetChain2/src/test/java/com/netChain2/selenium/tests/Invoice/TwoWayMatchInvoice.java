@@ -31,13 +31,13 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 	@BeforeClass
 	public void setUp() {
 		testData = Common.getTestData("NetchainTest.Login");
-		//testData1=Common.getTestData("NetchainTest.CreateVendor");
+
 		testDataInvoice=Common.getTestData("NetchainTest.CreateInvoice");
 	    testDataInvoiceList=Common.getTestData("NetchainTest.invListSearchBar");
 	    testDataVendorList=Common.getTestData("NetchainTest.InvoiceListVendor");
 	    testDataInvoice2=Common.getTestData("NetchainTest.CreateInvoice2");
 	    testDataInvoice3=Common.getTestData("NetchainTest.CreateInvoice3");
-	  //click to create new
+	  
 	  		
 	}
 
@@ -85,24 +85,20 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 		//select value from Location dropdown
 		invoice.SelectLocation(testDataInvoice.get(2));	
 		
-		//Invoice Account details booking account
-		invoice.SelectBookingAccount(testDataInvoice.get(3));
-		     
-		//Invoice Account Description
-		invoice.AccountDetails_Description(testDataInvoice.get(4));
-	    
 		//Invoice select product for that PO
 		TwoWayMatch.SelectProduct_Invoice(testDataInvoice.get(6));
 		
-		//Invoice
+		//Invoice select department
 	    TwoWayMatch.SelectDepartment_Invoice(testDataInvoice.get(7));
-		//
-		TwoWayMatch.SelectBookingAccount_Invoice(testDataInvoice.get(8));
-		//
 		
+	    //Select bookin account
+		TwoWayMatch.SelectBookingAccount_Invoice(testDataInvoice.get(8));
+		
+		//Select Po number
 		TwoWayMatch.SelectPONumber_Invoice(testDataInvoice.get(18));
 		Common.sleep(5000);
-		//
+		
+		//Select quantity
 		TwoWayMatch.SelectQuantity_Invoice(testDataInvoice.get(11));
 	 
 		//Click on save button
@@ -156,13 +152,7 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 		
 		//select value from Location dropdown
 		invoice.SelectLocation(testDataInvoice.get(2));	
-		
-		//Invoice Account details booking account
-		invoice.SelectBookingAccount(testDataInvoice.get(3));
-		     
-		//Invoice Account Description
-		invoice.AccountDetails_Description(testDataInvoice.get(4));
-	    
+	
 		//Invoice product Selection
 		TwoWayMatch.SelectProduct_Invoice(testDataInvoice.get(6));
 		
