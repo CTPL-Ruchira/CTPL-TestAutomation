@@ -73,5 +73,25 @@ public class SOCreationForm {
 		{
 			Common.click("AR_SO_FORM_SAVE_BUTTON_XPATH");
 		}
+		
+		public boolean verifyTotalAmountCalculatedAndShown(double Amount)
+		{
+			
+			String amountDisplayed=Common.getText("AR_SO_AMOUNT_XPATH");
+			
+			String appendDollarSign="$"+Common.roundNumberToTwoDecimalValue(Amount);
+			System.out.println("appendDollarSign"+appendDollarSign);
+			System.out.println("amountDisplayed"+amountDisplayed);
+			if(appendDollarSign.equals(amountDisplayed))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			
+		}
+		
 
 }
