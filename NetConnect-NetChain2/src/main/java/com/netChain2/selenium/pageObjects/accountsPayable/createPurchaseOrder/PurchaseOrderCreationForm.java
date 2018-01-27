@@ -1,8 +1,6 @@
 	package com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
@@ -29,6 +27,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	private static int poNumber;
 	private static WebElement qualityElement;
 	private static WebElement rateElement;
+
 	private String amountElement;
 	private String vendorName;
 	private String vendorNameDropdown;
@@ -51,6 +50,10 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	public String getAmountElement() {
 		return amountElement;
 	}
+
+	
+	
+
 	public static double getPreviousAmount() {
 		return previousAmount;
 	}
@@ -181,12 +184,12 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 	}
 	
-	public String getAmountForLine(int flag)
-	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
-		return Common.findElement(descLocator).getAttribute("value");
-		
-	}
+	//public WebElement getAmount(int flag)
+	//{
+	//	String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
+	//	amountElement=Common.findElement(descLocator);
+	//	return amountElement;
+	//}
 	
 	
 	
@@ -285,8 +288,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		setDescription(description, flag);
 		setQualtity(quantity, flag);
 		setRate(rate, flag);
-		Common.sleep(3000);
-		amountElement=getAmountForLine(flag);
+		
 		Common.sleep(5000);
 		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
 		currentAmount=previousAmount+currentAmount;
@@ -327,6 +329,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	}
 	
 	
+
 	public void addProductRuntime(String runtimeProdName,String addCategory,String sku,String selectLoc,String selectDept,String bookingAccnt,String cost,String margin, String attributeName,String attributeName1 )
 	{
 		//System.out.println("Into addProductRuntime");
@@ -455,4 +458,5 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		return productNameFromModal;
 		
 	}
+
 }
