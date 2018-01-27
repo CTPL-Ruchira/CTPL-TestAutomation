@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
+import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationListActions;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
@@ -29,22 +30,23 @@ public class CreateInvoice extends BaseTestCase {
 	private ArrayList<String> testDataVendorList;
 	private ArrayList<String> testDataInvoice2;
 	private ArrayList<String> testDataInvoice3;
-	private String invoiceNo;
+	private static String invoiceNo;
 	
+	
+
 	@BeforeClass
 	public void setUp() {
 		testData = Common.getTestData("NetchainTest.Login");
 		//testData1=Common.getTestData("NetchainTest.CreateVendor");
-		testDataInvoice=Common.getTestData("NetchainTest.CreateInvoice");
-	    testDataInvoiceList=Common.getTestData("NetchainTest.invListSearchBar");
+	   testDataInvoice=Common.getTestData("NetchainTest.CreateInvoice");
+        testDataInvoiceList=Common.getTestData("NetchainTest.invListSearchBar");
 	    testDataVendorList=Common.getTestData("NetchainTest.InvoiceListVendor");
-	    testDataInvoice2=Common.getTestData("NetchainTest.CreateInvoice2");
+         testDataInvoice2=Common.getTestData("NetchainTest.CreateInvoice2");
 	    testDataInvoice3=Common.getTestData("NetchainTest.CreateInvoice3");
 	}
 
-	 @Test
-     @TestDetails(author="Roshni.Mehta", description="Create New Invoice")
-	 
+     @Test
+	@TestDetails(author="Roshni.Mehta", description="Create New Invoice") 
 	
 	  public void testCreateInvoice() {
 		 
@@ -77,9 +79,9 @@ public class CreateInvoice extends BaseTestCase {
 	    Common.sleep(6000);
 	    
 	    //Get Invoice number
-	     String invoiceNo=invoice.getAttributeValueInvoiceNo();
+	    String invoiceNo=invoice.getAttributeValueInvoiceNo();
 		System.out.println("Invoice number" +invoiceNo);
-	    
+		
 		//Select value from Net Term 
 		invoice.SelectNetTerm(testDataInvoice.get(1));
 		
@@ -114,10 +116,9 @@ public class CreateInvoice extends BaseTestCase {
 		 boolean isRateRoundedForFirstLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getRate(), PurchaseOrderCreationForm.getRt());
 		 assertTrue(isRateRoundedForFirstLine, "Amount is not rounded in two decimal digits for first Line");
 
-		 boolean isAmountRoundedForFirstLine=invoice.verifyTotalAmountCalculatedAndShown( PurchaseOrderCreationForm.getPreviousAmount(),Amount);
-		 System.out.println("Amountcheck" +isAmountRoundedForFirstLine);
-		 assertTrue(isAmountRoundedForFirstLine, "Amount is not rounded in two decimal digits for first Line");
-
+		 boolean isAmountRoundedForFirstLine=purchaseOrder.verifyTotalAmountCalculatedAndShown(PurchaseOrderCreationForm.getPreviousAmount());
+		assertTrue(isAmountRoundedForFirstLine, "Amount is not rounded in two decimal digits for first Line");
+			
 		 //Enter invoice measure for 2nd product Quantity
 		 invoice.Invoice_SelectMeasure2(testDataInvoice2.get(10));
 
@@ -131,9 +132,9 @@ public class CreateInvoice extends BaseTestCase {
 		 assertTrue(isQuantityRoundedForSecondLine, "Quantity is not rounded in two decimal digits for second Line");
 		 boolean isRateRoundedForSecondLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getRate(), PurchaseOrderCreationForm.getRt());
 		 assertTrue(isRateRoundedForSecondLine, "Rate is not rounded in two decimal digits for second Line");
-		 boolean isAmountRoundedForSecondLine=invoice.verifyTotalAmountCalculatedAndShown( PurchaseOrderCreationForm.getPreviousAmount(),Amount);
-		 assertTrue(isAmountRoundedForSecondLine, "Amount is not rounded in two decimal digits for second Line");
-
+		 boolean isAmountRoundedForSecondLine=purchaseOrder.verifyTotalAmountCalculatedAndShown(PurchaseOrderCreationForm.getPreviousAmount());
+		assertTrue(isAmountRoundedForSecondLine, "Amount is not rounded in two decimal digits for second Line");
+			
 
 		//Enter invoice measure
 		 invoice.Invoice_SelectMeasure3(testDataInvoice3.get(10));
@@ -145,9 +146,9 @@ public class CreateInvoice extends BaseTestCase {
 		 assertTrue(isQuantityRoundedForThirdLine, "Quantity is not rounded in two decimal digits for third Line");
 		 boolean isRateRoundedForThirdLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getRate(), PurchaseOrderCreationForm.getRt());
 		 assertTrue(isRateRoundedForThirdLine, "Rate is not rounded in two decimal digits for third Line");
-		 boolean isAmountRoundedForThirdLine=invoice.verifyTotalAmountCalculatedAndShown( PurchaseOrderCreationForm.getPreviousAmount(),Amount);
-		 assertTrue(isAmountRoundedForThirdLine, "Amount is not rounded in two decimal digits for third Line");
-
+		 boolean isAmountRoundedForThirdLine=purchaseOrder.verifyTotalAmountCalculatedAndShown(PurchaseOrderCreationForm.getPreviousAmount());
+			assertTrue(isAmountRoundedForThirdLine, "Amount is not rounded in two decimal digits for third Line");
+			
 		
 		 //Invoice Enter Message to vendor
 		 invoice.Invoice_MessageToVendor(testDataInvoice.get(13));
@@ -165,7 +166,7 @@ public class CreateInvoice extends BaseTestCase {
 	
 		  boolean check2= ExpectedAlertMessage.equals(ActualAlertMessage);
 		  BaseTestCase.assertTrue(check2, "Invoice creation failed");
-		  Common.sleep(6000);
+	       Common.sleep(6000);
 		  Reporter.log("Invoice was created successfully");
 		  
 		  //Invoice Create rule click on cancel button
@@ -173,10 +174,12 @@ public class CreateInvoice extends BaseTestCase {
 	 
 		   //Log out
 		   LogoutFromPage.logout();
-			
+		}
+		
 
-	 }
-		 
-	  
-}
+
+	
+
+	
+}	
 
