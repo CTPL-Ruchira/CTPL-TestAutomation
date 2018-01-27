@@ -115,9 +115,7 @@ public class CreatePurchaseOrder extends BaseTestCase{
 		epo.searchPurchaseOrder(Integer.toString(PurchaseOrderCreationForm.getPoNumber()));
 		
 		epo.verifyCreatedPurchaseOrder(invoiceData.get(0), Integer.toString(PurchaseOrderCreationForm.getPoNumber()));
-		Common.sleep(3000);
 		
-		LogoutFromPage.logout();
 	}
 	
 	
