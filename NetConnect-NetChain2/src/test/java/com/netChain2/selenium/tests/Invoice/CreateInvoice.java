@@ -1,8 +1,6 @@
 package com.netChain2.selenium.tests.Invoice;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -14,30 +12,23 @@ import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
-import com.netChain2.selenium.tests.purchaseOrder.CreatePurchaseOrder;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
 
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.Reporter;
 
 
 public class CreateInvoice extends BaseTestCase {
 	private ArrayList<String> testData;
 	private ArrayList<String> testDataInvoice;
-    private ArrayList<String> testDataInvoiceList;
-	private ArrayList<String> testDataVendorList;
-	private ArrayList<String> testDataInvoice2;
+    private ArrayList<String> testDataInvoice2;
 	private ArrayList<String> testDataInvoice3;
-	private String invoiceNo;
-	
 	@BeforeClass
 	public void setUp() {
 		testData = Common.getTestData("NetchainTest.Login");
 		//testData1=Common.getTestData("NetchainTest.CreateVendor");
 		testDataInvoice=Common.getTestData("NetchainTest.CreateInvoice");
-	    testDataInvoiceList=Common.getTestData("NetchainTest.invListSearchBar");
-	    testDataVendorList=Common.getTestData("NetchainTest.InvoiceListVendor");
+	    Common.getTestData("NetchainTest.invListSearchBar");
+	    Common.getTestData("NetchainTest.InvoiceListVendor");
 	    testDataInvoice2=Common.getTestData("NetchainTest.CreateInvoice2");
 	    testDataInvoice3=Common.getTestData("NetchainTest.CreateInvoice3");
 	}
