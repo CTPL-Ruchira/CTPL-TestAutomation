@@ -23,6 +23,8 @@ public class InvoiceActions extends BaseTestCase{
 	private ArrayList<String> testDataInvoiceActions;
     private ArrayList<String> testDataInvoiceList;
 	private ArrayList<String> testDataVendorList;
+	private ArrayList<String> PaymentBankDetails;
+	
 	public String invoiceNo;
 	public String invoicetotalAmount;
 	public String invoicetotalAmountRoundoff;
@@ -34,6 +36,7 @@ public class InvoiceActions extends BaseTestCase{
 	   testDataInvoiceActions=Common.getTestData("NetchainTest.CreateInvoiceActions");
         testDataInvoiceList=Common.getTestData("NetchainTest.invListSearchBar");
 	    testDataVendorList=Common.getTestData("NetchainTest.InvoiceListVendor");
+	    PaymentBankDetails=Common.getTestData("NetchainTest.paymentBankDetails");
 	}
 	    @Test
 		@TestDetails(author="Roshni.Mehta", description="Create New Invoice") 
@@ -201,6 +204,9 @@ public class InvoiceActions extends BaseTestCase{
 	           icl.clickOnCreatePaymentLink(testDataVendorList.get(3),invoiceNo);
 	           Common.sleep(2000);
 	            
+	           //Get payment id
+	          String payId= icl.getPaymentId();
+	           
 	           //Click on payment banner 
 	           icl.bannerClick();
 	           Common.sleep(5000);
@@ -226,13 +232,36 @@ public class InvoiceActions extends BaseTestCase{
 	            icl.searchInvoice(invoiceNo);
 	            
 	            //Click on approve button
-	            icl.clickOnApprovePayment(testDataVendorList.get(3),invoiceNo);
+	            icl.clickOnApprovePayment(testDataVendorList.get(3),invoiceNo);*/
+	            
+	            boolean isPaymentApproveVerfication=icl.verificationPaymentApprove(invoiceNo, vendorName, invoicetotalAmount);
+	            BaseTestCase.assertTrue(isPaymentApproveVerfication, "Payment Details on approve module are not correct");
 	            
 	            //Click on payment button
 	            icl.sendPaymentButton();
 	            Common.sleep(3000);
-*/
-       }
+       
+	            //Sign up form when vendor does not have bank details
+	            
+	          /* //Enter 
+	            icl.enterUserName(PaymentBankDetails.get(0));
+	            
+	            //
+	            icl.enterNewPassword(PaymentBankDetails.get(1));
+	           //
+	            icl.enterConfirmPassword(PaymentBankDetails.get(1));
+	    
+	             icl.bankDetailsSignUpButton();
+	    */
+	         //refresh page 
+	         Common.getDriver().navigate().refresh();
+	         
+	         //Payment search by id
+	         icl.SearchPaymentId(payId);
+	         
+	         
+	    
+	    }
 
 
 

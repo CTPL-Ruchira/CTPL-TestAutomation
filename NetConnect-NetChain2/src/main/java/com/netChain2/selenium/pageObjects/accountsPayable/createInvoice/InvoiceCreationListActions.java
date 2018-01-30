@@ -166,7 +166,75 @@ public class InvoiceCreationListActions {
 
 			return false;	
 		}
+    }
+
+	public String getPaymentId() {
+       WebElement paymentId=Common.getElement("PAYMENT_ID_NO");
+		String paymentid=paymentId.getText();
+       return paymentid;
+ }
+
+	
+	public boolean verificationPaymentApprove(String modalinvoicenumber, String vname, String invoicetotalAmount ) {
+		WebElement modalinvnmbr=Common.getElement("MODAl_APPROVE_PAYMENT_INVOICE_ID_XPATH");
+		String invnumber=modalinvnmbr.getText();
+		System.out.println(invnumber);
+
+		/*String[] l=invnumber.split("#");
+		String m=l[1];
+		System.out.println(m);
+*/
+		WebElement balamount=Common.getElement("MODAL_APPROVE_PAYMENT_VENDOR_NAME_XPATH");		
+		String balamount2=balamount.getText();
 
 
+		WebElement modalVendor=Common.getElement("MODAL_APPROVE_PAYMENT_AMOUNT_XPATH");
+		String modalVendor1=modalVendor.getText();
+		;
+
+		//verification point for vendor name,balance amount and invoice number
+		if(invnumber.equalsIgnoreCase(modalinvoicenumber) && modalVendor1.equalsIgnoreCase(vname) && invoicetotalAmount.equalsIgnoreCase(balamount2))
+		{
+
+			return true;	
+
+		}
+		else {
+
+			return false;	
+		}
+	
+		}
+
+	public void enterUserName(String Value) {
+		Common.sendKeys("PAYMENT_BANK_DETAILS_USERNAME",Value);
 	}
-}    
+	public void enterNewPassword(String Value) {
+		Common.sendKeys("PAYMENT_BANK_DETAILS_CREATE_NEW_PASSWORD",Value);
+	}
+
+	public void enterConfirmPassword(String Value) {
+		Common.sendKeys("PAYMENT_BANK_DETAILS_CONFIRM_NEW_PASSWORD",Value);
+	}
+
+	public void bankDetailsSignUpButton() {
+		Common.click("PAYMENT_BANK_DETAILS_SIGN_UP_BUTTON");
+	}
+
+	public void SearchPaymentId(String value) {
+		Common.sendKeys("//div[@class='filtersActions']/div[2]",value);
+	}
+
+	public void verficationOnProcessingLink(String VendorName, String InvoiceNumber)
+	{
+		String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/a[2]";
+		WebElement Processing=Common.getElement(InvoiceLocator);		
+		String ActionPayment=Processing.getText();
+      
+	
+	}
+	
+	
+}
+
+
