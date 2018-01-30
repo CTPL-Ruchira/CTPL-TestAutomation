@@ -228,11 +228,11 @@ public class InvoiceActions extends BaseTestCase{
 	            Common.sleep(6000);
 	            Reporter.log("Payment was created successfully");
 	           
-	           /* //Search invoice
+	            //Search invoice
 	            icl.searchInvoice(invoiceNo);
 	            
 	            //Click on approve button
-	            icl.clickOnApprovePayment(testDataVendorList.get(3),invoiceNo);*/
+	            icl.clickOnApprovePayment(testDataVendorList.get(3),invoiceNo);
 	            
 	            boolean isPaymentApproveVerfication=icl.verificationPaymentApprove(invoiceNo, vendorName, invoicetotalAmount);
 	            BaseTestCase.assertTrue(isPaymentApproveVerfication, "Payment Details on approve module are not correct");
@@ -241,20 +241,8 @@ public class InvoiceActions extends BaseTestCase{
 	            icl.sendPaymentButton();
 	            Common.sleep(3000);
        
-	            //Sign up form when vendor does not have bank details
-	            
-	          /* //Enter 
-	            icl.enterUserName(PaymentBankDetails.get(0));
-	            
-	            //
-	            icl.enterNewPassword(PaymentBankDetails.get(1));
-	           //
-	            icl.enterConfirmPassword(PaymentBankDetails.get(1));
-	    
-	             icl.bankDetailsSignUpButton();
-	    */
-	         //refresh page 
-	         Common.getDriver().navigate().refresh();
+	           //refresh page 
+	            Common.getDriver().navigate().refresh();
 	         
 	         //Payment search by id
 	         icl.SearchPaymentId(payId);

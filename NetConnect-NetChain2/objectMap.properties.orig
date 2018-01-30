@@ -270,9 +270,14 @@ SELECT_PRODUCT_BUNDLE_OPTION_XPATH=//select[@id="SkM3Yt7Vf-available"]/option
 
 NAVIGATION_MENU_CLOSE_XPATH=.//a[@class='menuToggler']
 NAVIGATION_MENU_INVOICE_XPATH=//*[@id="accountSection"]/span[2]/ul[1]/li[1]/a
-NAVIGATION_MENU_SETTING_TAB=//li[@id="accountSection"]/li[2]/ul/li[1]/a
+<<<<<<< HEAD
 NAVIGATION_MENU_SETTING_TAB=//li[@id="accountSection"]/li[2]/ul/li[1]/a
 NEW_CUSTOM_WORKFLOW_BUTTON=//div[@id="workflowConfig"]/button
+
+=======
+>>>>>>> origin/Base_branch
+
+
 
 
 ##################################################### Settings #########################################
