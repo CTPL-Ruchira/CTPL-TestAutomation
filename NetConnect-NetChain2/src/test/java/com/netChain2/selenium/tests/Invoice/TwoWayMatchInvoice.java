@@ -24,6 +24,7 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 	private ArrayList<String> testDataVendorList;
 	private ArrayList<String> testDataInvoice2;
 	private ArrayList<String> testDataInvoice3;
+	private ArrayList<String> testdatatwowaymatch;
 	private String invoiceNo;
 	InvoiceCreationForm invoice = new InvoiceCreationForm();
 	CheckTwoWayMatchInvoice TwoWayMatch=new CheckTwoWayMatchInvoice();
@@ -37,7 +38,7 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 	    testDataVendorList=Common.getTestData("NetchainTest.InvoiceListVendor");
 	    testDataInvoice2=Common.getTestData("NetchainTest.CreateInvoice2");
 	    testDataInvoice3=Common.getTestData("NetchainTest.CreateInvoice3");
-	  
+	    testdatatwowaymatch=Common.getTestData("NetchainTest.TwoWayMatch");
 	  		
 	}
 
@@ -54,7 +55,7 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 		landingPage.clickLogInButton();
 		
 		LoginPage loginPage = new LoginPage();
-		loginPage.login(testData.get(0), testData.get(1));
+		loginPage.login(testData.get(4), testData.get(5));
 		Common.sleep(2000);
 		
 		
@@ -72,7 +73,7 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 		Common.sleep(2000);
 		
 		//Select value from Vender DropDown
-		invoice.SelectVendor(testDataInvoice.get(0));
+		invoice.SelectVendor(testdatatwowaymatch.get(0));
 	    Common.sleep(6000);
 	    
 	    //Get Invoice number
@@ -80,26 +81,26 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 		System.out.println("Invoice number"+invoiceNo);
 	    
 		//Select value from Net Term 
-		invoice.SelectNetTerm(testDataInvoice.get(1));
+		invoice.SelectNetTerm(testdatatwowaymatch.get(1));
 		
 		//select value from Location dropdown
-		invoice.SelectLocation(testDataInvoice.get(2));	
+		invoice.SelectLocation(testdatatwowaymatch.get(2));	
 		
 		//Invoice select product for that PO
-		TwoWayMatch.SelectProduct_Invoice(testDataInvoice.get(6));
+		TwoWayMatch.SelectProduct_Invoice(testdatatwowaymatch.get(6));
 		
 		//Invoice select department
-	    TwoWayMatch.SelectDepartment_Invoice(testDataInvoice.get(7));
+	    TwoWayMatch.SelectDepartment_Invoice(testdatatwowaymatch.get(7));
 		
 	    //Select bookin account
-		TwoWayMatch.SelectBookingAccount_Invoice(testDataInvoice.get(8));
+		TwoWayMatch.SelectBookingAccount_Invoice(testdatatwowaymatch.get(8));
 		
 		//Select Po number
-		TwoWayMatch.SelectPONumber_Invoice(testDataInvoice.get(18));
+		TwoWayMatch.SelectPONumber_Invoice(testdatatwowaymatch.get(15));
 		Common.sleep(5000);
 		
 		//Select quantity
-		TwoWayMatch.SelectQuantity_Invoice(testDataInvoice.get(11));
+		TwoWayMatch.SelectQuantity_Invoice(testdatatwowaymatch.get(11));
 	 
 		//Click on save button
 	   invoice.Invoice_SaveButton();
@@ -110,6 +111,7 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 	   //Search invoice
 	   TwoWayMatch.searchInvoice(invoiceNo);
 	   
+	   //Create payment link verification
 	   boolean isCreatePaymentLinkVisible=TwoWayMatch.CheckInvoiceStatus_CreatePayment(testDataVendorList.get(0),invoiceNo);
 	   assertTrue(isCreatePaymentLinkVisible, "Custom Workflow is not set");
 	   Common.sleep(5000);
@@ -125,7 +127,7 @@ public class TwoWayMatchInvoice extends BaseTestCase {
  		
  		
  		LoginPage loginPage = new LoginPage();
- 		loginPage.login(testData.get(0), testData.get(1));
+ 		loginPage.login(testData.get(4), testData.get(5));
  		Common.sleep(5000);
  		CheckTwoWayMatchInvoice.scrollUp();
  		
@@ -140,7 +142,7 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 		Common.sleep(2000);
 		
 		//Select value from Vender DropDown
-		invoice.SelectVendor(testDataInvoice.get(0));
+		invoice.SelectVendor(testdatatwowaymatch.get(0));
 	    Common.sleep(6000);
 	    
 	    //Get Invoice number
@@ -148,22 +150,22 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 		System.out.println("Invoice number"+invoiceNumber);
 	    
 		//Select value from Net Term 
-		invoice.SelectNetTerm(testDataInvoice.get(1));
+		invoice.SelectNetTerm(testdatatwowaymatch.get(1));
 		
 		//select value from Location dropdown
-		invoice.SelectLocation(testDataInvoice.get(2));	
+		invoice.SelectLocation(testdatatwowaymatch.get(2));	
 	
 		//Invoice product Selection
-		TwoWayMatch.SelectProduct_Invoice(testDataInvoice.get(6));
+		TwoWayMatch.SelectProduct_Invoice(testdatatwowaymatch.get(6));
 		
 		//Invoice select department
-	    TwoWayMatch.SelectDepartment_Invoice(testDataInvoice.get(7));
+	    TwoWayMatch.SelectDepartment_Invoice(testdatatwowaymatch.get(7));
 		
 		//Invoice select Booking account
-	    TwoWayMatch.SelectBookingAccount_Invoice(testDataInvoice2.get(8));
+	    TwoWayMatch.SelectBookingAccount_Invoice(testdatatwowaymatch.get(8));
 	
 	    //select PO number
-		TwoWayMatch.SelectPONumber_Invoice(testDataInvoice.get(18));
+		TwoWayMatch.SelectPONumber_Invoice(testdatatwowaymatch.get(15));
 		Common.sleep(6000);
 		
 		//Select Quantity

@@ -8,6 +8,7 @@ import com.netChain2.selenium.tests.Invoice.CreateInvoice;
 
 public class CheckTwoWayMatchInvoice {
 
+	
 	//Select product
   public void SelectProduct_Invoice(String value) {
 	 Common.select("CREATE_INVOICE_SELECT_PRODUCT_XPATH", value);
