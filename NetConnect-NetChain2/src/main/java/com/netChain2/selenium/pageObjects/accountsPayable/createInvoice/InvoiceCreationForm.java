@@ -1,14 +1,11 @@
 package com.netChain2.selenium.pageObjects.accountsPayable.createInvoice;
 
-import org.openqa.selenium.WebElement;
-
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class InvoiceCreationForm {
-	
-	
+
 	public APModuleCreation createNew() {
 		CommonMethods.scrollUp();
 		Common.click("CREATENEW_BUTTON_XPATH");
@@ -70,12 +67,7 @@ public class InvoiceCreationForm {
 	 public void SelectBookingAccount_Item(String value) {
 			Common.select("CREATE_INVOICE_BOOKING_ACCOUNT_XPATH", value);
 			}
-	 
-	/* //Select PO number
-	 public void SelectPONumber(String value) {
-		Common.select("CREATE_INVOICE_PO_NO_XPATH", value);
-	}*/
-	
+		
 	 // Select Invoice description for product1
 	public void Invoice_Description(String value) {
     Common.sendKeys("CREATE_INVOICE_DESC_FIELD_XPATH", value);
@@ -194,6 +186,30 @@ public class InvoiceCreationForm {
     public void CreateRule_CancelButton() {
     	Common.click("INVOICE_CREATE_RULE_CANCEL_BUTTON_XPATH");
   	}
+
+
+    public boolean verifyTotalAmountCalculatedAndShown(double Amount,double PreviousAmount)
+	{
+    	PreviousAmount=Common.roundNumberToTwoDecimalValue(PreviousAmount);
+		System.out.println("AmountAmount--"+Amount);
+		System.out.println("PreviousAmountPreviousAmount--"+PreviousAmount);
+		String amountDisplayed=Common.getText("INVOICE_AMOUNT_XPATH");
+		double temp=Amount+PreviousAmount;
+		String appendDollarSign1="$"+temp;
+		System.out.println("appendDollarSign1--"+appendDollarSign1);
+		System.out.println("amountDisplayed--"+amountDisplayed);
+		if(appendDollarSign1.equals(amountDisplayed))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+    }
+    
+    
+}
 
 	public void setVendorDetails(String vendorName, String netTermValue, String locationName) {
 		SelectVendor(vendorName);

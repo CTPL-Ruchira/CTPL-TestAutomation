@@ -35,7 +35,7 @@ public class CreatePurchaseOrder extends BaseTestCase{
 	 
 	public void createPurchaseOrder() {
 		 
-		
+		System.err.println("into create purchase Order....");
 		LandingPage landingPage = new LandingPage();
 				
 		landingPage.clickLogInButton();
@@ -54,9 +54,35 @@ public class CreatePurchaseOrder extends BaseTestCase{
 		
 		Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", invoiceData.get(0));
 		purchaseOrder.selectLocation(invoiceData.get(2));
+		purchaseOrder.setVendorNameInDrpdown();
 		
 		//Set items for First line
-		purchaseOrder.setItemDetails(invoiceData.get(6),invoiceData.get(7),invoiceData.get(8),invoiceData.get(9), invoiceData.get(10), invoiceData.get(11), invoiceData.get(12));
+
+		String runtimeProductName=Common.generateRandomString(poRuntimeData.get(0));
+		purchaseOrder.addProductRuntime(runtimeProductName,poRuntimeData.get(1),poRuntimeData.get(2),poRuntimeData.get(3),poRuntimeData.get(4),poRuntimeData.get(5),poRuntimeData.get(6),poRuntimeData.get(7),"value","value");
+		String vendorNameFromModal=purchaseOrder.getVendorName();
+		String vendorNameFromDropdown=purchaseOrder.getVendorNameDropdown();
+		System.out.println("vendorNameFromModal"+vendorNameFromModal);
+		System.out.println("vendorNameFromDropdown"+vendorNameFromDropdown);
+		String productNameFromModal=purchaseOrder.getProductName();
+		//String productNameFromDropdown=purchaseOrder.getProductNameDropdown();
+		String productNameFromDropdown=purchaseOrder.getProductNamePresentInDropdown(productNameFromModal);
+		System.out.println("vendorNameFromModal:::::::"+vendorNameFromModal+"_x");
+		System.out.println("vendorNameFromDropdown:::::::::"+vendorNameFromDropdown+"_x");
+		
+		boolean status=purchaseOrder.compareTwoValues(vendorNameFromModal, vendorNameFromDropdown);
+		assertTrue(status, "Vendor name in modal does not match with the vendor name in dropdown ");
+		//Reporter.log("runtime product is added for the vendor");
+		
+		boolean status1=purchaseOrder.compareTwoValues(productNameFromModal, productNameFromDropdown);
+		assertTrue(status1, "Product name entered in modal is not present in the dropdown");
+		//Reporter.log("Product added from the modal is seen in the dropdown");
+		
+		Common.sleep(2000);
+		System.out.println("Vendor name---"+purchaseOrder.getVendorName());
+		purchaseOrder.setItemDetails(runtimeProductName,invoiceData.get(7),invoiceData.get(8),invoiceData.get(9), invoiceData.get(11), invoiceData.get(12));
+		purchaseOrder.getProductNamePresentInDropdown(productNameFromModal);
+
 		purchaseOrder.addMoreItem();
 		boolean isQuantityRoundedForFirstLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getQualtity(), PurchaseOrderCreationForm.getQty());
 		assertTrue(isQuantityRoundedForFirstLine, "Quantity is not rounded in two decimal digits for first Line");

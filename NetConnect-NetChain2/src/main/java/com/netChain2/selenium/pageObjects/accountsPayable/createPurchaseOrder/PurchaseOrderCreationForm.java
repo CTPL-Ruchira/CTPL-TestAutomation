@@ -160,15 +160,6 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 	}
 	
-	//public WebElement getAmount(int flag)
-	//{
-	//	String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
-	//	amountElement=Common.findElement(descLocator);
-	//	return amountElement;
-	//}
-	
-	
-	
 	public void setMessageToVendor(String message)
 	{
 		Common.sendKeys("VENDOR_MESSAGE_XPATH", message);
@@ -244,7 +235,8 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	public boolean compareTwoValues(String value1, String value2)
 	{
-		if(value1.equals(value2))
+		
+		if(value2.contains(value1))
 		{
 			return true;
 			
@@ -312,7 +304,80 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 	}
 	
+
+	public void addProductRuntime(String runtimeProdName,String addCategory,String sku,String selectLoc,String selectDept,String bookingAccnt,String cost,String margin, String attributeName,String attributeName1 )
+	{
+		//System.out.println("Into addProductRuntime");
+		openModal();
+		enterProductNameInModal(runtimeProdName);
+		setVendornameInModal(attributeName);
+		
+		setProductnameInModal(attributeName1);
+		setProductNameinDropdown();
+		Common.sleep(2000);
+		selectCategory(addCategory);
+		Common.sleep(2000);
+		enterSKU(sku);
+		clickTaxablecheckbox();
+		Common.sleep(1000);
+		setLocationInModal(selectLoc);
+		setdepartmentInModal(selectDept);
+		setBookingAccountInModal(bookingAccnt);
+		enterCost(cost);
+		enterMargin(margin);
+		Common.sleep(3000);
+		clickPoModalSaveButton();
+	}
+	
+	public void openModal() 
+	{
+		System.out.println("Into openModal");
+		String dropLocator="//div[@class='productService']/div[@class='Line'][1]/select[1]";
+		
+		String valueLocatorRuntimeProduct="//div[@class='productService']/div[@class='Line'][1]/select[1]/option[text()=' ADD NEW PRODUCT/SERVICE ']";
+		selectDropdownValues(dropLocator, valueLocatorRuntimeProduct);
+	}
+	
+	public void enterProductNameInModal(String runtimeProdName) 
+	{
+		Common.sleep(2000);
+		Common.sendKeys("PO_RUNTIME_PROD_NAME_IN_MODAL_XPATH", runtimeProdName);
+	}
+	
+	public void selectCategory(String addCategory) 
+	{
+		Common.click("PO_RUNTIME_INVENTORY_TEXT_XPATH");
+		Common.click("PO_RUNTIME_OPEN_CATEGORY_DROPDOWN_XPATH");
+		Common.click("PO_RUNTIME_SELECT_CAT_FROM_DROPDOWN_XPATH");
+		Common.sleep(3000);
+		Common.sendKeys("PO_RUNTIME_CATEGORY_TEXTBOX_XPATH", addCategory);
+				
+	}
+	
+	public void enterSKU(String sku)
+	{
+		Common.sendKeys("PO_RUNTIME_SKU_FIELD_XPATH", sku);
+	}
+	
+	public void clickTaxablecheckbox() 
+	{
+		Common.click("PO_RUNTIME_TAXABLE_CHECKBOX_XPATH");
+	}
+	
+	public void setLocationInModal(String selectLoc) 
+	{
+		Common.select("INV/PO_RUNTIME_LOC_DROPDOWN_IN_MODAL_XPATH", selectLoc);
+	}
+	
+	public void setdepartmentInModal(String selectDept)
+	{
+		Common.select("PO_RUNTIME_DEPT_DROPDOWN_IN_MODAL_XPATH", selectDept);
+	}
+	
+	public void setBookingAccountInModal(String bookingAccnt)
+
 	public String getTotalAmountDisplayed()
+
 	{
 		return Common.getText("PO_AMOUNT_XPATH");
 	}
