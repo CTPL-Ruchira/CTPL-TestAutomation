@@ -255,13 +255,14 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 	}
 	
-	public void setItemDetails(String productName, String departmentName, String bookingAccountName, String description, String quantity, String rate)
+	public void setItemDetails(String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate)
 	{
 		
 		selectProductOrServices(productName, flag);
 		selectDepartment(departmentName, flag);
 		selectBookingAccount(bookingAccountName, flag);
 		setDescription(description, flag);
+		setMeasure(measure, flag);
 		setQualtity(quantity, flag);
 		setRate(rate, flag);
 		
@@ -277,6 +278,13 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 			
 	}
 	
+	private void setMeasure(String measure, int flag2) 
+	{
+		String measureLoc="//div[@class='productService']/div[@class='Line']["+flag+"]/input[2]";
+		WebElement descElement=Common.findElement(measureLoc);
+		descElement.sendKeys(measure);
+		
+	}
 	public String getTotalAmountCalculated(int flag)
 	{
 		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
@@ -302,6 +310,11 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 			return false;
 		}
 		
+	}
+	
+	public String getTotalAmountDisplayed()
+	{
+		return Common.getText("PO_AMOUNT_XPATH");
 	}
 	
 	

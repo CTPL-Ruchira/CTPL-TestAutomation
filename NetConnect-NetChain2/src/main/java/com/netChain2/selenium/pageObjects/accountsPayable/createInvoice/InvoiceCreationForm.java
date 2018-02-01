@@ -1,12 +1,16 @@
 package com.netChain2.selenium.pageObjects.accountsPayable.createInvoice;
 
+import org.openqa.selenium.WebElement;
+
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class InvoiceCreationForm {
 	
 	
 	public APModuleCreation createNew() {
+		CommonMethods.scrollUp();
 		Common.click("CREATENEW_BUTTON_XPATH");
 		return new APModuleCreation();
 	}
@@ -22,7 +26,7 @@ public class InvoiceCreationForm {
 	}
 	
 	//select invoice number
-	public String getAttributeValueInvoiceNo() {
+	public String getAttributeValueInvoiceNo(){
   		return Common.getAttribute("INVOICE_NUMBER_XPATH");
     
     }
@@ -47,9 +51,10 @@ public class InvoiceCreationForm {
     }
 	
 	//Select Account amount 
-	public void AccountDetails_Amount(String value) {
-	Common.sendKeys("CREATE_INVOICE_AMOUNT_FIELD_XPATH", value);
-	 }
+	public String AccountDetails_Amount(String value) {
+		Common.sendKeys("CREATE_INVOICE_AMOUNT_FIELD_XPATH", value);
+		return value;
+		 }
 	
 	//Select Product and services for product1
 	public void SelectProductAndServicesDrp(String value) {
@@ -189,6 +194,28 @@ public class InvoiceCreationForm {
     public void CreateRule_CancelButton() {
     	Common.click("INVOICE_CREATE_RULE_CANCEL_BUTTON_XPATH");
   	}
+
+	public void setVendorDetails(String vendorName, String netTermValue, String locationName) {
+		SelectVendor(vendorName);
+		SelectNetTerm(netTermValue);
+		SelectLocation(locationName);
+		
+		
+	}
+
+	public void setAccountDetails(String bookingAccountType, String description, String amount) {
+		SelectBookingAccount(bookingAccountType);
+		AccountDetails_Description(description);
+		AccountDetails_Amount(amount);
+		
+	}
+
+	public boolean verifyStatusAndActionForInvoice(String vendorName, String invoiceNo) 
+	{
+		String xpath="//div[text()='"+vendorName+"']/ancestor::div[2]/div[3]/div[text()='"+invoiceNo+"']/ancestor::div[2]/div[9]/div";
+		WebElement ele=Common.findElement(xpath);
+		return ele.isDisplayed();
+	}
   }
 
 
