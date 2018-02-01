@@ -3,27 +3,24 @@ package com.netChain2.selenium.tests.Invoice;
 import java.util.ArrayList;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
-import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
-
 import org.testng.Reporter;
 
-
-public class CreateInvoice extends BaseTestCase {
+public class CreateInvoice {
 	private ArrayList<String> testData;
 	private ArrayList<String> testDataInvoice;
 	private ArrayList<String> testDataInvoice2;
 	private ArrayList<String> testDataInvoice3;
 	private ArrayList<String> invRuntimeData;
-	@BeforeClass
+
+  @BeforeClass
 	public void setUp() {
 		testData = Common.getTestData("NetchainTest.Login");
 		testDataInvoice=Common.getTestData("NetchainTest.CreateInvoice");
@@ -61,10 +58,11 @@ public class CreateInvoice extends BaseTestCase {
 
 		//Select value from Vender DropDown
 		invoice.SelectVendor(testDataInvoice.get(0));
-		Common.sleep(6000);
+	    Common.sleep(6000);
+	    
+	    //Get Invoice number
+	     String invoiceNo=invoice.getAttributeValueInvoiceNo();
 
-		invoice.getAttributeValueInvoiceNo();
-		
 		//Select value from Net Term 
 		invoice.SelectNetTerm(testDataInvoice.get(1));
 
@@ -78,7 +76,6 @@ public class CreateInvoice extends BaseTestCase {
 
 		//Invoice Account Description
 		invoice.AccountDetails_Description(testDataInvoice.get(4));
-
 		//Invoice Account Amount
 
 		String PreviousAmount=invoice.AccountDetails_Amount(testDataInvoice.get(5));
@@ -173,10 +170,43 @@ public class CreateInvoice extends BaseTestCase {
 		LogoutFromPage.logout();
 	}
 
-
-
-
-
-
 }	
+	 }
+	
+	
+	/*@Test 
+	public void verifyInvoiceCreatedInList() {
+		 
+			
+			LandingPage landingPage = new LandingPage();
+			//boolean check1 = landingPage.isLoginButtonDisplayed();
+					
+			landingPage.clickLogInButton();
+			
+			LoginPage loginPage = new LoginPage();
+			loginPage.login(testData.get(0), testData.get(1));
+			Common.sleep(7000);
+			
+			//side menu bar
+			Common.click("NAVIGATION_MENU_CLOSE_XPATH");
+			Common.click("NAVIGATION_MENU_INVOICE_XPATH");
+			Common.sleep(1000);
+			Common.click("NAVIGATION_MENU_CLOSE_XPATH");
+			Common.sleep(3000);
+		
+			InvoiceCreationList icl=new InvoiceCreationList();
+			
+			//Search invoice in list
+			icl.searchInvoice(testDataInvoiceList.get(0));
+			Common.sleep(1000);
+			
+			//Accept invoice
+			icl.clickOnAcceptInvoice(testDataVendorList.get(0),"12");
+	        
+	
+	}*/
+
+
+}
+
 
