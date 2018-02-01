@@ -449,7 +449,6 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	public String setProductNameinDropdown()
 	{
 		productNameDropdown=Common.getText("PO_RUNTIME_VERIFY_PRODUCT_NAME_FROM_DROPDOWN_XPATH");
-		//System.out.println("into setProductNameinDropdown"+productNameDropdown);
 		return productNameDropdown;
 	}
 	
