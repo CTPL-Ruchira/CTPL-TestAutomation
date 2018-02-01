@@ -1,5 +1,7 @@
 package com.netChain2.selenium.pageObjects.accountsPayable.createInvoice;
 
+import org.openqa.selenium.WebElement;
+
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
@@ -209,8 +211,6 @@ public class InvoiceCreationForm {
     }
     
     
-}
-
 	public void setVendorDetails(String vendorName, String netTermValue, String locationName) {
 		SelectVendor(vendorName);
 		SelectNetTerm(netTermValue);

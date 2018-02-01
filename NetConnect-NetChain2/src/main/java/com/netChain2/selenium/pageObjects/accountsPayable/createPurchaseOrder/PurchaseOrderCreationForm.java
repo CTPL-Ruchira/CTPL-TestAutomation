@@ -28,6 +28,9 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	private static WebElement qualityElement;
 	private static WebElement rateElement;
 	private WebElement amountElement;
+	private String productNameDropdown;
+	private String vendorName;
+	private String productName;
 	
 	
 	public static double getPreviousAmount() {
@@ -374,13 +377,52 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		Common.select("PO_RUNTIME_DEPT_DROPDOWN_IN_MODAL_XPATH", selectDept);
 	}
 	
-	public void setBookingAccountInModal(String bookingAccnt)
-
+	
 	public String getTotalAmountDisplayed()
 
 	{
 		return Common.getText("PO_AMOUNT_XPATH");
 	}
 	
+
+	public String setProductNameinDropdown()
+	{
+		productNameDropdown=Common.getText("PO_RUNTIME_VERIFY_PRODUCT_NAME_FROM_DROPDOWN_XPATH");
+		return productNameDropdown;
+	}
+
+	public String setVendornameInModal(String value)
+	{
+		vendorName=Common.getAttribute("PO_RUNTIME_VENDOR_NAME_FIELD_XPATH", value);
+		System.out.println("setVendornameInModal--"+vendorName);
+		return vendorName;
+	}
+	public String setProductnameInModal(String value)
+	{
+		productName=Common.getAttribute("PO_RUNTIME_PROD_NAME_IN_MODAL_XPATH", value);
+		System.out.println(" into setProductnameInModal"+productName);
+		return productName;
+		
+	}
+	
+	public void enterCost(String cost)
+	{
+		Common.sendKeys("PO_RUNTIME_COST_TEXTBOX_XPATH", cost);
+	}
+	
+	public void enterMargin(String margin)
+	{
+		Common.sendKeys("PO_RUNTIME_MARGIN_TEXTBOX_XPATH", margin);
+	}
+	
+	public void clickPoModalSaveButton()
+	{
+		Common.click("PO_RUNTIME_SAVE_BUTTON_ON_MODAL_XPATH");
+	}
+	
+	public void setBookingAccountInModal(String bookingAccnt)
+	{
+		Common.select("PO_RUNTIME_BOOKING_ACCOUNT_DROPDOWN_IN_MODAL_XPATH", bookingAccnt);
+	}
 	
 }
