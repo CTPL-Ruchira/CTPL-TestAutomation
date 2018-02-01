@@ -6,7 +6,9 @@ public class LogoutFromPage
 {
 	public static void logout()
 	{
+		Common.sleep(5000);
 		Common.click("NAVIGATION_MENU_PARTIAL_LINK");
+		Common.sleep(3000);
 		Common.click("LOGOUT_BUTTON_XPATH");
 	}
 }
