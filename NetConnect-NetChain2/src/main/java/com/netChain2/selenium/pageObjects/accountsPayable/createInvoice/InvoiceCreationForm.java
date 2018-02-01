@@ -1,19 +1,9 @@
 package com.netChain2.selenium.pageObjects.accountsPayable.createInvoice;
 
-import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
-import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 
 public class InvoiceCreationForm {
-	
-	private static double qty;
-	private static double rt;
-	private static double amount;
-	private static int flag=1;
-	private static double amounttwo;
-	private static double AccountDetails_Amount;
-	
 	
 	public APModuleCreation createNew() {
 		Common.click("CREATENEW_BUTTON_XPATH");
@@ -113,10 +103,14 @@ public class InvoiceCreationForm {
 
     public boolean verifyTotalAmountCalculatedAndShown(double Amount,double PreviousAmount)
 	{
-		
-		String amountDisplayed=Common.getText("PO_AMOUNT_XPATH");
+    	PreviousAmount=Common.roundNumberToTwoDecimalValue(PreviousAmount);
+		System.out.println("AmountAmount--"+Amount);
+		System.out.println("PreviousAmountPreviousAmount--"+PreviousAmount);
+		String amountDisplayed=Common.getText("INVOICE_AMOUNT_XPATH");
 		double temp=Amount+PreviousAmount;
 		String appendDollarSign1="$"+temp;
+		System.out.println("appendDollarSign1--"+appendDollarSign1);
+		System.out.println("amountDisplayed--"+amountDisplayed);
 		if(appendDollarSign1.equals(amountDisplayed))
 		{
 			return true;
@@ -126,5 +120,7 @@ public class InvoiceCreationForm {
 			return false;
 		}
     }
+    
+    
 }
 

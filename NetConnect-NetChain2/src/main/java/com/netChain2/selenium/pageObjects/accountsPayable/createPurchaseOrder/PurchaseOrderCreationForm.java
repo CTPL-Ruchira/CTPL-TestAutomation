@@ -268,7 +268,8 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	public boolean compareTwoValues(String value1, String value2)
 	{
-		if(value1.equals(value2))
+		
+		if(value2.contains(value1))
 		{
 			return true;
 			
@@ -336,7 +337,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		openModal();
 		enterProductNameInModal(runtimeProdName);
 		setVendornameInModal(attributeName);
-		setVendorNameInDrpdown();
+		
 		setProductnameInModal(attributeName1);
 		setProductNameinDropdown();
 		Common.sleep(2000);
@@ -395,7 +396,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	public void setLocationInModal(String selectLoc) 
 	{
-		Common.select("PO_RUNTIME_LOC_DROPDOWN_IN_MODAL_XPATH", selectLoc);
+		Common.select("INV/PO_RUNTIME_LOC_DROPDOWN_IN_MODAL_XPATH", selectLoc);
 	}
 	
 	public void setdepartmentInModal(String selectDept)

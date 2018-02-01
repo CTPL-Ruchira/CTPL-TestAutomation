@@ -38,7 +38,7 @@ public class CreatePurchaseOrder extends BaseTestCase{
 	 
 	public void createPurchaseOrder() {
 		 
-		
+		System.err.println("into create purchase Order....");
 		LandingPage landingPage = new LandingPage();
 				
 		landingPage.clickLogInButton();
@@ -57,6 +57,7 @@ public class CreatePurchaseOrder extends BaseTestCase{
 		
 		Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", invoiceData.get(0));
 		purchaseOrder.selectLocation(invoiceData.get(2));
+		purchaseOrder.setVendorNameInDrpdown();
 		
 		//Set items for First line
 		String runtimeProductName=Common.generateRandomString(poRuntimeData.get(0));
@@ -68,16 +69,16 @@ public class CreatePurchaseOrder extends BaseTestCase{
 		String productNameFromModal=purchaseOrder.getProductName();
 		//String productNameFromDropdown=purchaseOrder.getProductNameDropdown();
 		String productNameFromDropdown=purchaseOrder.getProductNamePresentInDropdown(productNameFromModal);
-		System.out.println("productNameFromModal:"+productNameFromModal);
-		System.out.println("productNameFromDropdown:"+productNameFromDropdown);
+		System.out.println("vendorNameFromModal:::::::"+vendorNameFromModal+"_x");
+		System.out.println("vendorNameFromDropdown:::::::::"+vendorNameFromDropdown+"_x");
 		
 		boolean status=purchaseOrder.compareTwoValues(vendorNameFromModal, vendorNameFromDropdown);
 		assertTrue(status, "Vendor name in modal does not match with the vendor name in dropdown ");
-		Reporter.log("runtime product is added for the vendor");
+		//Reporter.log("runtime product is added for the vendor");
 		
 		boolean status1=purchaseOrder.compareTwoValues(productNameFromModal, productNameFromDropdown);
 		assertTrue(status1, "Product name entered in modal is not present in the dropdown");
-		Reporter.log("Product added from the modal is seen in the dropdown");
+		//Reporter.log("Product added from the modal is seen in the dropdown");
 		
 		Common.sleep(2000);
 		System.out.println("Vendor name---"+purchaseOrder.getVendorName());
