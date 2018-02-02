@@ -10,7 +10,6 @@ import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.CheckTwoWayMatchInvoice;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
-import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
@@ -19,11 +18,11 @@ import com.netChain2.utils.CustomAnnotation.TestDetails;
 
 public class TwoWayMatchInvoice extends BaseTestCase {
 	private ArrayList<String> testData;
-	private ArrayList<String> testDataInvoice;
-    private ArrayList<String> testDataInvoiceList;
+	
+
 	private ArrayList<String> testDataVendorList;
 	private ArrayList<String> testDataInvoice2;
-	private ArrayList<String> testDataInvoice3;
+
 	private ArrayList<String> testdatatwowaymatch;
 	private String invoiceNo;
 	InvoiceCreationForm invoice = new InvoiceCreationForm();
@@ -32,33 +31,26 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 	@BeforeClass
 	public void setUp() {
 		testData = Common.getTestData("NetchainTest.Login");
-
-		testDataInvoice=Common.getTestData("NetchainTest.CreateInvoice");
-	    testDataInvoiceList=Common.getTestData("NetchainTest.invListSearchBar");
-	    testDataVendorList=Common.getTestData("NetchainTest.InvoiceListVendor");
+        testDataVendorList=Common.getTestData("NetchainTest.InvoiceListVendor");
 	    testDataInvoice2=Common.getTestData("NetchainTest.CreateInvoice2");
-	    testDataInvoice3=Common.getTestData("NetchainTest.CreateInvoice3");
 	    testdatatwowaymatch=Common.getTestData("NetchainTest.TwoWayMatch");
 	  		
 	}
 
 	 @Test
-     @TestDetails(author="Roshni.Mehta", description="Create New Invoice")
+     @TestDetails(author="Roshni.Mehta", description="Two Way Match")
 	 
 	
 	  public void testCreateInvoice_CreatePayment() {
 		 
 		
 		LandingPage landingPage = new LandingPage();
-		//boolean check1 = landingPage.isLoginButtonDisplayed();
-				
-		landingPage.clickLogInButton();
+	    landingPage.clickLogInButton();
 		
+	    //Login
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(4), testData.get(5));
 		Common.sleep(2000);
-		
-		
 		
 		//click to create new
 		APModuleCreation apModule = invoice.createNew();
@@ -77,7 +69,7 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 	    Common.sleep(6000);
 	    
 	    //Get Invoice number
-	     String invoiceNo=invoice.getAttributeValueInvoiceNo();
+	     invoiceNo=invoice.getAttributeValueInvoiceNo();
 		System.out.println("Invoice number"+invoiceNo);
 	    
 		//Select value from Net Term 
@@ -115,31 +107,28 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 	   boolean isCreatePaymentLinkVisible=TwoWayMatch.CheckInvoiceStatus_CreatePayment(testDataVendorList.get(0),invoiceNo);
 	   assertTrue(isCreatePaymentLinkVisible, "Custom Workflow is not set");
 	   Common.sleep(5000);
-	    Reporter.log("Create payment link is visible as per custom workflow");
+	   Reporter.log("Create payment link is visible as per custom workflow");
 	   LogoutFromPage.logout();
 	 }
 	 
 	 @Test
 	public void  testCreateInvoice_Discrepant (){
-    	 LandingPage landingPage = new LandingPage();
- 		//boolean check1 = landingPage.isLoginButtonDisplayed();
- 		Common.sleep(2000);		
- 		
- 		
- 		LoginPage loginPage = new LoginPage();
+        
+		LoginPage loginPage = new LoginPage();
  		loginPage.login(testData.get(4), testData.get(5));
  		Common.sleep(5000);
  		CheckTwoWayMatchInvoice.scrollUp();
  		
  		APModuleCreation apModule = invoice.createNew();
 		Common.sleep(3000);
+		
 		//click to AP()
 		apModule.clickAPLink();
 		Common.sleep(2000);
 		
 		//Click to New Invoice
 		apModule.clickNewInvoice();
-		Common.sleep(2000);
+		Common.sleep(3000);
 		
 		//Select value from Vender DropDown
 		invoice.SelectVendor(testdatatwowaymatch.get(0));
@@ -187,6 +176,9 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 		TwoWayMatch.ModalAcceptButton();
 		Common.sleep(3000);
 		
+		//Refresh the page
+		 Common.getDriver().navigate().refresh();
+		
 		//Search Invoice number
 		TwoWayMatch.searchInvoice(invoiceNumber);
 		
@@ -196,7 +188,8 @@ public class TwoWayMatchInvoice extends BaseTestCase {
 	    Reporter.log("Status is discrepant as per custom workflow");
 	    Common.sleep(3000);
 	    LogoutFromPage.logout();
-	   } 
+	   
+	 } 
 
 }
 	

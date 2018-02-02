@@ -2,7 +2,7 @@ package com.netChain2.selenium.pageObjects.accountsPayable.createInvoice;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.testng.Reporter;
+
 
 import com.netChain2.engine.Common;
 
@@ -46,6 +46,7 @@ public class InvoiceCreationListActions {
 		Common.click("MODAL_APPROVE_BUTTON_XPATH");
 	}
 
+	//Create payment link
 	public void clickOnCreatePaymentLink(String VendorName, String InvoiceNumber)
 	{
 		String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/a[2]";
@@ -53,6 +54,8 @@ public class InvoiceCreationListActions {
 		element.click();
 
 	} 
+	
+	//Create payment button
 	public void createPaymentButton() {
 		Common.click("MODAL_CREATEPAYMENT_BUTTON_XPATH");
 	}
@@ -62,11 +65,15 @@ public class InvoiceCreationListActions {
 		return Common.getText("INVOICE_ALERT_MESSAGE_SUCCESSFULLY_XPATH");
 
 	} 
-	public void clickOnApprovePayment(String VendorName, String InvoiceNumber) {
-		String InvoiceStatusApprovePayment="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/a[2]";
+	
+	//Click on approve payment 
+	public void clickOnApprovePayment(String VendorName, String payid) {
+		String InvoiceStatusApprovePayment="//div[text()='"+payid+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/a[1]";
 		WebElement Element4=Common.findElement(InvoiceStatusApprovePayment);
 		Element4.click();
 	}  
+	
+	//Send payment button
 	public void sendPaymentButton() {
 		Common.click("INVOICE_SEND_PAYMENT_BUTTON_XPATH");
 	}
@@ -100,15 +107,16 @@ public class InvoiceCreationListActions {
 			return false;	
 		}
 	}
-
+   
+	//Verfication of modal approve button
 	public boolean verificationModalApproveButton(String modalinvoicenumber, String vname, String invoicetotalAmount ) {
 		WebElement modalinvnmbr=Common.getElement("MODAL_INVNUMBER_XPATH");
 		String invnumber=modalinvnmbr.getText();
-		System.out.println(invnumber);
+	
 
 		String[] l=invnumber.split("#");
 		String m=l[1];
-		System.out.println(m);
+		
 
 		WebElement balamount=Common.getElement("MODAL_INVAMOUNT_XPATH");		
 		String balamount1=balamount.getText();
@@ -116,7 +124,7 @@ public class InvoiceCreationListActions {
 
 		WebElement modalVendor=Common.getElement("MODAL_INVVENDORNAME_XPATH");
 		String modalVendor1=modalVendor.getText();
-		;
+	
 
 		//verification point for vendor name,balance amount and invoice number
 		if(m.equalsIgnoreCase(modalinvoicenumber) && modalVendor1.equalsIgnoreCase(vname) && invoicetotalAmount.equalsIgnoreCase(balamount1))
@@ -131,12 +139,13 @@ public class InvoiceCreationListActions {
 		}
 	}
 
+	//banner click
 	public void bannerClick() {
 		Common.click("PAYMENT_BANNER_XPATH");
 
 	}
 
-	//Payment Verfication
+	//Payment Verfication on bannner
 	public boolean PaymentVerfication(String invoicenumber,String vendorName,String invoiceAmount ) {
 
 		WebElement bannerInvoiceId=Common.getElement("PAYMENT_BANNER_INVOICE_ID_XPATH");
@@ -149,7 +158,7 @@ public class InvoiceCreationListActions {
 
 		WebElement bannervendorName=Common.getElement("CREATE_PAYMENT_BANNER_VENDOR_XPATH");
 		bannervendorName.getText();
-		String payvendorName=bannervendorName.getText();
+		String payvendorName=bannervendorName.getText();  
 
 
 		WebElement bannerAmount=Common.getElement("PAYMENT_BANNER_AMOUNT_XPATH");
@@ -168,32 +177,31 @@ public class InvoiceCreationListActions {
 		}
     }
 
+	//get payment id
 	public String getPaymentId() {
-       WebElement paymentId=Common.getElement("PAYMENT_ID_NO");
-		String paymentid=paymentId.getText();
-       return paymentid;
+       WebElement paymentId=Common.getElement("PAYMENT_BANNER_PAYMENTID_XPATH");
+       String paytid=paymentId.getText();
+       return paytid;
  }
 
-	
+	//Verfication of payment approve module
 	public boolean verificationPaymentApprove(String modalinvoicenumber, String vname, String invoicetotalAmount ) {
 		WebElement modalinvnmbr=Common.getElement("MODAl_APPROVE_PAYMENT_INVOICE_ID_XPATH");
 		String invnumber=modalinvnmbr.getText();
-		System.out.println(invnumber);
-
-		/*String[] l=invnumber.split("#");
-		String m=l[1];
-		System.out.println(m);
-*/
-		WebElement balamount=Common.getElement("MODAL_APPROVE_PAYMENT_VENDOR_NAME_XPATH");		
+		
+		WebElement balamount=Common.getElement("MODAL_APPROVE_PAYMENT_AMOUNT_XPATH");		
 		String balamount2=balamount.getText();
-
-
-		WebElement modalVendor=Common.getElement("MODAL_APPROVE_PAYMENT_AMOUNT_XPATH");
+        
+        String[] l=invoicetotalAmount.split("\\$");
+		String totalAmount=l[1];
+		System.out.println(totalAmount);
+		
+        
+		WebElement modalVendor=Common.getElement("MODAL_APPROVE_PAYMENT_VENDOR_NAME_XPATH");
 		String modalVendor1=modalVendor.getText();
-		;
-
+		
 		//verification point for vendor name,balance amount and invoice number
-		if(invnumber.equalsIgnoreCase(modalinvoicenumber) && modalVendor1.equalsIgnoreCase(vname) && invoicetotalAmount.equalsIgnoreCase(balamount2))
+		if(invnumber.equalsIgnoreCase(modalinvoicenumber) && modalVendor1.equalsIgnoreCase(vname) && totalAmount.equalsIgnoreCase(balamount2))
 		{
 
 			return true;	
@@ -205,36 +213,124 @@ public class InvoiceCreationListActions {
 		}
 	
 		}
-
-	public void enterUserName(String Value) {
-		Common.sendKeys("PAYMENT_BANK_DETAILS_USERNAME",Value);
-	}
-	public void enterNewPassword(String Value) {
-		Common.sendKeys("PAYMENT_BANK_DETAILS_CREATE_NEW_PASSWORD",Value);
+	
+	
+	public void sendPaymentButton_ScheduleModal() {
+		Common.click("INVOICE_SEND_PAYMENT_BUTTON_SCHEDULEMODULE_XPATH");
 	}
 
-	public void enterConfirmPassword(String Value) {
-		Common.sendKeys("PAYMENT_BANK_DETAILS_CONFIRM_NEW_PASSWORD",Value);
-	}
-
-	public void bankDetailsSignUpButton() {
-		Common.click("PAYMENT_BANK_DETAILS_SIGN_UP_BUTTON");
-	}
-
+    //Search Payment by id
 	public void SearchPaymentId(String value) {
-		Common.sendKeys("//div[@class='filtersActions']/div[2]",value);
+		Common.sendKeys("PAYMENT_SEARCH_XPATH", value);
+		Common.sleep(3000);
 	}
+		
 
-	public void verficationOnProcessingLink(String VendorName, String InvoiceNumber)
+	//Verfication on processing link
+	public boolean verficationOnProcessingLink(String VendorName, String Payid)
 	{
-		String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/a[2]";
-		WebElement Processing=Common.getElement(InvoiceLocator);		
-		String ActionPayment=Processing.getText();
-      
-	
+		String invoiceProcessingLocator="//div[text()='"+Payid+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']";
+		WebElement Processing=Common.findElement(invoiceProcessingLocator);		
+		String actionPayment=Processing.getText();
+        String action="Processing";
+        if(actionPayment.equals(action))
+		{
+			return true;
+			
+		}else {
+			
+			return false;
+			    }
+		
 	}
 	
+	//verfication of Status sent
+	public boolean verficationOfStatusSent(String VendorName, String Payid) {
+		String actionStatusLocator="//div[text()='"+Payid+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[6]/div[2]";
+		WebElement sent=Common.findElement(actionStatusLocator);		
+		String statusSent=sent.getText();
+        String status="sent";
+        if(statusSent.equals(status))
+		{
+			return true;
+			
+		}else {
+			
+			return false;
+			    }
 	
-}
+	}
 
+	//schedule payment button
+	public void schedulePaymentButton() {
+		Common.click("SCHEDULE_PAYMENT_BUTTON_XPATH");
+	    
+	}
+
+	
+
+	//Verfication of status schedule
+	public boolean verficationOfStatusSchedule(String VendorName, String PayId) {
+		String actionStatusLocator="//div[text()='"+PayId+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[6]/div[2]";
+		WebElement schedule=Common.findElement(actionStatusLocator);		
+		String statuschedule=schedule.getText();
+        String status="scheduled";
+        if(statuschedule.equals(status))
+		{
+			return true;
+			
+		}else {
+			
+			return false;
+			    }
+	
+	}
+
+	       //Veerification of create payment link
+	public void verficationOnSendPaymentLink(String VendorName, String PayId)
+	{
+		String invoiceSendPaymentLocator="//div[text()='"+PayId+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']";
+		WebElement sendPayment=Common.findElement(invoiceSendPaymentLocator);		
+		sendPayment.click();
+       
+	}
+
+	  //Verification schedule payment
+	   public boolean verificationSchedulePayment(String modalinvoicenumber, String vname, String invoicetotalAmount,String payid) {
+		WebElement modalinvnmbr=Common.getElement("MODAl_APPROVE_PAYMENT_INVOICE_ID_XPATH");
+		String invnumber=modalinvnmbr.getText();
+		System.out.println("Invoice Number-------"+invnumber);
+      System.out.println("pass invoice no-----"+modalinvoicenumber);
+	    
+		WebElement balamount=Common.getElement("MODAL_APPROVE_PAYMENT_AMOUNT_XPATH");		
+		String balamount2=balamount.getText();
+        System.out.println("balamount2---------"+balamount2);
+        System.out.println("pass invoice TOTAL AMOUNT---"+invoicetotalAmount );
+        String[] l=invoicetotalAmount.split("\\$");
+		String totalAmount=l[1];
+	
+		
+		WebElement pid=Common.getElement("PAYMENT_ID_NO_XPATH");
+		String paymentid=pid.getText();
+		
+		
+		
+		WebElement modalVendor=Common.getElement("MODAL_APPROVE_PAYMENT_VENDOR_NAME_XPATH");
+		String modalVendor1=modalVendor.getText();
+		
+        //verification point for vendor name,balance amount and invoice number
+		if(invnumber.equalsIgnoreCase(modalinvoicenumber) && modalVendor1.equalsIgnoreCase(vname) && totalAmount.equalsIgnoreCase(balamount2) && paymentid.equals(payid))
+		{
+
+			return true;	
+
+		}
+		else {
+
+			return false;	
+		}
+	
+	}
+}
+	
 
