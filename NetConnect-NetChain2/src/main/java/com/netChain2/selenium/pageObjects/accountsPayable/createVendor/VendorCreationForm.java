@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
 import com.netChain2.engine.Common;
+import com.netChain2.selenium.pageObjects.common.arCreation.ARModuleCreation;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 
 
@@ -22,6 +24,10 @@ public class VendorCreationForm {
 	private String displayName;
 
 	WebDriver driver=Common.getDriver();
+	public ARModuleCreation createNew() {
+		Common.click("AR_CREATE_NEW_PLUSE_BUTTON_XPATH");
+		return new ARModuleCreation();
+	}
 
 	//Company profile tab-->To enter first field
 	public void setOurCompany(String value) {
@@ -198,7 +204,16 @@ public class VendorCreationForm {
 		rightarrowbtn.click();
 		Common.sleep(2000);
 	}
-
+	public void selectProduct1(String value) 
+	{
+		Common.selectFromDropdown("PRODUCT_DETAILS_PROD_LIST_BOX_XPATH", "PRODUCT_DETAILS_PROD_LIST_BOX_OPTION_XPATH", value);
+		/*WebElement prodlistbox=Common.getElement("PRODUCT_DETAILS_PROD_LIST_BOX_XPATH");
+		prodlistbox.click();*/
+		Common.sleep(1000);
+		WebElement rightarrowbtn=Common.getElement("RIGHT_ARROW_BUTTON_XPATH");
+		rightarrowbtn.click();
+		Common.sleep(2000);
+	}
 
 	//Booking Account tab-->To click next button
 	public void clickNextButton4() {
@@ -237,7 +252,7 @@ public class VendorCreationForm {
 
 
 	//Filling all the fields in Vendor details field
-	public void vendorDetailsTab(String value10,String value11,String value12,String value13,String value14,String value15,String value16,String value17,String value18,String value19,String value20,String value21,String value22,String value23,String value24,String value25,String value26) 
+	public void vendorDetailsTab(String value10,String value11,String value12,String value,String value13,String value14,String value15,String value16,String value17,String value18,String value19,String value20,String value21,String value22,String value23,String value24,String value25,String value26) 
 	{
 
 		Common.sendKeys("TITLE_FIELD_XPATH", value10);
@@ -248,11 +263,14 @@ public class VendorCreationForm {
 
 		Common.sendKeys("LAST_NAME_XPATH", value12);
 		Common.sleep(1000);
-
-		Common.sendKeys("COMPANY_NAME_XPATH",setCompanyName(value13) );
+		
+		Common.sendKeys("AP_VENDER_CREATION_SUFFIX_NAME_XPATH", value);
 		Common.sleep(1000);
 
-		Common.sendKeys("DISPLAY_NAME_XPATH", setDisplayName(value14));
+		Common.sendKeys("COMPANY_NAME_XPATH",value13);
+		Common.sleep(1000);
+
+		Common.sendKeys("DISPLAY_NAME_XPATH", value14);
 		Common.sleep(1000);
 
 		Common.sendKeys("BUSINESS_TYPE_XPATH", value15);
@@ -329,6 +347,39 @@ public class VendorCreationForm {
 		return flag;
 
 	}
+	public Boolean verifyVendorOnList1(String expectedClientName) 
+	 {
+	  boolean flag=false;
+	  Common.sleep(6000);
+	  System.out.println("expectedVendorName"+expectedClientName);
+	  CommonMethods.searchByNumberOrName(expectedClientName);
+	  Common.sleep(1000);
+	  
+	  String actualClientNameOnList=Common.getText("AR_CLIENT_LIST_XPATH");
+	  if(actualClientNameOnList.equals(expectedClientName))
+	  {
+	   flag=true;
+	   System.out.println("Vendor displayed on list");
+	   Reporter.log("Vendor present on list and verified");
+	   Reporter.log("Vendor added is present on Netchain Platform and The Connection is done successfully");
+	  }
+	  else
+	  {
+	   System.out.println("Vendor not created");
+	  }
+
+	  return flag;
+
+	 }
+
+	public boolean verifyTitleMatched(String actualTitleValue, String expectedTitleValue) {
+		if(actualTitleValue.equals(expectedTitleValue)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 
 
+	}
 }
