@@ -307,6 +307,28 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 			
 	}
 	
+	public void setItemDetails(String productName, String departmentName, String bookingAccountName, String description, String quantity, String rate)
+	{
+		
+		selectProductOrServices(productName, flag);
+		selectDepartment(departmentName, flag);
+		selectBookingAccount(bookingAccountName, flag);
+		setDescription(description, flag);
+		setQualtity(quantity, flag);
+		setRate(rate, flag);
+		
+		Common.sleep(5000);
+		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
+		currentAmount=previousAmount+currentAmount;
+		previousAmount=currentAmount;
+		System.out.println("Current Amount"+currentAmount);
+		System.out.println("Previous Amount"+previousAmount);
+		flag=flag+1;
+		
+		calculateTotalAmount(quantity, rate);
+			
+	}
+	
 	private void setMeasure(String measure, int flag) 
 	{
 		String measureLoc="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductUnit')]";
@@ -470,6 +492,11 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		System.out.println("Selected value : "+Common.getSelecedValue("PRODUCT_SERVICES_DROPDOWN_XPATH"));
 		return productNameFromModal;
 		
+	}
+	
+	public String getTotalAmountDisplayed()
+	{
+		return Common.getText("PO_AMOUNT_XPATH");
 	}
 
 }

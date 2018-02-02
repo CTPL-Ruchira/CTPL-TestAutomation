@@ -2,9 +2,7 @@ package com.netChain2.selenium.tests.accountsReceivable.SalesOrder;
 
 import java.util.ArrayList;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -12,9 +10,7 @@ import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.accountsReceivable.createSalesOrder.SOCreationForm;
-import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.arCreation.ARModuleCreation;
-import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
@@ -35,7 +31,7 @@ public class CreateSalesOrder extends BaseTestCase {
 		testData5=Common.getTestData("NetchainTest.CreateSalesOrder2");
 		
 		LandingPage landingPage = new LandingPage();
-		boolean check1 = landingPage.isLoginButtonDisplayed();
+		//boolean check1 = landingPage.isLoginButtonDisplayed();
         Common.sleep(1000);
 
 		landingPage.clickLogInButton();
