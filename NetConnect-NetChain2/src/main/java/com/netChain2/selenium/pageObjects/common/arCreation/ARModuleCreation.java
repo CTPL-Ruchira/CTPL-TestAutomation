@@ -8,12 +8,14 @@ public class ARModuleCreation {
 		Common.click("AR_CREATE_NEW_BUTTON_XPATH");
 		
 	}
+
 	public void clickARLink() {
 		Common.click("AR_CLICK_ACCOUNT_RECEIVABLE_XPATH");
 		
 	}
-	
-	public void clickNewClientLink() {
+
+		public void clickNewClientLink() {
+
 		Common.click("AR_CLICK_NEW_CLIENT_XPATH");
 		
 	}
