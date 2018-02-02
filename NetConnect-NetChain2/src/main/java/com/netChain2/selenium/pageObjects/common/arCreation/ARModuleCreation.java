@@ -20,5 +20,4 @@ public class ARModuleCreation {
 	public void clickNewSalesOrderLink() {
 	    Common.click("AR_MENU_NEW_SALES_ORDER_LINKTEXT");
 	}
-
 }
