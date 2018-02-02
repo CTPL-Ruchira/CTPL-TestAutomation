@@ -8,8 +8,7 @@ import org.testng.Reporter;
 
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.arCreation.ARModuleCreation;
-
-
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 /**
  * API's for Vendor Creation Form
@@ -27,7 +26,6 @@ public class VendorCreationForm {
 		Common.click("AR_CREATE_NEW_PLUSE_BUTTON_XPATH");
 		return new ARModuleCreation();
 	}
-
 
 	public void setOurCompany(String value) {
 		Common.sendKeys("NEW_VENDOR_COMPANY_PROFILE1_XPATH", value);
@@ -279,6 +277,7 @@ public class VendorCreationForm {
 		Common.sleep(1000);
 
 		Common.sendKeys("COMPANY_NAME_XPATH", value13);
+
 		Common.sleep(1000);
 
 		Common.sendKeys("DISPLAY_NAME_XPATH", value14);
@@ -370,5 +369,33 @@ public class VendorCreationForm {
 		}
 
 	}
+	public Boolean verifyVendorOnList1(String expectedClientName) 
+	 {
+	  boolean flag=false;
+	  Common.sleep(6000);
+	  System.out.println("expectedVendorName"+expectedClientName);
+	  CommonMethods.searchByNumberOrName(expectedClientName);
+	  Common.sleep(1000);
+	  
+	  String actualClientNameOnList=Common.getText("AR_CLIENT_LIST_XPATH");
+	  if(actualClientNameOnList.equals(expectedClientName))
+	  {
+	   flag=true;
+	   System.out.println("Vendor displayed on list");
+	   Reporter.log("Vendor present on list and verified");
+	   Reporter.log("Vendor added is present on Netchain Platform and The Connection is done successfully");
+	  }
+	  else
+	  {
+	   System.out.println("Vendor not created");
+	  }
 
-}
+	  return flag;
+
+	 }
+
+	
+
+
+	}
+

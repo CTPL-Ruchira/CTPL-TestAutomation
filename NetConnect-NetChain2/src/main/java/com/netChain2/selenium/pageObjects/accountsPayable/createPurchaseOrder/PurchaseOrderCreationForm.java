@@ -27,8 +27,6 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	private static WebElement qualityElement;
 	private static WebElement rateElement;
 
-	
-	
 	private String amountElement;
 	private String vendorName;
 	private String vendorNameDropdown;
@@ -47,6 +45,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	}
 	public String getVendorName() {
 		return vendorName;
+
 	}
 	public String getAmountElement() {
 		return amountElement;
