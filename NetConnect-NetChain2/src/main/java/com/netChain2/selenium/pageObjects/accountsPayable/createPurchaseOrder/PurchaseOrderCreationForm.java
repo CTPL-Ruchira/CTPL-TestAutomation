@@ -284,12 +284,13 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 	}
 	
-	public void setItemDetails(String productName, String departmentName, String bookingAccountName, String description, String quantity, String rate)
+	public void setItemDetails(String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate)
 	{
 		
 		selectProductOrServices(productName, flag);
 		selectDepartment(departmentName, flag);
 		selectBookingAccount(bookingAccountName, flag);
+		setMeasure(measure, flag);
 		setDescription(description, flag);
 		setQualtity(quantity, flag);
 		setRate(rate, flag);
@@ -306,6 +307,13 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 			
 	}
 	
+	private void setMeasure(String measure, int flag) 
+	{
+		String measureLoc="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductUnit')]";
+		WebElement descElement=Common.findElement(measureLoc);
+		descElement.sendKeys(measure);
+		
+	}
 	public String getTotalAmountCalculated(int flag)
 	{
 		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
