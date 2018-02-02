@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Scanner;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
 import com.netChain2.engine.Common;
 
@@ -37,6 +38,12 @@ public class JavaScriptUtils {
 		
 		((JavascriptExecutor)Common.getDriver()).executeScript(java_script);
 		
+	}
+	
+	
+	public static void clickByJavaScript(WebElement ele) {
+	JavascriptExecutor jsExec =	(JavascriptExecutor)Common.getDriver();
+	jsExec.executeScript("arguments[0].click()", ele);
 	}
 
 }
