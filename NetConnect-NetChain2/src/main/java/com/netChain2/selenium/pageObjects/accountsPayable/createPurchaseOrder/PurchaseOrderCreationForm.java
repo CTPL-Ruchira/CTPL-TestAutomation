@@ -1,6 +1,7 @@
 	package com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder;
 
 import org.openqa.selenium.WebElement;
+
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
@@ -45,21 +46,17 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	}
 	public String getVendorName() {
 		return vendorName;
-
 	}
 	public String getAmountElement() {
 		return amountElement;
 	}
 
-
-	public static String getPreviousAmount() {
-		return String.valueOf(previousAmount);
-	}
-	/*public static double getPreviousAmount() {
-		return previousAmount;
-
-	}*/
 	
+	
+
+	public static double getPreviousAmount() {
+		return previousAmount;
+	}
 	public static int getPoNumber() {
 		return poNumber;
 	}
@@ -76,9 +73,10 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		return rt;
 	}
 
-	public static String getAmount() {
-		return String.valueOf(amount);
+	public static double getAmount() {
+		return amount;
 	}
+
 	
 	public APModuleCreation createNew() {
 		Common.click("CREATENEW_BUTTON_XPATH");
@@ -113,7 +111,9 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		WebElement valElement=Common.findElement(valueLocator);
 		
 		valElement.click();
+		
 	}
+	
 		
 	public void selectDepartment(String departmentName, int flag)
 	{
@@ -121,6 +121,8 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 		String valueLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[2]/option[text()='"+departmentName+"']";
 		selectDropdownValues(dropLocator, valueLocator);
+		
+				
 	}
 	
 	public void selectBookingAccount(String bookingAccountName, int flag)
@@ -129,6 +131,8 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 		String valueLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[3]//option[text()='"+bookingAccountName+"']";
 		selectDropdownValues(dropLocator, valueLocator);
+		
+		
 	}
 	
 	public void setDescription(String description, int flag)
@@ -136,6 +140,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductDescription')]";
 		WebElement descElement=Common.findElement(descLocator);
 		descElement.sendKeys(description);
+		
 	}
 	
 	public void setQualtity(String quantity, int flag)
@@ -143,16 +148,20 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductQuantity')]";
 		qualityElement=Common.findElement(descLocator);
 		qualityElement.sendKeys(quantity);
+		
+		
 	}
 	
 	public static String getQualtity()
 	{
 		String descLocator="//div[@class='productService']/div[@class='Line']["+secondFlag+"]/input[contains(@id,'selectedProductQuantity')]";
 		qualityElement=Common.findElement(descLocator);
-		System.out.println("Quality Element : "+qualityElement);
 		secondFlag=secondFlag+1;
 		
 		return qualityElement.getAttribute("value");
+		
+		
+		
 	}
 	
 	public void setRate(String rate, int flag)
@@ -162,6 +171,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		rateElement.sendKeys(rate);
 		Common.sleep(1000);
 		Common.click("PO_ITEM_AMOUNT_TEXT_XPATH");
+		
 	}
 	
 	public static String getRate()
@@ -171,19 +181,18 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		thirdFlag=thirdFlag+1;
 		
 		return rateElement.getAttribute("value");
-	}
-	
-
-	public String getAmountForLine(int flag)
-	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
-		return Common.findElement(descLocator).getAttribute("value");
 		
 	}
 	
+	//public WebElement getAmount(int flag)
+	//{
+	//	String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
+	//	amountElement=Common.findElement(descLocator);
+	//	return amountElement;
+	//}
 	
 	
-
+	
 	public void setMessageToVendor(String message)
 	{
 		Common.sendKeys("VENDOR_MESSAGE_XPATH", message);
@@ -244,7 +253,10 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 			
 			return false;
 			}
+				
+		
 	}
+	
 		
 	public boolean compareTwoValues(double value1, double value2)
 	{
@@ -256,6 +268,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 			
 			return false;
 			}
+		
 	}
 	
 	public boolean compareTwoValues(String value1, String value2)
@@ -268,6 +281,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 			
 			return false;
 			}
+		
 	}
 	
 	public void setItemDetails(String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate)
@@ -280,10 +294,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		setDescription(description, flag);
 		setQualtity(quantity, flag);
 		setRate(rate, flag);
-
-		Common.sleep(3000);
-		amountElement=getAmountForLine(flag);
-
+		
 		Common.sleep(5000);
 		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
 		currentAmount=previousAmount+currentAmount;
@@ -293,6 +304,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		flag=flag+1;
 		
 		calculateTotalAmount(quantity, rate);
+			
 	}
 	
 	private void setMeasure(String measure, int flag) 
@@ -307,12 +319,15 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
 		qualityElement=Common.findElement(descLocator);
 		return qualityElement.getAttribute("value");
+		
 	}
 	
-	public boolean verifyTotalAmountCalculatedAndShown(String Amount)
+	public boolean verifyTotalAmountCalculatedAndShown(double Amount)
 	{
-		String amountDisplayed=getTotalAmountDisplayed();
-		String appendDollarSign="$"+Common.roundNumberToTwoDecimalValue(Double.parseDouble(Amount));
+		
+		String amountDisplayed=Common.getText("PO_AMOUNT_XPATH");
+		
+		String appendDollarSign="$"+Common.roundNumberToTwoDecimalValue(Amount);
 		System.out.println("appendDollarSign"+appendDollarSign);
 		System.out.println("amountDisplayed"+amountDisplayed);
 		if(appendDollarSign.equals(amountDisplayed))
@@ -326,11 +341,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 	}
 	
-
-	public String getTotalAmountDisplayed()
-	{
-		return Common.getText("PO_AMOUNT_XPATH");
-	}
+	
 
 	public void addProductRuntime(String runtimeProdName,String addCategory,String sku,String selectLoc,String selectDept,String bookingAccnt,String cost,String margin, String attributeName,String attributeName1 )
 	{
