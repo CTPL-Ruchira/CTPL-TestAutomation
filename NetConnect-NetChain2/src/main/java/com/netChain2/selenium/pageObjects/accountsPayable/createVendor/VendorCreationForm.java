@@ -328,7 +328,7 @@ public class VendorCreationForm {
 	{
 		boolean flag=false;
 		Common.sleep(6000);
-		Common.sendKeys("INVOICE_SEARCH_BAR_XPATH", expectedVendorName);
+		Common.sendKeys("SEARCH_INPUT_XPATH", expectedVendorName);
 		Common.sleep(1000);
 		String actualVendorNameOnList=Common.getText("CREATED_VENDOR_NAME_IN_LIST_XPATH");
 		//String actualVendorNameOnList="companyName";
