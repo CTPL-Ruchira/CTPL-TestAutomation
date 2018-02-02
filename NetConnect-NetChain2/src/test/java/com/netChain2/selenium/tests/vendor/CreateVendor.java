@@ -21,7 +21,6 @@ import com.netChain2.selenium.pageObjects.accountsPayable.createVendor.VendorCre
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
-import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
 
 
@@ -109,7 +108,7 @@ public class CreateVendor extends BaseTestCase{
 
 		vendorCreation.clickNextButton4();
 
-		vendorCreation.vendorDetailsTab(testData1.get(10), testData1.get(11), testData1.get(12), testData1.get(13), testData1.get(14), testData1.get(15), testData1.get(16), testData1.get(17), testData1.get(18), testData1.get(19), testData1.get(20), testData1.get(21), testData1.get(22), testData1.get(23), testData1.get(24), testData1.get(25), testData1.get(26));
+		//vendorCreation.vendorDetailsTab(testData1.get(10), testData1.get(11), testData1.get(12), testData1.get(13), testData1.get(14), testData1.get(15), testData1.get(16), testData1.get(17), testData1.get(18), testData1.get(19), testData1.get(20), testData1.get(21), testData1.get(22), testData1.get(23), testData1.get(24), testData1.get(25), testData1.get(26));
 
 		//Check and test title of the Vendor list
 
@@ -184,7 +183,7 @@ public class CreateVendor extends BaseTestCase{
 
 		vendorCreation.clickNextButton4();
 
-		vendorCreation.vendorDetailsTab(testData2.get(10), testData2.get(11), testData2.get(12), testData2.get(13), testData2.get(14), testData2.get(15), testData2.get(16), testData2.get(17), testData2.get(18), testData2.get(19), testData2.get(20), testData2.get(21), testData2.get(22), testData2.get(23), testData2.get(24), testData2.get(25), testData2.get(26));
+		//vendorCreation.vendorDetailsTab(testData2.get(10), testData2.get(11), testData2.get(12), testData2.get(13), testData2.get(14), testData2.get(15), testData2.get(16), testData2.get(17), testData2.get(18), testData2.get(19), testData2.get(20), testData2.get(21), testData2.get(22), testData2.get(23), testData2.get(24), testData2.get(25), testData2.get(26));
 
 		//Check and test the negative alert message
 
@@ -200,12 +199,9 @@ public class CreateVendor extends BaseTestCase{
 			BaseTestCase.assertTrue(true, "Vendor not created as the email id is invalid");
 		}
 		Reporter.log("Vendor not created as the email id is invalid",false);
-		Common.sleep(5000);
-		LogoutFromPage.logout();
 
 
 	}
-    
-	
+
 
 }
