@@ -14,7 +14,6 @@ import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
 import org.testng.Reporter;
 
-
 public class CreateInvoice extends BaseTestCase {
 	private ArrayList<String> testData;
 	private ArrayList<String> testDataInvoice;
