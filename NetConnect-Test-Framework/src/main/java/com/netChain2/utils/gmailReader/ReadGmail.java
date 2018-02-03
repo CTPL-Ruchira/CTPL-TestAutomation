@@ -15,7 +15,7 @@ import javax.mail.search.FlagTerm;
 
 public class ReadGmail {
 
-	public String readEmail(String userName, String password) {
+	public String readFirstUnreadEmail(String userName, String password) {
 		Properties props = System.getProperties();
 		props.setProperty("mail.store.protocol", "imaps");
 		String mailContent=null;
