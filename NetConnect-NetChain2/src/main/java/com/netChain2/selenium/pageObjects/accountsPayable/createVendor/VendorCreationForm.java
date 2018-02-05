@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
 import com.netChain2.engine.Common;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 
 
@@ -198,8 +199,6 @@ public class VendorCreationForm {
 		rightarrowbtn.click();
 		Common.sleep(2000);
 	}
-
-
 	//Booking Account tab-->To click next button
 	public void clickNextButton4() {
 		Common.click("PRODUCT_DETAILS_TAB_NEXT_BUTTON_XPATH");
@@ -329,6 +328,54 @@ public class VendorCreationForm {
 		return flag;
 
 	}
+	public void selectProductforConnectedvendor(String value) 
+	{
+		Common.selectFromDropdown("PRODUCT_DETAILS_PROD_LIST_BOX_XPATH", "PRODUCT_DETAILS_PROD_LIST_BOX_OPTION_XPATH", value);
+		Common.sleep(1000);
+		WebElement rightarrowbtn=Common.getElement("RIGHT_ARROW_BUTTON_XPATH");
+		rightarrowbtn.click();
+		Common.sleep(2000);
+	}
+	
+	//set suffix from contact detail
+	public void setsuffix(String sffix) {
+		Common.sendKeys("AR_CLIENT_DETAILS_SUFFIX_XPATH", sffix);
+	}
+	public boolean verifyTitleMatched(String actualTitleValue, String expectedTitleValue) {
+		if(actualTitleValue.equals(expectedTitleValue)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+
+
+	}
+	public Boolean verifyVendorOnListForConnected(String expectedClientName) 
+	 {
+	  boolean flag=false;
+	  Common.sleep(6000);
+	  System.out.println("expectedVendorName"+expectedClientName);
+	  CommonMethods.searchByNumberOrName(expectedClientName);
+	  Common.sleep(1000);
+	  
+	  String actualClientNameOnList=Common.getText("AR_CLIENT_LIST_XPATH");
+	  if(actualClientNameOnList.equals(expectedClientName))
+	  {
+	   flag=true;
+	   System.out.println("Vendor displayed on list");
+	   Reporter.log("Vendor present on list and verified");
+	   Reporter.log("Vendor added is present on Netchain Platform and The Connection is done successfully");
+	  }
+	  else
+	  {
+	   System.out.println("Vendor not created");
+	  }
+
+	  return flag;
+
+	 }
+
 
 
 }
