@@ -2,8 +2,6 @@ package com.netChain2.selenium.pageObjects.accountsPayable.createInvoice;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-
-
 import com.netChain2.engine.Common;
 
 

@@ -1,7 +1,6 @@
 package com.netChain2.selenium.tests.Invoice;
 
 import java.util.ArrayList;
-
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
