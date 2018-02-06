@@ -348,9 +348,8 @@ public class VendorCreationForm {
 		else {
 			return false;
 		}
-
-
 	}
+	
 	public Boolean verifyVendorOnListForConnected(String expectedClientName) 
 	 {
 	  boolean flag=false;
@@ -371,9 +370,7 @@ public class VendorCreationForm {
 	  {
 	   System.out.println("Vendor not created");
 	  }
-
 	  return flag;
-
 	 }
 
 
