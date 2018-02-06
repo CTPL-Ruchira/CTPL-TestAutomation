@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.settings.Settings;
-import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
 
@@ -25,11 +24,8 @@ public class AccountsPayableSettings extends BaseTestCase {
 	{
 		loginTestData = Common.getTestData("NetchainTest.Login");
 		CustomWorkflowValues=Common.getTestData("NetchainTest.CustomWorkflow");		
-		LandingPage landingPage = new LandingPage();
-		landingPage.clickLogInButton();
 		
-		LoginPage loginPage = new LoginPage();
-		loginPage.login(loginTestData.get(6), loginTestData.get(7));
+		
 	}
 	
 	
@@ -37,6 +33,9 @@ public class AccountsPayableSettings extends BaseTestCase {
 	@TestDetails(author="Manoj Kumar", description="This methods creates custom workflow for invoice")
 	public void createCustomWorkflowForInvoice() 
 	{
+		LoginPage loginPage = new LoginPage();
+		loginPage.login(loginTestData.get(6), loginTestData.get(7));
+		
 		Settings settings=new Settings();
 		settings.openSettings();
 		
