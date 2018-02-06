@@ -289,11 +289,10 @@ public class InvoiceCreationListActions {
 	       //Veerification of create payment link
 	public void verficationOnSendPaymentLink(String VendorName, String PayId)
 	{
-		String invoiceSendPaymentLocator="//div[text()='"+PayId+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']";
+		String invoiceSendPaymentLocator="//div[text()='"+VendorName+"']/ancestor::div[2]/div[3]/div[text()='"+PayId+"']/ancestor::div[2]/div[9]/div/a[1]";
 		WebElement sendPayment=Common.findElement(invoiceSendPaymentLocator);		
 		sendPayment.click();
-       
-	}
+       }
 
 	  //Verification schedule payment
 	   public boolean verificationSchedulePayment(String modalinvoicenumber, String vname, String invoicetotalAmount,String payid) {
