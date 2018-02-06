@@ -152,7 +152,7 @@ public class ApInvoiceDispute extends BaseTestCase
 		assertTrue(isQuantityCorrectOnInvoicePreview, "Quantity is not corectly displayed on Invoice Preview Page");
 		
 		//Check rate displayed is correct
-		boolean isRateCorrectOnInvoicePreview=id.verifyValuesAfterSendingDisputeInInVoicePreviewPage(id.getRateFromProductLineInInvoicePreviewPage(invoiceTestData.get(6)), "$53.44");
+		boolean isRateCorrectOnInvoicePreview=id.verifyValuesAfterSendingDisputeInInVoicePreviewPage(id.getRateFromProductLineInInvoicePreviewPage(invoiceTestData.get(6)), "$212.33");
 		assertTrue(isRateCorrectOnInvoicePreview, "Rate is not corectly displayed on Invoice Preview Page");
 		
 		//Check amount displayed is correct
