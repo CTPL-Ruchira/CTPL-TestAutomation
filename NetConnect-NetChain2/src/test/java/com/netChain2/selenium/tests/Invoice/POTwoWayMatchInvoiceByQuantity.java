@@ -41,10 +41,6 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	
 	  public void testCreateInvoice_CreatePayment() {
 		 
-		
-		LandingPage landingPage = new LandingPage();
-	    landingPage.clickLogInButton();
-		
 	    //Login
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(4), testData.get(5));
