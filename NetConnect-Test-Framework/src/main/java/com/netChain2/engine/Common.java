@@ -242,7 +242,13 @@ public class Common {
 
 	public static List<WebElement> getElements(String locator){
 		By by = getBy(locator);
-		List<WebElement> allEles = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+		List<WebElement> allEles;
+		try {
+		allEles = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+		}
+		catch(Exception e) {
+			throw new KeywordException("Element Not Found: Locator Name - " +locator+ " And Locator Value - " +getObjectValue(locator), e);
+		}
 		return allEles;		
 	}
 
