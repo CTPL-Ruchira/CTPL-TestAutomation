@@ -24,7 +24,7 @@
 	
 	<test name="MyTests">	
 		<packages>
-			<package name="com.netChain2.selenium.tests" />
+			<package name="com.netChain2.selenium.tests.*" />
 		</packages>
 		
 		<classes>
