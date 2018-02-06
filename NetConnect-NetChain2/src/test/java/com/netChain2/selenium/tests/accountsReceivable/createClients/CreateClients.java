@@ -29,8 +29,6 @@ import com.netChain2.utils.CustomAnnotation.TestDetails;
 	     @TestDetails(author="Shital.Patil", description="This method will create a new client from Account receivable > New client")
 		 
 		public void createARClients() {
-			LandingPage landingPage = new LandingPage();				
-			landingPage.clickLogInButton();
 			
 			LoginPage loginPage = new LoginPage();
 			loginPage.login(testData.get(6), testData.get(7));
