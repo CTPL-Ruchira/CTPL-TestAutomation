@@ -2,7 +2,6 @@ package com.netChain2.selenium.tests.vendor;
 
 import java.util.ArrayList;
 import java.util.UUID;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
