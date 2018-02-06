@@ -33,7 +33,7 @@ import com.netChain2.utils.CustomAnnotation.TestDetails;
 			landingPage.clickLogInButton();
 			
 			LoginPage loginPage = new LoginPage();
-			loginPage.login(testData.get(0), testData.get(1));
+			loginPage.login(testData.get(6), testData.get(7));
 			Common.sleep(2000);
 			
 			ClientsCreationForm arClients=new ClientsCreationForm();
@@ -51,13 +51,13 @@ import com.netChain2.utils.CustomAnnotation.TestDetails;
 			
 			//click next button
 			arClients.clickCompanyProfileNextButton();
-			
+			Common.sleep(3000);
 			//click Add Employee Button
 			arClients.clickAddEmpButton();
-			Common.sleep(4000);
-			
+				
 			//set Associate Employee values
 			arClients.EnterName(testDataClients.get(3));
+			Common.sleep(2000);
 			arClients.EnterEmail(testDataClients.get(4));
 			arClients.EnterPhoneNumber(testDataClients.get(5));
 			arClients.EnterTitle(testDataClients.get(6));

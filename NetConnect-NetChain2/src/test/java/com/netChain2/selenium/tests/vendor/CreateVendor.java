@@ -2,7 +2,6 @@ package com.netChain2.selenium.tests.vendor;
 
 import java.util.ArrayList;
 import java.util.UUID;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
@@ -21,6 +20,7 @@ import com.netChain2.selenium.pageObjects.accountsPayable.createVendor.VendorCre
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
+import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
 
 
@@ -199,9 +199,14 @@ public class CreateVendor extends BaseTestCase{
 			BaseTestCase.assertTrue(true, "Vendor not created as the email id is invalid");
 		}
 		Reporter.log("Vendor not created as the email id is invalid",false);
-
+		
+        Common.sleep(2000);
+        
+		LogoutFromPage.logout();
 
 	}
+	
+	
 
 
 }

@@ -15,6 +15,7 @@ import com.netChain2.utils.CustomAnnotation.TestDetails;
 
 public class AccountsPayableSettings extends BaseTestCase {
 	private ArrayList<String> loginTestData;
+	private ArrayList<String>CustomWorkflowValues;
 	
 	WebDriver driver=Common.getDriver();
 	
@@ -22,13 +23,13 @@ public class AccountsPayableSettings extends BaseTestCase {
 	@BeforeClass
 	public void setUp() 
 	{
-		loginTestData = Common.getTestData("NetchainTest.LoginTwoWayMatch");
-				
+		loginTestData = Common.getTestData("NetchainTest.Login");
+		CustomWorkflowValues=Common.getTestData("NetchainTest.CustomWorkflow");		
 		LandingPage landingPage = new LandingPage();
 		landingPage.clickLogInButton();
 		
 		LoginPage loginPage = new LoginPage();
-		loginPage.login(loginTestData.get(0), loginTestData.get(1));
+		loginPage.login(loginTestData.get(6), loginTestData.get(7));
 	}
 	
 	
@@ -40,11 +41,11 @@ public class AccountsPayableSettings extends BaseTestCase {
 		settings.openSettings();
 		
 		settings.createNewCustomWorkflow();
-		
+		settings.autoAcceptValue(CustomWorkflowValues.get(0));
+		settings.autoAprroveValue(CustomWorkflowValues.get(1));
+		settings.autocreatePaymentValue(CustomWorkflowValues.get(2));
+		settings.autoapprovePaymentValue(CustomWorkflowValues.get(3));
 		settings.clickOnFinishButton();
-		
-		
-		
 		
 	}
 	
