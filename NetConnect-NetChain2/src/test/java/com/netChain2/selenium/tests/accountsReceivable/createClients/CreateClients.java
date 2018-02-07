@@ -33,7 +33,7 @@ import com.netChain2.utils.CustomAnnotation.TestDetails;
 			landingPage.clickLogInButton();
 			
 			LoginPage loginPage = new LoginPage();
-			loginPage.login(testData.get(6), testData.get(7));
+			loginPage.login(testData.get(8), testData.get(9));
 			Common.sleep(2000);
 			
 			ClientsCreationForm arClients=new ClientsCreationForm();
