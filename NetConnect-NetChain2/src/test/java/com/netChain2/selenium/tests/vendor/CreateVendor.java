@@ -1,16 +1,9 @@
 package com.netChain2.selenium.tests.vendor;
 
 import java.util.ArrayList;
-import java.util.UUID;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.netChain2.engine.BaseTestCase;
@@ -18,7 +11,6 @@ import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
 import com.netChain2.selenium.pageObjects.accountsPayable.createVendor.VendorCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
-import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
@@ -26,13 +18,10 @@ import com.netChain2.utils.CustomAnnotation.TestDetails;
 
 
 public class CreateVendor extends BaseTestCase{
-	private String expectedVendorName;
 	private ArrayList<String> testData;
 	private ArrayList<String> testData1;
 	private ArrayList<String> testData2;
-
-
-	WebDriver driver=Common.getDriver();
+	boolean check1;
 
 	@BeforeClass
 	//To launch the browser
@@ -42,29 +31,17 @@ public class CreateVendor extends BaseTestCase{
 		testData = Common.getTestData("NetchainTest.Login");
 		testData1 = Common.getTestData("NetchainTest.CreateVendor");
 		testData2 = Common.getTestData("NetchainTest.CreateVendorNeg");
+}
 
-		LandingPage landingPage = new LandingPage();
-		boolean check1 = landingPage.isLoginButtonDisplayed();
-
-
-		landingPage.clickLogInButton();
-		
-
-		LoginPage loginPage = new LoginPage();
-		loginPage.login(testData.get(0), testData.get(1));
-		Common.sleep(2000);
-
-
-	}
-	boolean check1;
 
 
 	@Test
 	@TestDetails(author="Ruchira.Mhaisurkar", description="demo test")
-
-
-	//POSITIVE TEST CASE
 	public void VendorCreation() {
+		LoginPage loginPage = new LoginPage();
+		loginPage.login(testData.get(0), testData.get(1));
+		Common.sleep(2000);
+
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
 
 		APModuleCreation apModule = invoice.createNew();

@@ -35,11 +35,6 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		@TestDetails(author="Roshni.Mehta", description="Invoice actions and payment flow") 
 		
 		  public void testCreateInvoice() {
-			 
-			
-			LandingPage landingPage = new LandingPage();
-		    landingPage.clickLogInButton();
-			
 			LoginPage loginPage = new LoginPage();
 			loginPage.login(testData.get(2), testData.get(3));
 			Common.sleep(2000);

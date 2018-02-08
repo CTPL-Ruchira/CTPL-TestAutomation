@@ -36,8 +36,6 @@ public class RuntimeAddLocationAndDepartment extends BaseTestCase{
 	 
 	
 	  public void testAddlocationModal() {
-		LandingPage landingPage = new LandingPage();		
-		landingPage.clickLogInButton();
 		
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(0), testData.get(1));

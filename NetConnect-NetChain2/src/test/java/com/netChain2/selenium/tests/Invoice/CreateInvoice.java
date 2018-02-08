@@ -36,10 +36,6 @@ public class CreateInvoice extends BaseTestCase {
 	@TestDetails(author="Roshni.Mehta", description="Create New Invoice") 
 	
 	  public void testCreateInvoice() {
-		
-    	LandingPage landingPage = new LandingPage();
-		landingPage.clickLogInButton();
-		
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(0), testData.get(1));
 		Common.sleep(2000);

@@ -97,9 +97,7 @@
                      <groupId>com.netChain2</groupId>
                      <artifactId>NetConnect-Test-Framework</artifactId>
                      <version>0.0.1-SNAPSHOT</version>
-                     <systemPath>C:\Users\netChain2\.m2\repository\com\netChain2\NetConnect-Test-Framework\0.0.1-SNAPSHOT\NetConnect-Test-Framework-0.0.1-SNAPSHOT.jar</systemPath>
-                     <scope>system</scope>
-
-              </dependency>
+               </dependency>
+               
   </dependencies>
 </project>
