@@ -233,16 +233,28 @@ public class Common {
 	}
 
 	public static boolean isElementDisplayed(String locator){
-		List<WebElement> eles = getElements(locator);
-		if(eles.size() == 0)
-			return false;
-
-		return eles.get(0).isDisplayed();
-	}
+		 By by = getBy(locator);
+		 WebElement ele;
+		 try {
+		 ele =  wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+		 }
+		 catch(Exception e) 
+		 {
+			 return false;
+		 }
+		return ele.isDisplayed();
+		
+			}
 
 	public static List<WebElement> getElements(String locator){
 		By by = getBy(locator);
-		List<WebElement> allEles = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+		List<WebElement> allEles=new ArrayList<WebElement>();
+		try {
+		allEles = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		return allEles;		
 	}
 

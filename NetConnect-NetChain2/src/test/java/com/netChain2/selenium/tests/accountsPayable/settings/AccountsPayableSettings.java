@@ -32,18 +32,15 @@ public class AccountsPayableSettings extends BaseTestCase {
 		loginTestData = Common.getTestData("NetchainTest.Login");
 		CustomWorkflowValues=Common.getTestData("NetchainTest.CustomWorkflow");		
 	}
-	
-	
+		
 	@Test
 	@TestDetails(author="Manoj Kumar", description="This methods creates custom workflow for invoice")
-
-	 public void createInvoice() {
-		LandingPage landingPage = new LandingPage();
-		landingPage.clickLogInButton();
-
+	public void createCustomWorkflowForInvoice() 
+	{
+	LandingPage landingPage = new LandingPage();
+	landingPage.clickLogInButton();
 		LoginPage loginPage = new LoginPage();
-		loginPage.login(loginTestData.get(9), loginTestData.get(10));
-		
+		loginPage.login(loginTestData.get(6), loginTestData.get(7));
 
 		Settings settings=new Settings();
 		settings.openSettings();
