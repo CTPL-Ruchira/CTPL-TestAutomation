@@ -47,10 +47,11 @@ public class ResolveDispute extends BaseTestCase
 	public void login()
 	{
 		System.out.println("uiii");
-		
+		LandingPage landingPage = new LandingPage();
+		landingPage.clickLogInButton();
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(loginTestData.get(0), loginTestData.get(1));
-		Common.sleep(3000);
+		Common.sleep(7000);
 		System.out.println("End login");
 	}
 	

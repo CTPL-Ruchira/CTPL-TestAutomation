@@ -21,7 +21,7 @@ public class CreateSalesOrder extends BaseTestCase {
 	private ArrayList<String> testData4;
 	private ArrayList<String> testData5;
 	WebDriver driver=Common.getDriver();
-	boolean check1;	
+	
 	//to launch the browser and log-in
 	@BeforeClass
 	public void setUp() {
@@ -29,17 +29,22 @@ public class CreateSalesOrder extends BaseTestCase {
 		testData3=Common.getTestData("AR.NetchainTest.CreateSalesOrder");
 		testData4=Common.getTestData("NetchainTest.CreateSalesOrder1");
 		testData5=Common.getTestData("NetchainTest.CreateSalesOrder2");
-			}
+		
+		LandingPage landingPage = new LandingPage();
+		//boolean check1 = landingPage.isLoginButtonDisplayed();
+        Common.sleep(1000);
 
-	
-	@Test
-	public void salesOrderCreation() {
+		landingPage.clickLogInButton();
+		
 
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(0), testData.get(1));
 		
-		Common.sleep(2000);
-		
+	}
+	boolean check1;
+	
+	@Test
+	public void salesOrderCreation() {
 		ARModuleCreation arModule=new ARModuleCreation();
 		arModule.clickCreateNewButton();
 		arModule.clickARLink();

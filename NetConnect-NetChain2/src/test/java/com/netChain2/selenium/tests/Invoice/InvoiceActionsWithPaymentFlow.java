@@ -1,9 +1,12 @@
 package com.netChain2.selenium.tests.Invoice;
 
 import java.util.ArrayList;
+
+
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
@@ -35,6 +38,11 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		@TestDetails(author="Roshni.Mehta", description="Invoice actions and payment flow") 
 		
 		  public void testCreateInvoice() {
+			 
+			
+			LandingPage landingPage = new LandingPage();
+		    landingPage.clickLogInButton();
+			
 			LoginPage loginPage = new LoginPage();
 			loginPage.login(testData.get(2), testData.get(3));
 			Common.sleep(2000);
@@ -77,8 +85,11 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 			invoice.AccountDetails_Amount(testDataInvoiceActions.get(5));
 		    PurchaseOrderCreationForm purchaseOrder=new PurchaseOrderCreationForm();
 			
+			//Enter invoice measure
+			 invoice.Invoice_SelectMeasure(testDataInvoiceActions.get(10));
+				 
 			
-		    //Set items for First line
+			//Set items for First line
 			purchaseOrder.setItemDetails(testDataInvoiceActions.get(6),testDataInvoiceActions.get(7),testDataInvoiceActions.get(8),testDataInvoiceActions.get(9), testDataInvoiceActions.get(10),testDataInvoiceActions.get(11), testDataInvoiceActions.get(12));
 	
 			 //Invoice Enter Message to vendor
@@ -208,7 +219,6 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 	           
 	            //Search invoice
 	            icl.searchInvoice(payId);
-	            Common.sleep(4000);
 	            
 	            //Click on approve button
 	            icl.clickOnApprovePayment(testDataVendorList.get(3),payId);
@@ -448,8 +458,7 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
            
             //search invoice by payment id
             icl1.searchInvoice(payId);
-            Common.sleep(2000);
-           
+            
             //Search 
             icl1.verficationOnSendPaymentLink(vendorName,payId);
             Common.sleep(3000);
