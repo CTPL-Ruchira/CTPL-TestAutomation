@@ -40,10 +40,10 @@ public class AccountsPayableSettings extends BaseTestCase {
 		settings.openSettings();
 		
 		settings.createNewCustomWorkflow();
-		settings.autoAcceptValue(CustomWorkflowValues.get(0));
+		/*settings.autoAcceptValue(CustomWorkflowValues.get(0));
 		settings.autoAprroveValue(CustomWorkflowValues.get(1));
 		settings.autocreatePaymentValue(CustomWorkflowValues.get(2));
-		settings.autoapprovePaymentValue(CustomWorkflowValues.get(3));
+		settings.autoapprovePaymentValue(CustomWorkflowValues.get(3));*/
 		settings.clickOnFinishButton();
 		
 	}
