@@ -31,7 +31,7 @@ import com.netChain2.utils.CustomAnnotation.TestDetails;
 		public void createARClients() {
 			
 			LoginPage loginPage = new LoginPage();
-			loginPage.login(testData.get(8), testData.get(9));
+			loginPage.login(testData.get(6), testData.get(7));
 			Common.sleep(2000);
 			
 			ClientsCreationForm arClients=new ClientsCreationForm();
