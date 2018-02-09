@@ -1,5 +1,7 @@
 package com.netChain2.selenium.pageObjects.accountsPayable.settings;
 
+import org.openqa.selenium.WebElement;
+
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.JavaScriptOperation.JavaScriptUtils;
 import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
@@ -82,7 +84,8 @@ public class Settings
 	   }
 	public void autoapprovePaymentValue(String value) {
 	      Common.sendKeys("INVOICE_WORKFLOW_AUTOAPPROVEPAYMENT_INVOICE_TEXTBOX_XPATH", value);
-	   }
+	      Common.sleep(3000);
+	}
 	
 	
 	
@@ -99,6 +102,30 @@ public class Settings
 	public void clickOnFinishButton()
 	{
 		Common.click("INVOICE_CUSTOMWORKFLOW_FINISH_BUTTON_XPATH");
-	    Common.sleep(2000);
+	    Common.sleep(3000);
 	}
+
+
+	public boolean verificationForAutoApproveLink(String VendorName, String InvoiceNumber)
+	{
+		String invoiceApproveLocator="//div[text()='\"+InvoiceNumber+\"']/ancestor::div[2]/div[2]/div[text()='\"+VendorName+\"']/ancestor::div[2]/div[9]/div[@class='text']/div/a[2]";
+		WebElement elementApprove=Common.findElement(invoiceApproveLocator);
+		System.out.println("ele"+elementApprove);
+        String ActualValue= elementApprove.getText();
+	    String ExpectedValue="Approve Invoices";
+	    System.out.println(ActualValue);
+	   if(ActualValue.equals(ExpectedValue))
+			{
+				return true;
+				
+			}else {
+				
+				return false;
+				    }
+			
+		     }
+	 
+		
 }
+
+
