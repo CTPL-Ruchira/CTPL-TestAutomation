@@ -37,12 +37,6 @@ public class CreatePurchaseOrder extends BaseTestCase{
      @TestDetails(author="Manoj.Kumar", description="Create Purchase Order")
 	 
 	public void createPurchaseOrder() {
-		 
-		
-		LandingPage landingPage = new LandingPage();
-				
-		landingPage.clickLogInButton();
-				
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(0), testData.get(1));
 		Common.sleep(2000);
