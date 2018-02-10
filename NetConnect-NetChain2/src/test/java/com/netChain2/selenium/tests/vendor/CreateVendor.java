@@ -116,6 +116,10 @@ public class CreateVendor extends BaseTestCase{
 	@Test
 	public void VendorCreationNegative() {
 		
+		LoginPage loginPage = new LoginPage();
+		loginPage.login(testData.get(0), testData.get(1));
+		Common.sleep(2000);
+
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
 		Common.sleep(6000);
 		APModuleCreation apModule = invoice.createNew();
