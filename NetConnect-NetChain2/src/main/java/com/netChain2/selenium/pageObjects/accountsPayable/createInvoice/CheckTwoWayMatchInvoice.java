@@ -38,6 +38,14 @@ public class CheckTwoWayMatchInvoice {
     Common.click("INVOICE_ITEM_AMOUNT_TEXT_XPATH");
    }
 
+ //Select Rate
+   public void SelectRate_Invoice(String value) {
+	Common.getElement("CREATE_INVOICE_RATE_XPATH").clear();
+	Common.click("INVOICE_ITEM_AMOUNT_TEXT_XPATH");
+	Common.sendKeys("CREATE_INVOICE_RATE_XPATH", value);
+    Common.sleep(2000);
+    Common.click("INVOICE_ITEM_AMOUNT_TEXT_XPATH");
+   }
    //Search Invoice
    public void searchInvoice(String searchValue)
 	{
@@ -47,7 +55,7 @@ public class CheckTwoWayMatchInvoice {
    //Check Invoice status
    public boolean CheckInvoiceStatus_CreatePayment(String VendorName, String InvoiceNumber)
 	{
-		String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/a[2]";
+		String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[2]";
 		WebElement element=Common.findElement(InvoiceLocator);
 		System.out.println("ele"+element);
         String ActualValue= element.getText();
@@ -66,7 +74,7 @@ public class CheckTwoWayMatchInvoice {
 	 
    //Accept link on invoice
    public void InvoiceAcceptLinkClick(String VendorName, String InvoiceNumber) {
-	   String InvoiceStatusAcceptInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/a[2]";
+	   String InvoiceStatusAcceptInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[2]";
 	   WebElement Element2=Common.findElement(InvoiceStatusAcceptInvoice);
 	   Element2.click();
   }
@@ -101,6 +109,26 @@ public class CheckTwoWayMatchInvoice {
 				    }
 			
 		     }
+  
+//Check Status accepted for threshhold
+  public boolean CheckInvoiceStatus_accepted(String VendorName, String InvoiceNumber) {
+      String InvoiceStatusLocaterAccepted="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[5]/div[@class='text']";
+       WebElement ele=Common.findElement(InvoiceStatusLocaterAccepted);
+       String ActualValue= ele.getText();
+        Common.sleep(3000);
+	    String ExpectedValue="Accepted";
+
+	   if(ActualValue.equals(ExpectedValue))
+			{
+				return true;
+				
+			}else {
+				
+				return false;
+				    }
+			
+		     }
+	    
 	    
 
        }
