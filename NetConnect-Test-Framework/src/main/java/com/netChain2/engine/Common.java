@@ -28,7 +28,6 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -69,7 +68,7 @@ public class Common {
 				System.setProperty("webdriver.firefox.bin", browser);
 
 			FirefoxProfile pro = new FirefoxProfile(new File(profile));
-			driver = new FirefoxDriver(pro);		
+			driver = new FirefoxDriver();		
 		}
 
 		if(browser.endsWith("chrome.exe")){
