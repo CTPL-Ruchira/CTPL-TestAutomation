@@ -27,6 +27,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -49,7 +50,7 @@ public class Common {
 	private static String baseUrl;
 	private static String screenshotsFolder;
 	private static WebDriverWait wait;
-	
+	private static int elementLoadingTimeout;
 
 	public static void sleep(int millSec){
 		try {
@@ -95,7 +96,9 @@ public class Common {
 
 	public static void setTimeOuts(int pageLoadTimeOutInSec, int elementLoadingTimeout){
 		driver.manage().timeouts().pageLoadTimeout(pageLoadTimeOutInSec, TimeUnit.SECONDS);
-		wait = new WebDriverWait(driver, elementLoadingTimeout);		
+		wait = new WebDriverWait(driver, elementLoadingTimeout);	
+		Common.elementLoadingTimeout=elementLoadingTimeout;
+		
 	}
 
 	public static void switchToDefaultContent(){
@@ -234,35 +237,51 @@ public class Common {
 
 	public static boolean isElementDisplayed(String locator){
 		 By by = getBy(locator);
-		 WebElement ele;
+		 WebDriverWait wdWait = new WebDriverWait(driver, Common.elementLoadingTimeout);
+		 boolean isDisplayed =false;
 		 try {
-		 ele =  wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+		 isDisplayed = wdWait.until(new ExpectedCondition<Boolean>() {
+			 public Boolean apply(WebDriver driver) {
+				 return driver.findElement(by).isDisplayed();
+			}
+		});
+		 
 		 }
-		 catch(Exception e) 
-		 {
-			 return false;
+		 catch(Exception e) {
+			  
 		 }
-		return ele.isDisplayed();
-		
+		 return isDisplayed;
+		 
+				
 			}
 
 	public static List<WebElement> getElements(String locator){
 		By by = getBy(locator);
 		List<WebElement> allEles=new ArrayList<WebElement>();
+		WebDriverWait wdWait = new WebDriverWait(driver, Common.elementLoadingTimeout);
 		try {
-		allEles = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+		allEles = wdWait.until(new ExpectedCondition<List<WebElement>>() {
+		public List<WebElement> apply(WebDriver driver){
+			return driver.findElements(by);
+		}
+		});
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			throw new KeywordException("Element Not Found: Locator Name - " +locator+ " And Locator Value - " +getObjectValue(locator), e);
 		}
 		return allEles;		
 	}
 
 	public static WebElement getElement(String locator){
 		By by = getBy(locator);
+		WebDriverWait wdWait = new WebDriverWait(driver, Common.elementLoadingTimeout);
 		WebElement ele;
 		try {
-		ele = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+		ele = wdWait.until(new ExpectedCondition<WebElement>() {
+			public WebElement apply(WebDriver driver) {
+				return driver.findElement(by);
+			}
+		});
 		}
 		catch(Exception e) {
 		//throw new KeywordException("Element Not Found: Locator Name - " +locator+ " And Locator Value - " +getObjectValue(locator), e);
@@ -297,7 +316,15 @@ public class Common {
 
 	public static WebElement findElement(String locator){
 		By by =By.xpath(locator);
-		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+		WebDriverWait wdWait = new WebDriverWait(driver, Common.elementLoadingTimeout);
+          
+		WebElement ele = wdWait.until(new ExpectedCondition<WebElement>() {
+			public WebElement apply(WebDriver driver) {
+				return driver.findElement(by);
+			}
+		});
+
+		
 		return ele;
 	}
 
