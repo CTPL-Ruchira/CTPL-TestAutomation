@@ -179,11 +179,9 @@ public class CreateVendor extends BaseTestCase{
 		else {
 			BaseTestCase.assertTrue(true, "Vendor not created as the email id is invalid");
 		}
-		Reporter.log("Vendor not created as the email id is invalid",false);
 		
-        Common.sleep(2000);
-        
-		LogoutFromPage.logout();
+	LogoutFromPage.logout();
+	Common.sleep(2000);
 
 	}
 	
