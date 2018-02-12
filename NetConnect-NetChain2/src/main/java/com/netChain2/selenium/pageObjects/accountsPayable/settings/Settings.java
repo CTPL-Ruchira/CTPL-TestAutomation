@@ -100,6 +100,7 @@ public class Settings
 	public void clickOnFinishButton()
 	{
 		Common.click("INVOICE_CUSTOMWORKFLOW_FINISH_BUTTON_XPATH");
+	    Common.sleep(3000);
 	}
 
 	public boolean verificationForAutoApproveLink(String vendorName, String invoiceNumber,String expectedValue)
@@ -245,6 +246,7 @@ public class Settings
 	
 	}
 	
+
 }
 
 
