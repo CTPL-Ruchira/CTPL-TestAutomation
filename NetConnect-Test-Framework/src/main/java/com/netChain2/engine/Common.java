@@ -49,7 +49,7 @@ public class Common {
 	private static String baseUrl;
 	private static String screenshotsFolder;
 	private static WebDriverWait wait;
-	private static int elementLoadingTimeout;
+	private static long elementLoadingTimeout;
 
 	public static void sleep(int millSec){
 		try {
@@ -93,7 +93,7 @@ public class Common {
 		baseUrl = url;
 	}	
 
-	public static void setTimeOuts(int pageLoadTimeOutInSec, int elementLoadingTimeout){
+	public static void setTimeOuts(Long pageLoadTimeOutInSec, Long elementLoadingTimeout){
 		driver.manage().timeouts().pageLoadTimeout(pageLoadTimeOutInSec, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, elementLoadingTimeout);	
 		Common.elementLoadingTimeout=elementLoadingTimeout;
