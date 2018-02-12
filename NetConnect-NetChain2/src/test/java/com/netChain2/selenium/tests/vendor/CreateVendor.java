@@ -156,7 +156,7 @@ public class CreateVendor extends BaseTestCase{
 
 		vendorCreation.clickNextButton3();
 
-		Common.setTimeOuts(2000, 2000);
+		//Common.setTimeOuts(2000, 2000);
 
 		vendorCreation.goToProductDetailsTab();
 
