@@ -1,12 +1,9 @@
 package com.netChain2.selenium.pageObjects.accountsPayable.settings;
 
-
 import org.openqa.selenium.JavascriptExecutor;
-
 import org.openqa.selenium.WebElement;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.JavaScriptOperation.JavaScriptUtils;
-
 
 public class Settings 
 {
@@ -22,9 +19,7 @@ public class Settings
 		clickOnCreateNewCustomWorkflowButton();
 		Common.sleep(1000);
 		customizeWorkflow();
-		
-		
-	}
+		}
 
 	private void customizeWorkflow() 
 	{
@@ -91,9 +86,7 @@ public class Settings
 	      Common.sendKeys("INVOICE_WORKFLOW_AUTOAPPROVEPAYMENT_INVOICE_TEXTBOX_XPATH", value);
 	      Common.sleep(3000);
 	}
-	
-	
-	
+
 	private String getLocatorValue(String xpathName)
 	{
 		return Common.getObjectValue(xpathName);
@@ -109,7 +102,6 @@ public class Settings
 		Common.click("INVOICE_CUSTOMWORKFLOW_FINISH_BUTTON_XPATH");
 	    Common.sleep(3000);
 	}
-
 
 	public boolean verificationForAutoApproveLink(String vendorName, String invoiceNumber,String expectedValue)
 	{
@@ -254,4 +246,7 @@ public class Settings
 	
 	}
 	
+
 }
+
+
