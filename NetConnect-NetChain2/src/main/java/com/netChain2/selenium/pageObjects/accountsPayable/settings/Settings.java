@@ -100,6 +100,7 @@ public class Settings
 	public void clickOnFinishButton()
 	{
 		Common.click("INVOICE_CUSTOMWORKFLOW_FINISH_BUTTON_XPATH");
+	    Common.sleep(3000);
 	}
 
 	public boolean verificationForAutoApproveLink(String vendorName, String invoiceNumber,String expectedValue)
@@ -126,7 +127,7 @@ public class Settings
 		JavascriptExecutor jse = (JavascriptExecutor)Common.getDriver();
 		jse.executeScript("scroll(0, -250);");
 	}
-   
+  
 	public void selectProductFromDropdown(String productName) {
     Common.select("CREATE_INVOICE_SELECT_PRODUCT_XPATH", productName);
    }
@@ -239,12 +240,7 @@ public class Settings
 				
 				return false;
 				    }
-
-  
-	
-	
-	}
-	
+     }
 }
 
 

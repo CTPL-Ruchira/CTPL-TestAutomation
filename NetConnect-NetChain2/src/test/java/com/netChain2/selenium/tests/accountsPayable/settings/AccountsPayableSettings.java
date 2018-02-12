@@ -25,7 +25,6 @@ public class AccountsPayableSettings extends BaseTestCase {
 	public void setUp() 
 	{
 		loginTestData = Common.getTestData("NetchainTest.Login");
-
         customWorkflowValues=Common.getTestData("NetchainTest.CustomWorkflow");		
 	}
 
@@ -37,11 +36,9 @@ public class AccountsPayableSettings extends BaseTestCase {
 		loginPage.login(loginTestData.get(8), loginTestData.get(9));
 
 		Settings settings=new Settings();
-
 		settings.openSettings();
-
+        
 		settings.createNewCustomWorkflow();
-
 		settings.autoAcceptValue(customWorkflowValues.get(0));
 		settings.autoAprroveValue(customWorkflowValues.get(1));
 		settings.autocreatePaymentValue(customWorkflowValues.get(2));
@@ -114,8 +111,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 
 		boolean check2= expectedAlertMessage.equals(actualAlertMessage);
 		assertTrue(check2, "Invoice creation failed");
-
-		Reporter.log("Invoice was created successfully");
+        Reporter.log("Invoice was created successfully");
 
 		//Invoice Create rule click on cancel button
 		invoice.CreateRule_CancelButton();
@@ -163,7 +159,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		//Select value from Net Term 
 		invoice.SelectNetTerm(customWorkflowValues.get(5));
 
-		//select value from Location dropdown
+        //select value from Location dropdown
 		invoice.SelectLocation(customWorkflowValues.get(6));	
 		
 		//Select Product
@@ -222,114 +218,109 @@ public class AccountsPayableSettings extends BaseTestCase {
 		LogoutFromPage.logout();
 		}
 
+	@Test(dependsOnMethods= {"checkautoCreatePayment"})
+	public void checkautoApprovePayment() {
+
+		LoginPage loginPage = new LoginPage();
+		loginPage.login(loginTestData.get(8), loginTestData.get(9));
+
+		InvoiceCreationForm invoice = new InvoiceCreationForm();
+	    Settings settings=new Settings();
+		//Scroll up
+		Settings.scrollUp();
+
+		APModuleCreation apModule = invoice.createNew();
+		//click to AP()
+		apModule.clickAPLink();
+		
+		//Click to New Invoice
+		apModule.clickNewInvoice();
+		Common.sleep(3000);
+		
+		//Select value from Vender DropDown
+		invoice.SelectVendor(customWorkflowValues.get(4));
+		
+		//Get Invoice number
+		invoiceNo=invoice.getAttributeValueInvoiceNo();
+		
+		//Select value from Net Term 
+		invoice.SelectNetTerm(customWorkflowValues.get(5));
+
+		//select value from Location dropdown
+		invoice.SelectLocation(customWorkflowValues.get(6));	
+		
+		//Set product
+        settings.selectProductFromDropdown(customWorkflowValues.get(10));
+		
+		//Select department
+		settings.selectDepartment(customWorkflowValues.get(11));
+		
+		//select booking account
+		settings.selectBookingAccount(customWorkflowValues.get(12));
+		
+		//select description
+		settings.itemDescription(customWorkflowValues.get(13));
+		
+		// Enter measure
+		settings.itemMeasure(customWorkflowValues.get(14));
+		
+		//Enter Quantity
+        settings.itemQuantity(customWorkflowValues.get(21));
+		
+		//Enter rate
+        settings.itemRate(customWorkflowValues.get(22));
+		
+		//Invoice Enter Message to vendor
+		invoice.Invoice_MessageToVendor(customWorkflowValues.get(17));
+
+		//Invoice Enter memo
+		invoice.Invoice_Memo(customWorkflowValues.get(18));
+
+        //Invoice Click on save button
+		invoice.Invoice_SaveButton();
+
+		//Invoice assert message verification
+		String expectedAlertMessage="Invoice was created";
+		String actualAlertMessage=invoice.gettextValue();			   
+
+		boolean check2= expectedAlertMessage.equals(actualAlertMessage);
+		BaseTestCase.assertTrue(check2, "Invoice creation failed");
+		Reporter.log("Invoice was created successfully");
+
+		//Invoice Create rule click on cancel button
+		invoice.CreateRule_CancelButton();
+
+		//Scroll up
+        Settings.scrollUp();
+       
+		//Search invoice
+		CommonMethods.searchByNumberOrName(invoiceNo);
+		Common.sleep(2000);
+
+		//Verification of view payment
+		settings.verificationForViewPayment(customWorkflowValues.get(4), invoiceNo);
+		
+		//get payment id
+		payId=settings.getPaymentId();
+	    Common.sleep(2000);
+
+	    //open menu
+	    settings.clickOnOpenMenu();
+	    
+	    //click on payment
+	    settings.clickOnPaymentMenu();
 	
-  @Test(dependsOnMethods= {"checkautoCreatePayment"})
-  public void checkautoApprovePayment() {
+	    //Search
+	    CommonMethods.searchByNumberOrName(payId);
+		Common.sleep(2000);
+	    
+		//Verification of approve payment
+	    boolean isapprovePaymentVisible=settings.verificationForApprovePayment(customWorkflowValues.get(4),payId,customWorkflowValues.get(27));
+	    assertTrue(isapprovePaymentVisible, "Approve payment link should be visible as per custom workflow");
 
-	LoginPage loginPage = new LoginPage();
-	loginPage.login(loginTestData.get(8), loginTestData.get(9));
-
-	InvoiceCreationForm invoice = new InvoiceCreationForm();
-	Common.sleep(3000);
-
-	Settings settings=new Settings();
-	//Scroll up
-	Settings.scrollUp();
-
-	APModuleCreation apModule = invoice.createNew();
-	//click to AP()
-	apModule.clickAPLink();
-
-	//Click to New Invoice
-	apModule.clickNewInvoice();
-	Common.sleep(3000);
-
-	//Select value from Vender DropDown
-	invoice.SelectVendor(customWorkflowValues.get(4));
-
-	//Get Invoice number
-	invoiceNo=invoice.getAttributeValueInvoiceNo();
-
-	//Select value from Net Term 
-	invoice.SelectNetTerm(customWorkflowValues.get(5));
-
-	//select value from Location dropdown
-	invoice.SelectLocation(customWorkflowValues.get(6));	
-
-	//Set product
-	settings.selectProductFromDropdown(customWorkflowValues.get(10));
-
-	//Select department
-	settings.selectDepartment(customWorkflowValues.get(11));
-
-	//select booking account
-	settings.selectBookingAccount(customWorkflowValues.get(12));
-
-	//select description
-	settings.itemDescription(customWorkflowValues.get(13));
-
-	// Enter measure
-	settings.itemMeasure(customWorkflowValues.get(14));
-
-	//Enter Quantity
-	settings.itemQuantity(customWorkflowValues.get(21));
-
-	//Enter rate
-	settings.itemRate(customWorkflowValues.get(22));
-
-	//Invoice Enter Message to vendor
-	invoice.Invoice_MessageToVendor(customWorkflowValues.get(17));
-
-	//Invoice Enter memo
-	invoice.Invoice_Memo(customWorkflowValues.get(18));
-
-	//Invoice Click on save button
-	invoice.Invoice_SaveButton();
-
-	//Invoice assert message verification
-	String expectedAlertMessage="Invoice was created";
-	String actualAlertMessage=invoice.gettextValue();			   
-
-	boolean check2= expectedAlertMessage.equals(actualAlertMessage);
-	BaseTestCase.assertTrue(check2, "Invoice creation failed");
-
-	Reporter.log("Invoice was created successfully");
-
-	//Invoice Create rule click on cancel button
-	invoice.CreateRule_CancelButton();
-
-	//Scroll up
-	Settings.scrollUp();
-
-	//Search invoice
-	CommonMethods.searchByNumberOrName(invoiceNo);
-	Common.sleep(2000);
-
-	//Verification of view payment
-	settings.verificationForViewPayment(customWorkflowValues.get(4), invoiceNo);
-
-	//get payment id
-	payId=settings.getPaymentId();
-	Common.sleep(2000);
-
-	//open menu
-	settings.clickOnOpenMenu();
-
-	//click on payment
-	settings.clickOnPaymentMenu();
-
-	//Search
-	CommonMethods.searchByNumberOrName(payId);
-	Common.sleep(2000);
-
-	//Verification of approve payment
-	boolean isapprovePaymentVisible=settings.verificationForApprovePayment(customWorkflowValues.get(4),payId,customWorkflowValues.get(27));
-	assertTrue(isapprovePaymentVisible, "Approve payment link should be visible as per custom workflow");
-
-	//Log out
-	LogoutFromPage.logout();
-  }
-
+	    //Log out
+     	LogoutFromPage.logout();
+		}
 
 	@Test(dependsOnMethods= {"checkautoApprovePayment"})
 	public void checksendPayment() {
@@ -411,8 +402,8 @@ public class AccountsPayableSettings extends BaseTestCase {
        
 		//Search invoice
 		CommonMethods.searchByNumberOrName(invoiceNo);
-		Common.sleep(2000);
-
+		Common.sleep(2000);	
+		
 		//Verification of view payment
 		settings.verificationForViewPayment(customWorkflowValues.get(4), invoiceNo);
 		
@@ -434,11 +425,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		Common.sleep(5000);
 		Reporter.log(" Send Payment link is visible as per custom workflow");
 
-
 		//Log out
 		LogoutFromPage.logout();
-		}
-  
+	}
 }
-
-
