@@ -20,14 +20,14 @@ public class AccountsPayableSettings extends BaseTestCase {
 	private ArrayList<String> customWorkflowValues;
 	private String invoiceNo;
 	private String payId;
-	
+
 	@BeforeClass
 	public void setUp() 
 	{
 		loginTestData = Common.getTestData("NetchainTest.Login");
-		customWorkflowValues=Common.getTestData("NetchainTest.CustomWorkflow");		
+        customWorkflowValues=Common.getTestData("NetchainTest.CustomWorkflow");		
 	}
-		
+
 	@Test
 	@TestDetails(author="Roshni Mehta", description="This methods creates custom workflow for invoice")
 	public void createCustomWorkflowForInvoice() 
@@ -37,7 +37,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 
 		Settings settings=new Settings();
 		settings.openSettings();
-
+        
 		settings.createNewCustomWorkflow();
 		settings.autoAcceptValue(customWorkflowValues.get(0));
 		settings.autoAprroveValue(customWorkflowValues.get(1));
@@ -49,7 +49,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
 		InvoiceCreationListActions icl=new InvoiceCreationListActions();
         Common.sleep(3000);
-		
+
         //Scroll up
         Settings.scrollUp();
        
@@ -111,7 +111,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 
 		boolean check2= expectedAlertMessage.equals(actualAlertMessage);
 		assertTrue(check2, "Invoice creation failed");
-		Reporter.log("Invoice was created successfully");
+        Reporter.log("Invoice was created successfully");
 
 		//Invoice Create rule click on cancel button
 		invoice.CreateRule_CancelButton();
@@ -159,7 +159,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		//Select value from Net Term 
 		invoice.SelectNetTerm(customWorkflowValues.get(5));
 
-		//select value from Location dropdown
+        //select value from Location dropdown
 		invoice.SelectLocation(customWorkflowValues.get(6));	
 		
 		//Select Product
@@ -322,7 +322,6 @@ public class AccountsPayableSettings extends BaseTestCase {
      	LogoutFromPage.logout();
 		}
 
-
 	@Test(dependsOnMethods= {"checkautoApprovePayment"})
 	public void checksendPayment() {
 
@@ -403,8 +402,8 @@ public class AccountsPayableSettings extends BaseTestCase {
        
 		//Search invoice
 		CommonMethods.searchByNumberOrName(invoiceNo);
-		Common.sleep(2000);
-
+		Common.sleep(2000);	
+		
 		//Verification of view payment
 		settings.verificationForViewPayment(customWorkflowValues.get(4), invoiceNo);
 		
@@ -428,9 +427,5 @@ public class AccountsPayableSettings extends BaseTestCase {
 
 		//Log out
 		LogoutFromPage.logout();
-		}
+	}
 }
-	
-
-	
-	

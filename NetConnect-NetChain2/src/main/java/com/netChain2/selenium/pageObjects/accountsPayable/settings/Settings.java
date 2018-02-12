@@ -127,7 +127,7 @@ public class Settings
 		JavascriptExecutor jse = (JavascriptExecutor)Common.getDriver();
 		jse.executeScript("scroll(0, -250);");
 	}
-   
+  
 	public void selectProductFromDropdown(String productName) {
     Common.select("CREATE_INVOICE_SELECT_PRODUCT_XPATH", productName);
    }
@@ -240,13 +240,7 @@ public class Settings
 				
 				return false;
 				    }
-
-  
-	
-	
-	}
-	
-
+     }
 }
 
 
