@@ -1,9 +1,11 @@
 package com.netChain2.selenium.tests.Invoice;
 
 import java.util.ArrayList;
+
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.CheckTwoWayMatchInvoice;
@@ -14,7 +16,7 @@ import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
 
-public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
+public class TwoWayMatchInvoice extends BaseTestCase {
 	private ArrayList<String> testData;
 	
 
@@ -40,8 +42,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	 
 	
 	  public void testCreateInvoice_CreatePayment() {
-		 
-	    //Login
+		 //Login
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(4), testData.get(5));
 		Common.sleep(2000);
