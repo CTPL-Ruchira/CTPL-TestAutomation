@@ -17,7 +17,10 @@ public class JavaScriptUtils {
 		StringBuilder fileContents=null;
 		Scanner scanner = null;
 		try {
-			File file = new File("C:\\development\\CTPL-TestAutomation\\CTPL-TestAutomation\\NetConnect-NetChain2\\jQueries\\drag-drop.js");
+			//File file = new File("C:\\development\\CTPL-TestAutomation\\CTPL-TestAutomation\\NetConnect-NetChain2\\jQueries\\drag-drop.js");
+			File file = new File(".\\jQueries\\drag-drop.js");
+			
+			
 			 fileContents = new StringBuilder((int)file.length());
 			scanner = new Scanner(file);
 			String lineSeparator = System.getProperty("line.separator");
@@ -44,6 +47,12 @@ public class JavaScriptUtils {
 	public static void clickByJavaScript(WebElement ele) {
 	JavascriptExecutor jsExec =	(JavascriptExecutor)Common.getDriver();
 	jsExec.executeScript("arguments[0].click()", ele);
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		JavaScriptUtils.jQueryDragAndDrop("", "");
 	}
 
 }
