@@ -49,10 +49,5 @@ public class JavaScriptUtils {
 	jsExec.executeScript("arguments[0].click()", ele);
 	}
 	
-	
-	public static void main(String[] args) {
-		
-		JavaScriptUtils.jQueryDragAndDrop("", "");
-	}
 
 }
