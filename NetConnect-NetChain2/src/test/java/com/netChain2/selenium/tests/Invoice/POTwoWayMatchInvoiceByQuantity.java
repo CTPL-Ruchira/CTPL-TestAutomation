@@ -8,6 +8,7 @@ import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.CheckTwoWayMatchInvoice;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
+import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
@@ -20,7 +21,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 
 	private ArrayList<String> testDataVendorList;
 	private ArrayList<String> testDataInvoice2;
-
+    private ArrayList<String>testPurchaseOrder;
 	private ArrayList<String> testdatatwowaymatch;
 	private String invoiceNo;
 	InvoiceCreationForm invoice = new InvoiceCreationForm();
@@ -32,10 +33,10 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
         testDataVendorList=Common.getTestData("NetchainTest.InvoiceListVendor");
 	    testDataInvoice2=Common.getTestData("NetchainTest.CreateInvoice2");
 	    testdatatwowaymatch=Common.getTestData("NetchainTest.TwoWayMatch");
-	  		
+	  	testPurchaseOrder=Common.getTestData("Netchain.NewPurchaseOrder");
 	}
 
-	 @Test
+	/* @Test
      @TestDetails(author="Roshni.Mehta", description="Two Way Match")
 	 
 	
@@ -183,11 +184,80 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	    Common.sleep(3000);
 	    LogoutFromPage.logout();
 	   
-	 } 
+	 } */
 
-}
+	//@Test(dependsOnMethods="testCreateInvoice_Discrepant")
+	@Test
+	public void POApproveTwoWayMatch() {
+   
+		 //Login
+		LoginPage loginPage = new LoginPage();
+		loginPage.login(testData.get(4), testData.get(5));
+		Common.sleep(2000);
+		PurchaseOrderCreationForm purchaseOrder=new PurchaseOrderCreationForm();
+		//click to create new
+		APModuleCreation apModule = invoice.createNew();
+		Common.sleep(2000);
+		
+		//click to AP()
+		apModule.clickAPLink();
+		Common.sleep(2000);
+
+		//Select on link
+		apModule.clickPurchaseLink();
+		Common.sleep(2000);
+       
+		//select vendor
+		Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", testPurchaseOrder.get(0));
+	     
+		
+		//Select Location
+		purchaseOrder.selectLocation(testPurchaseOrder.get(1));
+		  
+		String poNumber=Integer.toString(PurchaseOrderCreationForm.getPoNumber());
+		System.out.println("Po number---" +poNumber);
+				
+		//set details
+		purchaseOrder.setItemDetails(testPurchaseOrder.get(2),testPurchaseOrder.get(3),testPurchaseOrder.get(4),testPurchaseOrder.get(5), testPurchaseOrder.get(6),testPurchaseOrder.get(7), testPurchaseOrder.get(8));
+		
+		purchaseOrder.setMessageToVendor(testPurchaseOrder.get(9));
+		purchaseOrder.setMemo(testPurchaseOrder.get(10));
+		purchaseOrder.setApprovalBy(testPurchaseOrder.get(11));
+		purchaseOrder.setShipBy(testPurchaseOrder.get(12));
+
+       //Click on save button
+        purchaseOrder.savePurchaseOrder();
+		Common.sleep(9000);
+
+		//click to AP()
+		apModule.clickAPLink();
+		Common.sleep(2000);
+
+		//Click to New Invoice
+		apModule.clickNewInvoice();
+		Common.sleep(3000);
+		//Select value from Vender DropDown
+				
+		invoice.SelectVendor(testdatatwowaymatch.get(0));
+			    Common.sleep(6000);
+			    
+			    //Get Invoice number
+			     invoiceNo=invoice.getAttributeValueInvoiceNo();
+				System.out.println("Invoice number"+invoiceNo);
+			    
+				//Select value from Net Term 
+				invoice.SelectNetTerm(testdatatwowaymatch.get(1));
+				
+				//select value from Location dropdown
+				invoice.SelectLocation(testdatatwowaymatch.get(2));	
+				
+		
+		purchaseOrder.setItemDetails(testPurchaseOrder.get(2),testPurchaseOrder.get(3),testPurchaseOrder.get(4),testPurchaseOrder.get(5), testPurchaseOrder.get(6),testPurchaseOrder.get(7), testPurchaseOrder.get(8));
+	
+	
+	}
 	
 
 
-	 
+}	 
 
