@@ -17,10 +17,8 @@ public class JavaScriptUtils {
 		StringBuilder fileContents=null;
 		Scanner scanner = null;
 		try {
-			//File file = new File("C:\\development\\CTPL-TestAutomation\\CTPL-TestAutomation\\NetConnect-NetChain2\\jQueries\\drag-drop.js");
-			File file = new File(".\\jQueries\\drag-drop.js");
-			
-			
+
+			File file = new File("D:\\NetChain_Automation\\Development\\CTPL-TestAutomation\\NetConnect-NetChain2\\jQueries\\drag-drop.js");
 			 fileContents = new StringBuilder((int)file.length());
 			scanner = new Scanner(file);
 			String lineSeparator = System.getProperty("line.separator");
