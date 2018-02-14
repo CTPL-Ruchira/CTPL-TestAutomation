@@ -1,6 +1,7 @@
 package com.netChain2.selenium.pageObjects.common.loginPage;
 
 import com.netChain2.engine.Common;
+import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 
 public class LoginPage {
 	
@@ -24,9 +25,7 @@ public class LoginPage {
 		boolean isLoggedIn = Common.isElementDisplayed("NAVIGATION_MENU_PARTIAL_LINK");
 		
 		if(isLoggedIn) {
-			Common.click("NAVIGATION_MENU_PARTIAL_LINK");
-			Common.click("LOGOUT_BUTTON_XPATH");
-			Common.sleep(2000);
+			LogoutFromPage.logout();
 		}
 		
 		
