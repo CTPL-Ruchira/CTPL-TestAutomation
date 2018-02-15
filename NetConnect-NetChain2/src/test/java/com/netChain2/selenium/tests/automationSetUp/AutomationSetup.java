@@ -22,7 +22,7 @@ public class AutomationSetup {
 
 		Common.launchBrowser(browser, profile, driverFile);
 		
-		Common.setTimeOuts(Integer.parseInt(pageLoadTimeOutInSec), Integer.parseInt(elementLoadingTimeout));
+		Common.setTimeOuts(Long.parseLong(pageLoadTimeOutInSec), Long.parseLong(elementLoadingTimeout));
 		
 		Common.launchUrl(url);
 		
