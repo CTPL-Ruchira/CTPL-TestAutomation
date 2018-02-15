@@ -23,14 +23,14 @@ public class JavaMailClient {
 	public String mail_subject;
 	public String mail_Body;
 	public String mail_Sender;
-	public String mail_recipient_to;
+	public String[] mail_recipient_to;
 	public String mail_recipient_cc;
 	public String mail_recipient_bcc;
 	public String userName;
 	public String password;
 	
 	
-	public JavaMailClient(String mail_host, String userName, String password, String mail_subject, String mail_Body,String mail_Sender, String mail_recipient_to, String mail_recipient_cc, String mail_recipient_bcc) {
+	public JavaMailClient(String mail_host, String userName, String password, String mail_subject, String mail_Body,String mail_Sender, String[] mail_recipient_to, String mail_recipient_cc, String mail_recipient_bcc) {
 		this.mail_host=mail_host;
 		this.mail_subject=mail_subject;
 		this.mail_Body=mail_Body;
@@ -46,6 +46,10 @@ public class JavaMailClient {
 		
 				Properties props = new Properties();
                  props.put("mail.smtp.host", mail_host);
+                 props.put("mail.smtp.port", "587");
+                 props.put("mail.smtp.auth", "true");
+                 props.put("mail.smtp.starttls.enable", true);
+                // props.put("mail.smtp.localhost", "mail.connecticus.in");
 			     props.put("mail.debug", "true");
 			     Authenticator authenticator =  new Authenticator(){
 			     	protected PasswordAuthentication getPasswordAuthentication(){
@@ -64,8 +68,12 @@ public class JavaMailClient {
 				Message msg = new MimeMessage(session);
 				msg.setFrom(new InternetAddress(this.mail_Sender, false));
 				
-				msg.setRecipients(Message.RecipientType.TO,
-						InternetAddress.parse(this.mail_recipient_to, false));
+			
+				for (String toAddress: this.mail_recipient_to) {
+					msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toAddress));	
+				}
+				
+				
 				
 				if (this.mail_recipient_cc != null)
 					msg.setRecipients(Message.RecipientType.CC,
@@ -83,6 +91,7 @@ public class JavaMailClient {
 
 				// HTMLDataSource is an inner class
 				msg.setDataHandler(new DataHandler(new HTMLDataSource(this.mail_Body)));
+				//msg.setText(this.mail_Body);
 				msg.saveChanges();
 
 				// finally send it away now!
@@ -123,5 +132,4 @@ public class JavaMailClient {
 			return "JAF text/html dataSource to send e-mail only";
 		}
 	}
-	
 }
