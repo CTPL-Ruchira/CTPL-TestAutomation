@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.accountsReceivable.createSalesOrder.SOCreationForm;
 import com.netChain2.selenium.pageObjects.common.arCreation.ARModuleCreation;
-import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 
@@ -29,30 +27,34 @@ public class CreateSalesOrder extends BaseTestCase {
 		testData3=Common.getTestData("AR.NetchainTest.CreateSalesOrder");
 		testData4=Common.getTestData("NetchainTest.CreateSalesOrder1");
 		testData5=Common.getTestData("NetchainTest.CreateSalesOrder2");
-			}
-
+		}
 	
 	@Test
 	public void salesOrderCreation() {
 
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(0), testData.get(1));
-		
 		Common.sleep(2000);
 		
 		ARModuleCreation arModule=new ARModuleCreation();
+		
 		arModule.clickCreateNewButton();
+		
 		arModule.clickARLink();
 		Common.sleep(1000);
+		
 		arModule.clickNewSalesOrderLink();
 		Common.sleep(2000);
 		
 		SOCreationForm SOCreation=new SOCreationForm();
+		
 		SOCreation.selectClientFromDropdown(testData3.get(0));
+		
 		SOCreation.selectLocFromdropdown(testData3.get(1));
 		Common.sleep(1000);
-		//SOCreation.tickTheAddressCheckbox();
 		
+		//SOCreation.tickTheAddressCheckbox();
+		String soId=Common.getAttribute("AR_SO_FORM_SONUMBER_XPATH");
 		PurchaseOrderCreationForm pocf=new PurchaseOrderCreationForm();
 		
 		//First Line
@@ -70,11 +72,6 @@ public class CreateSalesOrder extends BaseTestCase {
 		double calculatedAmountForFirstLine=PurchaseOrderCreationForm.getPreviousAmount();
 		boolean isAmountRoundedForFirstLine=createso.verifyTotalAmountCalculatedAndShown(calculatedAmountForFirstLine);
 		assertTrue(isAmountRoundedForFirstLine, "Amount is not rounded in two decimal digits for first Line");
-		System.out.println("hjsahhjsd"+pocf.getAmountElement()+"hjhj"+ PurchaseOrderCreationForm.getAmount());
-		
-		//boolean isAmountDisplayedCorrect=pocf.verifyRoundingOfNumbers(pocf.getAmountElement(), PurchaseOrderCreationForm.getAmount());
-		//assertTrue(isAmountDisplayedCorrect, "Amount is correctly displayed");
-		
 		
 		//Second Line
 		pocf.setItemDetailsWithoutMeasure(testData4.get(2), testData4.get(3), testData4.get(4), testData4.get(5), testData4.get(6), testData4.get(7));
@@ -106,20 +103,20 @@ public class CreateSalesOrder extends BaseTestCase {
 		double calculatedAmountForThirdLine=PurchaseOrderCreationForm.getPreviousAmount();
 		boolean isAmountRoundedForThirdLine=createso.verifyTotalAmountCalculatedAndShown(calculatedAmountForThirdLine);
 		assertTrue(isAmountRoundedForThirdLine, "Amount is not rounded in two decimal digits for third Line");
-		
-		
+	
 		SOCreation.typeMessage(testData3.get(8));
 		SOCreation.typeMemo(testData3.get(9));
-		SOCreation.approvalBy(testData3.get(10));
+		//SOCreation.approvalBy(testData3.get(10));
 		SOCreation.shipBy(testData3.get(11));
 		SOCreation.clickSaveButton();
-		
 		Common.sleep(3000);
 		
-		LogoutFromPage.logout();
+		//SO search to check whether the SO created is present on the list
+		Boolean status=SOCreation.verifySalesOrderOnList(soId);
+		BaseTestCase.assertTrue(status, "Sales order created not present on list");
 		
-		
-		
+		//Logout from page
+		LogoutFromPage.logout();	
 		
 	}
 	
