@@ -9,7 +9,7 @@ import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 public class InvoiceCreationForm {
 
 	public APModuleCreation createNew() {
-		//CommonMethods.scrollUp();
+		CommonMethods.scrollUp();
 		Common.click("CREATENEW_BUTTON_XPATH");
 		return new APModuleCreation();
 	}

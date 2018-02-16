@@ -1,10 +1,12 @@
 package com.netChain2.selenium.pageObjects.common.arCreation;
 
 import com.netChain2.engine.Common;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class ARModuleCreation {
 
 	public void clickCreateNewButton() {
+		CommonMethods.scrollUp();
 		Common.click("AR_CREATE_NEW_BUTTON_XPATH");
 		
 	}
