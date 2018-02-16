@@ -20,6 +20,7 @@ import javax.mail.internet.MimeMessage;
 public class JavaMailClient {
 	
 	public String mail_host;
+	public String smtp_port;
 	public String mail_subject;
 	public String mail_Body;
 	public String mail_Sender;
@@ -30,8 +31,9 @@ public class JavaMailClient {
 	public String password;
 	
 	
-	public JavaMailClient(String mail_host, String userName, String password, String mail_subject, String mail_Body,String mail_Sender, String[] mail_recipient_to, String mail_recipient_cc, String mail_recipient_bcc) {
+	public JavaMailClient(String mail_host,String smtp_port ,String userName, String password, String mail_subject, String mail_Body,String mail_Sender, String[] mail_recipient_to, String mail_recipient_cc, String mail_recipient_bcc) {
 		this.mail_host=mail_host;
+		this.smtp_port=smtp_port;
 		this.mail_subject=mail_subject;
 		this.mail_Body=mail_Body;
 		this.mail_Sender=mail_Sender;
@@ -45,8 +47,8 @@ public class JavaMailClient {
 	public void sendEmail() {
 		
 				Properties props = new Properties();
-                 props.put("mail.smtp.host", mail_host);
-                 props.put("mail.smtp.port", "587");
+                 props.put("mail.smtp.host", this.mail_host);
+                 props.put("mail.smtp.port",this.smtp_port);
                  props.put("mail.smtp.auth", "true");
                  props.put("mail.smtp.starttls.enable", true);
                 // props.put("mail.smtp.localhost", "mail.connecticus.in");
