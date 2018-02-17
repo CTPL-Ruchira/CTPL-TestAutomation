@@ -94,7 +94,7 @@ public class ResolveDispute extends BaseTestCase
 			 rate=PurchaseOrderCreationForm.getRate();
 			 amount=PurchaseOrderCreationForm.getAmount();
 			 invoice.Invoice_SaveButton();
-			 		  
+			 Common.sleep(2000);	  
 			 //Invoice assert message verfication
 			  String ExpectedAlertMessage="Invoice was created";
 			  String ActualAlertMessage=invoice.gettextValue();			   

@@ -13,6 +13,7 @@ public class ClientsCreationForm {
 	private static int flag=1;
 	
 	public ARModuleCreation createNew() {
+		CommonMethods.scrollUp();
 		Common.click("AR_CREATE_NEW_PLUSE_BUTTON_XPATH");
 		return new ARModuleCreation();
 	}
