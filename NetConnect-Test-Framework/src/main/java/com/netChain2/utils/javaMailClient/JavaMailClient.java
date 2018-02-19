@@ -9,7 +9,9 @@ import java.util.Properties;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
+import javax.mail.Authenticator;
 import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -18,32 +20,49 @@ import javax.mail.internet.MimeMessage;
 public class JavaMailClient {
 	
 	public String mail_host;
+	public String smtp_port;
 	public String mail_subject;
 	public String mail_Body;
 	public String mail_Sender;
-	public String mail_recipient_to;
+	public String[] mail_recipient_to;
 	public String mail_recipient_cc;
 	public String mail_recipient_bcc;
+	public String userName;
+	public String password;
 	
 	
-	public JavaMailClient(String mail_host, String mail_subject, String mail_Body,String mail_Sender, String mail_recipient_to, String mail_recipient_cc, String mail_recipient_bcc) {
+	public JavaMailClient(String mail_host,String smtp_port ,String userName, String password, String mail_subject, String mail_Body,String mail_Sender, String[] mail_recipient_to, String mail_recipient_cc, String mail_recipient_bcc) {
 		this.mail_host=mail_host;
+		this.smtp_port=smtp_port;
 		this.mail_subject=mail_subject;
 		this.mail_Body=mail_Body;
 		this.mail_Sender=mail_Sender;
 		this.mail_recipient_to=mail_recipient_to;
 		this.mail_recipient_cc=mail_recipient_cc;
 		this.mail_recipient_bcc=mail_recipient_bcc;
+		this.userName=userName;
+		this.password=password;
 	}
 	
 	public void sendEmail() {
 		
 				Properties props = new Properties();
-                 props.put("mail.smtp.host", mail_host);
+                 props.put("mail.smtp.host", this.mail_host);
+                 props.put("mail.smtp.port",this.smtp_port);
+                 props.put("mail.smtp.auth", "true");
+                 props.put("mail.smtp.starttls.enable", true);
+                // props.put("mail.smtp.localhost", "mail.connecticus.in");
 			     props.put("mail.debug", "true");
+			     Authenticator authenticator =  new Authenticator(){
+			     	protected PasswordAuthentication getPasswordAuthentication(){
+			     		return new PasswordAuthentication(userName, password);
+			     	}
+			     	};
+			     
+			     
 
 				// Get a session
-				Session session = Session.getInstance(props);
+				Session session = Session.getInstance(props,authenticator);
 				
 				try {
 				Transport bus = session.getTransport("smtp");
@@ -51,8 +70,12 @@ public class JavaMailClient {
 				Message msg = new MimeMessage(session);
 				msg.setFrom(new InternetAddress(this.mail_Sender, false));
 				
-				msg.setRecipients(Message.RecipientType.TO,
-						InternetAddress.parse(this.mail_recipient_to, false));
+			
+				for (String toAddress: this.mail_recipient_to) {
+					msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toAddress));	
+				}
+				
+				
 				
 				if (this.mail_recipient_cc != null)
 					msg.setRecipients(Message.RecipientType.CC,
@@ -70,6 +93,7 @@ public class JavaMailClient {
 
 				// HTMLDataSource is an inner class
 				msg.setDataHandler(new DataHandler(new HTMLDataSource(this.mail_Body)));
+				//msg.setText(this.mail_Body);
 				msg.saveChanges();
 
 				// finally send it away now!
@@ -110,5 +134,4 @@ public class JavaMailClient {
 			return "JAF text/html dataSource to send e-mail only";
 		}
 	}
-	
 }

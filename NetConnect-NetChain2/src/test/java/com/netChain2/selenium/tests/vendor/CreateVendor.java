@@ -114,6 +114,10 @@ public class CreateVendor extends BaseTestCase{
 	@Test
 	public void VendorCreationNegative() {
 		
+		LoginPage loginPage = new LoginPage();
+		loginPage.login(testData.get(0), testData.get(1));
+		Common.sleep(2000);
+
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
 		Common.sleep(6000);
 		APModuleCreation apModule = invoice.createNew();
@@ -150,7 +154,7 @@ public class CreateVendor extends BaseTestCase{
 
 		vendorCreation.clickNextButton3();
 
-		Common.setTimeOuts(2000, 2000);
+		//Common.setTimeOuts(2000, 2000);
 
 		vendorCreation.goToProductDetailsTab();
 
@@ -173,11 +177,9 @@ public class CreateVendor extends BaseTestCase{
 		else {
 			BaseTestCase.assertTrue(true, "Vendor not created as the email id is invalid");
 		}
-		Reporter.log("Vendor not created as the email id is invalid",false);
 		
-        Common.sleep(2000);
-        
-		LogoutFromPage.logout();
+	LogoutFromPage.logout();
+	Common.sleep(2000);
 
 	}
 	

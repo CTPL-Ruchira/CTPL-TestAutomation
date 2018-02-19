@@ -93,7 +93,7 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 			 
 			 //Invoice Click on save button
 			 invoice.Invoice_SaveButton();
-			 
+			 Common.sleep(2000);
 			  
 			 //Invoice assert message verfication
 			  String ExpectedAlertMessage="Invoice was created";
@@ -318,7 +318,7 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 
 			//Invoice Click on save button
 			invoice.Invoice_SaveButton();
-
+			Common.sleep(2000);
 
 			//Invoice assert message verification
 			String ExpectedAlertMessage="Invoice was created";

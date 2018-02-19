@@ -36,11 +36,11 @@ public class CreateGoodsAndServices {
 		GoodsAndServicesCreationForm goodsAndServices=new GoodsAndServicesCreationForm();
 		//click menu button
 		goodsAndServices.clickMenuButton();
-		Common.sleep(1000);
+		Common.sleep(2000);
 		
 		//click goods and services lable
 		goodsAndServices.clickGoodsAndServices();
-		Common.sleep(1000);
+		Common.sleep(2000);
 		
 		//click things we buy lable
 		goodsAndServices.clickThingsWeBuy();

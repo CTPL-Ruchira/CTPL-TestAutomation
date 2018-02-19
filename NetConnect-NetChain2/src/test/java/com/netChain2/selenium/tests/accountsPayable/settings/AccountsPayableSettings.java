@@ -104,7 +104,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 
 		//Invoice Click on save button
 		invoice.Invoice_SaveButton();
-
+		Common.sleep(2000);
 		//Invoice assert message verification
 		String expectedAlertMessage="Invoice was created";
 		String actualAlertMessage=invoice.gettextValue();			   
@@ -191,7 +191,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 
         //Invoice Click on save button
 		invoice.Invoice_SaveButton();
-
+		Common.sleep(2000);
 		//Invoice assert message verification
 		String expectedAlertMessage="Invoice was created";
 		String actualAlertMessage=invoice.gettextValue();			   
@@ -278,7 +278,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 
         //Invoice Click on save button
 		invoice.Invoice_SaveButton();
-
+		Common.sleep(2000);
 		//Invoice assert message verification
 		String expectedAlertMessage="Invoice was created";
 		String actualAlertMessage=invoice.gettextValue();			   
@@ -385,7 +385,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 
 		 //Invoice Click on save button
 		invoice.Invoice_SaveButton();
-
+		Common.sleep(2000);
 		//Invoice assert message verification
 		String expectedAlertMessage="Invoice was created";
 		String actualAlertMessage=invoice.gettextValue();			   

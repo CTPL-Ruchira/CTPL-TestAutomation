@@ -17,6 +17,7 @@ public class JavaScriptUtils {
 		StringBuilder fileContents=null;
 		Scanner scanner = null;
 		try {
+
 			File file = new File("D:\\NetChain_Automation\\Development\\CTPL-TestAutomation\\NetConnect-NetChain2\\jQueries\\drag-drop.js");
 			 fileContents = new StringBuilder((int)file.length());
 			scanner = new Scanner(file);
@@ -45,5 +46,6 @@ public class JavaScriptUtils {
 	JavascriptExecutor jsExec =	(JavascriptExecutor)Common.getDriver();
 	jsExec.executeScript("arguments[0].click()", ele);
 	}
+	
 
 }
