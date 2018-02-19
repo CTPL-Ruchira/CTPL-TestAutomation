@@ -104,9 +104,7 @@ public class CreateVendor extends BaseTestCase{
 
 
 		Boolean status=vendorCreation.verifyVendorOnList(vendorCreation.getCompanyName());
-
-
-		BaseTestCase.assertTrue(status, "Vendor not created");
+        BaseTestCase.assertTrue(status, "Vendor not created");
 		
 
 	}

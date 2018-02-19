@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 
 /**
@@ -78,6 +79,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	}
 	
 	public APModuleCreation createNew() {
+		CommonMethods.scrollUp();
 		Common.click("CREATENEW_BUTTON_XPATH");
 		return new APModuleCreation();
 	}
@@ -95,9 +97,9 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	public void selectProductOrServices(String productName, int flag)
 	{
-		String dropLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[1]";
+		String dropLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[1]";
 		
-		String valueLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[1]/option[text()='"+productName+"']";
+		String valueLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[1]/option[text()='"+productName+"']";
 		selectDropdownValues(dropLocator, valueLocator);
 		
 	}
@@ -114,37 +116,37 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 	public void selectDepartment(String departmentName, int flag)
 	{
-		String dropLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[2]";
+		String dropLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[2]";
 		
-		String valueLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[2]/option[text()='"+departmentName+"']";
+		String valueLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[2]/option[text()='"+departmentName+"']";
 		selectDropdownValues(dropLocator, valueLocator);
 	}
 	
 	public void selectBookingAccount(String bookingAccountName, int flag)
 	{
-		String dropLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[3]";
+		String dropLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[3]";
 		
-		String valueLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[3]//option[text()='"+bookingAccountName+"']";
+		String valueLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[3]//option[text()='"+bookingAccountName+"']";
 		selectDropdownValues(dropLocator, valueLocator);
 	}
 	
 	public void setDescription(String description, int flag)
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductDescription')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/input[contains(@id,'selectedProductDescription')]";
 		WebElement descElement=Common.findElement(descLocator);
 		descElement.sendKeys(description);
 	}
 	
 	public void setQualtity(String quantity, int flag)
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductQuantity')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/input[contains(@id,'selectedProductQuantity')]";
 		qualityElement=Common.findElement(descLocator);
 		qualityElement.sendKeys(quantity);
 	}
 	
 	public static String getQualtity()
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+secondFlag+"]/input[contains(@id,'selectedProductQuantity')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+secondFlag+"]/input[contains(@id,'selectedProductQuantity')]";
 		qualityElement=Common.findElement(descLocator);
 		System.out.println("Quality Element : "+qualityElement);
 		secondFlag=secondFlag+1;
@@ -154,16 +156,16 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	public void setRate(String rate, int flag)
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductRate')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/input[contains(@id,'selectedProductRate')]";
 		rateElement=Common.findElement(descLocator);
 		rateElement.sendKeys(rate);
 		Common.sleep(1000);
-		Common.click("PO_ITEM_AMOUNT_TEXT_XPATH");
+		//Common.click("PO_ITEM_AMOUNT_TEXT_XPATH");
 	}
 	
 	public static String getRate()
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+thirdFlag+"]/input[contains(@id,'selectedProductRate')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+thirdFlag+"]/input[contains(@id,'selectedProductRate')]";
 		rateElement=Common.findElement(descLocator);
 		thirdFlag=thirdFlag+1;
 		
@@ -173,7 +175,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 
 	public String getAmountForLine(int flag)
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/input[contains(@id,'product')]";
 		return Common.findElement(descLocator).getAttribute("value");
 		
 	}
@@ -267,6 +269,18 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 			}
 	}
 	
+	public boolean verifyVendorNameInModalAndDropdown(String value1, String value2)
+	{
+		if(value2.contains(value1))
+		{
+			return true;
+			
+		}else {
+			
+			return false;
+			}
+	}
+	
 	public void setItemDetails(String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate)
 	{
 		
@@ -319,14 +333,14 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	private void setMeasure(String measure, int flag) 
 	{
-		String measureLoc="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductUnit')]";
+		String measureLoc="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/input[2]";
 		WebElement descElement=Common.findElement(measureLoc);
 		descElement.sendKeys(measure);
 		
 	}
 	public String getTotalAmountCalculated(int flag)
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/input[contains(@id,'product')]";
 		qualityElement=Common.findElement(descLocator);
 		return qualityElement.getAttribute("value");
 	}
@@ -384,9 +398,9 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	public void openModal() 
 	{
 		System.out.println("Into openModal");
-		String dropLocator="//div[@class='productService']/div[@class='Line'][1]/select[1]";
+		String dropLocator="//div[@class='productService']/div[contains(@class,'Line')][1]/select[1]";
 		
-		String valueLocatorRuntimeProduct="//div[@class='productService']/div[@class='Line'][1]/select[1]/option[text()=' ADD NEW PRODUCT/SERVICE ']";
+		String valueLocatorRuntimeProduct="//div[@class='productService']/div[contains(@class,'Line')][1]/select[1]/option[text()=' ADD NEW PRODUCT/SERVICE ']";
 		selectDropdownValues(dropLocator, valueLocatorRuntimeProduct);
 	}
 	
