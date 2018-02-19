@@ -44,4 +44,27 @@ public class CommonMethods
 	{
 		return Common.getText("INVOICE_ALERT_MESSAGE_SUCCESSFULLY_XPATH");
 	}
+	public static void gotoLeftARLink(String linkName)
+	 {
+	  Common.click("CLICK_MENU_BUTTON_CLASSNAME");
+	  Common.sleep(1000);
+	  Common.click("AR_MENU_AR_XPATH");
+	  Common.sleep(1000);
+	  Common.click("CLICK_MENU_BUTTON_CLASSNAME");
+	  Common.sleep(1000);
+	  String xpathForLink="//ul[@class='sub-ar']/li/a[text()='"+linkName+"']";
+	  Common.findElement(xpathForLink).click();
+	 }
+	
+	public static void gotoLeftAPLink(String linkName)
+	 {
+	  Common.click("CLICK_MENU_BUTTON_CLASSNAME");
+	  Common.sleep(1000);
+	  Common.click("AP_MENU_AP_XPATH");
+	  Common.sleep(1000);
+	  Common.click("CLICK_MENU_BUTTON_CLASSNAME");
+	  Common.sleep(1000);
+	  String xpathForLink="//ul[@class='sub-ap']/li/a[text()='"+linkName+"']";
+	  Common.findElement(xpathForLink).click();
+	 }
 }
