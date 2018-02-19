@@ -38,9 +38,10 @@ public class RuntimeAddLocationAndDepartmentForm {
 	public boolean ckecklocationAddedSuccessfully(String loc) {
 		 boolean flag=false;
 		String actuallocationval=Common.getSelecedValue("LOCATION_DROPDOWN_XPATH");
-		if(loc.equalsIgnoreCase(actuallocationval)) {
+		if(loc.equalsIgnoreCase(actuallocationval)) 
+		{
 			 flag=true;
-			 Reporter.log("this location is added successfully");
+			 
 		}
 		  else
 		  {
