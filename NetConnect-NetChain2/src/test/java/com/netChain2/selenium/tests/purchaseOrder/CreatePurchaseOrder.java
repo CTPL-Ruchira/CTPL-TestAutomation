@@ -27,7 +27,6 @@ public class CreatePurchaseOrder extends BaseTestCase{
 		System.out.println("Into Demo setup");
 		testData = Common.getTestData("NetchainTest.Login");
 		invoiceData = Common.getTestData("NetchainTest.CreateInvoice");
-		invoiceData = Common.getTestData("NetchainTest.CreateInvoice");
 		invoiceData2 = Common.getTestData("NetchainTest.CreateInvoice2");
 		invoiceData3 = Common.getTestData("NetchainTest.CreateInvoice3");
 		poRuntimeData = Common.getTestData("NetchainTest.PORuntimeProd");
@@ -65,7 +64,7 @@ public class CreatePurchaseOrder extends BaseTestCase{
 		System.out.println("productNameFromModal:"+productNameFromModal);
 		System.out.println("productNameFromDropdown:"+productNameFromDropdown);
 		
-		boolean status=purchaseOrder.compareTwoValues(vendorNameFromModal, vendorNameFromDropdown);
+		boolean status=purchaseOrder.verifyVendorNameInModalAndDropdown(vendorNameFromModal, vendorNameFromDropdown);
 		assertTrue(status, "Vendor name in modal does not match with the vendor name in dropdown ");
 		Reporter.log("runtime product is added for the vendor");
 		

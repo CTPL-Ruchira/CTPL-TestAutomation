@@ -25,6 +25,20 @@ public class PropertyFileReader {
 		}
 	}
 
+	public PropertyFileReader(File configurationProperties) {
+		this.configurationPropertyPath = configurationProperties.getAbsolutePath();
+		   Properties prop = new Properties();
+		try {
+			prop.load(new FileInputStream(configurationProperties));
+			hashTable = (Hashtable)prop;
+			
+		} catch (FileNotFoundException e) {
+		       e.printStackTrace();
+		} catch (IOException e) {
+			       e.printStackTrace();
+		}
+	}
+
 	
 	public String getValue(String key) {
 		return hashTable.get(key);

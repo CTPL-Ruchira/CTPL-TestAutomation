@@ -19,7 +19,7 @@ public class CommonMethods
 	public static void scrollUp()
 	{
 		JavascriptExecutor jse = (JavascriptExecutor)Common.getDriver();
-		jse.executeScript("scroll(0, 650);");
+		jse.executeScript("scroll(0, -650);");
 	}
 	
 	public static void scrollDown()
