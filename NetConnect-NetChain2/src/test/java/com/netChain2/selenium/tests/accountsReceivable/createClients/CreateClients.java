@@ -81,12 +81,10 @@ import com.netChain2.utils.CustomAnnotation.TestDetails;
 			arClients.clickTransDetailNextButton();
 			
 			//Set Client Details
-			arClients.setClientIdentity(testDataClients.get(13), testDataClients.get(14), testDataClients.get(15), testDataClients.get(16), testDataClients.get(18), testDataClients.get(19), testDataClients.get(20));
+			expectedClientName=Common.generateRandomString(testDataClients.get(17));
+			arClients.setClientIdentity(testDataClients.get(13), testDataClients.get(14), testDataClients.get(15), testDataClients.get(16),expectedClientName,testDataClients.get(18), testDataClients.get(19), testDataClients.get(20));
 			Common.sleep(2000);
 			
-			//set Company Name
-			expectedClientName=(testDataClients.get(17));
-			arClients.SetCompanyName(expectedClientName);
 			arClients.clickPrintOnCheck();
 			Common.sleep(2000);
 			
