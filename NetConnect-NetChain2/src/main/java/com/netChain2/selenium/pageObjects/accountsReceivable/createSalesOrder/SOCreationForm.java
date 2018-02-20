@@ -90,6 +90,7 @@ public class SOCreationForm {
 		{
 			String amountDisplayed=Common.getText("AR_SO_AMOUNT_XPATH");
 			String appendDollarSign="$"+Common.roundNumberToTwoDecimalValue(Amount);
+			System.out.println("verifyTotalAmountCalculatedAndShown=Actual="+amountDisplayed+", Expected="+Amount);
 			if(appendDollarSign.equals(amountDisplayed))
 			{
 				return true;

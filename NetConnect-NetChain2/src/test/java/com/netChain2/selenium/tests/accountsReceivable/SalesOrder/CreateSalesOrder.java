@@ -12,6 +12,7 @@ import com.netChain2.selenium.pageObjects.accountsReceivable.createSalesOrder.SO
 import com.netChain2.selenium.pageObjects.common.arCreation.ARModuleCreation;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
+import com.netChain2.utils.CustomAnnotation.TestDetails;
 
 public class CreateSalesOrder extends BaseTestCase {
 	private ArrayList<String> testData;
@@ -19,7 +20,9 @@ public class CreateSalesOrder extends BaseTestCase {
 	private ArrayList<String> testData4;
 	private ArrayList<String> testData5;
 	WebDriver driver=Common.getDriver();
-	boolean check1;	
+	boolean check1;
+	
+	
 	//to launch the browser and log-in
 	@BeforeClass
 	public void setUp() {
@@ -30,6 +33,7 @@ public class CreateSalesOrder extends BaseTestCase {
 		}
 	
 	@Test
+	@TestDetails(author="Ruchira.Mhaisurkar",description="Sales Order Creation")
 	public void salesOrderCreation() {
 
 		LoginPage loginPage = new LoginPage();
@@ -72,6 +76,8 @@ public class CreateSalesOrder extends BaseTestCase {
 		double calculatedAmountForFirstLine=PurchaseOrderCreationForm.getPreviousAmount();
 		boolean isAmountRoundedForFirstLine=createso.verifyTotalAmountCalculatedAndShown(calculatedAmountForFirstLine);
 		assertTrue(isAmountRoundedForFirstLine, "Amount is not rounded in two decimal digits for first Line");
+		
+		
 		
 		//Second Line
 		pocf.setItemDetailsWithoutMeasure(testData4.get(2), testData4.get(3), testData4.get(4), testData4.get(5), testData4.get(6), testData4.get(7));
