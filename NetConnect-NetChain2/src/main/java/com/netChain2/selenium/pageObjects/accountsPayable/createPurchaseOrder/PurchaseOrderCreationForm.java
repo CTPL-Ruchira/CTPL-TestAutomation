@@ -165,6 +165,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	public static String getRate()
 	{
+		Common.click("PO_AMOUNT_INPUTFIELD_XPATH");
 		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+thirdFlag+"]/input[contains(@id,'selectedProductRate')]";
 		rateElement=Common.findElement(descLocator);
 		thirdFlag=thirdFlag+1;
