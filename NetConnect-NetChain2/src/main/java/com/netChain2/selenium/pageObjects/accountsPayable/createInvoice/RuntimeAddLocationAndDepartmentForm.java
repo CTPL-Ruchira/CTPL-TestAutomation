@@ -1,9 +1,6 @@
 package com.netChain2.selenium.pageObjects.accountsPayable.createInvoice;
 
-import org.testng.Reporter;
-
 import com.netChain2.engine.Common;
-import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class RuntimeAddLocationAndDepartmentForm {
 	private String runtimeDepartmentName;
