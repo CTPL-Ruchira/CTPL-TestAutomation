@@ -168,9 +168,6 @@ public class CreateVendor extends BaseTestCase{
 
 		String getalerttext=Common.getText("VENDOR_NEGATIVE_ALERT_MSG_XPATH");
 		String actualalerttext="Email Address cannot be empty";
-		String ExpectedTitleValue=testData2.get(27);
-		
-
 		if(getalerttext.equals(actualalerttext)) {
 			BaseTestCase.assertTrue(false, "Vendor created");
 		}
