@@ -160,7 +160,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		rateElement=Common.findElement(descLocator);
 		rateElement.sendKeys(rate);
 		Common.sleep(1000);
-		Common.click("PO_ITEM_AMOUNT_TEXT_XPATH");
+		Common.click("PO_AMOUNT_INPUTFIELD_XPATH");
 	}
 	
 	public static String getRate()
@@ -294,11 +294,8 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		setDescription(description, flag);
 		setQualtity(quantity, flag);
 		setRate(rate, flag);
-
-		Common.sleep(3000);
 		amountElement=getAmountForLine(flag);
-
-		Common.sleep(5000);
+		Common.sleep(2000);
 		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
 		currentAmount=previousAmount+currentAmount;
 		previousAmount=currentAmount;

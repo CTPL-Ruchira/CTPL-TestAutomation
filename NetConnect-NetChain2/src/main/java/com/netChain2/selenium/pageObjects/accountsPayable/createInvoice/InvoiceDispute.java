@@ -9,13 +9,8 @@ public class InvoiceDispute
 {
 	private String amount;
 	private String balanceDue;
-	private String currentAmount;
-	private String originalAmount;
 	private String bookingAccountAmount;
 	
-	
-	
-		
 	public String getBookingAccountAmount() {
 		return bookingAccountAmount;
 	}
