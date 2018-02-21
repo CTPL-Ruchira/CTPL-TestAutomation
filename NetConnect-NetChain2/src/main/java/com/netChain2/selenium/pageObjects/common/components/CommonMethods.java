@@ -3,6 +3,7 @@ package com.netChain2.selenium.pageObjects.common.components;
 import org.openqa.selenium.JavascriptExecutor;
 
 import com.netChain2.engine.Common;
+import com.netChain2.selenium.pageObjects.common.arCreation.ARModuleCreation;
 
 /*
  * This method enters value in the search input field
@@ -67,4 +68,15 @@ public class CommonMethods
 	  String xpathForLink="//ul[@class='sub-ap']/li/a[text()='"+linkName+"']";
 	  Common.findElement(xpathForLink).click();
 	 }
+	
+	public static void gotoRightSideARLink(String linkName) 
+	{
+		Common.click("AR_CREATE_NEW_PLUSE_BUTTON_XPATH");
+		Common.sleep(1000);
+		Common.click("AR_CLICK_ACCOUNT_RECEIVABLE_XPATH");
+		Common.sleep(2000);
+	    String xpathForLink="//ul[@class='sub-ar']/li/a[text()='"+linkName+"']";
+	    Common.findElement(xpathForLink).click();
+	}
+	
 }
