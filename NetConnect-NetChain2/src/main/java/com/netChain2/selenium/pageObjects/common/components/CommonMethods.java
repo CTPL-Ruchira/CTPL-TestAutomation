@@ -3,7 +3,6 @@ package com.netChain2.selenium.pageObjects.common.components;
 import org.openqa.selenium.JavascriptExecutor;
 
 import com.netChain2.engine.Common;
-import com.netChain2.selenium.pageObjects.common.arCreation.ARModuleCreation;
 
 /*
  * This method enters value in the search input field
