@@ -78,4 +78,14 @@ public class CommonMethods
 	    Common.findElement(xpathForLink).click();
 	}
 	
+	public static void gotoRightSideAPLink(String linkName) 
+	{
+		Common.click("AR_CREATE_NEW_PLUSE_BUTTON_XPATH");
+		Common.sleep(1000);
+		Common.click("AP_LINK_PARTIALLINKTEXT");
+		Common.sleep(1000);
+	    String xpathForLink="//ul[@class='sub-ap']/li/a[text()='"+linkName+"']";
+	    Common.findElement(xpathForLink).click();
+	}
+	
 }
