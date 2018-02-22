@@ -95,9 +95,9 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	public void selectProductOrServices(String productName, int flag)
 	{
-		String dropLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[1]";
+		String dropLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[1]";
 		
-		String valueLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[1]/option[text()='"+productName+"']";
+		String valueLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[1]/option[text()='"+productName+"']";
 		selectDropdownValues(dropLocator, valueLocator);
 		
 	}
@@ -114,37 +114,37 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 	public void selectDepartment(String departmentName, int flag)
 	{
-		String dropLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[2]";
+		String dropLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[2]";
 		
-		String valueLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[2]/option[text()='"+departmentName+"']";
+		String valueLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[2]/option[text()='"+departmentName+"']";
 		selectDropdownValues(dropLocator, valueLocator);
 	}
 	
 	public void selectBookingAccount(String bookingAccountName, int flag)
 	{
-		String dropLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[3]";
+		String dropLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[3]";
 		
-		String valueLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/select[3]//option[text()='"+bookingAccountName+"']";
+		String valueLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[3]//option[text()='"+bookingAccountName+"']";
 		selectDropdownValues(dropLocator, valueLocator);
 	}
 	
 	public void setDescription(String description, int flag)
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductDescription')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/input[contains(@id,'selectedProductDescription')]";
 		WebElement descElement=Common.findElement(descLocator);
 		descElement.sendKeys(description);
 	}
 	
 	public void setQualtity(String quantity, int flag)
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductQuantity')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/input[contains(@id,'selectedProductQuantity')]";
 		qualityElement=Common.findElement(descLocator);
 		qualityElement.sendKeys(quantity);
 	}
 	
 	public static String getQualtity()
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+secondFlag+"]/input[contains(@id,'selectedProductQuantity')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+secondFlag+"]/input[contains(@id,'selectedProductQuantity')]";
 		qualityElement=Common.findElement(descLocator);
 		System.out.println("Quality Element : "+qualityElement);
 		secondFlag=secondFlag+1;
@@ -154,7 +154,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	public void setRate(String rate, int flag)
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductRate')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/input[contains(@id,'selectedProductRate')]";
 		rateElement=Common.findElement(descLocator);
 		rateElement.sendKeys(rate);
 		Common.sleep(1000);
@@ -163,7 +163,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	public static String getRate()
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+thirdFlag+"]/input[contains(@id,'selectedProductRate')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+thirdFlag+"]/input[contains(@id,'selectedProductRate')]";
 		rateElement=Common.findElement(descLocator);
 		thirdFlag=thirdFlag+1;
 		
@@ -173,7 +173,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 
 	public String getAmountForLine(int flag)
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/input[contains(@id,'product')]";
 		return Common.findElement(descLocator).getAttribute("value");
 		
 	}
@@ -292,6 +292,31 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		calculateTotalAmount(quantity, rate);
 	}
 	
+	public void setItemDetailsForSingleLine(String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate, int flag)
+	{
+		
+		selectProductOrServices(productName, flag);
+		selectDepartment(departmentName, flag);
+		selectBookingAccount(bookingAccountName, flag);
+		setMeasure(measure, flag);
+		setDescription(description, flag);
+		setQualtity(quantity, flag);
+		setRate(rate, flag);
+
+		Common.sleep(3000);
+		amountElement=getAmountForLine(flag);
+
+		Common.sleep(5000);
+		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
+		currentAmount=previousAmount+currentAmount;
+		previousAmount=currentAmount;
+		System.out.println("Current Amount"+currentAmount);
+		System.out.println("Previous Amount"+previousAmount);
+		flag=flag+1;
+		
+		calculateTotalAmount(quantity, rate);
+	}
+	
 	public void setItemDetailsWithoutMeasure(String productName, String departmentName, String bookingAccountName, String description, String quantity, String rate)
 	{
 		
@@ -319,14 +344,14 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	private void setMeasure(String measure, int flag) 
 	{
-		String measureLoc="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'selectedProductUnit')]";
+		String measureLoc="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/input[2]";
 		WebElement descElement=Common.findElement(measureLoc);
 		descElement.sendKeys(measure);
 		
 	}
 	public String getTotalAmountCalculated(int flag)
 	{
-		String descLocator="//div[@class='productService']/div[@class='Line']["+flag+"]/input[contains(@id,'product')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/input[contains(@id,'product')]";
 		qualityElement=Common.findElement(descLocator);
 		return qualityElement.getAttribute("value");
 	}
@@ -384,9 +409,9 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	public void openModal() 
 	{
 		System.out.println("Into openModal");
-		String dropLocator="//div[@class='productService']/div[@class='Line'][1]/select[1]";
+		String dropLocator="//div[@class='productService']/div[contains(@class,'Line')][1]/select[1]";
 		
-		String valueLocatorRuntimeProduct="//div[@class='productService']/div[@class='Line'][1]/select[1]/option[text()=' ADD NEW PRODUCT/SERVICE ']";
+		String valueLocatorRuntimeProduct="//div[@class='productService']/div[contains(@class,'Line')][1]/select[1]/option[text()=' ADD NEW PRODUCT/SERVICE ']";
 		selectDropdownValues(dropLocator, valueLocatorRuntimeProduct);
 	}
 	
@@ -481,6 +506,29 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		System.out.println("Selected value : "+Common.getSelecedValue("PRODUCT_SERVICES_DROPDOWN_XPATH"));
 		return productNameFromModal;
 		
+	}
+	
+	public void poCreation(String vendorName, String locationName, String productName, String departmentName, String bookingAccount, String description, String measure, String quantity, String rate, String messageToVendor, String memo, String approvedBy, String shipBy) {
+
+		//select vendor
+		Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", vendorName);
+	     
+		//Select Location
+		selectLocation(locationName);
+						
+		//set details
+		setItemDetailsForSingleLine(productName,departmentName,bookingAccount,description, measure,quantity, rate, 1);
+		
+		setMessageToVendor(messageToVendor);
+		setMemo(memo);
+		setApprovalBy(approvedBy);
+		setShipBy(shipBy);
+
+       //Click on save button
+        savePurchaseOrder();
+		Common.sleep(7000);
+		
+
 	}
 
 }
