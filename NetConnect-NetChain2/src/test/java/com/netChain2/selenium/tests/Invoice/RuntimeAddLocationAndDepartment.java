@@ -1,13 +1,9 @@
 package com.netChain2.selenium.tests.Invoice;
 
 import java.util.ArrayList;
-
-import org.openqa.selenium.JavascriptExecutor;
-import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
@@ -15,7 +11,6 @@ import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.RuntimeA
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
-import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
@@ -39,32 +34,28 @@ public class RuntimeAddLocationAndDepartment extends BaseTestCase{
 		
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(0), testData.get(1));
-		Common.sleep(2000);
 		
 		//click to create new
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
 
 		APModuleCreation apModule = invoice.createNew();
-		Common.sleep(2000);
 		
 		//click to AP()
 		apModule.clickAPLink();
-		Common.sleep(2000);
 		
 		//Click to New Invoice
 		apModule.clickNewInvoice();
-		Common.sleep(2000);
 		
 		//select Location dropdown
 		PurchaseOrderCreationForm pocf=new PurchaseOrderCreationForm();
 		InvoiceCreationForm invoiceCreationForm = new InvoiceCreationForm();
 		invoiceCreationForm.SelectVendor(InvoiceTestData.get(0));
-	    Common.sleep(2000);
 	 
-
-		invoiceCreationForm.SelectNetTerm(InvoiceTestData.get(1));
+        invoiceCreationForm.SelectNetTerm(InvoiceTestData.get(1));
 		
 		RuntimeAddLocationAndDepartmentForm runtimeadd=new RuntimeAddLocationAndDepartmentForm();
+		
+		//Adding location runtime
 		runtimeadd.selectLocationRuntime(testDataInvlocationDept.get(0));
 		Common.sleep(2000);
 		String location=Common.generateRandomString(testDataInvlocationDept.get(1));
@@ -79,18 +70,20 @@ public class RuntimeAddLocationAndDepartment extends BaseTestCase{
 		BaseTestCase.assertTrue(status, "Location not created");
 		Reporter.log("Location Added Successfully",true);
 		Common.sleep(5000);
-		//select Department Dropdown
+		
+		
 		CommonMethods.scrollDown();
 		Common.sleep(2000);
 
-		//Select value from Vender DropDown
-		
+		//Adding department runtime for the location
 		runtimeadd.addRuntimeDepartmentFromDepartmentDropdown(testDataInvlocationDept.get(12));
-		
 		pocf.setItemDetails(InvoiceTestData.get(6), runtimeadd.getRuntimeDepartmentName(), InvoiceTestData.get(8), InvoiceTestData.get(9), InvoiceTestData.get(10), InvoiceTestData.get(11), InvoiceTestData.get(12));
+		
 		boolean isDepartmentAddedInRuntime=runtimeadd.verifyDepartmentAddedAfterAddingRuntime(runtimeadd.getRuntimeDepartmentName());
 		assertTrue(isDepartmentAddedInRuntime, "Department is not added in runtime in dropdown");
+		Reporter.log("Runtime department added successfully",true);
 		Common.sleep(1000);
+		
 		pocf.setMessageToVendor(InvoiceTestData.get(13));
 		pocf.setMemo(InvoiceTestData.get(14));
 		pocf.savePurchaseOrder();

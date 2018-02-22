@@ -2,7 +2,6 @@ package com.netChain2.selenium.tests.Invoice;
 
 import java.util.ArrayList;
 
-import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -13,7 +12,6 @@ import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceD
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
-import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
@@ -25,8 +23,10 @@ public class ResolveDispute extends BaseTestCase
 	public static ArrayList<String> invoiceDisputeData;
 	public String invoiceNo, invoiceNoForAccept;
 	public String originalAmount;
+	@SuppressWarnings("unused")
 	private String PreviousAmount;
 	public String calculatedAmountForProductInModal, OriginalBalanceDueForAcceptInvoice, OriginalQuantityForAcceptInvoice;
+	@SuppressWarnings("unused")
 	private String quantity, rate, amount, OriginalRateForAcceptInvoice;
 	InvoiceDispute id;
 	PurchaseOrderCreationForm pocf;
@@ -79,7 +79,6 @@ public class ResolveDispute extends BaseTestCase
 			invoice.SelectBookingAccount(invoiceTestData.get(3));
 			invoice.AccountDetails_Description(invoiceTestData.get(4));
 			PreviousAmount=invoice.AccountDetails_Amount(invoiceTestData.get(5));
-			double Amount= Double.parseDouble(PreviousAmount);
 			PurchaseOrderCreationForm purchaseOrder=new PurchaseOrderCreationForm();
 			
 			invoice.Invoice_SelectMeasure(invoiceTestData.get(10));
@@ -94,7 +93,7 @@ public class ResolveDispute extends BaseTestCase
 			 rate=PurchaseOrderCreationForm.getRate();
 			 amount=PurchaseOrderCreationForm.getAmount();
 			 invoice.Invoice_SaveButton();
-			 		  
+			 Common.sleep(2000);	  
 			 //Invoice assert message verfication
 			  String ExpectedAlertMessage="Invoice was created";
 			  String ActualAlertMessage=invoice.gettextValue();			   
@@ -120,8 +119,6 @@ public class ResolveDispute extends BaseTestCase
 		id=new InvoiceDispute();
 		pocf=new PurchaseOrderCreationForm();
 		
-		
-		InvoiceCreationForm icf=new InvoiceCreationForm();
 		
 		CommonMethods.searchByNumberOrName(invoiceNo);
 		Common.sleep(6000);
@@ -216,8 +213,6 @@ public class ResolveDispute extends BaseTestCase
 		Common.sleep(7000);
 		
 		id=new InvoiceDispute();
-		InvoiceCreationForm icf=new InvoiceCreationForm();
-		
 		System.out.println("Invoice Numberrrrrrrr"+invoiceNo);
 		CommonMethods.searchByNumberOrName(invoiceNo);
 		Common.sleep(6000);

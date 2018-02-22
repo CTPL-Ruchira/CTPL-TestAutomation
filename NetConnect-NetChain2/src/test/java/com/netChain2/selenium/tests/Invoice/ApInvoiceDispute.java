@@ -11,7 +11,6 @@ import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceD
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
-import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
@@ -88,14 +87,14 @@ public class ApInvoiceDispute extends BaseTestCase
 			 rate=PurchaseOrderCreationForm.getRate();
 			 amount=String.valueOf(PurchaseOrderCreationForm.getAmount());
 			 invoice.Invoice_SaveButton();
-			 		  
+			 Common.sleep(2000);	  
 			 //Invoice assert message verfication
 			  String ExpectedAlertMessage="Invoice was created";
 			  String ActualAlertMessage=invoice.gettextValue();			   
 		
 			  boolean check2= ExpectedAlertMessage.equals(ActualAlertMessage);
 			  BaseTestCase.assertTrue(check2, "Invoice creation failed");
-			  Common.sleep(6000);
+			 
 			  Reporter.log("Invoice was created successfully");
 			 			 
 			   invoice.CreateRule_CancelButton();
@@ -109,8 +108,6 @@ public class ApInvoiceDispute extends BaseTestCase
 	{
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(loginTestData.get(0), loginTestData.get(1));
-		Common.sleep(7000);
-		
 		id=new InvoiceDispute();
 		pocf=new PurchaseOrderCreationForm();
 		

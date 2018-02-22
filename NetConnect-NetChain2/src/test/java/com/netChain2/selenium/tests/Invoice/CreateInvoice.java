@@ -8,7 +8,6 @@ import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
-import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
@@ -128,7 +127,7 @@ public class CreateInvoice extends BaseTestCase {
 		
 		 //Invoice Click on save button
 		 invoice.Invoice_SaveButton();
-		 
+		 Common.sleep(2000);
 		  
 		 //Invoice assert message verification
 		  String ExpectedAlertMessage="Invoice was created";

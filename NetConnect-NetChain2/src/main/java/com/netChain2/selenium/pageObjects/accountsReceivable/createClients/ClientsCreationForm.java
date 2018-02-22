@@ -13,6 +13,7 @@ public class ClientsCreationForm {
 	private static int flag=1;
 	
 	public ARModuleCreation createNew() {
+		CommonMethods.scrollUp();
 		Common.click("AR_CREATE_NEW_PLUSE_BUTTON_XPATH");
 		return new ARModuleCreation();
 	}
@@ -136,19 +137,6 @@ public class ClientsCreationForm {
 		Common.sendKeys("AR_TRANSACTION_DETAIL_ENTER_TAX_REG_NO_XPATH", taxNo);
 		Common.selectFromDropdown("AR_TRANSACTION_DETAIL_SELECT_PAYMENT_METHOD_XPATH","AR_TRANSACTION_DETAIL_SELECT_PAYMENT_METHOD_OPTION_XPATH", paymentmethod);
 	}
-	/*public void SelectTerms(String value) {
-		Common.selectFromDropdown("AR_TRANSACTION_DETAIL_SELECT_TERMS_XPATH","AR_TRANSACTION_DETAIL_SELECT_TERMS_OPTION_XPATH", value);
-	}*/
-	
-	//set tax registration Number
-	/*public void setTaxRgNo(String value) {
-		Common.sendKeys("AR_TRANSACTION_DETAIL_ENTER_TAX_REG_NO_XPATH", value);
-	}*/
-	
-	//select Payment Method
-	/*public void SelectPaymentMethod(String value) {
-		Common.selectFromDropdown("AR_TRANSACTION_DETAIL_SELECT_PAYMENT_METHOD_XPATH","AR_TRANSACTION_DETAIL_SELECT_PAYMENT_METHOD_OPTION_XPATH", value);
-	}*/
 	
 	//click TRANSACTION DETAIL Next button 
 	public void clickTransDetailNextButton() {
@@ -156,20 +144,16 @@ public class ClientsCreationForm {
 	}
 	
 	//Client Details
-	public void setClientIdentity(String title, String fname,String lname,String suffix,String Dname,String BType,String other){
+	public void setClientIdentity(String title, String fname,String lname,String suffix,String CompanyName,String Dname,String BType,String other){
     	Common.sendKeys("AR_CLIENT_DETAILS_TITLE_XPATH", title);
     	Common.sendKeys("AR_CLIENT_DETAILS_FIRST_NAME_XPATH", fname);
     	Common.sendKeys("AR_CLIENT_DETAILS_LAST_NAME_XPATH", fname);	
      	Common.sendKeys("AR_CLIENT_DETAILS_SUFFIX_XPATH", suffix);
+     	Common.sendKeys("AR_CLIENT_DETAILS_COMPANY_NAME_XPATH", CompanyName+Keys.TAB);
     	Common.sendKeys("AR_CLIENT_DETAILS_DISPLAY_NAME_XPATH", Dname);	
      	Common.sendKeys("AR_CLIENT_DETAILS_BUSINESS_NAME_XPATH", BType);
     	Common.sendKeys("AR_CLIENT_DETAILS_OTHER_FEILD_XPATH", other);	
     }
-	
-	public void SetCompanyName(String cname) {
-		Common.sendKeys("AR_CLIENT_DETAILS_COMPANY_NAME_XPATH", cname+Keys.TAB);
-		//Common.sendKeys("", Keys.TAB);
-	}
 	
 	//Click On print on Check
 	public void clickPrintOnCheck() {
@@ -223,6 +207,36 @@ public class ClientsCreationForm {
 	public void clickSaveButton() {
 		Common.click("AR_CLIENT_DETAILS_SAVE_BUTTON_XPATH");
 	}
+	
+	//Create non connected Client in One Method
+	public void createClientMethod(String ourCompany,String OurMission,String ProductService,String name,String email,String phone,String title,String location,String dept,String bookingAcc,String terms,String regNo,String paymentMethod,String ctitle,String fname,String lname,String suffix,String cName,String dName,String bussinesstype,String other,String streetAdd,String city,String state,String zip,String cemail,String cphone,String mobile,String fax,String website,String accNo,String cTire,String E_mail,String notes) 
+	{
+		setCompanyProfile(ourCompany,OurMission,ProductService);
+		clickCompanyProfileNextButton();
+		clickAddEmpButton();
+		EnterName(name);
+		EnterEmail(email);
+		EnterPhoneNumber(phone);
+		EnterTitle(title);
+		selectPaymentReceiver();
+		clickAssociateEmpNextButton();
+		SetBookingAccount(location,dept,bookingAcc);
+		clickBookingAccountNextButton();
+		transactionDetails(terms,regNo,paymentMethod);
+		clickTransDetailNextButton();
+		setClientIdentity(ctitle,fname,lname,suffix,cName,dName,bussinesstype,other);
+		clickPrintOnCheck();
+		setBillingAddress(streetAdd,city,state,zip);
+		clickSameAsBillingAddress();
+		setContactDetails(cemail,cphone,mobile,fax,website,accNo);
+		SelectCompanyTire(cTire);
+		clickInvoiceDeliveryMethod();
+		setEmailOnInvoiceDelivery(E_mail);
+		setNotes(notes);
+		clickSaveButton();
+	}
+	//String SetBookingAccount,String transactionDetails,String setClientIdentity,String setBillingAddress,String setContactDetails ,String SelectCompanyTire,String setEmailOnInvoiceDelivery) {
+	
 	
 	//Verify Client List 	
 	public Boolean verifyClientOnList(String expectedClientName) 

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 
 /**
@@ -78,6 +79,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	}
 	
 	public APModuleCreation createNew() {
+		CommonMethods.scrollUp();
 		Common.click("CREATENEW_BUTTON_XPATH");
 		return new APModuleCreation();
 	}
@@ -158,11 +160,12 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		rateElement=Common.findElement(descLocator);
 		rateElement.sendKeys(rate);
 		Common.sleep(1000);
-		Common.click("PO_ITEM_AMOUNT_TEXT_XPATH");
+		Common.click("PO_AMOUNT_INPUTFIELD_XPATH");
 	}
 	
 	public static String getRate()
 	{
+		Common.click("PO_AMOUNT_INPUTFIELD_XPATH");
 		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+thirdFlag+"]/input[contains(@id,'selectedProductRate')]";
 		rateElement=Common.findElement(descLocator);
 		thirdFlag=thirdFlag+1;
@@ -203,6 +206,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	public void addMoreItem()
 	{
+		Common.sleep(2000);
 		Common.click("PO_ITEMS_DETAIL_PLUS_BUTTON_XPATH");
 	}
 	
@@ -267,6 +271,18 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 			}
 	}
 	
+	public boolean verifyVendorNameInModalAndDropdown(String value1, String value2)
+	{
+		if(value2.contains(value1))
+		{
+			return true;
+			
+		}else {
+			
+			return false;
+			}
+	}
+	
 	public void setItemDetails(String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate)
 	{
 		
@@ -277,11 +293,8 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		setDescription(description, flag);
 		setQualtity(quantity, flag);
 		setRate(rate, flag);
-
-		Common.sleep(3000);
 		amountElement=getAmountForLine(flag);
-
-		Common.sleep(5000);
+		Common.sleep(2000);
 		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
 		currentAmount=previousAmount+currentAmount;
 		previousAmount=currentAmount;
@@ -326,11 +339,9 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		setDescription(description, flag);
 		setQualtity(quantity, flag);
 		setRate(rate, flag);
-
-		Common.sleep(3000);
 		amountElement=getAmountForLine(flag);
 
-		Common.sleep(5000);
+		Common.sleep(2000);
 		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
 		currentAmount=previousAmount+currentAmount;
 		previousAmount=currentAmount;

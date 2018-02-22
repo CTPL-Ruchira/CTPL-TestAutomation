@@ -11,7 +11,6 @@ import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.EditPurchaseOrder;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
-import com.netChain2.selenium.pageObjects.common.landingPage.LandingPage;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
@@ -26,7 +25,6 @@ public class CreatePurchaseOrder extends BaseTestCase{
 	public void setUp() {
 		System.out.println("Into Demo setup");
 		testData = Common.getTestData("NetchainTest.Login");
-		invoiceData = Common.getTestData("NetchainTest.CreateInvoice");
 		invoiceData = Common.getTestData("NetchainTest.CreateInvoice");
 		invoiceData2 = Common.getTestData("NetchainTest.CreateInvoice2");
 		invoiceData3 = Common.getTestData("NetchainTest.CreateInvoice3");
@@ -65,7 +63,7 @@ public class CreatePurchaseOrder extends BaseTestCase{
 		System.out.println("productNameFromModal:"+productNameFromModal);
 		System.out.println("productNameFromDropdown:"+productNameFromDropdown);
 		
-		boolean status=purchaseOrder.compareTwoValues(vendorNameFromModal, vendorNameFromDropdown);
+		boolean status=purchaseOrder.verifyVendorNameInModalAndDropdown(vendorNameFromModal, vendorNameFromDropdown);
 		assertTrue(status, "Vendor name in modal does not match with the vendor name in dropdown ");
 		Reporter.log("runtime product is added for the vendor");
 		

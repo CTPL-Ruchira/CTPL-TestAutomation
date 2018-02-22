@@ -78,34 +78,37 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		    PurchaseOrderCreationForm purchaseOrder=new PurchaseOrderCreationForm();
 
 		    //Set items for First line
-		    purchaseOrder.setItemDetails(testDataInvoiceActions.get(6),testDataInvoiceActions.get(7),testDataInvoiceActions.get(8),testDataInvoiceActions.get(9), testDataInvoiceActions.get(10),testDataInvoiceActions.get(11), testDataInvoiceActions.get(12));
+			purchaseOrder.setItemDetails(testDataInvoiceActions.get(6),testDataInvoiceActions.get(7),testDataInvoiceActions.get(8),testDataInvoiceActions.get(9), testDataInvoiceActions.get(10),testDataInvoiceActions.get(11), testDataInvoiceActions.get(12));
+	
+			 //Invoice Enter Message to vendor
+			 invoice.Invoice_MessageToVendor(testDataInvoiceActions.get(13));
 
-		    //Invoice Enter Message to vendor
-		    invoice.Invoice_MessageToVendor(testDataInvoiceActions.get(13));
-
-		    //Invoice Enter memo
-		    invoice.Invoice_Memo(testDataInvoiceActions.get(14));
-		    InvoiceCreationListActions icl=new InvoiceCreationListActions();
-		    invoicetotalAmount=icl.invoiceAmount();
-
-		    //Invoice Click on save button
-		    invoice.Invoice_SaveButton();
-
-		    //Invoice assert message verification
-		    String ExpectedAlertMessage="Invoice was created";
-		    String ActualAlertMessage=invoice.gettextValue();			   
-
-		    boolean check2= ExpectedAlertMessage.equals(ActualAlertMessage);
-		    BaseTestCase.assertTrue(check2, "Invoice creation failed");
-		    Common.sleep(6000);
-		    Reporter.log("Invoice was created successfully");
-
-		    //Invoice Create rule click on cancel button
-		    invoice.CreateRule_CancelButton();
-
-		    //Log out
-		    LogoutFromPage.logout();
-	     }
+			 //Invoice Enter memo
+			 invoice.Invoice_Memo(testDataInvoiceActions.get(14));
+			 InvoiceCreationListActions icl=new InvoiceCreationListActions();
+			 invoicetotalAmount=icl.invoiceAmount();
+			 
+		     //Invoice Click on save button
+			 invoice.Invoice_SaveButton();
+			 Common.sleep(2000);
+			  
+			 //Invoice assert message verfication
+			  String ExpectedAlertMessage="Invoice was created";
+			  String ActualAlertMessage=invoice.gettextValue();			   
+		
+			  boolean check2= ExpectedAlertMessage.equals(ActualAlertMessage);
+			  BaseTestCase.assertTrue(check2, "Invoice creation failed");
+		      Common.sleep(6000);
+			  Reporter.log("Invoice was created successfully");
+			  
+			  //Invoice Create rule click on cancel button
+			   invoice.CreateRule_CancelButton();
+		 
+			   //Log out
+			   LogoutFromPage.logout();
+	    
+	    
+	    }
 
 	@Test(dependsOnMethods="testCreateInvoice")
 	public void verifyInvoiceCreatedInList_SentPayment() {
@@ -120,7 +123,7 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		icl.searchInvoice(invoiceNo);
 		Common.sleep(3000);
 
-		//Accept invoice
+       //Accept invoice
 		icl.clickOnAcceptInvoice(testDataVendorList.get(3),invoiceNo);
 		Common.sleep(5000);
 		String vendorName=testDataVendorList.get(3);
@@ -129,6 +132,7 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		boolean ismodalVerificationdetailsCorrect=icl.verificationModalAcceptButton(invoiceNo,vendorName,invoicetotalAmount);
 		BaseTestCase.assertTrue(ismodalVerificationdetailsCorrect, "Modal does not show correct invoice details");
 		Reporter.log("Modal accept details are verified");
+
 
 		//Accept invoice button
 		icl.ModalAcceptButton();
@@ -297,15 +301,7 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 
 		//Invoice Click on save button
 		invoice.Invoice_SaveButton();
-
-		//Invoice assert message verification
-		String ExpectedAlertMessage="Invoice was created";
-		String ActualAlertMessage=invoice.gettextValue();			   
-
-		boolean check2= ExpectedAlertMessage.equals(ActualAlertMessage);
-		BaseTestCase.assertTrue(check2, "Invoice creation failed");
-		Common.sleep(6000);
-		Reporter.log("Invoice was created successfully");
+		Common.sleep(4000);
 
 		//Invoice Create rule click on cancel button
 		invoice.CreateRule_CancelButton();

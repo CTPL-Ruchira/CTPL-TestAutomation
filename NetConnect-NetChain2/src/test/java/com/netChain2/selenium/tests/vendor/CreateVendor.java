@@ -104,9 +104,7 @@ public class CreateVendor extends BaseTestCase{
 
 
 		Boolean status=vendorCreation.verifyVendorOnList(vendorCreation.getCompanyName());
-
-
-		BaseTestCase.assertTrue(status, "Vendor not created");
+        BaseTestCase.assertTrue(status, "Vendor not created");
 		
 
 	}
@@ -116,6 +114,10 @@ public class CreateVendor extends BaseTestCase{
 	@Test
 	public void VendorCreationNegative() {
 		
+		LoginPage loginPage = new LoginPage();
+		loginPage.login(testData.get(0), testData.get(1));
+		Common.sleep(2000);
+
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
 		Common.sleep(6000);
 		APModuleCreation apModule = invoice.createNew();
@@ -152,7 +154,7 @@ public class CreateVendor extends BaseTestCase{
 
 		vendorCreation.clickNextButton3();
 
-		Common.setTimeOuts(2000, 2000);
+		//Common.setTimeOuts(2000, 2000);
 
 		vendorCreation.goToProductDetailsTab();
 
@@ -166,20 +168,15 @@ public class CreateVendor extends BaseTestCase{
 
 		String getalerttext=Common.getText("VENDOR_NEGATIVE_ALERT_MSG_XPATH");
 		String actualalerttext="Email Address cannot be empty";
-		String ExpectedTitleValue=testData2.get(27);
-		
-
 		if(getalerttext.equals(actualalerttext)) {
 			BaseTestCase.assertTrue(false, "Vendor created");
 		}
 		else {
 			BaseTestCase.assertTrue(true, "Vendor not created as the email id is invalid");
 		}
-		Reporter.log("Vendor not created as the email id is invalid",false);
 		
-        Common.sleep(2000);
-        
-		LogoutFromPage.logout();
+	LogoutFromPage.logout();
+	Common.sleep(2000);
 
 	}
 	

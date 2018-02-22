@@ -1,16 +1,12 @@
 package com.netChain2.selenium.pageObjects.accountsReceivable.createClients;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
-
-import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class POandSOConnectionForm {
-	private static int flag=1;
+	
 	public void clickAccept(String ClientName, String poNumber) {
 		String soSearchAccept="//div[text()='"+poNumber+"']/ancestor::div[2]/div[4]/div[text()='"+ClientName+"']/ancestor::div[2]/div[11]/div/div/button[@id='share']";
 		WebElement eleAccept=Common.findElement(soSearchAccept);
@@ -19,81 +15,105 @@ public class POandSOConnectionForm {
 	
 	//Get invoice number
 	public String getinvoiceNumber() {
-		return Common.getText("AR_GET_INVOICE_NUMBER_FROM_INVOCE_XPATH");
+		return Common.getAttribute("INVOICE_NUMBER_XPATH");
 	}
 	
 	public void verifySOList(String ClientName, String poNumber)
 	{
 		Common.sleep(3000);
 		System.out.println("geting so list");
-		String st="//div[@class='LineItemDataList']/div/div[4]/div[text()='"+ClientName+"']";
+		String st="//div[@class='LineItemDataList']//div[contains(text(),'"+ClientName+"')]/..//following-sibling::div/div[text()='"+poNumber+"']/..//following-sibling::div//button[@data-tip='Accept']";
 		WebElement ele=Common.findElement(st);
-		List<WebElement> list=ele.findElements(By.xpath(st));
-		System.out.println(list);
-		
-		System.out.println("size of list"+list.size());
-		int count=7;
-		//System.out.println("sghkhfildaf"+ele);
-		for(int i=0; i<list.size(); i++)
-		{
-			String soGetClientName="//div[@class='LineItemDataList']/div["+count+"]/div[4]/div[text()='"+ClientName+"']/ancestor::div[2]/div[6]/div[text()='"+poNumber+"']/ancestor::div[2]/div[11]//button[@data-tip='Accept']";
-			System.out.println("soGetClientName --"+soGetClientName);
-			WebElement elem=Common.findElement(soGetClientName);
-			elem.click();
-			/*System.out.println("WebElement"+elem);
-			if(elem.isDisplayed())
-			{
-				elem.click();
-			}
-			else
-			{
-			count++;
-			}*/
-		}
+		ele.click();
 	}
+	
 	//click on plus sign
-	public void clickPlusbutton(String ClientName, String poNumber) {
-		Common.sleep(3000);
-		String st="//div[@class='LineItemDataList']/div/div[4]/div[text()='"+ClientName+"']";
-		WebElement ele=Common.findElement(st);
-		List<WebElement> list=ele.findElements(By.xpath(st));
-		System.out.println(list);
-		
-		System.out.println("size of list"+list.size());
-		int count=7;
-		//System.out.println("sghkhfildaf"+ele);
-		for(int i=0; i<list.size(); i++)
-		{
-									//div[@class='LineItemDataList']/div[7]/div[4]/div[text()='TechBite']/ancestor::div[2]/div[6]/div[text()='1']/ancestor::div[2]/div[11]/div/button/i[@data-tip='Create Invoice']
-			String soGetClientName="//div[@class='LineItemDataList']/div["+count+"]/div[4]/div[text()='"+ClientName+"']/ancestor::div[2]/div[6]/div[text()='"+poNumber+"']/ancestor::div[2]/div[11]/div/button/i[@data-tip='Create Invoice']";
-			System.out.println("soGetClientName --"+soGetClientName);
-			WebElement elem=Common.findElement(soGetClientName);
-			elem.click();
-			/*System.out.println("WebElement"+elem);
-			if(elem.isDisplayed())
-			{
-				elem.click();
-			}
-			else
-			{
-			count++;
-			}*/
-		}
-			
+	public void clickPlusbutton(String clientName, String poNumber) {
+		String plusbutton="//div[@class='LineItemDataList']//div[contains(text(),'"+clientName+"')]/..//following-sibling::div/div[text()='"+poNumber+"']/..//following-sibling::div//button/i[@data-tip='Create Invoice']";
+		WebElement ele=Common.findElement(plusbutton);
+		ele.click();	
 	}
+	
 	public void getClientName(String ClientName, String poNumber) 
 	{		
 	    String soGetClientName="//div[text()='"+poNumber+"']/ancestor::div[2]/div[4]/div[text()='"+ClientName+"']";
 		WebElement eleAccept=Common.findElement(soGetClientName);
 		eleAccept.getText();
-		System.out.println(eleAccept);
 	}
+	
 	public String getAttributeValuePoNo(){
   		return Common.getAttribute("PO_NUMBER_XPATH");
     }
+	
 	//click save and share button on invoice page
 	public void clickSaveAndShareBtn() {
 		Common.click("INVOICE_SO_SAVE_AND_SHARE_BUTTON_XPATH");
+	}
+	
+	//verfiy Invoice title
+	public boolean verifyTitleMatched(String actualTitleValue, String expectedTitleValue) {
+		if(actualTitleValue.equals(expectedTitleValue)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	//verify invoice list 
+	public Boolean verifyInvoiceOnList(String expectedClientName) 
+	 {
+	  boolean flag=false;
+	  Common.sleep(2000);	  
+	  String actualClientNameOnList=Common.getText("AR_CLIENT_LIST_XPATH");
+	  if(actualClientNameOnList.equals(expectedClientName))
+	  {
+	   flag=true;
+	   Reporter.log("Invoice present on list and verified");
+	  }
+	  else
+	  {
+	   System.out.println("Invoice not created");
+	  }
+
+	  return flag;
+
+	 }
+	
+	public void verifyAPInvoiceOnListandClickAccept(String clientName,String ino) 
+	 {
+	  Common.sleep(2000);
+	  CommonMethods.searchByNumberOrName(clientName);
+	  Common.sleep(2000);
+	  String acceptXpath="//div[@class='LineItemDataList']//div[contains(text(),'"+clientName+"')]/..//following-sibling::div/div[text()='"+ino+"']/..//following-sibling::div//button[@data-tip='Accept']";
+	  WebElement ele=Common.findElement(acceptXpath);
+	  ele.click();
+	 }
+	
+	public void clickApproveInvoices(String clientName,String ino) {
+		 String st="//div[@class='LineItemDataList']//div[contains(text(),'"+clientName+"')]/..//following-sibling::div/div[text()='"+ino+"']/..//following-sibling::div//a[@title='Approve Invoices']";
+		  WebElement ele=Common.findElement(st);
+		  ele.click();
+	}
+	
+	//verify AR Payment Status matched or not 
+	public boolean verifyPaymetStatusMatched(String cname,String paymentid,String status) {
+		boolean flag=false;
+		  Common.sleep(2000);
+		  String xpathForARPayment="//div[@class='LineItemDataList']//div[contains(text(),'"+cname+"')]/..//following-sibling::div/div[text()='"+paymentid+"']/..//following-sibling::div//div[text()='matched']";
+		  WebElement findele=Common.findElement(xpathForARPayment);
+		  String matchXpath=findele.getText();		  
+		  if(matchXpath.equals(status))
+		  {
+		   flag=true;
+		   Reporter.log(" AR Payment status matched on list and verified");
+		  }
+		  else
+		  {
+		   System.out.println("payment status not matched");
+		  }
+
+		  return flag;
 	}
 	
 }

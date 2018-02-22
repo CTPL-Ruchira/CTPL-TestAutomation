@@ -1,9 +1,6 @@
 package com.netChain2.selenium.pageObjects.accountsPayable.createInvoice;
 
-import org.testng.Reporter;
-
 import com.netChain2.engine.Common;
-import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class RuntimeAddLocationAndDepartmentForm {
 	private String runtimeDepartmentName;
@@ -38,9 +35,10 @@ public class RuntimeAddLocationAndDepartmentForm {
 	public boolean ckecklocationAddedSuccessfully(String loc) {
 		 boolean flag=false;
 		String actuallocationval=Common.getSelecedValue("LOCATION_DROPDOWN_XPATH");
-		if(loc.equalsIgnoreCase(actuallocationval)) {
+		if(loc.equalsIgnoreCase(actuallocationval)) 
+		{
 			 flag=true;
-			 Reporter.log("this location is added successfully");
+			 
 		}
 		  else
 		  {
