@@ -105,6 +105,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		//Invoice Click on save button
 		invoice.Invoice_SaveButton();
 		Common.sleep(2000);
+		
 		//Invoice assert message verification
 		String expectedAlertMessage="Invoice was created";
 		String actualAlertMessage=invoice.gettextValue();			   
@@ -124,6 +125,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		assertTrue(isAutoApproveInvoiceLinkVisible, "Auto approve link should be seen as per custom workflow");
 		Reporter.log(" Auto approve link is visible as per custom workflow");
 
+		//Logout
 	     LogoutFromPage.logout();
 	}
 	
@@ -191,15 +193,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 
         //Invoice Click on save button
 		invoice.Invoice_SaveButton();
-		Common.sleep(2000);
-		//Invoice assert message verification
-		String expectedAlertMessage="Invoice was created";
-		String actualAlertMessage=invoice.gettextValue();			   
-
-		boolean check2= expectedAlertMessage.equals(actualAlertMessage);
-		BaseTestCase.assertTrue(check2, "Invoice creation failed");
-		Common.sleep(6000);
-		Reporter.log("Invoice was created successfully");
+		Common.sleep(3000);
 
 		//Invoice Create rule click on cancel button
 		invoice.CreateRule_CancelButton();
@@ -279,14 +273,7 @@ public class AccountsPayableSettings extends BaseTestCase {
         //Invoice Click on save button
 		invoice.Invoice_SaveButton();
 		Common.sleep(2000);
-		//Invoice assert message verification
-		String expectedAlertMessage="Invoice was created";
-		String actualAlertMessage=invoice.gettextValue();			   
-
-		boolean check2= expectedAlertMessage.equals(actualAlertMessage);
-		BaseTestCase.assertTrue(check2, "Invoice creation failed");
-		Reporter.log("Invoice was created successfully");
-
+		
 		//Invoice Create rule click on cancel button
 		invoice.CreateRule_CancelButton();
 
@@ -304,11 +291,8 @@ public class AccountsPayableSettings extends BaseTestCase {
 		payId=settings.getPaymentId();
 	    Common.sleep(2000);
 
-	    //open menu
-	    settings.clickOnOpenMenu();
-	    
-	    //click on payment
-	    settings.clickOnPaymentMenu();
+	    //go to payment link in open menu
+	    CommonMethods.gotoLeftAPLink("Payments");
 	
 	    //Search
 	    CommonMethods.searchByNumberOrName(payId);
@@ -409,17 +393,15 @@ public class AccountsPayableSettings extends BaseTestCase {
 		
 		//get payment id
 		payId=settings.getPaymentId();
-	    		
-		//open menu
-	    settings.clickOnOpenMenu();
-	    
-	    //click on payment
-	    settings.clickOnPaymentMenu();
-	
+	    	
+		//go to payment link in open menu
+		CommonMethods.gotoLeftAPLink("Payments");
+			
 	    //Search
 	    CommonMethods.searchByNumberOrName(payId);
 		Common.sleep(2000);
 		
+		//Verification
 		boolean issendPaymentLinkvisible=settings.verificationForSendPayment(customWorkflowValues.get(4),payId,customWorkflowValues.get(28));
 		assertTrue(issendPaymentLinkvisible, "send payment link should be visible as per custom workflow");
 		Common.sleep(5000);
