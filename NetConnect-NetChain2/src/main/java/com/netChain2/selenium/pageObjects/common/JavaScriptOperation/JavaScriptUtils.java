@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.netChain2.engine.Common;
+import com.netChain2.utils.fileUtils.fileOperation.PropertyFileReader;
 
 
 public class JavaScriptUtils {
@@ -17,8 +18,9 @@ public class JavaScriptUtils {
 		StringBuilder fileContents=null;
 		Scanner scanner = null;
 		try {
-
-			File file = new File("D:\\NetChain_Automation\\Development\\CTPL-TestAutomation\\NetConnect-NetChain2\\jQueries\\drag-drop.js");
+			PropertyFileReader propReader = new PropertyFileReader(new File(".\\ConfigurationPropertyFile.properties"));
+			String dragDropJs = propReader.getValue("drag_drop");			
+			File file = new File(dragDropJs);
 			 fileContents = new StringBuilder((int)file.length());
 			scanner = new Scanner(file);
 			String lineSeparator = System.getProperty("line.separator");
