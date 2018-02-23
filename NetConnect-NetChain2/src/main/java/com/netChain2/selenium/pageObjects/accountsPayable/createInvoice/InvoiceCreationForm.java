@@ -6,6 +6,7 @@ import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
 import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
+
 public class InvoiceCreationForm {
 
 	public APModuleCreation createNew() {
@@ -20,8 +21,9 @@ public class InvoiceCreationForm {
     }
 	
 	//select vendor name from dropdown in invoice page 
-	public void SelectVendor(String value) {
-	Common.select("SELECT_INVOICE_VENDOR_XPATH", value);
+	public void SelectVendor(String vendorName) {
+	Common.select("AP_CREDIT_MEMO_SELECT_VENDOR_XPATH", vendorName);
+	Common.sleep(2000);
 	}
 	
 	//select invoice number
@@ -45,13 +47,13 @@ public class InvoiceCreationForm {
 		}*/
 	
 	//Select account booking account 
-	public void SelectBookingAccount(String value) {
-		Common.select("DROPDOWN_BOOKING_ACCOUNT_INVOICE_XPATH", value);
+	public void SelectBookingAccount(String bookingAccount ) {
+		Common.select("DROPDOWN_BOOKING_ACCOUNT_INVOICE_XPATH", bookingAccount);
 		} 
 	
 	// Select Account Description
-	public void AccountDetails_Description(String value) {
-	 Common.sendKeys("CREATE_INVOICE_DESC_TEXT_BOX_XPATH", value);
+	public void AccountDetails_Description(String description) {
+	 Common.sendKeys("CREATE_INVOICE_ACCOUNT_DESCRIPTION_XPATH", description);
     }
 	
 	//Select Account amount 
@@ -61,13 +63,13 @@ public class InvoiceCreationForm {
 		 }
 	
 	//Select Product and services for product1
-	public void SelectProductAndServicesDrp(String value) {
-		Common.select("CREATE_INVOICE_SELECT_PRODUCT_XPATH", value); 
+	public void SelectProductAndServicesDrp(String productName) {
+		Common.select("CREATE_INVOICE_SELECT_PRODUCT_XPATH", productName); 
 	}
 	
 	// Select Item details department for product1
-	public void SelectItemDetailsDepartment(String value) {
-			Common.select("CREATE_INVOICE_ITEM_DETAILS_DEPARTMENT_XPATH", value);
+	public void SelectItemDetailsDepartment(String department) {
+			Common.select("CREATE_INVOICE_ITEM_DETAILS_DEPARTMENT_XPATH", department);
 		}
 	 
 	//Select Booking Amount for product1
@@ -81,12 +83,12 @@ public class InvoiceCreationForm {
     }
 	
 	//Send Measure for product1
-	 public void Invoice_SelectMeasure(String value) {
-	 Common.sendKeys("CREATE_INVOICE_MEASURE_XPATH", value);
+	 public void Invoice_SelectMeasure(String measure) {
+	 Common.sendKeys("CREATE_INVOICE_MEASURE_XPATH", measure);
    }
 	 //Select Quantity for product1
-    public void Invoice_Quantity(String value) {
-	 Common.sendKeys("CREATE_INVOICE_QTY_XPATH", value);
+    public void Invoice_Quantity(String quantity) {
+	 Common.sendKeys("CREATE_INVOICE_QTY_XPATH", quantity);
    }
   
     //Select Invoice Rate for 1st product
@@ -215,21 +217,17 @@ public class InvoiceCreationForm {
 		}
     }
     
-    
-	public void setVendorDetails(String vendorName, String netTermValue, String locationName) {
+    public void setVendorDetails(String vendorName, String netTermValue, String locationName) {
 		SelectVendor(vendorName);
 		SelectNetTerm(netTermValue);
 		SelectLocation(locationName);
-		
-		
-	}
+		}
 
 	public void setAccountDetails(String bookingAccountType, String description, String amount) {
 		SelectBookingAccount(bookingAccountType);
 		AccountDetails_Description(description);
 		AccountDetails_Amount(amount);
-		
-	}
+		}
 
 	public boolean verifyStatusAndActionForInvoice(String vendorName, String invoiceNo) 
 	{
@@ -237,6 +235,29 @@ public class InvoiceCreationForm {
 		WebElement ele=Common.findElement(xpath);
 		return ele.isDisplayed();
 	}
-  }
-
+	
+	//CLICK ON SAME AS MAILING ADDRESS
+		public void clickSameAsMailingAdd()
+		{
+			Common.click("CLICK_SAME_AS_MAILING_ADDRESS_XPATH");
+		}
+		
+		//invoice Creation Form Method
+		//public void createInvoice(String selectclient,String selectTerms,String location,String bAccCode,String desc,String amt,String msg,String memo)
+		public void createInvoice(String selectclient,String selectTerms,String location,String msg,String memo) 
+		{
+			SelectVendor(selectclient);
+			Common.sleep(4000);
+			SelectNetTerm(selectTerms);
+			SelectLocation(location);
+			/*Common.sleep(2000);
+			clickSameAsMailingAdd();*/
+			
+			/*SelectBookingAccount(bAccCode);
+			AccountDetails_Description(desc);
+			AccountDetails_Amount(amt);*/
+			Invoice_MessageToVendor(msg);
+			Invoice_Memo(memo);
+		}
+ }
 
