@@ -22,7 +22,7 @@ public class InvoiceCreationForm {
 	
 	//select vendor name from dropdown in invoice page 
 	public void SelectVendor(String vendorName) {
-	Common.select("SELECT_INVOICE_VENDOR_XPATH", vendorName);
+	Common.select("AP_CREDIT_MEMO_SELECT_VENDOR_XPATH", vendorName);
 	Common.sleep(2000);
 	}
 	
@@ -235,5 +235,29 @@ public class InvoiceCreationForm {
 		WebElement ele=Common.findElement(xpath);
 		return ele.isDisplayed();
 	}
+	
+	//CLICK ON SAME AS MAILING ADDRESS
+		public void clickSameAsMailingAdd()
+		{
+			Common.click("CLICK_SAME_AS_MAILING_ADDRESS_XPATH");
+		}
+		
+		//invoice Creation Form Method
+		//public void createInvoice(String selectclient,String selectTerms,String location,String bAccCode,String desc,String amt,String msg,String memo)
+		public void createInvoice(String selectclient,String selectTerms,String location,String msg,String memo) 
+		{
+			SelectVendor(selectclient);
+			Common.sleep(4000);
+			SelectNetTerm(selectTerms);
+			SelectLocation(location);
+			/*Common.sleep(2000);
+			clickSameAsMailingAdd();*/
+			
+			/*SelectBookingAccount(bAccCode);
+			AccountDetails_Description(desc);
+			AccountDetails_Amount(amt);*/
+			Invoice_MessageToVendor(msg);
+			Invoice_Memo(memo);
+		}
  }
 
