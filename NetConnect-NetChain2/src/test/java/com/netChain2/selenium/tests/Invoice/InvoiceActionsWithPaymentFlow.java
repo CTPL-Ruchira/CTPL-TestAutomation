@@ -236,6 +236,7 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		LogoutFromPage.logout();
 	}
 
+	
 	@Test(dependsOnMethods="verifyInvoiceCreatedInList_SentPayment")
 	public void verifyInvoiceCreatedInList_SchedulePayment() 
 	{

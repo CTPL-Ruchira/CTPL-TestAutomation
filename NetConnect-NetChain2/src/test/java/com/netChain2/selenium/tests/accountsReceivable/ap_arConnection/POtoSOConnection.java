@@ -191,19 +191,19 @@ public class POtoSOConnection extends BaseTestCase {
 	         actions.SearchPaymentId(payId);
 	         Common.sleep(2000);
 	         
-	         //Verfication Action
-	      /*   boolean isActionProcessing= actions.verficationOnProcessingLink(cName,payId);
-	         BaseTestCase.assertTrue(isActionProcessing, " AP Payment action is not processing");*/
+	       /*  //Verfication Action
+	         boolean isActionProcessing= actions.verficationOnProcessingLink(cName,payId);
+	         BaseTestCase.assertTrue(isActionProcessing, " AP Payment action is not processing");
              Reporter.log("AP Payment action is processing for sent payment");
 	            
 	         //Payment search by id
 	          actions.SearchPaymentId(payId);
 	         
 	         //Verfication Status
-	       /*  boolean isStatusSent=actions.verficationOfStatusSent(cName, payId);
-	         BaseTestCase.assertTrue(isStatusSent, "Payment status is not sent");*/
+	         boolean isStatusSent=actions.verficationOfStatusSent(cName, payId);
+	         BaseTestCase.assertTrue(isStatusSent, "Payment status is not sent");
              Reporter.log("AP Payment status sent is verified for sent payment");		
-
+*/
 			 LogoutFromPage.logout();
 		
 			 loginPage.login(testDataARLogin.get(2), testDataARLogin.get(3));
