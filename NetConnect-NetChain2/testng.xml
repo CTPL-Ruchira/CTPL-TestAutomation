@@ -16,9 +16,9 @@
 	
 	<parameter name="url" value="http://ec2-13-59-144-161.us-east-2.compute.amazonaws.com:3000/" />
 	
-	<parameter name="pageLoadTimeOutInSec" value="120" />
+	<parameter name="pageLoadTimeOutInSec" value="60" />
 	
-	<parameter name="elementLoadingTimeout" value="10" />
+	<parameter name="elementLoadingTimeout" value="20" />
 	
 	<parameter name="screenshotsFolder" value="screenshots" />
 	
