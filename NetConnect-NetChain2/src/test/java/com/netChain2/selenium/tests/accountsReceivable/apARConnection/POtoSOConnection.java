@@ -53,9 +53,9 @@ public class POtoSOConnection extends BaseTestCase {
 		
 			purchaseOrder.setItemDetails(1,testDataCreatePO.get(2),testDataCreatePO.get(3),testDataCreatePO.get(4),testDataCreatePO.get(5),testDataCreatePO.get(6),testDataCreatePO.get(7), rate);
 		
-			boolean isQuantityRoundedForFirstLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getQualtity(), PurchaseOrderCreationForm.getQty());
+			boolean isQuantityRoundedForFirstLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getQualtity(1), PurchaseOrderCreationForm.getQty());
 			assertTrue(isQuantityRoundedForFirstLine, "Quantity is not rounded in two decimal digits for first Line");
-			boolean isRateRoundedForFirstLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getRate(), PurchaseOrderCreationForm.getRt());
+			boolean isRateRoundedForFirstLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getRate(1), PurchaseOrderCreationForm.getRt());
 			assertTrue(isRateRoundedForFirstLine, "Rate is not rounded in two decimal digits for first Line");
 			
 			purchaseOrder.setMessageToVendor(testDataCreatePO.get(9));
