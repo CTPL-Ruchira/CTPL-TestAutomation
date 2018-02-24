@@ -62,7 +62,7 @@ public class CreateSalesOrder extends BaseTestCase {
 		PurchaseOrderCreationForm pocf=new PurchaseOrderCreationForm();
 		
 		//First Line
-		pocf.setItemDetailsWithoutMeasure(testData3.get(2), testData3.get(3), testData3.get(4), testData3.get(5), testData3.get(6), testData3.get(7));
+		pocf.setItemDetailsWithoutMeasure(1,testData3.get(2), testData3.get(3), testData3.get(4), testData3.get(5), testData3.get(6), testData3.get(7));
 		
 		pocf.addMoreItem();
 		
@@ -80,7 +80,7 @@ public class CreateSalesOrder extends BaseTestCase {
 		
 		
 		//Second Line
-		pocf.setItemDetailsWithoutMeasure(testData4.get(2), testData4.get(3), testData4.get(4), testData4.get(5), testData4.get(6), testData4.get(7));
+		pocf.setItemDetailsWithoutMeasure(2,testData4.get(2), testData4.get(3), testData4.get(4), testData4.get(5), testData4.get(6), testData4.get(7));
 		pocf.addMoreItem();
 		boolean statusForQuality2=pocf.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getQualtity(), PurchaseOrderCreationForm.getQty());
 		BaseTestCase.assertTrue(statusForQuality2, "Quantity is not rounded");
@@ -96,7 +96,7 @@ public class CreateSalesOrder extends BaseTestCase {
 		assertTrue(isAmountRoundedForSecondLine, "Amount is not rounded in two decimal digits for second Line");
 		
 		//Third Line
-		pocf.setItemDetailsWithoutMeasure(testData5.get(2), testData5.get(3), testData5.get(4), testData5.get(5), testData5.get(6), testData5.get(7));
+		pocf.setItemDetailsWithoutMeasure(3,testData5.get(2), testData5.get(3), testData5.get(4), testData5.get(5), testData5.get(6), testData5.get(7));
 		boolean statusForQuality3=pocf.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getQualtity(), PurchaseOrderCreationForm.getQty());
 		BaseTestCase.assertTrue(statusForQuality3, "Quantity is not rounded");
 		

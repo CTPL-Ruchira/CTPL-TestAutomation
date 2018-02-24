@@ -78,7 +78,7 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		    PurchaseOrderCreationForm purchaseOrder=new PurchaseOrderCreationForm();
 
 		    //Set items for First line
-			purchaseOrder.setItemDetails(testDataInvoiceActions.get(6),testDataInvoiceActions.get(7),testDataInvoiceActions.get(8),testDataInvoiceActions.get(9), testDataInvoiceActions.get(10),testDataInvoiceActions.get(11), testDataInvoiceActions.get(12));
+			purchaseOrder.setItemDetails(1,testDataInvoiceActions.get(6),testDataInvoiceActions.get(7),testDataInvoiceActions.get(8),testDataInvoiceActions.get(9), testDataInvoiceActions.get(10),testDataInvoiceActions.get(11), testDataInvoiceActions.get(12));
 	
 			 //Invoice Enter Message to vendor
 			 invoice.Invoice_MessageToVendor(testDataInvoiceActions.get(13));
