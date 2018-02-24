@@ -83,8 +83,8 @@ public class ApInvoiceDispute extends BaseTestCase
 			 invoice.Invoice_Memo(invoiceTestData.get(14));
 			 originalAmount=purchaseOrder.getTotalAmountDisplayed();
 					 
-			 quantity=PurchaseOrderCreationForm.getQualtity();
-			 rate=PurchaseOrderCreationForm.getRate();
+			 quantity=PurchaseOrderCreationForm.getQualtity(1);
+			 rate=PurchaseOrderCreationForm.getRate(1);
 			 amount=String.valueOf(PurchaseOrderCreationForm.getAmount());
 			 invoice.Invoice_SaveButton();
 			 Common.sleep(2000);	  
