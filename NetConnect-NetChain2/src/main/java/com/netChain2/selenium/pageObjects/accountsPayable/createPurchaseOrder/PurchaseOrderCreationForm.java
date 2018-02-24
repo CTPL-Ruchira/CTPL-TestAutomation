@@ -144,9 +144,9 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		qualityElement.sendKeys(quantity);
 	}
 	
-	public static String getQualtity()
+	public static String getQualtity(int rowNum)
 	{
-		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+secondFlag+"]/input[contains(@id,'selectedProductQuantity')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+rowNum+"]/input[contains(@id,'selectedProductQuantity')]";
 		qualityElement=Common.findElement(descLocator);
 		System.out.println("Quality Element : "+qualityElement);
 		secondFlag=secondFlag+1;
@@ -163,11 +163,11 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		Common.click("PO_AMOUNT_INPUTFIELD_XPATH");
 	}
 	
-	public static String getRate()
+	public static String getRate(int rowNum)
 	{
 		Common.click("PO_AMOUNT_INPUTFIELD_XPATH");
 		
-		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+thirdFlag+"]/input[contains(@id,'selectedProductRate')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+rowNum+"]/input[contains(@id,'selectedProductRate')]";
 		rateElement=Common.findElement(descLocator);
 		thirdFlag=thirdFlag+1;
 		
