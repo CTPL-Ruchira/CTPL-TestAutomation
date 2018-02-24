@@ -315,16 +315,23 @@ public class Common {
 
 	public static WebElement findElement(String locator){
 		By by =By.xpath(locator);
+		WebElement ele;
+		try {
 		WebDriverWait wdWait = new WebDriverWait(driver, Common.elementLoadingTimeout);
           
-		WebElement ele = wdWait.until(new ExpectedCondition<WebElement>() {
+		 ele = wdWait.until(new ExpectedCondition<WebElement>() {
 			public WebElement apply(WebDriver driver) {
 				return driver.findElement(by);
 			}
 		});
 
+		}
+		catch(Exception e) {
+			throw new KeywordException("Element Not Found: Locator Name - " +locator, e);
+		}
 		
 		return ele;
+
 	}
 
 
