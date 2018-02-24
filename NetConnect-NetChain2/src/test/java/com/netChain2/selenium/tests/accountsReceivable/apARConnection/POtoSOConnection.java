@@ -51,7 +51,7 @@ public class POtoSOConnection extends BaseTestCase {
 			 //Get PO number
 		     poNumber=soList.getAttributeValuePoNo();
 		
-			purchaseOrder.setItemDetails(testDataCreatePO.get(2),testDataCreatePO.get(3),testDataCreatePO.get(4),testDataCreatePO.get(5),testDataCreatePO.get(6),testDataCreatePO.get(7), rate);
+			purchaseOrder.setItemDetails(1,testDataCreatePO.get(2),testDataCreatePO.get(3),testDataCreatePO.get(4),testDataCreatePO.get(5),testDataCreatePO.get(6),testDataCreatePO.get(7), rate);
 		
 			boolean isQuantityRoundedForFirstLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getQualtity(), PurchaseOrderCreationForm.getQty());
 			assertTrue(isQuantityRoundedForFirstLine, "Quantity is not rounded in two decimal digits for first Line");
@@ -201,7 +201,7 @@ public class POtoSOConnection extends BaseTestCase {
 	         Common.sleep(2000);
 	         
 	         //Verfication Action
-	         boolean isActionProcessing= actions.verficationOnProcessingLink(cName,payId);
+	         boolean isActionProcessing= actions.verificationOnProcessingLink(cName,payId,testDataCreatePO.get(16));
 	         BaseTestCase.assertTrue(isActionProcessing, " AP Payment action is not processing");
              Reporter.log("AP Payment action is processing for sent payment");		
 
