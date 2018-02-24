@@ -77,7 +77,7 @@ public class ApInvoiceDispute extends BaseTestCase
 			
 			PurchaseOrderCreationForm purchaseOrder=new PurchaseOrderCreationForm();
 						
-			purchaseOrder.setItemDetails(invoiceTestData.get(6),invoiceTestData.get(7),invoiceTestData.get(8),invoiceTestData.get(9), invoiceTestData.get(10), invoiceTestData.get(11), invoiceTestData.get(12));
+			purchaseOrder.setItemDetails(1,invoiceTestData.get(6),invoiceTestData.get(7),invoiceTestData.get(8),invoiceTestData.get(9), invoiceTestData.get(10), invoiceTestData.get(11), invoiceTestData.get(12));
 			invoice.Invoice_MessageToVendor(invoiceTestData.get(13));
 			
 			 invoice.Invoice_Memo(invoiceTestData.get(14));

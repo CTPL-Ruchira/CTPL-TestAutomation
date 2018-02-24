@@ -81,7 +81,7 @@ public class CreateInvoice extends BaseTestCase {
 		PurchaseOrderCreationForm purchaseOrder=new PurchaseOrderCreationForm();
 		
 		//Set items for First line
-		 purchaseOrder.setItemDetails(testDataInvoice.get(6),testDataInvoice.get(7),testDataInvoice.get(8),testDataInvoice.get(9), testDataInvoice.get(10), testDataInvoice.get(11), testDataInvoice.get(12));
+		 purchaseOrder.setItemDetails(1, testDataInvoice.get(6),testDataInvoice.get(7),testDataInvoice.get(8),testDataInvoice.get(9), testDataInvoice.get(10), testDataInvoice.get(11), testDataInvoice.get(12));
 			
 		 //Invoice add line 
 		 invoice.Add_Line_Button();
@@ -96,7 +96,7 @@ public class CreateInvoice extends BaseTestCase {
           
         
 		 //Set items for Second line
-		 purchaseOrder.setItemDetails(testDataInvoice2.get(6),testDataInvoice2.get(7),testDataInvoice2.get(8),testDataInvoice2.get(9),testDataInvoice.get(10), testDataInvoice2.get(11), testDataInvoice2.get(12));
+		 purchaseOrder.setItemDetails(2, testDataInvoice2.get(6),testDataInvoice2.get(7),testDataInvoice2.get(8),testDataInvoice2.get(9),testDataInvoice.get(10), testDataInvoice2.get(11), testDataInvoice2.get(12));
 
 		 //Invoice add line 
 		 invoice.Add_Line_Button();
@@ -109,7 +109,7 @@ public class CreateInvoice extends BaseTestCase {
 		 assertTrue(isAmountRoundedForSecondLine, "Amount is not rounded in two decimal digits for second Line");
 
         //Set items for Third line
-		 purchaseOrder.setItemDetails(testDataInvoice3.get(6),testDataInvoice3.get(7),testDataInvoice3.get(8),testDataInvoice3.get(9),testDataInvoice3.get(10), testDataInvoice3.get(11), testDataInvoice3.get(12));
+		 purchaseOrder.setItemDetails(3,testDataInvoice3.get(6),testDataInvoice3.get(7),testDataInvoice3.get(8),testDataInvoice3.get(9),testDataInvoice3.get(10), testDataInvoice3.get(11), testDataInvoice3.get(12));
 
 		 boolean isQuantityRoundedForThirdLine=purchaseOrder.verifyRoundingOfNumbers(PurchaseOrderCreationForm.getQualtity(), PurchaseOrderCreationForm.getQty());
 		 assertTrue(isQuantityRoundedForThirdLine, "Quantity is not rounded in two decimal digits for third Line");

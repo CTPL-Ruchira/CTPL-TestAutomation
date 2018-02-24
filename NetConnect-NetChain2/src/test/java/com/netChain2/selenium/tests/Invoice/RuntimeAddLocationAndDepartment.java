@@ -77,7 +77,7 @@ public class RuntimeAddLocationAndDepartment extends BaseTestCase{
 
 		//Adding department runtime for the location
 		runtimeadd.addRuntimeDepartmentFromDepartmentDropdown(testDataInvlocationDept.get(12));
-		pocf.setItemDetails(InvoiceTestData.get(6), runtimeadd.getRuntimeDepartmentName(), InvoiceTestData.get(8), InvoiceTestData.get(9), InvoiceTestData.get(10), InvoiceTestData.get(11), InvoiceTestData.get(12));
+		pocf.setItemDetails(1,InvoiceTestData.get(6), runtimeadd.getRuntimeDepartmentName(), InvoiceTestData.get(8), InvoiceTestData.get(9), InvoiceTestData.get(10), InvoiceTestData.get(11), InvoiceTestData.get(12));
 		
 		boolean isDepartmentAddedInRuntime=runtimeadd.verifyDepartmentAddedAfterAddingRuntime(runtimeadd.getRuntimeDepartmentName());
 		assertTrue(isDepartmentAddedInRuntime, "Department is not added in runtime in dropdown");
