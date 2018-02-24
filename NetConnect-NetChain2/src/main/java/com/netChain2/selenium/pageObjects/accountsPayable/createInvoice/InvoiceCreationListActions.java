@@ -2,6 +2,8 @@ package com.netChain2.selenium.pageObjects.accountsPayable.createInvoice;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
 import com.netChain2.engine.Common;
 
 public class InvoiceCreationListActions
@@ -307,6 +309,13 @@ public class InvoiceCreationListActions
 		}
 	
 	}
+	   
+	   public void clickAccordian(String vendorName, String invoiceNumber) {
+		  WebElement ele = Common.findElement("//div[@class='item']//div[text()='"+vendorName+"']/following::div/div[text()='"+invoiceNumber+"']/../../div[10]/div[last()]/button/i");
+			Actions action = new Actions(Common.getDriver());
+			 action.moveToElement(ele, 82, 0).click().perform();
+			
+		}
 }
 	
 
