@@ -242,7 +242,6 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(2), testData.get(3));
 
-		//click to create new
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
 
 		APModuleCreation apModule = invoice.createNew();
