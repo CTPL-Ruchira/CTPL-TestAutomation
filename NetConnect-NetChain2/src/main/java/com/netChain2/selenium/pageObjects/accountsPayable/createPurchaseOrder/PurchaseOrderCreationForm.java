@@ -1,5 +1,7 @@
 	package com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
@@ -520,10 +522,10 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	}
 	
 	public void poCreation(String vendorName, String locationName, String productName, String departmentName, String bookingAccount, String description, String measure, String quantity, String rate, String messageToVendor, String memo, String approvedBy, String shipBy) {
-
-		//select vendor
-		Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", vendorName);
-	     
+	    //select vendor
+		Common.sleep(3000);
+		selectVendorFromDropdown(vendorName);
+	
 		//Select Location
 		selectLocation(locationName);
 						
@@ -541,5 +543,22 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 
 	}
-
+	private void selectVendorFromDropdown(String vendorName) 
+	{
+		Common.click("VENDOR_DROPDOWN_XPATH");
+		Common.sleep(1000);
+		List<WebElement> listElem=Common.getElements("PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH");
+		Common.sleep(2000);		
+		for(WebElement ele: listElem)
+		{
+			if(ele.getText().equals(vendorName))
+			{
+				ele.click();
+				break;
+			}
+		
+		}
+		
+	}
+	
 }
