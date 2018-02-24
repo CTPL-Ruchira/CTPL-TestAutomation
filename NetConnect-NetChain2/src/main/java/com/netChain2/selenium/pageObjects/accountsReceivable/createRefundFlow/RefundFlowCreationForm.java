@@ -1,9 +1,10 @@
 package com.netChain2.selenium.pageObjects.accountsReceivable.createRefundFlow;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Reporter;
 
 import com.netChain2.engine.Common;
@@ -98,4 +99,11 @@ public class RefundFlowCreationForm {
 		Common.sleep(1000);
 		Common.click("AR_NEW_REFUND_SAVE_BUTTON");
 	}
+	
+	public void clickAccordian(int rowNum) {
+		String rowVal = new Integer(rowNum).toString();
+		 WebElement ele = Common.findElement("//div[@class='productService']//p[text()='"+rowVal+"']//following-sibling::select[1]");
+			Actions action = new Actions(Common.getDriver());
+			   action.moveToElement(ele, -10, 0).click().perform();
+			   }
 }
