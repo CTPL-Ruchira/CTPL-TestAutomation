@@ -17,14 +17,13 @@ public class JavaScriptUtils {
 		StringBuilder fileContents=null;
 		Scanner scanner = null;
 		try {
-
-			File file = new File(".\\jQueries\\drag-drop.js");
+			File file = new File(".//jQueries//drag-drop.js");
 			 fileContents = new StringBuilder((int)file.length());
 			scanner = new Scanner(file);
 			String lineSeparator = System.getProperty("line.separator");
 			while(scanner.hasNextLine()) {        
 				fileContents.append(scanner.nextLine() + lineSeparator);
-			}
+		}
 			
 		}catch(Exception ex){
 			ex.printStackTrace();	    	
