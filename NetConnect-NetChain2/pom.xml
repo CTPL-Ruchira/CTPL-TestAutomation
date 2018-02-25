@@ -27,6 +27,19 @@
                                   <reportsDirectory>target\testng</reportsDirectory>
                            </configuration>
                      </plugin>
+					 
+	   <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <configuration>
+        <additionalClasspathElements> 
+           <additionalClasspathElement>../NetConnect-NetChain2/target/classes</additionalClasspathElement> 
+         </additionalClasspathElements> 
+             <mainClass>com.sungard.anant.ipp.updateCRNT.ExecuteCRNTMain</mainClass>
+              <arguments>
+                </arguments>
+        </configuration>
+      </plugin>
     
     </plugins>
   </build>
