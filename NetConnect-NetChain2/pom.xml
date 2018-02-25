@@ -35,7 +35,7 @@
         <additionalClasspathElements> 
            <additionalClasspathElement>../NetConnect-NetChain2/target/classes</additionalClasspathElement> 
          </additionalClasspathElements> 
-             <mainClass>com.sungard.anant.ipp.updateCRNT.ExecuteCRNTMain</mainClass>
+             <mainClass>utils.sendReport.SendReport</mainClass>
               <arguments>
                 </arguments>
         </configuration>
