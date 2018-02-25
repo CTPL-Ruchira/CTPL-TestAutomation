@@ -64,4 +64,8 @@ public class SendReport {
 		mailClient.sendEmail();
 	}
 	
+	public static void main(String args[]){
+	new SendReport().SendTransformedEmail();
+	}
+	
 }
