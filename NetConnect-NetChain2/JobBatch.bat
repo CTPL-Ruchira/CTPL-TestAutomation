@@ -1,5 +1,5 @@
 cd NetConnect-Test-Framework
-mvn clean install
-cd ../NetConnect-NetChain2
-mvn clean install
+call mvn clean install -f pom.xml
+cd NetConnect-NetChain2
+call mvn clean install -f pom.xml
 
