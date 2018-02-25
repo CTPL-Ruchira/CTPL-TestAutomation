@@ -1,3 +1,5 @@
-C:
-cd ..\
-git pull origin Base_branch
+cd NetConnect-Test-Framework
+mvn clean install
+cd ../NetConnect-NetChain2
+mvn clean install
+
