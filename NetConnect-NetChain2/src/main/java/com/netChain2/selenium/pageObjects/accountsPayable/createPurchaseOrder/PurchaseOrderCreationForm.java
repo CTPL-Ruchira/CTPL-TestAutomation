@@ -146,9 +146,9 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		qualityElement.sendKeys(quantity);
 	}
 	
-	public static String getQualtity()
+	public static String getQualtity(int rowNum)
 	{
-		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+secondFlag+"]/input[contains(@id,'selectedProductQuantity')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+rowNum+"]/input[contains(@id,'selectedProductQuantity')]";
 		qualityElement=Common.findElement(descLocator);
 		System.out.println("Quality Element : "+qualityElement);
 		secondFlag=secondFlag+1;
@@ -165,10 +165,10 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		Common.click("PO_AMOUNT_INPUTFIELD_XPATH");
 	}
 	
-	public static String getRate()
+	public static String getRate(int rowNum)
 	{
-		Common.click("PO_AMOUNT_INPUTFIELD_XPATH");
-		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+thirdFlag+"]/input[contains(@id,'selectedProductRate')]";
+		Common.click("PO_AMOUNT_INPUTFIELD_XPATH");		
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+rowNum+"]/input[contains(@id,'selectedProductRate')]";
 		rateElement=Common.findElement(descLocator);
 		thirdFlag=thirdFlag+1;
 		
@@ -285,25 +285,23 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 			}
 	}
 	
-	public void setItemDetails(String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate)
+	public void setItemDetails(int rowNum, String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate)
 	{
 		
-		selectProductOrServices(productName, flag);
-		selectDepartment(departmentName, flag);
-		selectBookingAccount(bookingAccountName, flag);
-		setMeasure(measure, flag);
-		setDescription(description, flag);
-		setQualtity(quantity, flag);
-		setRate(rate, flag);
-		amountElement=getAmountForLine(flag);
+		selectProductOrServices(productName, rowNum);
+		selectDepartment(departmentName, rowNum);
+		selectBookingAccount(bookingAccountName, rowNum);
+		setMeasure(measure, rowNum);
+		setDescription(description, rowNum);
+		setQualtity(quantity, rowNum);
+		setRate(rate, rowNum);
+		amountElement=getAmountForLine(rowNum);
 		Common.sleep(2000);
-		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
+		currentAmount=Double.parseDouble(getTotalAmountCalculated(rowNum));
 		currentAmount=previousAmount+currentAmount;
 		previousAmount=currentAmount;
 		System.out.println("Current Amount"+currentAmount);
 		System.out.println("Previous Amount"+previousAmount);
-		flag=flag+1;
-		
 		calculateTotalAmount(quantity, rate);
 	}
 	
@@ -331,26 +329,24 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		
 		calculateTotalAmount(quantity, rate);
 	}
-	
-	public void setItemDetailsWithoutMeasure(String productName, String departmentName, String bookingAccountName, String description, String quantity, String rate)
+
+	public void setItemDetailsWithoutMeasure(int rowNum,String productName, String departmentName, String bookingAccountName, String description, String quantity, String rate)
 	{
 		
-		selectProductOrServices(productName, flag);
-		selectDepartment(departmentName, flag);
-		selectBookingAccount(bookingAccountName, flag);
-		setDescription(description, flag);
-		setQualtity(quantity, flag);
-		setRate(rate, flag);
-		amountElement=getAmountForLine(flag);
+		selectProductOrServices(productName, rowNum);
+		selectDepartment(departmentName, rowNum);
+		selectBookingAccount(bookingAccountName, rowNum);
+		setDescription(description, rowNum);
+		setQualtity(quantity, rowNum);
+		setRate(rate, rowNum);
+		amountElement=getAmountForLine(rowNum);
 
 		Common.sleep(2000);
-		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
+		currentAmount=Double.parseDouble(getTotalAmountCalculated(rowNum));
 		currentAmount=previousAmount+currentAmount;
 		previousAmount=currentAmount;
 		System.out.println("Current Amount"+currentAmount);
 		System.out.println("Previous Amount"+previousAmount);
-		flag=flag+1;
-		
 		calculateTotalAmount(quantity, rate);
 	}
 	
