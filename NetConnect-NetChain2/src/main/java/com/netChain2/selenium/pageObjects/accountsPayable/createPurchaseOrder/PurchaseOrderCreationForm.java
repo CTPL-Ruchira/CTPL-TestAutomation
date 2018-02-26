@@ -1,5 +1,7 @@
 	package com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
@@ -166,7 +168,6 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	public static String getRate()
 	{
 		Common.click("PO_AMOUNT_INPUTFIELD_XPATH");
-		
 		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+thirdFlag+"]/input[contains(@id,'selectedProductRate')]";
 		rateElement=Common.findElement(descLocator);
 		thirdFlag=thirdFlag+1;
@@ -296,6 +297,31 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		setRate(rate, flag);
 		amountElement=getAmountForLine(flag);
 		Common.sleep(2000);
+		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
+		currentAmount=previousAmount+currentAmount;
+		previousAmount=currentAmount;
+		System.out.println("Current Amount"+currentAmount);
+		System.out.println("Previous Amount"+previousAmount);
+		flag=flag+1;
+		
+		calculateTotalAmount(quantity, rate);
+	}
+	
+	public void setItemDetailsForSingleLine(String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate, int flag)
+	{
+		
+		selectProductOrServices(productName, flag);
+		selectDepartment(departmentName, flag);
+		selectBookingAccount(bookingAccountName, flag);
+		setMeasure(measure, flag);
+		setDescription(description, flag);
+		setQualtity(quantity, flag);
+		setRate(rate, flag);
+
+		Common.sleep(3000);
+		amountElement=getAmountForLine(flag);
+
+		Common.sleep(5000);
 		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
 		currentAmount=previousAmount+currentAmount;
 		previousAmount=currentAmount;
@@ -494,5 +520,70 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		return productNameFromModal;
 		
 	}
+	
+/*	public void poCreation(String vendorName, String locationName, String productName, String departmentName, String bookingAccount, String description, String measure, String quantity, String rate, String messageToVendor, String memo, String approvedBy, String shipBy) {
+
+		//select vendor
+		Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", vendorName);
+	     
+		//Select Location
+		selectLocation(locationName);
+						
+		//set details
+		setItemDetailsForSingleLine(productName,departmentName,bookingAccount,description, measure,quantity, rate, 1);
+		
+		setMessageToVendor(messageToVendor);
+		setMemo(memo);
+		setApprovalBy(approvedBy);
+		setShipBy(shipBy);
+
+       //Click on save button
+        savePurchaseOrder();
+		Common.sleep(7000);
+		
+
+	}*/
+	public void poCreation(String vendorName, String locationName, String productName, String departmentName, String bookingAccount, String description, String measure, String quantity, String rate, String messageToVendor, String memo, String approvedBy, String shipBy) {
+		  System.out.println("vendorName"+vendorName);
+		  //select vendor
+		  Common.sleep(1000);
+		  selectVendorFromDropdown(vendorName);
+		  //Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", vendorName);
+		     //Select Location
+		  selectLocation(locationName);
+		      
+		  //set details
+		  setItemDetailsForSingleLine(productName,departmentName,bookingAccount,description, measure,quantity, rate, 1);
+		  
+		  setMessageToVendor(messageToVendor);
+		  setMemo(memo);
+		  setApprovalBy(approvedBy);
+		  setShipBy(shipBy);
+
+		       //Click on save button
+		        savePurchaseOrder();
+		  Common.sleep(7000);
+		  
+
+		 }
+		 public void selectVendorFromDropdown(String vendorName) 
+		 {
+		  Common.click("VENDOR_DROPDOWN_XPATH");
+		  Common.sleep(1000);
+		  List<WebElement> listElem=Common.getElements("PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH");
+		  Common.sleep(2000);  
+		  System.out.println("listElem"+listElem);
+		  for(WebElement ele: listElem)
+		  {
+		   if(ele.getText().equals(vendorName))
+		   {
+		    System.out.println("ele"+ele);
+		    ele.click();
+		    break;
+		   }
+		  
+		  }
+		  
+		 }
 
 }

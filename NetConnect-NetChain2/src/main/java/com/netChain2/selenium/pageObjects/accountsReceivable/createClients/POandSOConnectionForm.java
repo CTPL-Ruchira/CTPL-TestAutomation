@@ -12,6 +12,10 @@ public class POandSOConnectionForm {
 		WebElement eleAccept=Common.findElement(soSearchAccept);
 		eleAccept.click();
 	}
+	//select vendor
+	public void selectvendor(String vendor) {
+		Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", vendor);
+	}
 	
 	//Get invoice number
 	public String getinvoiceNumber() {
@@ -82,15 +86,13 @@ public class POandSOConnectionForm {
 	
 	public void verifyAPInvoiceOnListandClickAccept(String clientName,String ino) 
 	 {
-	  Common.sleep(2000);
-	  CommonMethods.searchByNumberOrName(clientName);
-	  Common.sleep(2000);
 	  String acceptXpath="//div[@class='LineItemDataList']//div[contains(text(),'"+clientName+"')]/..//following-sibling::div/div[text()='"+ino+"']/..//following-sibling::div//button[@data-tip='Accept']";
 	  WebElement ele=Common.findElement(acceptXpath);
 	  ele.click();
 	 }
 	
 	public void clickApproveInvoices(String clientName,String ino) {
+		Common.sleep(2000);
 		 String st="//div[@class='LineItemDataList']//div[contains(text(),'"+clientName+"')]/..//following-sibling::div/div[text()='"+ino+"']/..//following-sibling::div//a[@title='Approve Invoices']";
 		  WebElement ele=Common.findElement(st);
 		  ele.click();
@@ -115,5 +117,12 @@ public class POandSOConnectionForm {
 
 		  return flag;
 	}
+	public void clickOnCreatePaymentLink(String clientName, String invoiceNumber)
+	{
+		String invoiceLocator ="//div[@class='LineItemDataList']//div[contains(text(),'"+clientName+"')]/..//following-sibling::div/div[text()='"+invoiceNumber+"']/..//following-sibling::div//a[@title='Create Payment']";
+		WebElement element=Common.findElement(invoiceLocator);
+		element.click();
+		Common.sleep(5000);
+	} 
 	
 }

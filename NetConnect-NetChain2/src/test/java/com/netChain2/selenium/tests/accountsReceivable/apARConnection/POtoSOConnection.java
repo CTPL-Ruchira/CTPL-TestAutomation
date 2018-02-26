@@ -44,7 +44,9 @@ public class POtoSOConnection extends BaseTestCase {
 			CommonMethods.gotoRightSideAPLink("NEW PURCHASE ORDER");
 			
 			POandSOConnectionForm soList=new POandSOConnectionForm();
-			Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", testDataCreatePO.get(0));
+			
+			purchaseOrder.selectVendorFromDropdown(testDataCreatePO.get(0));
+			
 			purchaseOrder.selectLocation(testDataCreatePO.get(1));
 			String rate=testDataCreatePO.get(8);
 		
@@ -133,20 +135,22 @@ public class POtoSOConnection extends BaseTestCase {
 		    CommonMethods.searchByNumberOrName(invoiceno);
 		    
 		    POandSOConnectionForm soList=new POandSOConnectionForm();
+		    InvoiceCreationListActions actions=new InvoiceCreationListActions();
 		    
 			//Search Invoice by Company Name and click Accept icon 
 			soList.verifyAPInvoiceOnListandClickAccept(cName, invoiceno);
-			
+			Common.sleep(2000);
 			Reporter.log("AP-Invoice Generated successfully",true);	
 			
 			Common.getDriver().navigate().refresh();
 			
 			CommonMethods.searchByNumberOrName(invoiceno);
-			Common.sleep(2000);
+			Common.sleep(4000);
 			
 			//Click On Approve Invoice Link
-			InvoiceCreationListActions actions=new InvoiceCreationListActions();
 			soList.clickApproveInvoices(cName, invoiceno);
+			//actions.clickOnApproveInvoice(cName, invoiceno);
+			Common.sleep(4000);
 			
 			//click on Yes Accept Only modal PopUp
 			actions.ModalApproveButton();
@@ -159,7 +163,7 @@ public class POtoSOConnection extends BaseTestCase {
 			Common.sleep(5000);
            			
 			actions.clickOnCreatePaymentLink(testDataCreatePO.get(0),invoiceno);
-	           Common.sleep(2000);
+	           Common.sleep(9000);
 	           
 	        //Click on payment banner 
 	         actions.bannerClick();
@@ -201,7 +205,7 @@ public class POtoSOConnection extends BaseTestCase {
 	         Common.sleep(2000);
 	         
 	         //Verfication Action
-	         boolean isActionProcessing= actions.verficationOnProcessingLink(cName,payId);
+	         boolean isActionProcessing= actions.verificationOnProcessingLink(cName,payId,testDataCreatePO.get(16));
 	         BaseTestCase.assertTrue(isActionProcessing, " AP Payment action is not processing");
              Reporter.log("AP Payment action is processing for sent payment");		
 
