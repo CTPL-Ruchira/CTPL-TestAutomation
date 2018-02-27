@@ -1,6 +1,8 @@
 package com.netChain2.selenium.tests.Invoice;
 
-public class TestThreeWayMatch 
+import com.netChain2.engine.BaseTestCase;
+
+public class TestThreeWayMatch extends BaseTestCase
 {
 
 }
