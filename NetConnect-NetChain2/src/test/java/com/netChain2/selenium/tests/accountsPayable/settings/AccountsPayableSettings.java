@@ -18,6 +18,7 @@ import com.netChain2.utils.CustomAnnotation.TestDetails;
 public class AccountsPayableSettings extends BaseTestCase {
 	private ArrayList<String> loginTestData;
 	private ArrayList<String> customWorkflowValues;
+	private ArrayList<String> grCustomWorkflowvalues;
 	private String invoiceNo;
 	private String payId;
 	InvoiceCreationListActions invoiceCreationListAction;
@@ -26,10 +27,12 @@ public class AccountsPayableSettings extends BaseTestCase {
 	public void setUp() 
 	{
 		loginTestData = Common.getTestData("NetchainTest.Login");
-        customWorkflowValues=Common.getTestData("NetchainTest.CustomWorkflow");		
+        customWorkflowValues=Common.getTestData("NetchainTest.CustomWorkflow");	
+        grCustomWorkflowvalues=Common.getTestData("NetchainTest.SetGRCustomWorkflow");
+        
 	}
 
-	@Test
+	@Test(enabled=false)
 	@TestDetails(author="Roshni Mehta", description="This methods creates custom workflow for invoice")
 	public void createCustomWorkflowForInvoice() 
 	{
@@ -128,7 +131,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 	     LogoutFromPage.logout();
 	}
 	
-	@Test(dependsOnMethods= {"createCustomWorkflowForInvoice"})
+	@Test(dependsOnMethods= "createCustomWorkflowForInvoice", enabled=false)
 	public void checkautoCreatePayment() {
 
 		LoginPage loginPage = new LoginPage();
@@ -220,7 +223,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		LogoutFromPage.logout();
 		}
 
-	@Test(dependsOnMethods= {"checkautoCreatePayment"})
+	@Test(dependsOnMethods= "checkautoCreatePayment" ,enabled=false)
 	public void checkautoApprovePayment() {
 
 		LoginPage loginPage = new LoginPage();
@@ -323,7 +326,7 @@ public class AccountsPayableSettings extends BaseTestCase {
      	LogoutFromPage.logout();
 		}
 
-	@Test(dependsOnMethods= {"checkautoApprovePayment"})
+	@Test(dependsOnMethods= "checkautoApprovePayment", enabled=false)
 	public void checksendPayment() {
 
 		LoginPage loginPage = new LoginPage();
@@ -427,5 +430,30 @@ public class AccountsPayableSettings extends BaseTestCase {
 
 		//Log out
 		LogoutFromPage.logout();
+	}
+	
+	
+	@Test
+	@TestDetails(author="Ruchira.Mhaisurkar",description="This sets the custom workflow for Goods Receipt")
+	public void createCustomWorkflowForGoodsReceipt()
+	{
+		 LoginPage loginPage = new LoginPage();
+		 loginPage.login(loginTestData.get(0), loginTestData.get(1));
+		 
+		 Settings settings=new Settings();
+		 settings.CreateGRCustomWorkflow(grCustomWorkflowvalues.get(0));
+		 
+		 
+		 //Verification point
+		 boolean isGrCustomWorkflowSet=settings.verificationForGrWorkflowCreation();
+		 assertFalse(false, "GR custom workflow is set");
+		 Common.sleep(5000);
+		 Reporter.log("Custom Worflow for Goods Receipt is set successfully");
+		 
+		 
+		 
+		 
+		 
+		 
 	}
 }
