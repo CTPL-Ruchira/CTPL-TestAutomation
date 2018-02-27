@@ -1,9 +1,12 @@
 package com.netChain2.selenium.pageObjects.accountsPayable.settings;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.JavaScriptOperation.JavaScriptUtils;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class Settings 
 {
@@ -241,6 +244,63 @@ public class Settings
 				return false;
 				    }
      }
+	
+	public void clickCreateNewGrCustomWorkflow() 
+	{
+		Common.click("SETTINGS_CREATE_NEW_GR_CUSTOM_WORKFLOW_BUTTON_XPATH");
+	}
+	private void setCreateGoodsReceipt()
+	{
+		String sourceXPath=getLocatorValue("GR_WORKFLOW_SOURCE_XPATH");
+		String targetXPath=getLocatorValue("INVOICE_WORKFLOW_DESTINATION_PATH");
+		JavaScriptUtils.jQueryDragAndDrop(sourceXPath, targetXPath);
+	}
+	private void clickOnIsGoodsReceiptAllowedWithoutPOYes()
+	{
+		Common.click("GR_WORKFLOW_IS_GOODS_RECEIPT_ALLOWED_WITHOUT_PO_YES_XPATH");
+	}
+	private void selectBookingCodeForGrAccural(String value)
+	{
+		{
+			Common.select("GR_WORKFLOW_BOOKING_ACCOUNT_DROPDOWN_XPATH", value);
+		}
+	}
+	private void clickOnIsGrEditAllowedYes()
+	{
+		Common.click("GR_WORKFLOW_IS_GR_EDIT_ALLOWED_YES_XPATH");
+	}
+	private void selectRoleToAdjustGrFromDropdown()
+	{
+		Common.click("GR_WORKFLOW_SELECT_ROLE_DROPDOWN_OPEN_XPATH");
+		Common.click("GR_WORKFLOW_SELECT_ADMIN_ROLE_FROM_DROPDOWN_XPATH");
+		Common.click("GR_WORKFLOW_RANDOM_CLICK_XPATH");
+	}
+	
+	public boolean verificationForGrWorkflowCreation()
+	{
+		boolean status=Common.isElementPresent("GR_WORKFLOW_VERIFICATION_POINT_XPATH");
+		System.out.println("Status"+status);
+		
+		return status;
+		
+		
+	}
+	
+	public void CreateGRCustomWorkflow(String value)
+	{
+		openSettings();
+	    clickCreateNewGrCustomWorkflow();
+		setCreateGoodsReceipt();
+		clickOnIsGoodsReceiptAllowedWithoutPOYes();
+		selectBookingCodeForGrAccural(value);
+		clickOnIsGrEditAllowedYes();
+		selectRoleToAdjustGrFromDropdown();
+		clickOnFinishButton();
+		clickCreateNewGrCustomWorkflow();
+		Common.sleep(2000);
+		CommonMethods.logoutFromWorkflowPage();
+		
+	}
 }
 
 
