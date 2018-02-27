@@ -32,7 +32,7 @@ public class AccountsPayableSettings extends BaseTestCase {
         
 	}
 
-	@Test(enabled=false)
+	@Test
 	@TestDetails(author="Roshni Mehta", description="This methods creates custom workflow for invoice")
 	public void createCustomWorkflowForInvoice() 
 	{
@@ -131,7 +131,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 	     LogoutFromPage.logout();
 	}
 	
-	@Test(dependsOnMethods= "createCustomWorkflowForInvoice", enabled=false)
+	@Test(dependsOnMethods= "createCustomWorkflowForInvoice")
 	public void checkautoCreatePayment() {
 
 		LoginPage loginPage = new LoginPage();
@@ -223,7 +223,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		LogoutFromPage.logout();
 		}
 
-	@Test(dependsOnMethods= "checkautoCreatePayment" ,enabled=false)
+	@Test(dependsOnMethods= "checkautoCreatePayment")
 	public void checkautoApprovePayment() {
 
 		LoginPage loginPage = new LoginPage();
@@ -326,7 +326,7 @@ public class AccountsPayableSettings extends BaseTestCase {
      	LogoutFromPage.logout();
 		}
 
-	@Test(dependsOnMethods= "checkautoApprovePayment", enabled=false)
+	@Test(dependsOnMethods= "checkautoApprovePayment")
 	public void checksendPayment() {
 
 		LoginPage loginPage = new LoginPage();
