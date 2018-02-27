@@ -108,8 +108,8 @@ public class Settings
 
 	public boolean verificationForAutoApproveLink(String vendorName, String invoiceNumber,String expectedValue)
 	{
-		String invoiceApproveLocator="//div[text()='"+invoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[1]/div[1]/a[2]";
-	
+		//String invoiceApproveLocator="//div[text()='"+invoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[1]/div[1]/a[2]";
+		String invoiceApproveLocator="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[10]//div[@class='text']//a[text()='Approve Invoices']";
 		WebElement elementApprove=Common.findElement(invoiceApproveLocator);
 		 String ActualValue= elementApprove.getText();
 	    String ExpectedValue=expectedValue;

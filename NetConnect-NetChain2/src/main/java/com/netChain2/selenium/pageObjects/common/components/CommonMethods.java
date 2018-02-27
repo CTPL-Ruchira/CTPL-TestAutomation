@@ -87,5 +87,9 @@ public class CommonMethods
 	    String xpathForLink="//ul[@class='sub-ap']/li/a[text()='"+linkName+"']";
 	    Common.findElement(xpathForLink).click();
 	}
+	public static void logoutFromWorkflowPage()
+	{
+		Common.click("GR_WORKFLOW_LOGOUT_BUTTON_XPATH");
+	}
 	
 }
