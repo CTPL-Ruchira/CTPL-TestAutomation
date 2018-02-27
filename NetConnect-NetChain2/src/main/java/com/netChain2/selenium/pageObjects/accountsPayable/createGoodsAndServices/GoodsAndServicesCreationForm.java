@@ -93,8 +93,8 @@ public class GoodsAndServicesCreationForm {
 		Common.click("GOODS_AND_SERVICES_SAVE_BUTTON_XPATH");
 	} 
 	//Check Product Is Matched or not
-	public boolean verifyProductName(String valueLoc,String value1) {
-		
+	public boolean verifyProductName(String valueLoc,String value1)
+	{		
 		boolean flag=false;
 		List<WebElement> prodList=Common.getElements(valueLoc);			
 		for(int i=1; i<=prodList.size(); i++)

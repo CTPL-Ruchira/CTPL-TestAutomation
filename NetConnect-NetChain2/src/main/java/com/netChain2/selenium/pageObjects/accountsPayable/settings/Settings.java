@@ -163,7 +163,7 @@ public class Settings
 
 	public boolean verificationForCreatePayment(String vendorName, String invoiceNumber,String expectedValue)
 	{
-		String createPaymentLocator="//div[text()='"+invoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[1]/div[1]/a[text()='Create Payment']";
+		String createPaymentLocator="//div[text()='"+invoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[1]/div[1]/a[2]";
 	
 		WebElement elementApprove=Common.findElement(createPaymentLocator);
 	    String ActualValue= elementApprove.getText();
@@ -182,7 +182,7 @@ public class Settings
 
 	public void verificationForViewPayment(String vendorName, String invoiceNumber)
 	{
-		String viewPaymentLocator="//div[text()='"+invoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[1]/div[1]//a[text()='View Payment']";
+		String viewPaymentLocator="//div[text()='"+invoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[1]/div[1]/a[2]";
 	
 		WebElement elementViewPayment=Common.findElement(viewPaymentLocator);
 		elementViewPayment.click();
@@ -201,7 +201,7 @@ public class Settings
 	
 	public boolean verificationForSendPayment(String vendorName, String paymentId,String expectedValue)
 	{
-		String sendPaymentLocator="//div[text()='"+paymentId+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/a[text()='Send Payment']";
+		String sendPaymentLocator="//div[text()='"+paymentId+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/a[1]";
 	
 		WebElement elementSend=Common.findElement(sendPaymentLocator);
 	    String ActualValue= elementSend.getText();

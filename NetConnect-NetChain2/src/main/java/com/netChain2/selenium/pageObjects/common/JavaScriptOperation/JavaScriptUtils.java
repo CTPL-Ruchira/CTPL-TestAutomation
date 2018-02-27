@@ -7,7 +7,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.netChain2.engine.Common;
-import com.netChain2.utils.fileUtils.fileOperation.PropertyFileReader;
 
 
 public class JavaScriptUtils {
@@ -18,15 +17,13 @@ public class JavaScriptUtils {
 		StringBuilder fileContents=null;
 		Scanner scanner = null;
 		try {
-			PropertyFileReader propReader = new PropertyFileReader(new File(".\\ConfigurationPropertyFile.properties"));
-			String dragDropJs = propReader.getValue("drag_drop");			
-			File file = new File(dragDropJs);
+			File file = new File(".//jQueries//drag-drop.js");
 			 fileContents = new StringBuilder((int)file.length());
 			scanner = new Scanner(file);
 			String lineSeparator = System.getProperty("line.separator");
 			while(scanner.hasNextLine()) {        
 				fileContents.append(scanner.nextLine() + lineSeparator);
-			}
+		}
 			
 		}catch(Exception ex){
 			ex.printStackTrace();	    	

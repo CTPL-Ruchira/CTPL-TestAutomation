@@ -20,7 +20,6 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	private static double qty;
 	private static double rt;
 	private static double amount;
-	private static int flag=1;
 	private static int secondFlag=1, thirdFlag=1;
 	private static double previousAmount;
 	private static double currentAmount;
@@ -144,9 +143,9 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		qualityElement.sendKeys(quantity);
 	}
 	
-	public static String getQualtity()
+	public static String getQualtity(int rowNum)
 	{
-		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+secondFlag+"]/input[contains(@id,'selectedProductQuantity')]";
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+rowNum+"]/input[contains(@id,'selectedProductQuantity')]";
 		qualityElement=Common.findElement(descLocator);
 		System.out.println("Quality Element : "+qualityElement);
 		secondFlag=secondFlag+1;
@@ -163,10 +162,11 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		Common.click("PO_AMOUNT_INPUTFIELD_XPATH");
 	}
 	
-	public static String getRate()
+	public static String getRate(int rowNum)
 	{
 		Common.click("PO_AMOUNT_INPUTFIELD_XPATH");
-		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+thirdFlag+"]/input[contains(@id,'selectedProductRate')]";
+		
+		String descLocator="//div[@class='productService']/div[contains(@class,'Line')]["+rowNum+"]/input[contains(@id,'selectedProductRate')]";
 		rateElement=Common.findElement(descLocator);
 		thirdFlag=thirdFlag+1;
 		
@@ -283,72 +283,43 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 			}
 	}
 	
-	public void setItemDetails(String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate)
+	public void setItemDetails(int rowNum, String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate)
 	{
 		
-		selectProductOrServices(productName, flag);
-		selectDepartment(departmentName, flag);
-		selectBookingAccount(bookingAccountName, flag);
-		setMeasure(measure, flag);
-		setDescription(description, flag);
-		setQualtity(quantity, flag);
-		setRate(rate, flag);
-		amountElement=getAmountForLine(flag);
+		selectProductOrServices(productName, rowNum);
+		selectDepartment(departmentName, rowNum);
+		selectBookingAccount(bookingAccountName, rowNum);
+		setMeasure(measure, rowNum);
+		setDescription(description, rowNum);
+		setQualtity(quantity, rowNum);
+		setRate(rate, rowNum);
+		amountElement=getAmountForLine(rowNum);
 		Common.sleep(2000);
-		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
+		currentAmount=Double.parseDouble(getTotalAmountCalculated(rowNum));
 		currentAmount=previousAmount+currentAmount;
 		previousAmount=currentAmount;
 		System.out.println("Current Amount"+currentAmount);
 		System.out.println("Previous Amount"+previousAmount);
-		flag=flag+1;
-		
 		calculateTotalAmount(quantity, rate);
 	}
 	
-	public void setItemDetailsForSingleLine(String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate, int flag)
+	public void setItemDetailsWithoutMeasure(int rowNum,String productName, String departmentName, String bookingAccountName, String description, String quantity, String rate)
 	{
 		
-		selectProductOrServices(productName, flag);
-		selectDepartment(departmentName, flag);
-		selectBookingAccount(bookingAccountName, flag);
-		setMeasure(measure, flag);
-		setDescription(description, flag);
-		setQualtity(quantity, flag);
-		setRate(rate, flag);
-
-		Common.sleep(3000);
-		amountElement=getAmountForLine(flag);
-
-		Common.sleep(5000);
-		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
-		currentAmount=previousAmount+currentAmount;
-		previousAmount=currentAmount;
-		System.out.println("Current Amount"+currentAmount);
-		System.out.println("Previous Amount"+previousAmount);
-		flag=flag+1;
-		
-		calculateTotalAmount(quantity, rate);
-	}
-	
-	public void setItemDetailsWithoutMeasure(String productName, String departmentName, String bookingAccountName, String description, String quantity, String rate)
-	{
-		
-		selectProductOrServices(productName, flag);
-		selectDepartment(departmentName, flag);
-		selectBookingAccount(bookingAccountName, flag);
-		setDescription(description, flag);
-		setQualtity(quantity, flag);
-		setRate(rate, flag);
-		amountElement=getAmountForLine(flag);
+		selectProductOrServices(productName, rowNum);
+		selectDepartment(departmentName, rowNum);
+		selectBookingAccount(bookingAccountName, rowNum);
+		setDescription(description, rowNum);
+		setQualtity(quantity, rowNum);
+		setRate(rate, rowNum);
+		amountElement=getAmountForLine(rowNum);
 
 		Common.sleep(2000);
-		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
+		currentAmount=Double.parseDouble(getTotalAmountCalculated(rowNum));
 		currentAmount=previousAmount+currentAmount;
 		previousAmount=currentAmount;
 		System.out.println("Current Amount"+currentAmount);
 		System.out.println("Previous Amount"+previousAmount);
-		flag=flag+1;
-		
 		calculateTotalAmount(quantity, rate);
 	}
 	
@@ -517,29 +488,6 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		System.out.println("Selected value : "+Common.getSelecedValue("PRODUCT_SERVICES_DROPDOWN_XPATH"));
 		return productNameFromModal;
 		
-	}
-	
-	public void poCreation(String vendorName, String locationName, String productName, String departmentName, String bookingAccount, String description, String measure, String quantity, String rate, String messageToVendor, String memo, String approvedBy, String shipBy) {
-
-		//select vendor
-		Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", vendorName);
-	     
-		//Select Location
-		selectLocation(locationName);
-						
-		//set details
-		setItemDetailsForSingleLine(productName,departmentName,bookingAccount,description, measure,quantity, rate, 1);
-		
-		setMessageToVendor(messageToVendor);
-		setMemo(memo);
-		setApprovalBy(approvedBy);
-		setShipBy(shipBy);
-
-       //Click on save button
-        savePurchaseOrder();
-		Common.sleep(7000);
-		
-
 	}
 
 }
