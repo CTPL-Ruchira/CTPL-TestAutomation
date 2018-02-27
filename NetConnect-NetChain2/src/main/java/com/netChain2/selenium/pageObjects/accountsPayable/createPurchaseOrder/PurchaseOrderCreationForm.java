@@ -22,7 +22,6 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	private static double qty;
 	private static double rt;
 	private static double amount;
-	private static int flag=1;
 	private static int secondFlag=1, thirdFlag=1;
 	private static double previousAmount;
 	private static double currentAmount;
