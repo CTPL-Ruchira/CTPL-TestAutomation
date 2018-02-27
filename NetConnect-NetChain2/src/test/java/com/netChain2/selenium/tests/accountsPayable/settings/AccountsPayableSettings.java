@@ -426,6 +426,15 @@ public class AccountsPayableSettings extends BaseTestCase {
 		 settings.CreateGRCustomWorkflow(grCustomWorkflowvalues.get(0));
 		 
 		 
+		 //Verification point
+		 boolean isGrCustomWorkflowSet=settings.verificationForGrWorkflowCreation();
+		 assertFalse(false, "GR custom workflow is set");
+		 Common.sleep(5000);
+		 Reporter.log("Custom Worflow for Goods Receipt is set successfully");
+		 
+		 
+		 
+		 
 		 
 		 
 	}
