@@ -1,9 +1,12 @@
 package com.netChain2.selenium.pageObjects.accountsPayable.settings;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.JavaScriptOperation.JavaScriptUtils;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class Settings 
 {
@@ -273,6 +276,16 @@ public class Settings
 		Common.click("GR_WORKFLOW_RANDOM_CLICK_XPATH");
 	}
 	
+	public boolean verificationForGrWorkflowCreation()
+	{
+		boolean status=Common.isElementPresent("GR_WORKFLOW_VERIFICATION_POINT_XPATH");
+		System.out.println("Status"+status);
+		
+		return status;
+		
+		
+	}
+	
 	public void CreateGRCustomWorkflow(String value)
 	{
 		openSettings();
@@ -283,6 +296,10 @@ public class Settings
 		clickOnIsGrEditAllowedYes();
 		selectRoleToAdjustGrFromDropdown();
 		clickOnFinishButton();
+		clickCreateNewGrCustomWorkflow();
+		Common.sleep(2000);
+		CommonMethods.logoutFromWorkflowPage();
+		
 	}
 }
 
