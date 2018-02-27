@@ -20,6 +20,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 	private ArrayList<String> customWorkflowValues;
 	private String invoiceNo;
 	private String payId;
+	InvoiceCreationListActions invoiceCreationListAction;
 
 	@BeforeClass
 	public void setUp() 
@@ -117,9 +118,9 @@ public class AccountsPayableSettings extends BaseTestCase {
 		invoice.CreateRule_CancelButton();
 
 		//Search invoice
-		icl.searchInvoice(invoiceNo);
-		Common.sleep(2000);
-
+		invoiceCreationListAction=new InvoiceCreationListActions();
+		invoiceCreationListAction.searchInvoice(invoiceNo);
+		
 		boolean isAutoApproveInvoiceLinkVisible=settings.verificationForAutoApproveLink(customWorkflowValues.get(4), invoiceNo,customWorkflowValues.get(25));
 		assertTrue(isAutoApproveInvoiceLinkVisible, "Auto approve link should be seen as per custom workflow");
 		Reporter.log(" Auto approve link is visible as per custom workflow");
@@ -208,7 +209,8 @@ public class AccountsPayableSettings extends BaseTestCase {
         Settings.scrollUp();
 		
 		//Search invoice
-		icl.searchInvoice(invoiceNo);
+        invoiceCreationListAction=new InvoiceCreationListActions();
+		invoiceCreationListAction.searchInvoice(invoiceNo);
 		
 		boolean isautoCreatePaymentLinkvisible=settings.verificationForCreatePayment(customWorkflowValues.get(4), invoiceNo,customWorkflowValues.get(26));
 		assertTrue(isautoCreatePaymentLinkvisible, "create payment link should be visible as per custom workflow");
@@ -294,9 +296,8 @@ public class AccountsPayableSettings extends BaseTestCase {
         Settings.scrollUp();
        
 		//Search invoice
-		CommonMethods.searchByNumberOrName(invoiceNo);
-		Common.sleep(2000);
-
+        invoiceCreationListAction=new InvoiceCreationListActions();
+		invoiceCreationListAction.searchInvoice(invoiceNo);
 		//Verification of view payment
 		settings.verificationForViewPayment(customWorkflowValues.get(4), invoiceNo);
 		
@@ -311,8 +312,8 @@ public class AccountsPayableSettings extends BaseTestCase {
 	    settings.clickOnPaymentMenu();
 	
 	    //Search
-	    CommonMethods.searchByNumberOrName(payId);
-		Common.sleep(2000);
+	    invoiceCreationListAction=new InvoiceCreationListActions();
+		invoiceCreationListAction.searchInvoice(invoiceNo);
 	    
 		//Verification of approve payment
 	    boolean isapprovePaymentVisible=settings.verificationForApprovePayment(customWorkflowValues.get(4),payId,customWorkflowValues.get(27));
@@ -401,9 +402,8 @@ public class AccountsPayableSettings extends BaseTestCase {
         Settings.scrollUp();
        
 		//Search invoice
-		CommonMethods.searchByNumberOrName(invoiceNo);
-		Common.sleep(2000);	
-		
+        invoiceCreationListAction=new InvoiceCreationListActions();
+		invoiceCreationListAction.searchInvoice(invoiceNo);
 		//Verification of view payment
 		settings.verificationForViewPayment(customWorkflowValues.get(4), invoiceNo);
 		
@@ -417,8 +417,8 @@ public class AccountsPayableSettings extends BaseTestCase {
 	    settings.clickOnPaymentMenu();
 	
 	    //Search
-	    CommonMethods.searchByNumberOrName(payId);
-		Common.sleep(2000);
+	    invoiceCreationListAction=new InvoiceCreationListActions();
+		invoiceCreationListAction.searchInvoice(invoiceNo);
 		
 		boolean issendPaymentLinkvisible=settings.verificationForSendPayment(customWorkflowValues.get(4),payId,customWorkflowValues.get(28));
 		assertTrue(issendPaymentLinkvisible, "send payment link should be visible as per custom workflow");
