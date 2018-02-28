@@ -489,5 +489,53 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		return productNameFromModal;
 		
 	}
+	public void setItemDetailsForSingleLine(String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate, int flag)
+	{
+		
+		selectProductOrServices(productName, flag);
+		selectDepartment(departmentName, flag);
+		selectBookingAccount(bookingAccountName, flag);
+		setMeasure(measure, flag);
+		setDescription(description, flag);
+		setQualtity(quantity, flag);
+		setRate(rate, flag);
+
+		Common.sleep(3000);
+		amountElement=getAmountForLine(flag);
+
+		Common.sleep(5000);
+		currentAmount=Double.parseDouble(getTotalAmountCalculated(flag));
+		currentAmount=previousAmount+currentAmount;
+		previousAmount=currentAmount;
+		System.out.println("Current Amount"+currentAmount);
+		System.out.println("Previous Amount"+previousAmount);
+		flag=flag+1;
+		
+		calculateTotalAmount(quantity, rate);
+	}
+	
+	public void poCreation(String vendorName, String locationName, String productName, String departmentName, String bookingAccount, String description, String measure, String quantity, String rate, String messageToVendor, String memo, String approvedBy, String shipBy) {
+
+		//select vendor
+		Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", vendorName);
+	     
+		//Select Location
+		selectLocation(locationName);
+						
+		//set details
+		setItemDetailsForSingleLine(productName,departmentName,bookingAccount,description, measure,quantity, rate, 1);
+		
+		setMessageToVendor(messageToVendor);
+		setMemo(memo);
+		setApprovalBy(approvedBy);
+		setShipBy(shipBy);
+
+       //Click on save button
+        savePurchaseOrder();
+		Common.sleep(7000);
+		
+
+	}
+
 
 }
