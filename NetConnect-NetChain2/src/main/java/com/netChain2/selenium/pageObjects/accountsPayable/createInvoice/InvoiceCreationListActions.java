@@ -16,7 +16,8 @@ public class InvoiceCreationListActions
 	
 	public void searchInvoice(String searchValue)
 	{
-		Common.sendKeys("SEARCH_INPUT_XPATH", searchValue);
+		Common.sendKeys("INVOICE_SEARCH_BAR_XPATH", searchValue);
+		Common.sleep(2000);
 	}
 
 	public void clickOnAcceptInvoice(String VendorName, String InvoiceNumber) {
