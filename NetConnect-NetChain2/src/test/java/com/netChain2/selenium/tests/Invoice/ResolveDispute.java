@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
+import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationListActions;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceDispute;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
@@ -30,6 +31,7 @@ public class ResolveDispute extends BaseTestCase
 	private String quantity, rate, amount, OriginalRateForAcceptInvoice;
 	InvoiceDispute id;
 	PurchaseOrderCreationForm pocf;
+	InvoiceCreationListActions invoiceCreationListAction;
 	
 	@BeforeClass
 	public void setUp()
@@ -119,9 +121,8 @@ public class ResolveDispute extends BaseTestCase
 		id=new InvoiceDispute();
 		pocf=new PurchaseOrderCreationForm();
 		
-		
-		CommonMethods.searchByNumberOrName(invoiceNo);
-		Common.sleep(6000);
+		invoiceCreationListAction=new InvoiceCreationListActions();
+		invoiceCreationListAction.searchInvoice(invoiceNo);
 		
 		id.clickAndOpenInvoicePreview();
 		id.openDispute(invoiceTestData.get(6));
@@ -187,7 +188,9 @@ public class ResolveDispute extends BaseTestCase
 		loginPage.login(loginTestData.get(0), loginTestData.get(1));
 		Common.sleep(7000);
 		
-		CommonMethods.searchByNumberOrName(invoiceNo);
+		//CommonMethods.searchByNumberOrName(invoiceNo);
+		invoiceCreationListAction=new InvoiceCreationListActions();
+		invoiceCreationListAction.searchInvoice(invoiceNo);
 		
 		boolean isOrgAmountSame=CommonMethods.compareTwoValues(id.getOriginalAmountOnList(), originalAmount);
 		assertTrue(isOrgAmountSame, "Original amount is not correct on invoice list");
@@ -214,8 +217,9 @@ public class ResolveDispute extends BaseTestCase
 		
 		id=new InvoiceDispute();
 		System.out.println("Invoice Numberrrrrrrr"+invoiceNo);
-		CommonMethods.searchByNumberOrName(invoiceNo);
-		Common.sleep(6000);
+		//CommonMethods.searchByNumberOrName(invoiceNo);
+		invoiceCreationListAction=new InvoiceCreationListActions();
+		invoiceCreationListAction.searchInvoice(invoiceNo);
 		
 		id.clickAndOpenInvoicePreview();
 		id.approveDispute();
@@ -223,7 +227,7 @@ public class ResolveDispute extends BaseTestCase
 		//Check original amount displayed is correct
 		boolean isOriginalAmountCorrect=id.verifyValuesAfterSendingDisputeInInVoicePreviewPage(originalAmount, id.getOriginalAmountFromInvoiceBannerInInvoicePreviewPage());
 		assertTrue(isOriginalAmountCorrect, "Original Amount is not corectly displayed on Invoice Preview Page");
-		Common.sleep(9000);
+		Common.sleep(5000);
 		System.out.println("before orgf");
 		//Check balance due amount displayed is correct(------Issue-------)
 		//boolean isBalanceDueCorrect=id.verifyValuesAfterSendingDisputeInInVoicePreviewPage(OriginalBalanceDueForAcceptInvoice, id.getBalanceDueFromInvoiceBannerInInvoicePreviewPage());
@@ -245,8 +249,9 @@ public class ResolveDispute extends BaseTestCase
 		LoginPage loginPage2 = new LoginPage();
 		loginPage2.login(loginTestData.get(0), loginTestData.get(1));
 		
-		CommonMethods.searchByNumberOrName(invoiceNo);
-		
+		//CommonMethods.searchByNumberOrName(invoiceNo);
+		invoiceCreationListAction=new InvoiceCreationListActions();
+		invoiceCreationListAction.searchInvoice(invoiceNo);
 		
 		/*boolean isOrgAmountSame=CommonMethods.compareTwoValues(id.getOriginalAmountOnList(), originalAmount);
 		assertTrue(isOrgAmountSame, "Original amount is not correct on invoice list");

@@ -116,7 +116,7 @@ public class CreatePurchaseOrder extends BaseTestCase{
 		LogoutFromPage.logout();
 	}
 	 
-	@Test(enabled=false)	 
+	@Test	 
 	public void verifyPurchaseOrderCreated()
 	{
 		//System.out.println("Into verifyPurchaseOrderCreated7");
