@@ -1,5 +1,7 @@
 	package com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
@@ -85,7 +87,17 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	
 	public void selectVendor(String vendorName)
 	{
-		Common.select("VENDOR_DROPDOWN_XPATH", vendorName);
+		Common.getElement("VENDOR_DROPDOWN_XPATH").click();
+		Common.sleep(1000);
+		List<WebElement> list=Common.getElements("PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH");
+		for(WebElement ele : list)
+		{
+			if(ele.getText().equals(vendorName))
+			{
+				ele.click();
+				break;
+			}
+		}
 	}
 	
 	public void selectLocation(String locationName)
@@ -489,6 +501,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		return productNameFromModal;
 		
 	}
+
 	public void setItemDetailsForSingleLine(String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate, int flag)
 	{
 		
@@ -535,6 +548,32 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		Common.sleep(7000);
 		
 
+	}
+
+	
+	public void selectGrRequiredFromDropdown(String requiredOption)
+	{
+		Common.select("PO_GR_REQUIRED_DROPDOWN_XPATH", requiredOption);
+	}
+	
+	public void createPurchaseOrder(String vendorName, String locationName, String requiredOption, String productName, String departmentName, String bookingAccountName, String description, String measure, String quantity, String rate, String messageToVendor, String memo, String approvalBy, String shipBy, int flag)
+	{
+		selectVendor(vendorName);
+		selectLocation(locationName);
+		selectGrRequiredFromDropdown(requiredOption);
+		selectProductOrServices(productName, flag);
+		selectDepartment(departmentName, flag);
+		selectBookingAccount(bookingAccountName, flag);
+		setDescription(description, flag);
+		setMeasure(measure, flag);
+		setQualtity(quantity, flag);
+		setRate(rate, flag);
+		setMessageToVendor(messageToVendor);
+		setMemo(memo);
+		setApprovalBy(approvalBy);
+		setShipBy(shipBy);
+		savePurchaseOrder();
+		
 	}
 
 
