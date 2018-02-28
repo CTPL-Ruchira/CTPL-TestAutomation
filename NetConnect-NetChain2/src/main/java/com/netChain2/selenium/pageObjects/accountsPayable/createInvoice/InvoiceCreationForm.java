@@ -8,6 +8,12 @@ import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 
 public class InvoiceCreationForm {
+	
+	private String invoiceNumberAutopopulated;
+
+	public String getInvoiceNumberAutopopulated() {
+		return invoiceNumberAutopopulated;
+	}
 
 	public APModuleCreation createNew() {
 		CommonMethods.scrollUp();
@@ -40,6 +46,7 @@ public class InvoiceCreationForm {
 	//Select Location from dropdown
 	public void SelectLocation(String value) {
 		Common.select("SELECT_INVOICE_LOCATION_XPATH", value);
+		invoiceNumberAutopopulated=Common.getAttribute("INVOICE_NUMBER_XPATH");
 		}
 	/*//Select Location from Dropdown Runtime
 		public void selectLocationRuntime(String selectlocation) {
@@ -258,6 +265,48 @@ public class InvoiceCreationForm {
 			AccountDetails_Amount(amt);*/
 			Invoice_MessageToVendor(msg);
 			Invoice_Memo(memo);
+			
 		}
- }
+		
+		public void createInvoiceForThreewaymatch(String vendorName,String netTerms,String location,String productName, String poNumber, String messageToVendor,String memo, String flag)
+		{
+			Common.sleep(1000);
+			SelectVendor(vendorName);
+			//SelectNetTerm(netTerms);
+			SelectLocation(location);
+			selectProductOrServices(productName, flag);
+			selectPoNumberfromdropdown(poNumber, flag);
+			Invoice_MessageToVendor(messageToVendor);
+			Invoice_Memo(memo);
+			Invoice_SaveButton();
+			CreateRule_CancelButton();
+		}
+		
+		private void selectPoNumberfromdropdown(String poNumber, String flag) 
+		{
+			String dropLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[4]";
+			
+			String valueLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[4]/option[text()='"+poNumber+"']";
+			selectDropdownValues(dropLocator, valueLocator);
+		}
+
+		public void selectProductOrServices(String productName, String flag)
+		{
+			String dropLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[1]";
+			
+			String valueLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[1]/option[text()='"+productName+"']";
+			selectDropdownValues(dropLocator, valueLocator);
+			
+		}
+		
+		public void selectDropdownValues(String dropLocator, String valueLocator)
+		{
+			WebElement dropElement=Common.findElement(dropLocator);
+			
+			dropElement.click();
+			WebElement valElement=Common.findElement(valueLocator);
+			
+			valElement.click();
+		}
+}
 
