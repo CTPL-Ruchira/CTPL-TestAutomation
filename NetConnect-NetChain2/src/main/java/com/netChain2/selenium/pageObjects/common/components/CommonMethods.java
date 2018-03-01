@@ -1,5 +1,6 @@
 package com.netChain2.selenium.pageObjects.common.components;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 
 import com.netChain2.engine.Common;
@@ -92,4 +93,9 @@ public class CommonMethods
 		Common.click("GR_WORKFLOW_LOGOUT_BUTTON_XPATH");
 	}
 	
+	public static String generateRandomStringForInvoiceID(String value) {
+		   String randomString = RandomStringUtils.randomAlphanumeric(3);
+		   return value.concat("_"+randomString);
+		   
+		  }
 }

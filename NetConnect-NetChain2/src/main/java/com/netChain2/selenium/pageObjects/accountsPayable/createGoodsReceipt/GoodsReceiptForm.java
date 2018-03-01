@@ -14,8 +14,14 @@ public class GoodsReceiptForm
 		Common.sleep(5000);
 		enterOkQualityForItemDetails(okQty);
 		enterDefectiveQtyForItemDetails(defectiveQty);
+		saveGR();
 	}
 	
+	private void saveGR() 
+	{
+		Common.click("SAVE_BUTTON_XPATH");
+	}
+
 	private void enterDefectiveQtyForItemDetails(String defectiveQty) 
 	{
 		Common.sendKeys("DEFECTIVE_QTY_XPATH", defectiveQty);

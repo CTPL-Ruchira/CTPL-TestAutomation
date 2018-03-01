@@ -17,7 +17,8 @@ public class InvoiceCreationListActions
 	public void searchInvoice(String searchValue)
 	{
 		Common.sendKeys("INVOICE_SEARCH_BAR_XPATH", searchValue);
-	}
+		Common.sleep(2000);
+}
 
 	public void clickOnAcceptInvoice(String VendorName, String InvoiceNumber) {
 		String InvoiceStatusAcceptInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[text()='Accept Invoice']";
