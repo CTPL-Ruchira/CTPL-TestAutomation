@@ -22,6 +22,7 @@ public class InvoiceCreationForm {
 	
 	//select vendor name from dropdown in invoice page 
 	public void SelectVendor(String vendorName) {
+    Common.sleep(2000);
 	Common.select("AP_CREDIT_MEMO_SELECT_VENDOR_XPATH", vendorName);
 	Common.sleep(2000);
 	}
@@ -31,6 +32,14 @@ public class InvoiceCreationForm {
   		return Common.getAttribute("INVOICE_NUMBER_XPATH");
     
     }
+	
+	//Set Invoice Number
+	 public void setInvoiceNo(String invoiceNo) {
+	  Common.getElement("INVOICE_NUMBER_XPATH").clear();
+	  Common.click("INVOICE_ITEM_AMOUNT_TEXT_XPATH");
+	  Common.sendKeys("INVOICE_NUMBER_XPATH", invoiceNo);
+	     Common.click("INVOICE_ITEM_AMOUNT_TEXT_XPATH");
+	 }
 	
 	//select Net Term from dropdown 
 	public void SelectNetTerm(String value) {
@@ -258,6 +267,6 @@ public class InvoiceCreationForm {
 			AccountDetails_Amount(amt);*/
 			Invoice_MessageToVendor(msg);
 			Invoice_Memo(memo);
-		}
- }
 
+         }
+}
