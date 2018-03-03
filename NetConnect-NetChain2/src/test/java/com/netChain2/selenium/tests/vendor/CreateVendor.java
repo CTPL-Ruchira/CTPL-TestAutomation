@@ -27,16 +27,16 @@ public class CreateVendor extends BaseTestCase{
 	//To launch the browser
 	public void setUp() {
 
-		
+
 		testData = Common.getTestData("NetchainTest.Login");
 		testData1 = Common.getTestData("NetchainTest.CreateVendor");
 		testData2 = Common.getTestData("NetchainTest.CreateVendorNeg");
-}
+	}
 
 
 
 	@Test
-	@TestDetails(author="Ruchira.Mhaisurkar", description="demo test")
+	@TestDetails(author="Ruchira.Mhaisurkar", description="Positive test case for vendor creation")
 	public void VendorCreation() {
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(0), testData.get(1));
@@ -93,7 +93,7 @@ public class CreateVendor extends BaseTestCase{
 		System.out.println(ActualTitleValue);
 		String ExpectedTitleValue=testData1.get(27);
 		System.out.println(ExpectedTitleValue);
-		
+
 		if(ActualTitleValue.equals(ExpectedTitleValue)) {
 			BaseTestCase.assertTrue(true, "Redirected to vendor list,vendor created succesfully");
 		}
@@ -104,17 +104,18 @@ public class CreateVendor extends BaseTestCase{
 
 
 		Boolean status=vendorCreation.verifyVendorOnList(vendorCreation.getCompanyName());
-        BaseTestCase.assertTrue(status, "Vendor not created");
+		BaseTestCase.assertTrue(status, "Vendor not created");
 		
-
-	}
+		LogoutFromPage.logout();
+}
 
 
 	//Negative Test Case
 	@Test
-	public void VendorCreationNegative() {
-		
-		LoginPage loginPage = new LoginPage();
+	@TestDetails(author="Ruchira.Mhaisurkar",description="Negative test case for Create Vendor")
+	public void VendorCreationNegative() 
+	{
+        LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(0), testData.get(1));
 		Common.sleep(2000);
 
@@ -168,19 +169,20 @@ public class CreateVendor extends BaseTestCase{
 
 		String getalerttext=Common.getText("VENDOR_NEGATIVE_ALERT_MSG_XPATH");
 		String actualalerttext="Email Address cannot be empty";
-		if(getalerttext.equals(actualalerttext)) {
+		if(getalerttext.equals(actualalerttext))
+		{
 			BaseTestCase.assertTrue(false, "Vendor created");
 		}
 		else {
 			BaseTestCase.assertTrue(true, "Vendor not created as the email id is invalid");
 		}
-		
-	LogoutFromPage.logout();
-	Common.sleep(2000);
+
+		LogoutFromPage.logout();
+		Common.sleep(2000);
 
 	}
-	
-	
+
+
 
 
 }
