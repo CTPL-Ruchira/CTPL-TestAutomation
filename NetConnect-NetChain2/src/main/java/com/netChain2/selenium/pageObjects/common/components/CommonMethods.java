@@ -20,6 +20,7 @@ public class CommonMethods
 	
 	public static void scrollUp()
 	{
+		Common.sleep(1000);
 		JavascriptExecutor jse = (JavascriptExecutor)Common.getDriver();
 		jse.executeScript("scroll(0, -650);");
 	}
@@ -72,6 +73,7 @@ public class CommonMethods
 	
 	public static void gotoRightSideARLink(String linkName) 
 	{
+		CommonMethods.scrollUp();
 		Common.click("AR_CREATE_NEW_PLUSE_BUTTON_XPATH");
 		Common.sleep(1000);
 		Common.click("AR_CLICK_ACCOUNT_RECEIVABLE_XPATH");
@@ -82,6 +84,7 @@ public class CommonMethods
 	
 	public static void gotoRightSideAPLink(String linkName) 
 	{
+		CommonMethods.scrollUp();
 		Common.click("AR_CREATE_NEW_PLUSE_BUTTON_XPATH");
 		Common.sleep(1000);
 		Common.click("AP_LINK_PARTIALLINKTEXT");
@@ -94,6 +97,7 @@ public class CommonMethods
 		Common.click("GR_WORKFLOW_LOGOUT_BUTTON_XPATH");
 	}
 	
+
 	public static String generateRandomStringForInvoiceID(String value) {
 		   String randomString = RandomStringUtils.randomAlphanumeric(3);
 		   return value.concat("_"+randomString);
@@ -107,8 +111,13 @@ public class CommonMethods
 	  WebElement poStatus=Common.findElement(verificationOfStatus);
 	  poStatus.click();
 	}
- 
-	 
 
-
+	public void verifyAndClickOnActionForPaymentList(String paymentId, String vendorName)
+	{
+		Common.sleep(2000);
+		String actionXpath="//div[text()='"+paymentId+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[10]//a[text()='Approve Payment']";
+		WebElement actionXpathElement=Common.findElement(actionXpath);
+		actionXpathElement.click();
+	}
+	
 }

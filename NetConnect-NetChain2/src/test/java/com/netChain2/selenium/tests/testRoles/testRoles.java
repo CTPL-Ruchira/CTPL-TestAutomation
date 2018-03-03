@@ -96,9 +96,10 @@ public class testRoles extends BaseTestCase {
 	   //Enter message ,memo
 	  role.invoiceCreationFormMessageMemo(setRolesWorkFlow.get(18), setRolesWorkFlow.get(19));
    
+	  //Search invoice
 	  ica.searchInvoice(getInvoiceId);
    
-   
+    role.verificationForAcceptancePending(setRolesWorkFlow.get(8), getInvoiceId, setRolesWorkFlow.get(20));
    }
 
 

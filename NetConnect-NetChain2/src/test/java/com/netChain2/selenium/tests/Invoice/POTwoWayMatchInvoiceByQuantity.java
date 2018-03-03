@@ -52,34 +52,24 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			Common.sleep(2000);
 		  
 			CheckTwoWayMatchInvoice.scrollUp();
-	 		
-	 		APModuleCreation apModule = invoice.createNew();
-			Common.sleep(3000);
+	 		CommonMethods.gotoRightSideAPLink("NEW PURCHASE ORDER");
 			
-			//click to AP()
-			apModule.clickAPLink();
-			Common.sleep(2000);
-			
-			//Select on link
-			apModule.clickPurchaseLink();
-			Common.sleep(2000);
-
-			//Create Purchase form
+	 		//Create Purchase form
 			purchaseOrder.poCreation(testPurchaseOrder.get(0), testPurchaseOrder.get(1), testPurchaseOrder.get(2),testPurchaseOrder.get(3),testPurchaseOrder.get(4),testPurchaseOrder.get(5), testPurchaseOrder.get(6),testPurchaseOrder.get(7), testPurchaseOrder.get(8), testPurchaseOrder.get(9), testPurchaseOrder.get(10), testPurchaseOrder.get(11), testPurchaseOrder.get(12));
 
 			poNumber=Integer.toString(PurchaseOrderCreationForm.getPoNumber());
-			System.out.println("Po number---" +poNumber);
-			
-			//Search Invoice number
+		
+			/*//Search Invoice number
 			CommonMethods.searchByNumberOrName(poNumber);
-			Common.sleep(2000);
+			Common.sleep(2000);*/
 			
+			CommonMethods.verifyAndClickOnActionForPo(poNumber, testPurchaseOrder.get(0),  testPurchaseOrder.get(23));
 			vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
-				
+			/*	
 			//approve po
 			TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
 			Common.sleep(2000);
-			
+			*/
 			//Scroll up
 			CheckTwoWayMatchInvoice.scrollUp();
 			Common.sleep(5000);
