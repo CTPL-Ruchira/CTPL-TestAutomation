@@ -21,7 +21,8 @@ public class InvoiceCreationListActions
 	}
 
 	public void clickOnAcceptInvoice(String VendorName, String InvoiceNumber) {
-		String InvoiceStatusAcceptInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[text()='Accept Invoice']";
+		//String InvoiceStatusAcceptInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[text()='Accept Invoice']";
+		String InvoiceStatusAcceptInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]//a[text()='Accept Invoice']";
 		WebElement Element2=Common.findElement(InvoiceStatusAcceptInvoice);
 		Element2.click();
 	}
@@ -39,7 +40,8 @@ public class InvoiceCreationListActions
 	}
 
 	public void clickOnApproveInvoice(String VendorName, String InvoiceNumber) {
-		String InvoiceStatusApproveInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[text()='Approve Invoices']";
+		//String InvoiceStatusApproveInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[text()='Approve Invoices']";
+		String InvoiceStatusApproveInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]//a[text()='Approve Invoices']";
 		WebElement Element3=Common.findElement(InvoiceStatusApproveInvoice);
 		Element3.click();
 	}
@@ -51,7 +53,9 @@ public class InvoiceCreationListActions
 	//Create payment link
 	public void clickOnCreatePaymentLink(String VendorName, String InvoiceNumber)
 	{
-		String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[@class='text']/div/a[text()='Create Payment']";
+		
+		//String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[@class='text']/div/a[text()='Create Payment']";
+		String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]//a[text()='Create Payment']";
 		WebElement element=Common.findElement(InvoiceLocator);
 		element.click();
 	} 
@@ -68,9 +72,10 @@ public class InvoiceCreationListActions
 	
 	//Click on approve payment 
 	public void clickOnApprovePayment(String VendorName, String payid) {
-		String InvoiceStatusApprovePayment="//div[text()='"+payid+"']/ancestor::div[2]/div[2]/div[2][text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/a[1]";
-		WebElement Element4=Common.findElement(InvoiceStatusApprovePayment);
-		Element4.click();
+		//String InvoiceStatusApprovePayment="//div[text()='"+payid+"']/ancestor::div[2]/div[2]/div[2][text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/a[1]";
+		String InvoiceStatusApprovePayment="//div[text()='"+payid+"']/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]//a[text()='Approve Payment']";
+		WebElement element4=Common.findElement(InvoiceStatusApprovePayment);
+		element4.click();
 	}  
 	
 	//Send payment button
@@ -215,7 +220,8 @@ public class InvoiceCreationListActions
 	//Verification on processing link
 	public boolean verificationOnProcessingLink(String VendorName, String Payid,String expectedValue)
 	{
-		String invoiceProcessingLocator="//div[text()='"+Payid+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']";
+		//String invoiceProcessingLocator="//div[text()='"+Payid+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']";
+		String invoiceProcessingLocator="//div[text()='"+Payid+"']/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]/td[10]//div[@class='text']//span";
 		WebElement Pro=Common.findElement(invoiceProcessingLocator);
 	    String actionPayment=Pro.getText();
 	    String action=expectedValue;
@@ -232,7 +238,8 @@ public class InvoiceCreationListActions
 	
 	//verification of Status sent
 	public boolean verificationOfStatusSent(String VendorName, String Payid,String expectedValue) {
-		String actionStatusLocator="//div[text()='"+Payid+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[6]/div[2][text()='sent']";
+		//String actionStatusLocator="//div[text()='"+Payid+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[6]/div[2][text()='sent']";
+		String actionStatusLocator="//div[text()='"+Payid+"']/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]/td[7]//div[@class='text']";
 		WebElement sent=Common.findElement(actionStatusLocator);		
 		String statusSent=sent.getText();
         String status=expectedValue;
@@ -255,7 +262,8 @@ public class InvoiceCreationListActions
 
  //Verification of status schedule
 	public boolean verificationOfStatusSchedule(String VendorName, String PayId) {
-		String actionStatusLocator="//div[text()='"+PayId+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[6]/div[2]";
+		//String actionStatusLocator="//div[text()='"+PayId+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[6]/div[2]";
+		String actionStatusLocator="//div[text()='"+PayId+"']/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]/td[7]//div[@class='text']";
 		WebElement schedule=Common.findElement(actionStatusLocator);		
 		String statuschedule=schedule.getText();
         String status="scheduled";
@@ -273,7 +281,8 @@ public class InvoiceCreationListActions
 	       //Verification of create payment link
 	public void verificationOnSendPaymentLink(String VendorName, String PayId)
 	{
-		String invoiceSendPaymentLocator="//div[text()='"+VendorName+"']/ancestor::div[2]/div[3]/div[text()='"+PayId+"']/ancestor::div[2]/div[9]/div/a[1]";
+		//String invoiceSendPaymentLocator="//div[text()='"+VendorName+"']/ancestor::div[2]/div[3]/div[text()='"+PayId+"']/ancestor::div[2]/div[9]/div/a[1]";
+		String invoiceSendPaymentLocator="//div[text()='"+PayId+"']/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]//a[text()='Send Payment']";
 		WebElement sendPayment=Common.findElement(invoiceSendPaymentLocator);		
 		sendPayment.click();
        }
