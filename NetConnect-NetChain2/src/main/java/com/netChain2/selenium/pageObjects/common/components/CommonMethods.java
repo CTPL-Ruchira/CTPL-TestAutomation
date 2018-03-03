@@ -2,6 +2,7 @@ package com.netChain2.selenium.pageObjects.common.components;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
 import com.netChain2.engine.Common;
 
@@ -98,4 +99,16 @@ public class CommonMethods
 		   return value.concat("_"+randomString);
 		   
 		  }
+   
+	public static void verifyAndClickOnActionForPo(String poNumber, String vendorName,String status) {
+      Common.click("SORTING_ARROW_XPATH");
+      Common.sleep(1000);
+      String verificationOfStatus="//div[text()='"+poNumber+"']/ancestor::tr[1]/td[5]//div[text()='"+vendorName+"']/ancestor::tr[1]//td[11]//div//a[text()='"+status+"']";
+	  WebElement poStatus=Common.findElement(verificationOfStatus);
+	  poStatus.click();
+	}
+ 
+	 
+
+
 }
