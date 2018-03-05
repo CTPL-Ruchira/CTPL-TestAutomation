@@ -106,13 +106,13 @@ public class CommonMethods
    
 	public static void verifyAndClickOnActionForPo(String poNumber, String vendorName,String status) {
       Common.click("SORTING_ARROW_XPATH");
-      Common.sleep(1000);
+      Common.sleep(4000);
       String verificationOfStatus="//div[text()='"+poNumber+"']/ancestor::tr[1]/td[5]//div[text()='"+vendorName+"']/ancestor::tr[1]//td[11]//div//a[text()='"+status+"']";
 	  WebElement poStatus=Common.findElement(verificationOfStatus);
 	  poStatus.click();
 	}
 
-	public void verifyAndClickOnActionForPaymentList(String paymentId, String vendorName)
+	public static void verifyAndClickOnActionForPaymentList(String paymentId, String vendorName)
 	{
 		Common.sleep(2000);
 		String actionXpath="//div[text()='"+paymentId+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[10]//a[text()='Approve Payment']";
