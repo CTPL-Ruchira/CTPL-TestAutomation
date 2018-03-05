@@ -41,8 +41,8 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
         testdatatwowaymatch=Common.getTestData("NetchainTest.TwoWayMatch");
 	  	testPurchaseOrder=Common.getTestData("Netchain.NewPurchaseOrder");
 	}
-	/*
-	@Test
+	
+    @Test
      @TestDetails(author="Roshni.Mehta", description="Two Way Match CreatePayment")
 	  public void testCreateInvoice_CreatePayment() {
 		   
@@ -66,8 +66,8 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			Common.sleep(2000);
 			
 			//Search Invoice number
-			CommonMethods.searchByNumberOrName(poNumber);
-			Common.sleep(2000);
+			//CommonMethods.searchByNumberOrName(poNumber);
+			//Common.sleep(2000);
 			
 			//Verify approve po
 			CommonMethods.verifyAndClickOnActionForPo(poNumber, testPurchaseOrder.get(0),testPurchaseOrder.get(23));
@@ -77,8 +77,8 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			
 				
 			//approve po
-			TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
-			Common.sleep(2000);
+			//TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
+			//.sleep(2000);
 			
 			//Scroll up
 			CheckTwoWayMatchInvoice.scrollUp();
@@ -123,10 +123,9 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			invoice.CreateRule_CancelButton();
 
 			//Search invoice
-			TwoWayMatch.searchInvoice(invoiceNo);
+			//TwoWayMatch.searchInvoice(invoiceNo);
 
-
-			//Scroll up
+           //Scroll up
 			CheckTwoWayMatchInvoice.scrollUp();
 			Common.sleep(2000);
 
@@ -135,16 +134,15 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			Common.sleep(4000);
 
 			//Create payment link verification
-			boolean isCreatePaymentLinkVisible=TwoWayMatch.CheckInvoiceStatus_CreatePayment(vendorNameInPo,invoiceNo,testPurchaseOrder.get(29));
+			boolean isCreatePaymentLinkVisible=TwoWayMatch.CheckInvoiceStatus_CreatePayment(vendorNameInPo,invoiceNo,testPurchaseOrder.get(24));
 			assertTrue(isCreatePaymentLinkVisible, "Custom Workflow is not set");
 			Common.sleep(5000);
 			Reporter.log("Create payment link is visible as per custom workflow");
 			LogoutFromPage.logout();
 	 }
-	*/
-	/*
-	@Test
-	//@Test(dependsOnMethods="testCreateInvoice_CreatePayment")
+	
+	
+	@Test(dependsOnMethods="testCreateInvoice_CreatePayment")
 	 @TestDetails(author="Roshni.Mehta",description="QtyMisMatchedByEditPo")
 	public void  CreateInvoice_DiscrepantQtyMisMatchedByEditPo(){
         
@@ -162,16 +160,15 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		poNumber=Integer.toString(PurchaseOrderCreationForm.getPoNumber());
 		
 		//Search Invoice number
-		CommonMethods.searchByNumberOrName(poNumber);
-		Common.sleep(2000);
+		//CommonMethods.searchByNumberOrName(poNumber);
+		//Common.sleep(2000);
 	   
 		//vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
 		vendorNameInPo=testPurchaseOrder.get(0);
 		
 		//approve po
-		TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
-		Common.sleep(4000);
-		
+		//TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
+		//Common.sleep(4000);
 		
 		//Verify approve po
 		CommonMethods.verifyAndClickOnActionForPo(poNumber, testPurchaseOrder.get(0),testPurchaseOrder.get(23));
@@ -189,8 +186,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	    
 	    //Get Invoice number
 	    invoiceNo=invoice.getAttributeValueInvoiceNo();
-		System.out.println("Invoice number"+invoiceNo);
-	    
+	
 		//Select value from Net Term 
 		invoice.SelectNetTerm(testdatatwowaymatch.get(1));
 		
@@ -222,7 +218,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		invoice.CreateRule_CancelButton();
 		
 		//Search Invoice number
-		TwoWayMatch.searchInvoice(invoiceNo);
+		//TwoWayMatch.searchInvoice(invoiceNo);
 
 		//Scroll up
 		CheckTwoWayMatchInvoice.scrollUp();
@@ -244,8 +240,8 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		 Common.getDriver().navigate().refresh();
 		
 		//Search Invoice number
-		CommonMethods.searchByNumberOrName(invoiceNo);
-		Common.sleep(3000);		
+		//CommonMethods.searchByNumberOrName(invoiceNo);
+		//Common.sleep(3000);		
 
 		 //Click on sorting arrow
 		 Common.click("SORTING_ARROW_XPATH");
@@ -257,12 +253,10 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	    Reporter.log("Status is discrepant as per custom workflow");
 	    Common.sleep(2000);
 	 
-	      
-	    //Search Invoice number
-	    CommonMethods.searchByNumberOrName(invoiceNo);
+	   //Search Invoice number
+	   // CommonMethods.searchByNumberOrName(invoiceNo);
 	    
-        
-	    //Click on sorting arrow
+        //Click on sorting arrow
 		 Common.click("SORTING_ARROW_XPATH");
 		 Common.sleep(4000);
 	    
@@ -280,8 +274,8 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	    Common.sleep(3000);
 
 	    //Search Invoice number
-	    CommonMethods.searchByNumberOrName(poNumber);
-	    Common.sleep(3000);
+	    //CommonMethods.searchByNumberOrName(poNumber);
+	    //Common.sleep(3000);
 
 	    //Click on sorting arrow
 		 Common.click("SORTING_ARROW_XPATH");
@@ -294,10 +288,9 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	    CommonMethods.gotoLeftAPLink("Invoices");
 	    Common.sleep(3000);
 		
+	   //Search Invoice number
+	   // CommonMethods.searchByNumberOrName(invoiceNo);
 	 
-		//Search Invoice number
-	    CommonMethods.searchByNumberOrName(invoiceNo);
-	
 	    //Click payment link
         icl.clickOnCreatePaymentLink(vendorNameInPo,invoiceNo);
         Common.sleep(8000);
@@ -313,16 +306,8 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
         icl.createPaymentButton();
         Common.sleep(2000);
           
-        //Payment verification
-         String ExpectedAlertMessage2="payment is created";
-         String ActualAlertMessage2=icl.gettextValue();			  
-         boolean check3= ExpectedAlertMessage2.equals(ActualAlertMessage2);
-         BaseTestCase.assertTrue(check3, "Payment creation failed");
-         Common.sleep(6000);
-         Reporter.log("Payment was created successfully");
-        
-         //Search invoice
-         icl.searchInvoice(payId);
+        //Search invoice
+        // icl.searchInvoice(payId);
         
          //Check approve status
          boolean isApprovePayment =  TwoWayMatch.checkApprovePayment(vendorNameInPo, payId,testPurchaseOrder.get(22));
@@ -331,11 +316,9 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
          
          //Logout
 	    LogoutFromPage.logout();
-	} */
+	} 
 	
-	/* 
-	@Test
-   //@Test(dependsOnMethods="CreateInvoice_DiscrepantQtyMisMatchedByEditPo")
+	@Test(dependsOnMethods="CreateInvoice_DiscrepantQtyMisMatchedByEditPo")
 	 @TestDetails(author="Roshni.Mehta",description="QtyMisMatchedByEditInvoice")
 	 public void CreateInvoice_DiscrepantQtyMisMatchedByEditInvoice() {
             LoginPage loginPage = new LoginPage();
@@ -353,14 +336,14 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			poNumber=Integer.toString(PurchaseOrderCreationForm.getPoNumber());
 		
 			//Search Invoice number
-			CommonMethods.searchByNumberOrName(poNumber);
-			Common.sleep(2000);
-		    vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
+			//CommonMethods.searchByNumberOrName(poNumber);
+			//Common.sleep(2000);
+		   // vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
 			vendorNameInPo=testPurchaseOrder.get(0);
 			
 			//approve po
-			TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
-			Common.sleep(2000);
+			//TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
+			//Common.sleep(2000);
 			
             //Verify approve po
 			CommonMethods.verifyAndClickOnActionForPo(poNumber, testPurchaseOrder.get(0),testPurchaseOrder.get(23));
@@ -411,7 +394,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			invoice.CreateRule_CancelButton();
 			
 			//Search Invoice number
-			TwoWayMatch.searchInvoice(invoiceNo);
+			//TwoWayMatch.searchInvoice(invoiceNo);
 			
 			//Scroll up
 			CheckTwoWayMatchInvoice.scrollUp();
@@ -432,9 +415,8 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			 Common.getDriver().navigate().refresh();
 			
 			//Search Invoice number
-			CommonMethods.searchByNumberOrName(invoiceNo);
+			//CommonMethods.searchByNumberOrName(invoiceNo);
 					
-
 			 //Scroll up
 			 CheckTwoWayMatchInvoice.scrollUp();
 			 Common.sleep(3000);
@@ -450,10 +432,9 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		    Common.sleep(3000);
 		   
 		    //Search Invoice number
-		    CommonMethods.searchByNumberOrName(invoiceNo);
+		    //CommonMethods.searchByNumberOrName(invoiceNo);
 
-		    
-			 //Click on sorting arrow
+		    //Click on sorting arrow
 			 Common.click("SORTING_ARROW_XPATH");
 			 Common.sleep(3000);
 		    
@@ -497,9 +478,12 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		    Common.sleep(3000);
 			
 		    //Search
-			CommonMethods.searchByNumberOrName(invoiceNo);
-			Common.sleep(2000);
+			//CommonMethods.searchByNumberOrName(invoiceNo);
+			//Common.sleep(2000);
 		 
+		    //Scroll up
+			 CheckTwoWayMatchInvoice.scrollUp();
+			 Common.sleep(3000);
 		    
 		    //Click on sorting arrow
 			 Common.click("SORTING_ARROW_XPATH");
@@ -519,25 +503,14 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	        //Click payment button
 	        icl.createPaymentButton();
 	        Common.sleep(2000);
-	          
-	        //Payment verification
-	         String ExpectedAlertMessage2="payment is created";
-	         String ActualAlertMessage2=icl.gettextValue();			   
 	         
-	         boolean check3= ExpectedAlertMessage2.equals(ActualAlertMessage2);
-	         BaseTestCase.assertTrue(check3, "Payment creation failed");
-	         Common.sleep(6000);
-	         Reporter.log("Payment was created successfully");
-	        
 	         //Search invoice
-	         icl.searchInvoice(payId);
+	         //icl.searchInvoice(payId);
 	        
-	         
-	    	 //Click on sorting arrow
+	         //Click on sorting arrow
 			 Common.click("SORTING_ARROW_XPATH");
 			 Common.sleep(3000);
 		    
-	         
 	         //Check approve status
 	         boolean isApprovePayment =  TwoWayMatch.checkApprovePayment(vendorNameInPo, payId,testPurchaseOrder.get(22));
 	         assertTrue(isApprovePayment, "approve payment lik is not visible");
@@ -547,16 +520,14 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			LogoutFromPage.logout();
 	 }
 	
-	*/
-	
-	/*@Test
-	//@Test(dependsOnMethods="CreateInvoice_DiscrepantQtyMisMatchedByEditInvoice")
+	@Test(dependsOnMethods="CreateInvoice_DiscrepantQtyMisMatchedByEditInvoice")
 	@TestDetails(author="Roshni.Mehta",description="Po not found")
 	public void poNotFound() {
 		 //Login
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(4), testData.get(5));
 	
+		//Scroll up
 		CheckTwoWayMatchInvoice.scrollUp();
 		
 		//Click on purchase order link
@@ -570,12 +541,12 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		vendorNameInPo=testPurchaseOrder.get(0);
 		
 		//Search Invoice number
-		CommonMethods.searchByNumberOrName(poNumber);
-		vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
+		//CommonMethods.searchByNumberOrName(poNumber);
+		//vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
 		
 		//approve po
-		TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
-		Common.sleep(2000);
+		//TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
+		//Common.sleep(2000);
 
         //Verify approve po
 		CommonMethods.verifyAndClickOnActionForPo(poNumber, testPurchaseOrder.get(0),testPurchaseOrder.get(23));	
@@ -634,11 +605,10 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	    invoice.CreateRule_CancelButton();
 	
 	    //Search Invoice number
-	    CommonMethods.searchByNumberOrName(invoiceNo);
-	    Common.sleep(2000);
+	    //CommonMethods.searchByNumberOrName(invoiceNo);
+	   // Common.sleep(2000);
 	   
-
-		//Scroll up
+	    //Scroll up
 		CheckTwoWayMatchInvoice.scrollUp();
 		Common.sleep(2000);
 		
@@ -657,10 +627,9 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	    Common.getDriver().navigate().refresh();
 
 	    //Search Invoice number
-	    CommonMethods.searchByNumberOrName(invoiceNo);
+	   // CommonMethods.searchByNumberOrName(invoiceNo);
 	  				
-
-		//Scroll up
+	    //Scroll up
 		CheckTwoWayMatchInvoice.scrollUp();
 		Common.sleep(5000);
 		
@@ -674,7 +643,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	    Reporter.log("Status is discrepant as per custom workflow");
 
 	    //Search Invoice number
-	    CommonMethods.searchByNumberOrName(invoiceNo);
+	    //CommonMethods.searchByNumberOrName(invoiceNo);
 	    
 	    //Click on vendor
 	    TwoWayMatch.clickOnVendor(vendorNameInPo,invoiceNo);
@@ -714,7 +683,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		CheckTwoWayMatchInvoice.scrollUp();
 	    
 		//Search Invoice number
-	    CommonMethods.searchByNumberOrName(invoiceNo);
+	    //CommonMethods.searchByNumberOrName(invoiceNo);
 	 
 		 //Click on sorting arrow
 		 Common.click("SORTING_ARROW_XPATH");
@@ -736,17 +705,8 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
         icl.createPaymentButton();
         Common.sleep(2000);
           
-        //Payment verification
-         String ExpectedAlertMessage2="payment is created";
-         String ActualAlertMessage2=icl.gettextValue();			   
-         System.out.println("Actual value payment  " +ActualAlertMessage2);  
-         boolean check3= ExpectedAlertMessage2.equals(ActualAlertMessage2);
-         BaseTestCase.assertTrue(check3, "Payment creation failed");
-         Common.sleep(6000);
-         Reporter.log("Payment was created successfully");
-        
          //Search invoice
-         icl.searchInvoice(payId);
+        // icl.searchInvoice(payId);
         
          //Check approve status
          boolean isApprovePayment =  TwoWayMatch.checkApprovePayment(vendorNameInPo, payId,testPurchaseOrder.get(22));
@@ -755,10 +715,10 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		
 		//logout
 		LogoutFromPage.logout();
-	}	*/
+	}	
 	 
-	@Test
-	//@Test(dependsOnMethods="poNotFound")
+	
+	@Test(dependsOnMethods="poNotFound")
 	 @TestDetails(author="Roshni.Mehta",description="TwoWayMatch with Amount by edit invoice")
 
 	 public void CreateInvoice_DiscrepantAmountByEditInvoice() {
@@ -775,14 +735,13 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 
 			poNumber=Integer.toString(PurchaseOrderCreationForm.getPoNumber());
 		
-			/*//Search Invoice number
-			CommonMethods.searchByNumberOrName(poNumber);
-			
-			vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
+			//Search Invoice number
+			//CommonMethods.searchByNumberOrName(poNumber);
+			//vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
 				
 			//approve po
-			TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
-			Common.sleep(2000);*/
+			//TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
+			//Common.sleep(2000);
 			vendorNameInPo=testPurchaseOrder.get(0);
 			
 			//Scroll up
@@ -833,16 +792,13 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			
 			//Select Cancel button on Create rule button
 			invoice.CreateRule_CancelButton();
-	/*		
-			//Search Invoice number
-			TwoWayMatch.searchInvoice(invoiceNo);
-			*/
 			
-
+			//Search Invoice number
+			//TwoWayMatch.searchInvoice(invoiceNo);
+			
 			//Scroll up
 			CheckTwoWayMatchInvoice.scrollUp();
 			Common.sleep(5000);
-			
 			
 			//Click on sorting arrow
 			 Common.click("SORTING_ARROW_XPATH");
@@ -857,11 +813,10 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			
 			//Refresh the page
 			 Common.getDriver().navigate().refresh();
-			/*
+			
 			//Search Invoice number
-			CommonMethods.searchByNumberOrName(invoiceNo);
-					*/
-			 
+			//CommonMethods.searchByNumberOrName(invoiceNo);
+					
 			 //Click on sorting arrow
 			 Common.click("SORTING_ARROW_XPATH");
 			 Common.sleep(3000);
@@ -872,9 +827,9 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		    Reporter.log("Status is discrepant as per custom workflow");
 		    Common.sleep(3000);
 		   
-		  /*  //Search Invoice number
-		    CommonMethods.searchByNumberOrName(invoiceNo);
-*/
+		    //Search Invoice number
+		   // CommonMethods.searchByNumberOrName(invoiceNo);
+
 		    //Click on vendor
 		    TwoWayMatch.clickOnVendor(vendorNameInPo,invoiceNo);
 
@@ -912,9 +867,9 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		    //Scroll up
 		    CheckTwoWayMatchInvoice.scrollUp();
 
-		   /* //Search
-		    CommonMethods.searchByNumberOrName(invoiceNo);
-		    Common.sleep(2000);*/
+		    //Search
+		   // CommonMethods.searchByNumberOrName(invoiceNo);
+		    //Common.sleep(2000);
 			
 		    //Click on sorting arrow
 			 Common.click("SORTING_ARROW_XPATH");
@@ -935,18 +890,9 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		    icl.createPaymentButton();
 		    Common.sleep(2000);
 
-		    //Payment verification
-		    String ExpectedAlertMessage2="payment is created";
-		    String ActualAlertMessage2=icl.gettextValue();			   
-		    System.out.println("Actual value payment  " +ActualAlertMessage2);  
-		    boolean check3= ExpectedAlertMessage2.equals(ActualAlertMessage2);
-		    BaseTestCase.assertTrue(check3, "Payment creation failed");
-		    Common.sleep(6000);
-		    Reporter.log("Payment was created successfully");
+		    //Search invoice
+		   // icl.searchInvoice(payId);
 
-		   /* //Search invoice
-		    icl.searchInvoice(payId);
-*/
 		    //Check approve status
 		    boolean isApprovePayment =  TwoWayMatch.checkApprovePayment(vendorNameInPo, payId,testPurchaseOrder.get(22));
 		    assertTrue(isApprovePayment, "approve payment lik is not visible");
@@ -955,66 +901,71 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	         LogoutFromPage.logout();
 	 }
  
-	/* @Test(dependsOnMethods="CreateInvoice_DiscrepantAmountByEditInvoice")
+
+	@Test(dependsOnMethods="CreateInvoice_DiscrepantAmountByEditInvoice")
 	 @TestDetails(author="Roshni.Mehta",description="TwoWayMatch with Amount by edit Po")
 	 public void  CreateInvoice_DiscrepantAmountMisMatchedByEditPo(){
 	        
 			LoginPage loginPage = new LoginPage();
 	 		loginPage.login(testData.get(4), testData.get(5));
-	 		Common.sleep(5000);
+	 		
+	 		//Scroll up
 	 		CheckTwoWayMatchInvoice.scrollUp();
 	 		
-	 		APModuleCreation apModule = invoice.createNew();
-			Common.sleep(3000);
-			
-			//click to AP()
-			apModule.clickAPLink();
-			Common.sleep(2000);
-			
-			//Select on link
-			apModule.clickPurchaseLink();
-			Common.sleep(2000);
-
+	 		//Click on purchase order link
+			CommonMethods.gotoRightSideAPLink("NEW PURCHASE ORDER");
+	 		
 			//Create Purchase form
 			purchaseOrder.poCreation(testPurchaseOrder.get(0), testPurchaseOrder.get(1), testPurchaseOrder.get(2),testPurchaseOrder.get(3),testPurchaseOrder.get(4),testPurchaseOrder.get(5), testPurchaseOrder.get(6),testPurchaseOrder.get(7), testPurchaseOrder.get(8), testPurchaseOrder.get(9), testPurchaseOrder.get(10), testPurchaseOrder.get(11), testPurchaseOrder.get(12));
 
+			//get PO number
 			poNumber=Integer.toString(PurchaseOrderCreationForm.getPoNumber());
-			System.out.println("Po number---" +poNumber);
-
+		 
 			//Search Invoice number
-			CommonMethods.searchByNumberOrName(poNumber);
+			//CommonMethods.searchByNumberOrName(poNumber);
 			
-			vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
-			
+			//vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
+			 
+			//Scroll up
+			CheckTwoWayMatchInvoice.scrollUp();
+			Common.sleep(3000);
+
+			//Click on sorting arrow
+			Common.click("SORTING_ARROW_XPATH");
+			Common.sleep(3000);
+
+			 	
 			//approve po
-			TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
-			Common.sleep(4000);
+			//TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
+			//Common.sleep(4000);
+			
+			 //get vendor name
+			//vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
+			
+			//Scroll up
+			CheckTwoWayMatchInvoice.scrollUp();
+			Common.sleep(3000);
+	       
+			//Verify approve po
+			CommonMethods.verifyAndClickOnActionForPo(poNumber, testPurchaseOrder.get(0),testPurchaseOrder.get(23));	
+			
+			//Get vendor name
+			vendorNameInPo=testPurchaseOrder.get(0);
 			
 			//Scroll up
 			CheckTwoWayMatchInvoice.scrollUp();
 			Common.sleep(3000);
 			
-			//click to create new
-			APModuleCreation apModule2 = invoice.createNew();
-			Common.sleep(2000);
-			
-			//click to AP()
-			apModule2.clickAPLink();
-			Common.sleep(2000);
-
-			//Click to New Invoice
-			apModule2.clickNewInvoice();
-			Common.sleep(3000);
+            //Click on invoice
+			CommonMethods.gotoRightSideAPLink("NEW INVOICE");
 			
 			//Select value from Vender DropDown
 			invoice.SelectVendor(testdatatwowaymatch.get(0));
-		    Common.sleep(3000);
-		    
+		
 		    //Get Invoice number
 		    invoiceNo=invoice.getAttributeValueInvoiceNo();
-			System.out.println("Invoice number"+invoiceNo);
-		    
-			//Select value from Net Term 
+			
+		   //Select value from Net Term 
 			invoice.SelectNetTerm(testdatatwowaymatch.get(1));
 			
 			//select value from Location dropdown
@@ -1044,9 +995,17 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			invoice.CreateRule_CancelButton();
 			
 			//Search Invoice number
-			TwoWayMatch.searchInvoice(invoiceNo);
+			//TwoWayMatch.searchInvoice(invoiceNo);
 			
-			//Invoice Accept link click
+			//Scroll up
+			CheckTwoWayMatchInvoice.scrollUp();
+			Common.sleep(3000);
+			
+			//Click on sorting arrow
+			 Common.click("SORTING_ARROW_XPATH");
+			 Common.sleep(3000);
+			
+		    //Invoice Accept link click
 			TwoWayMatch.InvoiceAcceptLinkClick(vendorNameInPo,invoiceNo);
 			
 			//Invoice Accept button on link
@@ -1057,17 +1016,21 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			 Common.getDriver().navigate().refresh();
 			
 			//Search Invoice number
-			CommonMethods.searchByNumberOrName(invoiceNo);
-			Common.sleep(3000);		
+			//CommonMethods.searchByNumberOrName(invoiceNo);
+			//Common.sleep(3000);		
 			
-			//check status 
+			 //Click on sorting arrow
+			 Common.click("SORTING_ARROW_XPATH");
+			 Common.sleep(3000);
+			
+			 //check status 
 			boolean IsDiscrepantStatusVisible=TwoWayMatch.CheckInvoiceStatus_Discrepant(vendorNameInPo,invoiceNo,testdatatwowaymatch.get(29));
 		    assertTrue(IsDiscrepantStatusVisible,"Discrepant status is not visible");
 		    Reporter.log("Status is discrepant as per custom workflow");
 		    Common.sleep(2000);
 		   
 		    //Search Invoice number
-		    CommonMethods.searchByNumberOrName(invoiceNo);
+		   // CommonMethods.searchByNumberOrName(invoiceNo);
 		    
 		    TwoWayMatch.editPoLinkClick(vendorNameInPo,invoiceNo);
 		    Common.sleep(2000);
@@ -1080,9 +1043,13 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		    Common.sleep(3000);
 
 		    //Search Invoice number
-		    CommonMethods.searchByNumberOrName(poNumber);
-		    Common.sleep(3000);
-
+		   // CommonMethods.searchByNumberOrName(poNumber);
+		   // Common.sleep(3000);
+		   
+		    //Click on sorting arrow
+			 Common.click("SORTING_ARROW_XPATH");
+			 Common.sleep(3000);
+		    
 		    TwoWayMatch.clickOnUnapproveUpdate(vendorNameInPo, poNumber);
 		    Common.sleep(2000);
 		   
@@ -1090,17 +1057,22 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		    CommonMethods.gotoLeftAPLink("Invoices");
 		    Common.sleep(3000);
 			
+		    //Scroll up
 			CheckTwoWayMatchInvoice.scrollUp();
 		    
 			//Search Invoice number
-		    CommonMethods.searchByNumberOrName(invoiceNo);
-		    //Click payment link
+		    //CommonMethods.searchByNumberOrName(invoiceNo);
+		 
+			//Click on sorting arrow
+			 Common.click("SORTING_ARROW_XPATH");
+			 Common.sleep(3000);
+			
+			 //Click payment link
 	        icl.clickOnCreatePaymentLink(vendorNameInPo,invoiceNo);
 	        Common.sleep(8000);
 	         
 	        //Get payment id
 	        payId= icl.getPaymentId();
-	        System.out.println("payid-----"+ payId);
 	        
 	        //Click on payment banner 
 	        icl.bannerClick();
@@ -1110,17 +1082,8 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	        icl.createPaymentButton();
 	        Common.sleep(2000);
 	          
-	        //Payment verification
-	         String ExpectedAlertMessage2="payment is created";
-	         String ActualAlertMessage2=icl.gettextValue();			   
-	         System.out.println("Actual value payment  " +ActualAlertMessage2);  
-	         boolean check3= ExpectedAlertMessage2.equals(ActualAlertMessage2);
-	         BaseTestCase.assertTrue(check3, "Payment creation failed");
-	         Common.sleep(6000);
-	         Reporter.log("Payment was created successfully");
-	        
-	         //Search invoice
-	         icl.searchInvoice(payId);
+	          //Search invoice
+	         //icl.searchInvoice(payId);
 	        
 	         //Check approve status
 	         boolean isApprovePayment =  TwoWayMatch.checkApprovePayment(vendorNameInPo, payId,testPurchaseOrder.get(22));
@@ -1129,72 +1092,63 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		    
 	         //Logout
 		    LogoutFromPage.logout();
-		} 
+	    }	
 	
-	 @Test(dependsOnMethods="CreateInvoice_DiscrepantAmountMisMatchedByEditPo")
-		
-     	@TestDetails(author="Ruchira.Mhaisurkar",description="TwoWayMatch with qty within threshold limit")
+	
+	@Test(dependsOnMethods="CreateInvoice_DiscrepantAmountMisMatchedByEditPo")
+	@TestDetails(author="Ruchira.Mhaisurkar",description="TwoWayMatch with qty within threshold limit")
 		public void testCreateInvoice_QtyWithinThresholdLimit()
 		{
-			System.out.println("Into testCreateInvoice_QtyWithinThresholdLimit");
-
 			//Login
 			LoginPage loginPage = new LoginPage();
 			loginPage.login(testData.get(4), testData.get(5));
-			Common.sleep(2000);
+			
 
 			//Scroll up
 			CheckTwoWayMatchInvoice.scrollUp();
 			
-			//click to create new
-			APModuleCreation apModule = invoice.createNew();
-			Common.sleep(2000);
-
+	 		//Click on purchase order link
+			CommonMethods.gotoRightSideAPLink("NEW PURCHASE ORDER");
 			
-			//click to AP()
-			apModule.clickAPLink();
-			Common.sleep(2000);
-
-			//Select on link
-			apModule.clickPurchaseLink();
-			Common.sleep(2000);
-
 			purchaseOrder.poCreation(testPurchaseOrder.get(16), testPurchaseOrder.get(1), testPurchaseOrder.get(2),testPurchaseOrder.get(3),testPurchaseOrder.get(4),testPurchaseOrder.get(5), testPurchaseOrder.get(6),testPurchaseOrder.get(17), testPurchaseOrder.get(18), testPurchaseOrder.get(9), testPurchaseOrder.get(10), testPurchaseOrder.get(11), testPurchaseOrder.get(12));
 
+			//Get po number
 			poNumber=Integer.toString(PurchaseOrderCreationForm.getPoNumber());
-			System.out.println("Po number---" +poNumber);
-
-			//Search invoice
-			CommonMethods.searchByNumberOrName(poNumber);
+			
+			//Scroll up
+			CheckTwoWayMatchInvoice.scrollUp();
 			Common.sleep(3000);
+		
+				//Search invoice
+			//CommonMethods.searchByNumberOrName(poNumber);
+			//Common.sleep(3000);
 
 			
 			//Click 'approve' action on PO list
-			vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
-			TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
+			//vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
+			//TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
+			//Common.sleep(3000);
+
+
+			 //Verify approve po
+			CommonMethods.verifyAndClickOnActionForPo(poNumber, testPurchaseOrder.get(16),testPurchaseOrder.get(23));	
+			
+			//Get vendor name
+			vendorNameInPo=testPurchaseOrder.get(16);
+			
+			//Scroll up
+			CheckTwoWayMatchInvoice.scrollUp();
 			Common.sleep(3000);
-
-
-			//click to create new
-			APModuleCreation apModule1 = invoice.createNew();
-			Common.sleep(2000);
-
-			//click to AP()
-			apModule1.clickAPLink();
-			Common.sleep(2000);
-
-			//Click to New Invoice
-			apModule1.clickNewInvoice();
-			Common.sleep(2000);
-
+			
+            //Click on invoice
+			CommonMethods.gotoRightSideAPLink("NEW INVOICE");
+			
 			//Select vendor from dropdown
 			invoice.SelectVendor(testdatatwowaymatch.get(16));
-			Common.sleep(3000);
-
+		
 			//Get Invoice number
 			invoiceNo=invoice.getAttributeValueInvoiceNo();
-			System.out.println("Invoice number"+invoiceNo);
-
+	
 			//Select NetTerms
 			invoice.SelectNetTerm(testdatatwowaymatch.get(17));
 			Common.sleep(3000);
@@ -1242,10 +1196,18 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			invoice.CreateRule_CancelButton();
 
 			//Search invoice
-			CommonMethods.searchByNumberOrName(invoiceNo);
-			Common.sleep(3000);
+			//CommonMethods.searchByNumberOrName(invoiceNo);
+			//Common.sleep(3000);
 
-			//Invoice Accept link click
+			//Scroll up
+			CheckTwoWayMatchInvoice.scrollUp();
+			Common.sleep(3000);
+			
+			//Click on sorting arrow
+			 Common.click("SORTING_ARROW_XPATH");
+			 Common.sleep(3000);
+			
+			 //Invoice Accept link click
 			TwoWayMatch.InvoiceAcceptLinkClick(vendorNameInPo,invoiceNo);
 
 			//Click 'accept only' on invoice modal
@@ -1253,12 +1215,14 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			Common.sleep(3000);
 			
 			//Search invoice
-		    CommonMethods.searchByNumberOrName(invoiceNo);
-			Common.sleep(3000);
+		    //CommonMethods.searchByNumberOrName(invoiceNo);
+			//Common.sleep(3000);
 			
+	        //Click on sorting arrow
+			 Common.click("SORTING_ARROW_XPATH");
+			 Common.sleep(3000);
 			
-
-			//Create payment link verification
+           //Create payment link verification
 			boolean isCreatePaymentLinkVisible=TwoWayMatch.CheckInvoiceStatus_CreatePayment(vendorNameInPo,invoiceNo,testPurchaseOrder.get(24));
 			assertTrue(isCreatePaymentLinkVisible, "Custom Workflow is not set");
 			Common.sleep(5000);
@@ -1273,12 +1237,11 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			  
 			//Click payment link
 	        icl.clickOnCreatePaymentLink(vendorNameInPo,invoiceNo);
-	        Common.sleep(8000);
+	        Common.sleep(4000);
 	         
 	        //Get payment id
 	        payId= icl.getPaymentId();
-	        System.out.println("payid-----"+ payId);
-	        
+	       
 	        //Click on payment banner 
 	        icl.bannerClick();
 	        Common.sleep(5000);
@@ -1286,18 +1249,9 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	        //Click payment button
 	        icl.createPaymentButton();
 	        Common.sleep(2000);
-	          
-	        //Payment verification
-	         String ExpectedAlertMessage2="payment is created";
-	         String ActualAlertMessage2=icl.gettextValue();			   
-	         System.out.println("Actual value payment  " +ActualAlertMessage2);  
-	         boolean check3= ExpectedAlertMessage2.equals(ActualAlertMessage2);
-	         BaseTestCase.assertTrue(check3, "Payment creation failed");
-	         Common.sleep(6000);
-	         Reporter.log("Payment was created successfully");
 	        
-	         //Search invoice
-	         icl.searchInvoice(payId);
+	        //Search invoice
+	        // icl.searchInvoice(payId);
 	        
 	         //Check approve status
 	         boolean isApprovePayment =  TwoWayMatch.checkApprovePayment(vendorNameInPo, payId,testPurchaseOrder.get(22));
@@ -1306,69 +1260,53 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 	         LogoutFromPage.logout();
 		}
 		
-		@Test(dependsOnMethods= {"testCreateInvoice_QtyWithinThresholdLimit"})
+		
+	@Test(dependsOnMethods= {"testCreateInvoice_QtyWithinThresholdLimit"})
 		@TestDetails(author="Ruchira.Mhaisurkar",description="TwoWayMatch with Amount within threshold limit")
 		public void testCreateInvoice_AmountWithinThresholdLimit()
 		{
-			System.out.println("Into testCreateInvoice_AmountWithinThresholdLimit");
-			//Login
+	                 //Login
 					LoginPage loginPage = new LoginPage();
 					loginPage.login(testData.get(4), testData.get(5));
-					Common.sleep(2000);
-
+				
                     //Scroll up
 					CheckTwoWayMatchInvoice.scrollUp();
+
+			 		//Click on purchase order link
+					CommonMethods.gotoRightSideAPLink("NEW PURCHASE ORDER");
 					
-					//click to create new
-					APModuleCreation apModule1 = invoice.createNew();
-					Common.sleep(2000);
-
-					//click to AP()
-					apModule1.clickAPLink();
-					Common.sleep(2000);
-
-					//Select on link
-					apModule1.clickPurchaseLink();
-					Common.sleep(2000);
-
 					purchaseOrder.poCreation(testPurchaseOrder.get(16), testPurchaseOrder.get(1), testPurchaseOrder.get(2),testPurchaseOrder.get(3),testPurchaseOrder.get(4),testPurchaseOrder.get(5), testPurchaseOrder.get(6),testPurchaseOrder.get(17), testPurchaseOrder.get(18), testPurchaseOrder.get(9), testPurchaseOrder.get(10), testPurchaseOrder.get(11), testPurchaseOrder.get(12));
 
 					poNumber=Integer.toString(PurchaseOrderCreationForm.getPoNumber());
-					System.out.println("Po number---" +poNumber);
-					
+				
 					//Search invoice
-					CommonMethods.searchByNumberOrName(poNumber);
-					Common.sleep(3000);
+					//CommonMethods.searchByNumberOrName(poNumber);
+					//Common.sleep(3000);
 
 					//Click 'approve' action on PO list
-					vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
-					TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
-					Common.sleep(3000);
-                    
+					//vendorNameInPo=TwoWayMatch.getVendorNameFromPoList();
+					//TwoWayMatch.clickapprovePoLinkInPo(vendorNameInPo, poNumber);
+					//Common.sleep(3000);
+					 
+					//Verify approve po
+					CommonMethods.verifyAndClickOnActionForPo(poNumber, testPurchaseOrder.get(16),testPurchaseOrder.get(23));	
+					
+					//Get vendor name
+					vendorNameInPo=testPurchaseOrder.get(16);
+					
 					//Scroll up
 					CommonMethods.scrollUp();
 					Common.sleep(2000);
-                    
-					//click to create new
-					APModuleCreation apModule = invoice.createNew();
-					Common.sleep(2000);
-
-					//click to AP()
-					apModule.clickAPLink();
-					Common.sleep(2000);
-
-					//Click to New Invoice
-					apModule.clickNewInvoice();
-					Common.sleep(2000);
-
-					//Select vendor from dropdown
+					
+					//Click on invoice
+					CommonMethods.gotoRightSideAPLink("NEW INVOICE");
+					
+                    //Select vendor from dropdown
 					invoice.SelectVendor(testdatatwowaymatch.get(16));
-					Common.sleep(3000);
-
+					
 					//Get Invoice number
 					invoiceNo=invoice.getAttributeValueInvoiceNo();
-					System.out.println("Invoice number"+invoiceNo);
-
+					
 					//Select NetTerms
 					invoice.SelectNetTerm(testdatatwowaymatch.get(17));
 					Common.sleep(3000);
@@ -1414,10 +1352,18 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 					invoice.CreateRule_CancelButton();
 
 					//Search invoice
-					CommonMethods.searchByNumberOrName(invoiceNo);
-					Common.sleep(3000);
+					//CommonMethods.searchByNumberOrName(invoiceNo);
+					//Common.sleep(3000);
 
-					//Invoice Accept link click
+					//Scroll up
+					CommonMethods.scrollUp();
+					Common.sleep(2000);
+					
+					//Click on sorting arrow
+					 Common.click("SORTING_ARROW_XPATH");
+					 Common.sleep(3000);
+                    
+					 //Invoice Accept link click
 					TwoWayMatch.InvoiceAcceptLinkClick(vendorNameInPo,invoiceNo);
 
 					//Click 'accept only' on invoice modal
@@ -1425,9 +1371,13 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 					Common.sleep(3000);
 					
 					//Search invoice
-				    CommonMethods.searchByNumberOrName(invoiceNo);
-					Common.sleep(3000);
+				   // CommonMethods.searchByNumberOrName(invoiceNo);
+					//Common.sleep(3000);
 					
+					//Click on sorting arrow
+					 Common.click("SORTING_ARROW_XPATH");
+					 Common.sleep(3000);
+                   
 					//Create payment link verification
 					boolean isCreatePaymentLinkVisible=TwoWayMatch.CheckInvoiceStatus_CreatePayment(vendorNameInPo,invoiceNo,testPurchaseOrder.get(24));
 					assertTrue(isCreatePaymentLinkVisible, "Custom Workflow is not set");
@@ -1439,13 +1389,13 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 					assertTrue(isAcceptedStatusVisible, "Status is not seen as approved");
 					Common.sleep(5000);
 					Reporter.log("Status is seen as approved after the invoice is accepted ");
+					
 					//Click payment link
 			        icl.clickOnCreatePaymentLink(vendorNameInPo,invoiceNo);
 			        Common.sleep(8000);
 			         
 			        //Get payment id
 			        payId= icl.getPaymentId();
-			        System.out.println("payid-----"+ payId);
 			        
 			        //Click on payment banner 
 			        icl.bannerClick();
@@ -1454,18 +1404,9 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 			        //Click payment button
 			        icl.createPaymentButton();
 			        Common.sleep(2000);
-			          
-			        //Payment verification
-			         String ExpectedAlertMessage2="payment is created";
-			         String ActualAlertMessage2=icl.gettextValue();			   
-			         System.out.println("Actual value payment  " +ActualAlertMessage2);  
-			         boolean check3= ExpectedAlertMessage2.equals(ActualAlertMessage2);
-			         BaseTestCase.assertTrue(check3, "Payment creation failed");
-			         Common.sleep(6000);
-			         Reporter.log("Payment was created successfully");
-			        
+			     
 			         //Search invoice
-			         icl.searchInvoice(payId);
+			         //searchInvoice(payId);
 			        
 			         //Check approve status
 			         boolean isApprovePayment =  TwoWayMatch.checkApprovePayment(vendorNameInPo, payId,testPurchaseOrder.get(22));
@@ -1474,7 +1415,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 					
 			         LogoutFromPage.logout();
 					}
-*/
+
 }
 	
 	
