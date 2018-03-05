@@ -18,17 +18,18 @@ public class InvoiceCreationListActions
 	{
 		Common.sendKeys("INVOICE_SEARCH_BAR_XPATH", searchValue);
 		Common.sleep(2000);
-	}
+}
 
-	public void clickOnAcceptInvoice(String VendorName, String InvoiceNumber) {
+
+	public void clickOnAcceptInvoice(String vendorName, String invoiceNumber) {
+		String InvoiceStatusAcceptInvoice="//table[@class='table']//tr/td[3]//div[text()='"+invoiceNumber+"']/ancestor::tr/td[4]//div[text()='"+vendorName+"']/ancestor::tr/td[10]//div/a[text()='Accept Invoice']";
 		//String InvoiceStatusAcceptInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[text()='Accept Invoice']";
-		String InvoiceStatusAcceptInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]//a[text()='Accept Invoice']";
-		WebElement Element2=Common.findElement(InvoiceStatusAcceptInvoice);
+        WebElement Element2=Common.findElement(InvoiceStatusAcceptInvoice);
 		Element2.click();
 	}
 	
 	//Scroll up
-	public static void scrollUp()
+	public void scrollUp()
 	{
 		JavascriptExecutor jse = (JavascriptExecutor)Common.getDriver();
 		jse.executeScript("scroll(0, -250);");
@@ -39,10 +40,9 @@ public class InvoiceCreationListActions
 		Common.click("MODAL_ACCEPT_BUTTON_XPATH");
 	}
 
-	public void clickOnApproveInvoice(String VendorName, String InvoiceNumber) {
-		//String InvoiceStatusApproveInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[text()='Approve Invoices']";
-		String InvoiceStatusApproveInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]//a[text()='Approve Invoices']";
-		WebElement Element3=Common.findElement(InvoiceStatusApproveInvoice);
+	public void clickOnApproveInvoice(String vendorName, String invoiceNumber) {
+		String InvoiceStatusApproveInvoice="//table[@class='table']//tr/td[3]//div[text()='"+invoiceNumber+"']/ancestor::tr/td[4]//div[text()='"+vendorName+"']/ancestor::tr/td[10]//div/a[text()='Approve Invoices']";//String InvoiceStatusApproveInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[text()='Approve Invoices']";
+	    WebElement Element3=Common.findElement(InvoiceStatusApproveInvoice);
 		Element3.click();
 	}
 	
@@ -51,11 +51,11 @@ public class InvoiceCreationListActions
 	}
 
 	//Create payment link
-	public void clickOnCreatePaymentLink(String VendorName, String InvoiceNumber)
+	public void clickOnCreatePaymentLink(String vendorName, String invoiceNumber)
 	{
-		
+
+		String InvoiceLocator="//table[@class='table']//tr/td[3]//div[text()='"+invoiceNumber+"']/ancestor::tr/td[4]//div[text()='"+vendorName+"']/ancestor::tr/td[10]//div/a[text()='Create Payment']";
 		//String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[@class='text']/div/a[text()='Create Payment']";
-		String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]//a[text()='Create Payment']";
 		WebElement element=Common.findElement(InvoiceLocator);
 		element.click();
 	} 

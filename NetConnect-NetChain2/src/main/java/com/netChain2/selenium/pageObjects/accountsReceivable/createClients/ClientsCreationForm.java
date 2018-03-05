@@ -220,6 +220,7 @@ public class ClientsCreationForm {
 		EnterTitle(title);
 		selectPaymentReceiver();
 		clickAssociateEmpNextButton();
+		clickBookingAccntAddLineButton();
 		SetBookingAccount(location,dept,bookingAcc);
 		clickBookingAccountNextButton();
 		transactionDetails(terms,regNo,paymentMethod);
@@ -241,12 +242,7 @@ public class ClientsCreationForm {
 	//Verify Client List 	
 	public Boolean verifyClientOnList(String expectedClientName) 
 	 {
-	  boolean flag=false;
-	  Common.sleep(6000);
-	  System.out.println("expectedClientName"+expectedClientName);
-	  CommonMethods.searchByNumberOrName(expectedClientName);
-	  Common.sleep(2000);
-	  
+	  boolean flag=false;	  
 	  String actualClientNameOnList=Common.getText("AR_CLIENT_LIST_XPATH");
 	  if(actualClientNameOnList.equals(expectedClientName))
 	  {
