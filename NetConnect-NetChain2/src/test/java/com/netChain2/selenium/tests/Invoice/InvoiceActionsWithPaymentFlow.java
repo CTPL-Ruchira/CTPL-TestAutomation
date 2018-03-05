@@ -10,6 +10,7 @@ import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceC
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationListActions;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
@@ -19,9 +20,14 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 	private ArrayList<String> testDataInvoiceActions;
     private ArrayList<String> testDataVendorList;
 	
+	public String getInvoiceId;
 	public String invoiceNo;
 	public String invoicetotalAmount;
 	public String invoicetotalAmountRoundoff;
+	
+	
+	InvoiceCreationForm invoice = new InvoiceCreationForm();
+	InvoiceCreationListActions icl=new InvoiceCreationListActions();
 	
 	@BeforeClass
 	public void setUp() {
@@ -38,25 +44,21 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 			loginPage.login(testData.get(2), testData.get(3));
 			Common.sleep(2000);
 			
-			//click to create new
-			InvoiceCreationForm invoice = new InvoiceCreationForm();
-
-			APModuleCreation apModule = invoice.createNew();
-			Common.sleep(2000);
-			
-			//click to AP()
-			apModule.clickAPLink();
-			Common.sleep(2000);
-			
-			//Click to New Invoice
-			apModule.clickNewInvoice();
-			Common.sleep(2000);
+			//Click on new invoice
+			CommonMethods.gotoRightSideAPLink("New Invoice");
 			
 			//Select value from Vender DropDown
 			invoice.SelectVendor(testDataInvoiceActions.get(0));
 		    Common.sleep(6000);
 		    
-		    //Get Invoice number
+		    //Search invoice
+			String invoiceid=CommonMethods.generateRandomStringForInvoiceID(testDataVendorList.get(3));
+			invoice.setInvoiceNo(invoiceid);
+
+			getInvoiceId= invoice.getAttributeValueInvoiceNo();
+	        Common.sleep(3000);
+		    
+	        //Get Invoice number
 		    invoiceNo=invoice.getAttributeValueInvoiceNo();
 		    System.out.println("Invoice number" +invoiceNo);
 
@@ -85,7 +87,7 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 
 			 //Invoice Enter memo
 			 invoice.Invoice_Memo(testDataInvoiceActions.get(14));
-			 InvoiceCreationListActions icl=new InvoiceCreationListActions();
+			
 			 invoicetotalAmount=icl.invoiceAmount();
 			 
 		     //Invoice Click on save button
@@ -115,17 +117,16 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(2), testData.get(3));
-		Common.sleep(7000);
-
-		InvoiceCreationListActions icl=new InvoiceCreationListActions();
-
+        
+		//Scroll up
+		icl.scrollUp();
+		
 		//Search invoice
-		icl.searchInvoice(invoiceNo);
-		Common.sleep(3000);
+		icl.searchInvoice(getInvoiceId);
 
        //Accept invoice
-		icl.clickOnAcceptInvoice(testDataVendorList.get(3),invoiceNo);
-		Common.sleep(5000);
+		icl.clickOnAcceptInvoice(testDataVendorList.get(3),getInvoiceId);
+		Common.sleep(3000);
 		String vendorName=testDataVendorList.get(3);
 
 		//Modal accept verification
@@ -142,11 +143,10 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Common.getDriver().navigate().refresh();
 
 		//search Invoice
-		icl.searchInvoice(invoiceNo);
-		Common.sleep(3000);
+		icl.searchInvoice(getInvoiceId);
 
 		//Approve invoices
-		icl.clickOnApproveInvoice(testDataVendorList.get(3),invoiceNo);
+		icl.clickOnApproveInvoice(testDataVendorList.get(3),getInvoiceId);
 		Common.sleep(3000);
 
 		//Modal approve verification
@@ -169,11 +169,10 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Common.getDriver().navigate().refresh();
 
 		//Search invoice
-		icl.searchInvoice(invoiceNo);
-		Common.sleep(2000);
+		icl.searchInvoice(getInvoiceId);
 
 		//Click payment link
-		icl.clickOnCreatePaymentLink(testDataVendorList.get(3),invoiceNo);
+		icl.clickOnCreatePaymentLink(testDataVendorList.get(3),getInvoiceId);
 		Common.sleep(2000);
 
 		//Click on payment banner 
@@ -199,7 +198,7 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		BaseTestCase.assertTrue(check3, "Payment creation failed");
 		Common.sleep(6000);
 		Reporter.log("Payment was created successfully");
-
+/*
 		//Search invoice
 		icl.searchInvoice(payId);
 		Common.sleep(4000);
@@ -233,7 +232,7 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Common.sleep(4000);
 
 		//Log out
-		LogoutFromPage.logout();
+		LogoutFromPage.logout();*/
 	}
 
 	
@@ -245,25 +244,19 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 
 		//click to create new
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
-
-		APModuleCreation apModule = invoice.createNew();
-		Common.sleep(2000);
-
-		//click to AP()
-		apModule.clickAPLink();
-		Common.sleep(2000);
-
-		//Click to New Invoice
-		apModule.clickNewInvoice();
-		Common.sleep(2000);
-
+		
+		CommonMethods.gotoRightSideAPLink("New Invoice");
+	
 		//Select value from Vender DropDown
 		invoice.SelectVendor(testDataInvoiceActions.get(0));
 		Common.sleep(6000);
+		  
+	    //Search invoice
+		String invoiceid=CommonMethods.generateRandomStringForInvoiceID(testDataVendorList.get(3));
+		invoice.setInvoiceNo(invoiceid);
 
-		//Get Invoice number
-		invoiceNo=invoice.getAttributeValueInvoiceNo();
-		System.out.println("Invoice number" +invoiceNo);
+		getInvoiceId= invoice.getAttributeValueInvoiceNo();
+        Common.sleep(3000);
 
 		//Select value from Net Term 
 		invoice.SelectNetTerm(testDataInvoiceActions.get(1));
@@ -297,8 +290,8 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 
 		//Invoice Enter memo
 		invoice.Invoice_Memo(testDataInvoiceActions.get(14));
-		InvoiceCreationListActions icl1=new InvoiceCreationListActions();
-		invoicetotalAmount=icl1.invoiceAmount();
+		
+		invoicetotalAmount=icl.invoiceAmount();
 
 		//Invoice Click on save button
 		invoice.Invoice_SaveButton();
@@ -308,48 +301,46 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		invoice.CreateRule_CancelButton();
 
 		//Scroll up
-		InvoiceCreationListActions.scrollUp();
+		icl.scrollUp();
 
 		//Search invoice
-		icl1.searchInvoice(invoiceNo);
-		Common.sleep(3000);
-
+		icl.searchInvoice(invoiceid);
+	
 		//Accept invoice
-		icl1.clickOnAcceptInvoice(testDataVendorList.get(3),invoiceNo);
+		icl.clickOnAcceptInvoice(testDataVendorList.get(3),invoiceid);
 		Common.sleep(3000);
 		String vendorName=testDataVendorList.get(3);
 
 		//Modal accept verification
-		boolean ismodalVerificationdetailsCorrect=icl1.verificationModalAcceptButton(invoiceNo,vendorName,invoicetotalAmount);
+		boolean ismodalVerificationdetailsCorrect=icl.verificationModalAcceptButton(invoiceNo,vendorName,invoicetotalAmount);
 		BaseTestCase.assertTrue(ismodalVerificationdetailsCorrect, "Modal does not show correct invoice details");
 		Reporter.log("Modal accept details are verified");
 
 		//Accept invoice button
-		icl1.ModalAcceptButton();
+		icl.ModalAcceptButton();
 		Common.sleep(3000);
 
 		//Refresh the page
 		Common.getDriver().navigate().refresh();
 
 		//search Invoice
-		icl1.searchInvoice(invoiceNo);
-		Common.sleep(3000);
-
+		icl.searchInvoice(invoiceid);
+		
 		//Approve invoices
-		icl1.clickOnApproveInvoice(testDataVendorList.get(3),invoiceNo);
+		icl.clickOnApproveInvoice(testDataVendorList.get(3),invoiceid);
 		Common.sleep(3000);
 
 		//Modal approve verification
-		boolean ismodalVerificationdetailsCorrectApprove=icl1.verificationModalAcceptButton(invoiceNo,vendorName,invoicetotalAmount);
+		boolean ismodalVerificationdetailsCorrectApprove=icl.verificationModalAcceptButton(invoiceNo,vendorName,invoicetotalAmount);
 		BaseTestCase.assertTrue(ismodalVerificationdetailsCorrectApprove, "Modal does not show correct invoice details");
 		Reporter.log("Modal approve details are verified");
 
 		//Approve button
-		icl1.ModalApproveButton();
+		icl.ModalApproveButton();
 		Common.sleep(2000);
 
 		String ExpectedAlertMessage1="Invoices Approved";
-		String ActualAlertMessage1=icl1.gettextValue();			   
+		String ActualAlertMessage1=icl.gettextValue();			   
 
 		boolean check4= ExpectedAlertMessage1.equals(ActualAlertMessage1);
 		BaseTestCase.assertTrue(check4, "Invoices are not approved");
@@ -359,31 +350,30 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Common.getDriver().navigate().refresh();
 
 		//Search invoice
-		icl1.searchInvoice(invoiceNo);
-		Common.sleep(2000);
-
+		icl.searchInvoice(invoiceid);
+		
 		//Click payment link
-		icl1.clickOnCreatePaymentLink(testDataVendorList.get(3),invoiceNo);
-		Common.sleep(8000);
+		icl.clickOnCreatePaymentLink(testDataVendorList.get(3),invoiceNo);
+		Common.sleep(4000);
 
 		//Get payment id
-		String payId= icl1.getPaymentId();
+		String payId= icl.getPaymentId();
 
 		//Click on payment banner 
-		icl1.bannerClick();
+		icl.bannerClick();
 		Common.sleep(5000);
 
 		//Payment details verification
-		boolean isPaymentDetailsverfication=icl1.paymentVerfication(invoiceNo,vendorName,invoicetotalAmount);
+		boolean isPaymentDetailsverfication=icl.paymentVerfication(invoiceNo,vendorName,invoicetotalAmount);
 		BaseTestCase.assertTrue(isPaymentDetailsverfication, "Payment Details on banner are not shown correct");
 
 		//Click payment button
-		icl1.createPaymentButton();
+		icl.createPaymentButton();
 		Common.sleep(2000);
 
 		//Payment verification
 		String ExpectedAlertMessage2="payment is created";
-		String ActualAlertMessage2=icl1.gettextValue();			   
+		String ActualAlertMessage2=icl.gettextValue();			   
 
 		boolean check3= ExpectedAlertMessage2.equals(ActualAlertMessage2);
 		BaseTestCase.assertTrue(check3, "Payment creation failed");
@@ -391,58 +381,58 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Reporter.log("Payment was created successfully");
 
 		//Search invoice
-		icl1.searchInvoice(payId);
+		icl.searchInvoice(payId);
 
 		//Click on approve button
-		icl1.clickOnApprovePayment(testDataVendorList.get(3),payId);
+		icl.clickOnApprovePayment(testDataVendorList.get(3),payId);
 
-		boolean isPaymentApproveVerfication=icl1.verificationPaymentApprove(invoiceNo, vendorName, invoicetotalAmount);
+		boolean isPaymentApproveVerfication=icl.verificationPaymentApprove(invoiceNo, vendorName, invoicetotalAmount);
 		BaseTestCase.assertTrue(isPaymentApproveVerfication, "Payment Details on approve module are not correct");
 		Reporter.log("Payment details for approve modal verified");
 
 		//Click on Schedule payment
-		icl1.schedulePaymentButton();
+		icl.schedulePaymentButton();
 
 		//Refresh
 		Common.getDriver().navigate().refresh();
 
 		//Search invoice
-		icl1.searchInvoice(payId);            
+		icl.searchInvoice(payId);            
 
 		//Verification Of status schedule
-		icl1.verificationOfStatusSchedule(vendorName,payId);
+		icl.verificationOfStatusSchedule(vendorName,payId);
 		Common.sleep(3000);
 
 		//search invoice by payment id
-		icl1.searchInvoice(payId);
+		icl.searchInvoice(payId);
 		Common.sleep(2000);
 
 		//Search 
-		icl1.verificationOnSendPaymentLink(vendorName,payId);
+		icl.verificationOnSendPaymentLink(vendorName,payId);
 		Common.sleep(3000);
 
 		//Verification
-		icl1.verificationSchedulePayment(invoiceNo, vendorName, invoicetotalAmount, payId);
+		icl.verificationSchedulePayment(invoiceNo, vendorName, invoicetotalAmount, payId);
 		Common.sleep(3000);
 
 		//Send payment
-		icl1.sendPaymentButton_ScheduleModal();
+		icl.sendPaymentButton_ScheduleModal();
 		Common.sleep(3000);
 
 		//Refresh
 		Common.getDriver().navigate().refresh();
 
 		//search invoice by payment id
-		icl1.searchInvoice(payId);
+		icl.searchInvoice(payId);
 		Common.sleep(3000);
 
 		//Verification Action
-		boolean isStatusProcessing= icl1.verificationOnProcessingLink(vendorName,payId,testDataInvoiceActions.get(15));
+		boolean isStatusProcessing= icl.verificationOnProcessingLink(vendorName,payId,testDataInvoiceActions.get(15));
 		BaseTestCase.assertTrue(isStatusProcessing, "Payment action is not processing");
 		Reporter.log("Payment action is processing for schedule payment");
 
 		//Verification Status
-		boolean isStatusSent=icl1.verificationOfStatusSent(vendorName, payId,testDataInvoiceActions.get(16));
+		boolean isStatusSent=icl.verificationOfStatusSent(vendorName, payId,testDataInvoiceActions.get(16));
 		BaseTestCase.assertTrue(isStatusSent, "Payment status is not sent");
 		Reporter.log("Payment status is sent for schedule payment");
 

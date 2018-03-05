@@ -528,7 +528,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	}
 	
 	public void poCreation(String vendorName, String locationName, String productName, String departmentName, String bookingAccount, String description, String measure, String quantity, String rate, String messageToVendor, String memo, String approvedBy, String shipBy) {
-
+        Common.sleep(3000);
 		//select vendor
 		Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", vendorName);
 	     

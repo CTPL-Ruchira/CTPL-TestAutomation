@@ -1,5 +1,6 @@
 package com.netChain2.selenium.pageObjects.common.components;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
@@ -96,7 +97,22 @@ public class CommonMethods
 		Common.click("GR_WORKFLOW_LOGOUT_BUTTON_XPATH");
 	}
 	
-	public void verifyAndClickOnActionForPaymentList(String paymentId, String vendorName)
+
+	public static String generateRandomStringForInvoiceID(String value) {
+		   String randomString = RandomStringUtils.randomAlphanumeric(3);
+		   return value.concat("_"+randomString);
+		   
+		  }
+   
+	public static void verifyAndClickOnActionForPo(String poNumber, String vendorName,String status) {
+      Common.click("SORTING_ARROW_XPATH");
+      Common.sleep(4000);
+      String verificationOfStatus="//div[text()='"+poNumber+"']/ancestor::tr[1]/td[5]//div[text()='"+vendorName+"']/ancestor::tr[1]//td[11]//div//a[text()='"+status+"']";
+	  WebElement poStatus=Common.findElement(verificationOfStatus);
+	  poStatus.click();
+	}
+
+	public static void verifyAndClickOnActionForPaymentList(String paymentId, String vendorName)
 	{
 		Common.sleep(2000);
 		String actionXpath="//div[text()='"+paymentId+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[10]//a[text()='Approve Payment']";
