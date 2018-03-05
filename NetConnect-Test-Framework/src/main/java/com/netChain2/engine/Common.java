@@ -347,7 +347,7 @@ public class Common {
 			WebElement eleDrop = getElement(dropLocator);
 			eleDrop.click();
 			List<WebElement> listElem=getElements(valueLocator);
-						
+			Common.sleep(2000);			
 			for(WebElement ele: listElem)
 			{
 				if(ele.getText().equals(value))

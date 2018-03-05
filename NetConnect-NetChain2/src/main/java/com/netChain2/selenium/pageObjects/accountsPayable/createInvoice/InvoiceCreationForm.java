@@ -260,7 +260,7 @@ public class InvoiceCreationForm {
 		
 		//invoice Creation Form Method
 		//public void createInvoice(String selectclient,String selectTerms,String location,String bAccCode,String desc,String amt,String msg,String memo)
-		public void createInvoice(String selectclient,String selectTerms,String location,String msg,String memo) 
+		public void createInvoice(String selectclient,String selectTerms,String location) 
 		{
 			SelectVendor(selectclient);
 			Common.sleep(4000);
@@ -272,8 +272,7 @@ public class InvoiceCreationForm {
 			/*SelectBookingAccount(bAccCode);
 			AccountDetails_Description(desc);
 			AccountDetails_Amount(amt);*/
-			Invoice_MessageToVendor(msg);
-			Invoice_Memo(memo);
+
 		}
 		
 		public void createInvoiceForThreewaymatch(String vendorName,String netTerms,String location,String productName, String poNumber, String messageToVendor,String memo, String flag)
