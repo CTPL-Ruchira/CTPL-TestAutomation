@@ -1,6 +1,7 @@
 package com.netChain2.selenium.pageObjects.common.components;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
 import com.netChain2.engine.Common;
 
@@ -18,6 +19,7 @@ public class CommonMethods
 	
 	public static void scrollUp()
 	{
+		Common.sleep(1000);
 		JavascriptExecutor jse = (JavascriptExecutor)Common.getDriver();
 		jse.executeScript("scroll(0, -650);");
 	}
@@ -70,6 +72,7 @@ public class CommonMethods
 	
 	public static void gotoRightSideARLink(String linkName) 
 	{
+		CommonMethods.scrollUp();
 		Common.click("AR_CREATE_NEW_PLUSE_BUTTON_XPATH");
 		Common.sleep(1000);
 		Common.click("AR_CLICK_ACCOUNT_RECEIVABLE_XPATH");
@@ -80,6 +83,7 @@ public class CommonMethods
 	
 	public static void gotoRightSideAPLink(String linkName) 
 	{
+		CommonMethods.scrollUp();
 		Common.click("AR_CREATE_NEW_PLUSE_BUTTON_XPATH");
 		Common.sleep(1000);
 		Common.click("AP_LINK_PARTIALLINKTEXT");
@@ -90,6 +94,14 @@ public class CommonMethods
 	public static void logoutFromWorkflowPage()
 	{
 		Common.click("GR_WORKFLOW_LOGOUT_BUTTON_XPATH");
+	}
+	
+	public void verifyAndClickOnActionForPaymentList(String paymentId, String vendorName)
+	{
+		Common.sleep(2000);
+		String actionXpath="//div[text()='"+paymentId+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[10]//a[text()='Approve Payment']";
+		WebElement actionXpathElement=Common.findElement(actionXpath);
+		actionXpathElement.click();
 	}
 	
 }
