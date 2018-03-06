@@ -216,13 +216,10 @@ public class InvoiceCreationForm {
     public boolean verifyTotalAmountCalculatedAndShown(double Amount,double PreviousAmount)
 	{
     	PreviousAmount=Common.roundNumberToTwoDecimalValue(PreviousAmount);
-		System.out.println("AmountAmount--"+Amount);
-		System.out.println("PreviousAmountPreviousAmount--"+PreviousAmount);
 		String amountDisplayed=Common.getText("INVOICE_AMOUNT_XPATH");
 		double temp=Amount+PreviousAmount;
 		String appendDollarSign1="$"+temp;
-		System.out.println("appendDollarSign1--"+appendDollarSign1);
-		System.out.println("amountDisplayed--"+amountDisplayed);
+		
 		if(appendDollarSign1.equals(amountDisplayed))
 		{
 			return true;
