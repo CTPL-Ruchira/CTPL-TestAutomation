@@ -235,9 +235,7 @@ public class ClientsCreationForm {
 		setEmailOnInvoiceDelivery(E_mail);
 		setNotes(notes);
 		clickSaveButton();
-	}
-	//String SetBookingAccount,String transactionDetails,String setClientIdentity,String setBillingAddress,String setContactDetails ,String SelectCompanyTire,String setEmailOnInvoiceDelivery) {
-	
+	}	
 	
 	//Verify Client List 	
 	public Boolean verifyClientOnList(String expectedClientName) 
@@ -247,9 +245,8 @@ public class ClientsCreationForm {
 	  if(actualClientNameOnList.equals(expectedClientName))
 	  {
 	   flag=true;
-	   System.out.println("Client displayed on list");
+	   Reporter.log("Client created successfully");
 	   Reporter.log("Client present on list and verified");
-	   Reporter.log("Client added is present on Netchain Platform and The Connection is done successfully");
 	  }
 	  else
 	  {
@@ -266,9 +263,7 @@ public class ClientsCreationForm {
 		}
 		else {
 			return false;
-		}
-		
-		
+		}	
 		
 	}	 
 }
