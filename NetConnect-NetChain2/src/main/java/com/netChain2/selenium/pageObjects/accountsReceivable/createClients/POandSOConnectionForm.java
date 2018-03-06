@@ -18,18 +18,18 @@ public class POandSOConnectionForm {
 		return Common.getAttribute("INVOICE_NUMBER_XPATH");
 	}
 	
-	public void verifySOList(String ClientName, String poNumber)
+	public void verifySOList(String clientName, String poNumber)
 	{
 		Common.sleep(3000);
 		System.out.println("geting so list");
-		String st="//div[@class='LineItemDataList']//div[contains(text(),'"+ClientName+"')]/..//following-sibling::div/div[text()='"+poNumber+"']/..//following-sibling::div//button[@data-tip='Accept']";
+		String st="//table[@class='table']//tr/td[5]//div[text()='"+clientName+"']/ancestor::tr/td[7]//div[text()='"+poNumber+"']//ancestor::tr/td[12]//div/button[@data-tip='Accept']";
 		WebElement ele=Common.findElement(st);
 		ele.click();
 	}
 	
 	//click on plus sign
 	public void clickPlusbutton(String clientName, String poNumber) {
-		String plusbutton="//div[@class='LineItemDataList']//div[contains(text(),'"+clientName+"')]/..//following-sibling::div/div[text()='"+poNumber+"']/..//following-sibling::div//button/i[@data-tip='Create Invoice']";
+		String plusbutton="//table[@class='table']//tr/td[5]//div[text()='"+clientName+"']/ancestor::tr/td[7]//div[text()='"+poNumber+"']//ancestor::tr/td[12]//div//button/i[@data-tip='Create Invoice']";
 		WebElement ele=Common.findElement(plusbutton);
 		ele.click();	
 	}
@@ -83,9 +83,7 @@ public class POandSOConnectionForm {
 	public void verifyAPInvoiceOnListandClickAccept(String clientName,String ino) 
 	 {
 	  Common.sleep(2000);
-	  CommonMethods.searchByNumberOrName(clientName);
-	  Common.sleep(2000);
-	  String acceptXpath="//div[@class='LineItemDataList']//div[contains(text(),'"+clientName+"')]/..//following-sibling::div/div[text()='"+ino+"']/..//following-sibling::div//button[@data-tip='Accept']";
+	  String acceptXpath="//table[@class='table']//tr/td[3]//div[text()='"+ino+"']/ancestor::tr/td[4]//div[text()='"+clientName+"']/ancestor::tr/td[10]//div/button[@data-tip='Accept']";
 	  WebElement ele=Common.findElement(acceptXpath);
 	  ele.click();
 	 }
@@ -100,7 +98,7 @@ public class POandSOConnectionForm {
 	public boolean verifyPaymetStatusMatched(String cname,String paymentid,String status) {
 		boolean flag=false;
 		  Common.sleep(2000);
-		  String xpathForARPayment="//div[@class='LineItemDataList']//div[contains(text(),'"+cname+"')]/..//following-sibling::div/div[text()='"+paymentid+"']/..//following-sibling::div//div[text()='matched']";
+		  String xpathForARPayment="//table[@class='table']//tr/td[3]//div[text()='"+cname+"']/ancestor::tr/td[4]//div[text()='"+paymentid+"']/ancestor::tr/td[6]//div[text()='matched']";
 		  WebElement findele=Common.findElement(xpathForARPayment);
 		  String matchXpath=findele.getText();		  
 		  if(matchXpath.equals(status))

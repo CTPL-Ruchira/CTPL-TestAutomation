@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsReceivable.createClients.POandSOConnectionForm;
+import com.netChain2.selenium.pageObjects.accountsPayable.CreateNewCreditMemo.CreditMemoCreationForm;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationListActions;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.EditPurchaseOrder;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
@@ -23,6 +24,8 @@ public class POtoSOConnection extends BaseTestCase {
 	public String invoiceno;
 	public String payId;
 	public String clientname;
+	POandSOConnectionForm soList=new POandSOConnectionForm();
+	InvoiceCreationListActions actions=new InvoiceCreationListActions();
 	
 	@BeforeClass
 	public void setUp() {
@@ -43,7 +46,6 @@ public class POtoSOConnection extends BaseTestCase {
 			
 			CommonMethods.gotoRightSideAPLink("NEW PURCHASE ORDER");
 			
-			POandSOConnectionForm soList=new POandSOConnectionForm();
 			Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", testDataCreatePO.get(0));
 			purchaseOrder.selectLocation(testDataCreatePO.get(1));
 			String rate=testDataCreatePO.get(8);
@@ -67,7 +69,9 @@ public class POtoSOConnection extends BaseTestCase {
 			Common.sleep(4000);
 			
 			EditPurchaseOrder epo=new EditPurchaseOrder();
-			epo.searchPurchaseOrder(Integer.toString(PurchaseOrderCreationForm.getPoNumber()));
+			CommonMethods.scrollUp();
+			//epo.searchPurchaseOrder(Integer.toString(PurchaseOrderCreationForm.getPoNumber()));
+			Common.click("SORTING_ARROW_XPATH");
 			
 			epo.verifyPurchaseOrderForConnectedVendor(testDataCreatePO.get(0), Integer.toString(PurchaseOrderCreationForm.getPoNumber()));
 			Reporter.log("AP Create Purchase Order successfully ");
@@ -77,7 +81,7 @@ public class POtoSOConnection extends BaseTestCase {
 	  }
 	 
 	 @Test(dependsOnMethods= {"createPOForConnectedCompany"})
-	 public void checkSoList()
+	 public void checkPOReflectsAsSOInARConnectedCompany()
 	 {		
 		 LoginPage loginPage = new LoginPage();
 		 loginPage.login(testDataARLogin.get(2), testDataARLogin.get(3));
@@ -87,7 +91,6 @@ public class POtoSOConnection extends BaseTestCase {
 		CommonMethods.gotoLeftARLink("Sales orders");
 			
 		//handle SO list opration click accept
-		POandSOConnectionForm soList=new POandSOConnectionForm();
 		clientname=testDataCreatePO.get(15);
 		soList.verifySOList(clientname, poNumber);
 		Reporter.log("Purchase Order reflected as Sales Order in AR company");
@@ -110,17 +113,20 @@ public class POtoSOConnection extends BaseTestCase {
 		boolean istitleCorrect=soList.verifyTitleMatched(ActualTitleValue, ExpectedTitleValue);
 		BaseTestCase.assertTrue(istitleCorrect, "Redirected to Invoice list,Invoice created succesfully");
 		
-		CommonMethods.searchByNumberOrName(invoiceno);
-			
-		Boolean status=soList.verifyInvoiceOnList(clientname);
+		CreditMemoCreationForm creditmemo = new CreditMemoCreationForm();
+		CommonMethods.scrollUp();
+		
+		Common.click("SORTING_ARROW_XPATH");
+
+		Boolean status=creditmemo.verifyInvoiceOnList(invoiceno,clientname);
 		BaseTestCase.assertTrue(status, "Invoice not created");
 		Reporter.log("AR Invoice created successfully",true);
-			
+		
 		LogoutFromPage.logout();
 	 }
 	 
-	 @Test(dependsOnMethods= {"checkSoList"})
-	 public void invoiceAction()
+	 @Test(dependsOnMethods= {"checkPOReflectsAsSOInARConnectedCompany"})
+	 public void checkAPinvoiceAction()
 	 {
 		    LoginPage loginPage = new LoginPage();
 			loginPage.login(testDatalg.get(0), testDatalg.get(1));
@@ -130,34 +136,23 @@ public class POtoSOConnection extends BaseTestCase {
 			
 			String cName=testDataCreatePO.get(0);
 			
-		    CommonMethods.searchByNumberOrName(invoiceno);
-		    
-		    POandSOConnectionForm soList=new POandSOConnectionForm();
+			CreditMemoCreationForm creditmemo = new CreditMemoCreationForm();
+			CommonMethods.scrollUp();
+			
+			Common.click("SORTING_ARROW_XPATH");
 		    
 			//Search Invoice by Company Name and click Accept icon 
 			soList.verifyAPInvoiceOnListandClickAccept(cName, invoiceno);
 			
 			Reporter.log("AP-Invoice Generated successfully",true);	
-			
-			Common.getDriver().navigate().refresh();
-			
-			CommonMethods.searchByNumberOrName(invoiceno);
-			Common.sleep(2000);
-			
+						
 			//Click On Approve Invoice Link
-			InvoiceCreationListActions actions=new InvoiceCreationListActions();
-			soList.clickApproveInvoices(cName, invoiceno);
+			
+			actions.clickOnApproveInvoice(cName, invoiceno);
 			
 			//click on Yes Accept Only modal PopUp
 			actions.ModalApproveButton();
 			
-			//Refresh the Page
-			Common.getDriver().navigate().refresh();
-			 
-			//search invoice
-		    actions.searchInvoice(invoiceno);
-			Common.sleep(5000);
-           			
 			actions.clickOnCreatePaymentLink(testDataCreatePO.get(0),invoiceno);
 	           Common.sleep(2000);
 	           
@@ -197,9 +192,9 @@ public class POtoSOConnection extends BaseTestCase {
 	        Common.sleep(3000);
 	           
 	         //Payment search by id
-	         actions.SearchPaymentId(payId);
-	         Common.sleep(2000);
-	         
+	        /* actions.SearchPaymentId(payId);
+	         Common.sleep(3000);
+	         */
 	         //Verfication Action
 	         boolean isActionProcessing= actions.verificationOnProcessingLink(cName,payId,testDataCreatePO.get(16));
 	         BaseTestCase.assertTrue(isActionProcessing, " AP Payment action is not processing");
@@ -208,7 +203,7 @@ public class POtoSOConnection extends BaseTestCase {
 			 LogoutFromPage.logout();
 	 }
 	 
-	 @Test(dependsOnMethods= {"invoiceAction"})
+	 @Test(dependsOnMethods= {"checkAPinvoiceAction"})
 	 public void arPaymentCheck() 
 	 {
 		     LoginPage loginPage = new LoginPage();
@@ -216,10 +211,7 @@ public class POtoSOConnection extends BaseTestCase {
 			
 			//click on payment list
 			CommonMethods.gotoLeftARLink("Payments");
-			
-			InvoiceCreationListActions actions=new InvoiceCreationListActions();
-			POandSOConnectionForm soList=new POandSOConnectionForm();
-			actions.SearchPaymentId(payId);
+			//actions.SearchPaymentId(payId);
 			
 			//verify the status matched or not 
 			String statusAR=testDataCreatePO.get(14);
