@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
+import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.CheckTwoWayMatchInvoice;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationListActions;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
@@ -42,26 +43,23 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 	{
 			LoginPage loginPage = new LoginPage();
 			loginPage.login(testData.get(2), testData.get(3));
+			
+			//Scroll up
+			CheckTwoWayMatchInvoice.scrollUp();
 			Common.sleep(2000);
 			
-			//Click on new invoice
-			CommonMethods.gotoRightSideAPLink("New Invoice");
+		    //Click on invoice
+			CommonMethods.gotoRightSideAPLink("NEW INVOICE");
 			
 			//Select value from Vender DropDown
 			invoice.SelectVendor(testDataInvoiceActions.get(0));
-		    Common.sleep(6000);
-		    
-		    //Search invoice
-			String invoiceid=CommonMethods.generateRandomStringForInvoiceID(testDataVendorList.get(3));
-			invoice.setInvoiceNo(invoiceid);
-
-			getInvoiceId= invoice.getAttributeValueInvoiceNo();
+		
+		    getInvoiceId= invoice.getAttributeValueInvoiceNo();
 	        Common.sleep(3000);
 		    
 	        //Get Invoice number
 		    invoiceNo=invoice.getAttributeValueInvoiceNo();
-		    System.out.println("Invoice number" +invoiceNo);
-
+		  
 		    //Select value from Net Term 
 		    invoice.SelectNetTerm(testDataInvoiceActions.get(1));
 
@@ -122,7 +120,11 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		icl.scrollUp();
 		
 		//Search invoice
-		icl.searchInvoice(getInvoiceId);
+		//icl.searchInvoice(getInvoiceId);
+		
+		//Click on sorting arrow
+		Common.click("SORTING_ARROW_XPATH");
+		Common.sleep(4000);
 
        //Accept invoice
 		icl.clickOnAcceptInvoice(testDataVendorList.get(3),getInvoiceId);
@@ -143,7 +145,11 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Common.getDriver().navigate().refresh();
 
 		//search Invoice
-		icl.searchInvoice(getInvoiceId);
+		//icl.searchInvoice(getInvoiceId);
+		
+		//Click on sorting arrow
+		Common.click("SORTING_ARROW_XPATH");
+		Common.sleep(4000);
 
 		//Approve invoices
 		icl.clickOnApproveInvoice(testDataVendorList.get(3),getInvoiceId);
@@ -169,7 +175,11 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Common.getDriver().navigate().refresh();
 
 		//Search invoice
-		icl.searchInvoice(getInvoiceId);
+		//icl.searchInvoice(getInvoiceId);
+
+		//Click on sorting arrow
+		Common.click("SORTING_ARROW_XPATH");
+		Common.sleep(4000);
 
 		//Click payment link
 		icl.clickOnCreatePaymentLink(testDataVendorList.get(3),getInvoiceId);
@@ -198,10 +208,10 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		BaseTestCase.assertTrue(check3, "Payment creation failed");
 		Common.sleep(6000);
 		Reporter.log("Payment was created successfully");
-/*
+
 		//Search invoice
-		icl.searchInvoice(payId);
-		Common.sleep(4000);
+		//icl.searchInvoice(payId);
+		//Common.sleep(4000);
 
 		//Click on approve button
 		icl.clickOnApprovePayment(vendorName,payId);
@@ -211,16 +221,17 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 
 		//Click on payment button
 		icl.sendPaymentButton();
+		Common.sleep(2000);
 
 		//refresh page 
 		Common.getDriver().navigate().refresh();
 		Common.sleep(3000);
 
 		//Payment search by id
-		icl.SearchPaymentId(payId);
-		Common.sleep(4000);
-
-		//Verification Action
+		//icl.SearchPaymentId(payId);
+		//Common.sleep(4000);
+		
+	    //Verification Action
 		boolean isActionProcessing= icl.verificationOnProcessingLink(vendorName,payId,testDataInvoiceActions.get(15));
 		BaseTestCase.assertTrue(isActionProcessing, "Payment action is not processing");
 		Reporter.log("Payment action is processing for sent payment");
@@ -232,10 +243,9 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Common.sleep(4000);
 
 		//Log out
-		LogoutFromPage.logout();*/
+		LogoutFromPage.logout();
 	}
 
-	
 	@Test(dependsOnMethods="verifyInvoiceCreatedInList_SentPayment")
 	public void verifyInvoiceCreatedInList_SchedulePayment() 
 	{
@@ -244,17 +254,17 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 
 		//click to create new
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
+	
+		//Scroll up
+		CheckTwoWayMatchInvoice.scrollUp();
+		Common.sleep(2000);
 		
-		CommonMethods.gotoRightSideAPLink("New Invoice");
+	    //Click on invoice
+		CommonMethods.gotoRightSideAPLink("NEW INVOICE");
 	
 		//Select value from Vender DropDown
 		invoice.SelectVendor(testDataInvoiceActions.get(0));
-		Common.sleep(6000);
-		  
-	    //Search invoice
-		String invoiceid=CommonMethods.generateRandomStringForInvoiceID(testDataVendorList.get(3));
-		invoice.setInvoiceNo(invoiceid);
-
+	
 		getInvoiceId= invoice.getAttributeValueInvoiceNo();
         Common.sleep(3000);
 
@@ -304,15 +314,19 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		icl.scrollUp();
 
 		//Search invoice
-		icl.searchInvoice(invoiceid);
-	
+		//icl.searchInvoice(getInvoiceId);
+
+		//Click on sorting arrow
+		Common.click("SORTING_ARROW_XPATH");
+		Common.sleep(4000);
+		
 		//Accept invoice
-		icl.clickOnAcceptInvoice(testDataVendorList.get(3),invoiceid);
+		icl.clickOnAcceptInvoice(testDataVendorList.get(3),getInvoiceId);
 		Common.sleep(3000);
 		String vendorName=testDataVendorList.get(3);
 
 		//Modal accept verification
-		boolean ismodalVerificationdetailsCorrect=icl.verificationModalAcceptButton(invoiceNo,vendorName,invoicetotalAmount);
+		boolean ismodalVerificationdetailsCorrect=icl.verificationModalAcceptButton(getInvoiceId,vendorName,invoicetotalAmount);
 		BaseTestCase.assertTrue(ismodalVerificationdetailsCorrect, "Modal does not show correct invoice details");
 		Reporter.log("Modal accept details are verified");
 
@@ -324,14 +338,18 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Common.getDriver().navigate().refresh();
 
 		//search Invoice
-		icl.searchInvoice(invoiceid);
+		//icl.searchInvoice(getInvoiceId);
+
+		//Click on sorting arrow
+		Common.click("SORTING_ARROW_XPATH");
+		Common.sleep(4000);
 		
 		//Approve invoices
-		icl.clickOnApproveInvoice(testDataVendorList.get(3),invoiceid);
+		icl.clickOnApproveInvoice(testDataVendorList.get(3),getInvoiceId);
 		Common.sleep(3000);
 
 		//Modal approve verification
-		boolean ismodalVerificationdetailsCorrectApprove=icl.verificationModalAcceptButton(invoiceNo,vendorName,invoicetotalAmount);
+		boolean ismodalVerificationdetailsCorrectApprove=icl.verificationModalAcceptButton(getInvoiceId,vendorName,invoicetotalAmount);
 		BaseTestCase.assertTrue(ismodalVerificationdetailsCorrectApprove, "Modal does not show correct invoice details");
 		Reporter.log("Modal approve details are verified");
 
@@ -350,10 +368,14 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Common.getDriver().navigate().refresh();
 
 		//Search invoice
-		icl.searchInvoice(invoiceid);
+		//icl.searchInvoice(getInvoiceId);
+
+		//Click on sorting arrow
+		Common.click("SORTING_ARROW_XPATH");
+		Common.sleep(4000);
 		
 		//Click payment link
-		icl.clickOnCreatePaymentLink(testDataVendorList.get(3),invoiceNo);
+		icl.clickOnCreatePaymentLink(testDataVendorList.get(3),getInvoiceId);
 		Common.sleep(4000);
 
 		//Get payment id
@@ -364,7 +386,7 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Common.sleep(5000);
 
 		//Payment details verification
-		boolean isPaymentDetailsverfication=icl.paymentVerfication(invoiceNo,vendorName,invoicetotalAmount);
+		boolean isPaymentDetailsverfication=icl.paymentVerfication(getInvoiceId,vendorName,invoicetotalAmount);
 		BaseTestCase.assertTrue(isPaymentDetailsverfication, "Payment Details on banner are not shown correct");
 
 		//Click payment button
@@ -381,12 +403,13 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Reporter.log("Payment was created successfully");
 
 		//Search invoice
-		icl.searchInvoice(payId);
-
-		//Click on approve button
+		//icl.searchInvoice(payId);
+         Common.sleep(2000);
+		
+         //Click on approve button
 		icl.clickOnApprovePayment(testDataVendorList.get(3),payId);
 
-		boolean isPaymentApproveVerfication=icl.verificationPaymentApprove(invoiceNo, vendorName, invoicetotalAmount);
+		boolean isPaymentApproveVerfication=icl.verificationPaymentApprove(getInvoiceId, vendorName, invoicetotalAmount);
 		BaseTestCase.assertTrue(isPaymentApproveVerfication, "Payment Details on approve module are not correct");
 		Reporter.log("Payment details for approve modal verified");
 
@@ -397,22 +420,22 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Common.getDriver().navigate().refresh();
 
 		//Search invoice
-		icl.searchInvoice(payId);            
+		//icl.searchInvoice(payId);            
 
 		//Verification Of status schedule
 		icl.verificationOfStatusSchedule(vendorName,payId);
-		Common.sleep(3000);
+		//Common.sleep(3000);
 
 		//search invoice by payment id
-		icl.searchInvoice(payId);
-		Common.sleep(2000);
+		//icl.searchInvoice(payId);
+		//Common.sleep(2000);
 
 		//Search 
 		icl.verificationOnSendPaymentLink(vendorName,payId);
 		Common.sleep(3000);
 
 		//Verification
-		icl.verificationSchedulePayment(invoiceNo, vendorName, invoicetotalAmount, payId);
+		icl.verificationSchedulePayment(getInvoiceId, vendorName, invoicetotalAmount, payId);
 		Common.sleep(3000);
 
 		//Send payment
@@ -423,8 +446,8 @@ public class InvoiceActionsWithPaymentFlow extends BaseTestCase{
 		Common.getDriver().navigate().refresh();
 
 		//search invoice by payment id
-		icl.searchInvoice(payId);
-		Common.sleep(3000);
+		//icl.searchInvoice(payId);
+		Common.sleep(1000);
 
 		//Verification Action
 		boolean isStatusProcessing= icl.verificationOnProcessingLink(vendorName,payId,testDataInvoiceActions.get(15));
