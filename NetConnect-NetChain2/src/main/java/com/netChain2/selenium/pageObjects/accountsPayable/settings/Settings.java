@@ -1,8 +1,8 @@
 package com.netChain2.selenium.pageObjects.accountsPayable.settings;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.common.JavaScriptOperation.JavaScriptUtils;
@@ -110,6 +110,7 @@ public class Settings
 	{
 		//String invoiceApproveLocator="//div[text()='"+invoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[1]/div[1]/a[2]";
 		String invoiceApproveLocator="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[10]//div[@class='text']//a[text()='Approve Invoices']";
+		
 		WebElement elementApprove=Common.findElement(invoiceApproveLocator);
 		 String ActualValue= elementApprove.getText();
 	    String ExpectedValue=expectedValue;
@@ -125,7 +126,7 @@ public class Settings
 		     }
 	 
 		
-	public static  void scrollUp()
+	public static void scrollUp()
 	{
 		JavascriptExecutor jse = (JavascriptExecutor)Common.getDriver();
 		jse.executeScript("scroll(0, -250);");
@@ -163,9 +164,10 @@ public class Settings
 
 	public boolean verificationForCreatePayment(String vendorName, String invoiceNumber,String expectedValue)
 	{
-		String createPaymentLocator="//div[text()='"+invoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[1]/div[1]/a[2]";
-	
-		WebElement elementApprove=Common.findElement(createPaymentLocator);
+		//String createPaymentLocator="//div[text()='"+invoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[1]/div[1]/a[2]";
+	    String createPaymentLocator="//table[@class='table']//tr/td[3]//div[text()='"+invoiceNumber+"']/ancestor::tr/td[4]//div[text()='"+vendorName+"']/ancestor::tr/td[10]//div/a[text()='Create Payment']";
+		
+	    WebElement elementApprove=Common.findElement(createPaymentLocator);
 	    String ActualValue= elementApprove.getText();
 	    String ExpectedValue=expectedValue;
 	    if(ActualValue.equals(ExpectedValue))
@@ -182,8 +184,9 @@ public class Settings
 
 	public void verificationForViewPayment(String vendorName, String invoiceNumber)
 	{
-		String viewPaymentLocator="//div[text()='"+invoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[1]/div[1]/a[2]";
-	
+		//String viewPaymentLocator="//div[text()='"+invoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[1]/div[1]/a[2]";
+		String viewPaymentLocator="//table[@class='table']//tr/td[3]//div[text()='"+invoiceNumber+"']/ancestor::tr/td[4]//div[text()='"+vendorName+"']/ancestor::tr/td[10]//div/a[text()='View Payment']";
+		
 		WebElement elementViewPayment=Common.findElement(viewPaymentLocator);
 		elementViewPayment.click();
 	 }
@@ -201,8 +204,9 @@ public class Settings
 	
 	public boolean verificationForSendPayment(String vendorName, String paymentId,String expectedValue)
 	{
-		String sendPaymentLocator="//div[text()='"+paymentId+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/a[1]";
-	
+		//String sendPaymentLocator="//div[text()='"+paymentId+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/a[1]";
+		String sendPaymentLocator="//table[@class='table']//tr/td[3]//div[text()='"+paymentId+"']/ancestor::tr/td[4]//div[text()='"+vendorName+"']/ancestor::tr/td[10]//div/a[text()='Send Payment']";
+		
 		WebElement elementSend=Common.findElement(sendPaymentLocator);
 	    String ActualValue= elementSend.getText();
 	    String ExpectedValue=expectedValue;
@@ -218,21 +222,12 @@ public class Settings
 			
 		     }
 	
-	public void clickOnOpenMenu()
-	{
-      Common.click("NAVIGATION_MENU_PARTIAL_LINK");
-      Common.sleep(2000);
-	}
 	
-	public void clickOnPaymentMenu()
-	{
-      Common.click("INVOICE_MENU_PAYMENT_OPTION_XPATH");
-      Common.sleep(2000);
-	}
 	public boolean verificationForApprovePayment(String vendorName, String paymentId,String expectedValue)
 	{
-		String approvePaymentLocator="//div[text()='"+paymentId+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/a[1]";
-	    WebElement elementApprove=Common.findElement(approvePaymentLocator);
+		//String approvePaymentLocator="//div[text()='"+paymentId+"']/ancestor::div[2]/div[2]/div[text()='"+vendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/a[1]";
+		String approvePaymentLocator="//table[@class='table']//tr/td[3]//div[text()='"+paymentId+"']/ancestor::tr/td[4]//div[text()='"+vendorName+"']/ancestor::tr/td[10]//div/a[text()='Approve Payment']";
+		WebElement elementApprove=Common.findElement(approvePaymentLocator);
 	    String ActualValue= elementApprove.getText();
 	    String ExpectedValue=expectedValue;
 	   if(ActualValue.equals(ExpectedValue))
