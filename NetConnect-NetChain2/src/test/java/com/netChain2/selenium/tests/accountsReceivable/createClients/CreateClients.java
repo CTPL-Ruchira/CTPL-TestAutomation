@@ -48,6 +48,9 @@ import com.netChain2.utils.CustomAnnotation.TestDetails;
 			
 			Boolean status=arClients.verifyClientOnList(clientName);
 			BaseTestCase.assertTrue(status, "Client not created");
+			Reporter.log("Client created successfully", true);
+			Reporter.log("Client present on list and verified");
+			
 			Common.sleep(5000);
 			LogoutFromPage.logout();
 		 }
