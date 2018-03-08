@@ -1,23 +1,13 @@
 package com.netChain2.selenium.pageObjects.accountsReceivable.createClients;
 
 import org.openqa.selenium.Keys;
-import org.testng.Reporter;
-
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
-import com.netChain2.selenium.pageObjects.common.arCreation.ARModuleCreation;
-import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class ClientsCreationForm {
 	private static int count=1;
 	private static int flag=1;
-	
-	public ARModuleCreation createNew() {
-		CommonMethods.scrollUp();
-		Common.click("AR_CREATE_NEW_PLUSE_BUTTON_XPATH");
-		return new ARModuleCreation();
-	}
-	
+		
 	//Set Company Profile Our Company tab
 	public void setCompanyProfile(String ourCmp, String ourMission,String productService){
     	Common.sendKeys("AR_COMP_PROFILE_OUR_COMPANY_XPATH", ourCmp);
@@ -245,8 +235,6 @@ public class ClientsCreationForm {
 	  if(actualClientNameOnList.equals(expectedClientName))
 	  {
 	   flag=true;
-	   Reporter.log("Client created successfully");
-	   Reporter.log("Client present on list and verified");
 	  }
 	  else
 	  {
@@ -261,7 +249,8 @@ public class ClientsCreationForm {
 		if(actualTitleValue.equals(expectedTitleValue)) {
 			return true;
 		}
-		else {
+		else
+		{
 			return false;
 		}	
 		
