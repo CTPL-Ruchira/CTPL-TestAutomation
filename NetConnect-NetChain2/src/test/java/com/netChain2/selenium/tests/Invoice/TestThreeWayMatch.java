@@ -12,7 +12,7 @@ import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 
-public class TestThreewaymatch 
+public class TestThreeWayMatch 
 {
 	private ArrayList<String> poTestData;
 	private ArrayList<String> poQtyRateData;
