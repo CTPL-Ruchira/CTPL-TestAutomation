@@ -23,7 +23,7 @@ public class InvoiceDispute
 		return balanceDue;
 	}
 
-	public void clickAndOpenInvoicePreview()
+	public void clickAndOpenInvoicePreview(String invoiceNo)
 	{
 		Common.click("INVOICE_SEARCH_VENDOR_NAME_XPATH");
 		Common.sleep(2000);
