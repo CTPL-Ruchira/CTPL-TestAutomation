@@ -10,7 +10,6 @@ import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceC
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationListActions;
 import com.netChain2.selenium.pageObjects.accountsPayable.settings.Settings;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
-import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
@@ -51,8 +50,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 
 		//click to create new
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
-		InvoiceCreationListActions icl=new InvoiceCreationListActions();
-        Common.sleep(3000);
+		Common.sleep(3000);
 
         //Scroll up
         Settings.scrollUp();
@@ -138,8 +136,6 @@ public class AccountsPayableSettings extends BaseTestCase {
 		loginPage.login(loginTestData.get(8), loginTestData.get(9));
 
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
-		InvoiceCreationListActions icl=new InvoiceCreationListActions();
-		
 		Settings settings=new Settings();
 
 		//Scroll up
@@ -446,7 +442,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		 
 		 //Verification point
 		 boolean isGrCustomWorkflowSet=settings.verificationForGrWorkflowCreation();
-		 assertFalse(false, "GR custom workflow is set");
+		 assertFalse(isGrCustomWorkflowSet, "GR custom workflow is set");
 		 Common.sleep(5000);
 		 Reporter.log("Custom Worflow for Goods Receipt is set successfully");
 		 
