@@ -118,7 +118,7 @@ public class ApInvoiceDispute extends BaseTestCase
 		invoiceCreationListAction.searchInvoice(invoiceNo);
 		Common.sleep(6000);
 		
-		id.clickAndOpenInvoicePreview();
+		id.clickAndOpenInvoicePreview(invoiceNo);
 		id.openDispute(invoiceTestData.get(6));
 		id.editFieldsForDispute(invoiceTestData.get(6), invoiceDisputeData.get(0), invoiceDisputeData.get(1), invoiceDisputeData.get(2));
 		id.sendDispute();
@@ -207,7 +207,7 @@ public class ApInvoiceDispute extends BaseTestCase
 		invoiceCreationListAction.searchInvoice(invoiceNo);
 		Common.sleep(6000);
 		
-		id.clickAndOpenInvoicePreview();
+		id.clickAndOpenInvoicePreview(invoiceNo);
 		id.cancelDispute();
 		
 		//Check original amount displayed is correct

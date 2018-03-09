@@ -7,7 +7,7 @@ import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
-import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
@@ -18,10 +18,7 @@ public class CreateInvoice extends BaseTestCase {
 	private ArrayList<String> testDataInvoice;
 	private ArrayList<String> testDataInvoice2;
 	private ArrayList<String> testDataInvoice3;
-	private static String invoiceNo;
 	
-	
-
 	@BeforeClass
 	public void setUp() {
 		testData = Common.getTestData("NetchainTest.Login");
@@ -37,30 +34,17 @@ public class CreateInvoice extends BaseTestCase {
 	  public void testCreateInvoice() {
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(0), testData.get(1));
-		Common.sleep(2000);
 		
+	
 		//click to create new
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
 
-		APModuleCreation apModule = invoice.createNew();
-		Common.sleep(2000);
-		
-		//click to AP()
-		apModule.clickAPLink();
-		Common.sleep(2000);
-		
-		//Click to New Invoice
-		apModule.clickNewInvoice();
-		Common.sleep(2000);
+		 //Click on invoice
+		CommonMethods.gotoRightSideAPLink("NEW INVOICE");
 		
 		//Select value from Vender DropDown
 		invoice.SelectVendor(testDataInvoice.get(0));
-	    Common.sleep(6000);
-	    
-	    //Get Invoice number
-	    invoiceNo=invoice.getAttributeValueInvoiceNo();
-		System.out.println("Invoice number" +invoiceNo);
-		
+	   
 		//Select value from Net Term 
 		invoice.SelectNetTerm(testDataInvoice.get(1));
 		

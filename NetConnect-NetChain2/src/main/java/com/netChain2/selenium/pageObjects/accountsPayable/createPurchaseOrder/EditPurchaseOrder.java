@@ -32,20 +32,24 @@ public class EditPurchaseOrder
 		}
 			
 	}
-	public void verifyPurchaseOrderForConnectedVendor(String vendorName, String poNumber)
+	
+	public boolean verifyPurchaseOrderForConnectedVendor(String vendorName, String poNumber)
 	{
-		String xPath="//div[text()='"+vendorName+"']/ancestor::div[@class='item']/div[2]/div[text()='"+poNumber+"']/ancestor::div[@class='item']/div[9]/div/p[text()='Approved / Unaccepted']";
-		try {
-		WebElement ele=Common.findElement(xPath);
-		BaseTestCase.assertTrue(ele.isDisplayed(), "Product is not created");
-		}
-		catch(Exception e)
-		{
-			System.out.println("Element not found");
-			BaseTestCase.assertTrue(false, "Product is not created");
-			
-		}
-			
+		 boolean flag=false;
+		  Common.sleep(2000);
+		  String xpath="//table[@class='table']//tr/td[3]//div[text()='"+poNumber+"']/ancestor::tr/td[5]//div[text()='"+vendorName+"']";
+		  WebElement actualInvoice=Common.findElement(xpath);
+		  String actualinvoiceList=actualInvoice.getText();
+		  if(vendorName.equals(actualinvoiceList))
+		  {
+		   flag=true;
+		  }
+		  else
+		  {
+		   return false;
+		  }
+
+		  return flag;		
 	}
 }
 

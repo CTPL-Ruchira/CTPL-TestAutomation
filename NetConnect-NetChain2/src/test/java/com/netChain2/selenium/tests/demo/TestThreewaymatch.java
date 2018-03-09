@@ -1,8 +1,10 @@
-package com.netChain2.selenium.tests.Invoice;
+package com.netChain2.selenium.tests.demo;
 
 import java.util.ArrayList;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createGoodsReceipt.GoodsReceiptForm;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
@@ -11,6 +13,7 @@ import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.Pu
 import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
+import com.netChain2.utils.CustomAnnotation.TestDetails;
 
 public class TestThreewaymatch 
 {
@@ -20,6 +23,7 @@ public class TestThreewaymatch
 	PurchaseOrderCreationForm purchaseOrderCreationForm;
 	InvoiceCreationForm invoiceCreationForm;
 	GoodsReceiptForm goodsReceiptForm;
+	ThreeWayMatch threeWayMatch;
 	
 	@BeforeClass
 	public void setUp() {
@@ -29,7 +33,8 @@ public class TestThreewaymatch
 		
 	}
 	
-	/*@Test
+	@TestDetails(author="Manoj Kumar", description="To test if 3 way match does not apply when we create a PO, GR and Invoice for a “PO required” product .")
+	@Test(enabled=false)
 	public void testThreewaymatch()
 	{
 		LoginPage loginPage = new LoginPage();
@@ -54,8 +59,7 @@ public class TestThreewaymatch
 		threeWayMatch.acceptInvoiceAndVerifyStatus(invoiceNumber, poTestData.get(0));
 		
 		LogoutFromPage.logout();
-		
-	}*/
+	}
 	
 	@Test
 	public void testThreewaymatch2()
@@ -64,17 +68,7 @@ public class TestThreewaymatch
 		loginPage.login("threewaymatch", "qwerty@123");
 		
 		CommonMethods.gotoRightSideAPLink("NEW PURCHASE ORDER");
-		purchaseOrderCreationForm = new PurchaseOrderCreationForm();
-		purchaseOrderCreationForm.createPurchaseOrder(poTestData.get(0), poTestData.get(1), poTestData.get(2), poTestData.get(3), poTestData.get(4), poTestData.get(5), poTestData.get(6), poTestData.get(7), poQtyRateData.get(2),  poQtyRateData.get(3), poTestData.get(10),poTestData.get(11), poTestData.get(12), poTestData.get(13), 1);
-		String poNumber=String.valueOf(PurchaseOrderCreationForm.getPoNumber());
-		
-		CommonMethods.gotoRightSideAPLink("NEW GOODS RECEIPT");
-		goodsReceiptForm=new GoodsReceiptForm();
-		goodsReceiptForm.createGoodsReceipt(goodsReceiptTestData.get(0), goodsReceiptTestData.get(1), poNumber, "100", goodsReceiptTestData.get(5));
-	
-		CommonMethods.gotoRightSideAPLink("NEW INVOICE");
-		invoiceCreationForm=new InvoiceCreationForm();
-		invoiceCreationForm.createInvoiceForThreewaymatch(poTestData.get(0), "30", poTestData.get(1), poTestData.get(3), poNumber, "messageToVendor", "memo", "1");
-		
 	}
+	
+	
 }

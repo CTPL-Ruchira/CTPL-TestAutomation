@@ -6,10 +6,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
+import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.CheckTwoWayMatchInvoice;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationListActions;
 import com.netChain2.selenium.pageObjects.accountsPayable.settings.Settings;
 import com.netChain2.selenium.pageObjects.common.apCreation.APModuleCreation;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
@@ -20,8 +22,10 @@ public class AccountsPayableSettings extends BaseTestCase {
 	private ArrayList<String> grCustomWorkflowvalues;
 	private String invoiceNo;
 	private String payId;
-	InvoiceCreationListActions invoiceCreationListAction;
-
+	InvoiceCreationListActions icl=new InvoiceCreationListActions();
+	Settings settings=new Settings();
+	InvoiceCreationForm invoice = new InvoiceCreationForm();
+	
 	@BeforeClass
 	public void setUp() 
 	{
@@ -37,9 +41,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 	{
 	    LoginPage loginPage = new LoginPage();
 		loginPage.login(loginTestData.get(8), loginTestData.get(9));
-
-		Settings settings=new Settings();
-		settings.openSettings();
+         settings.openSettings();
         
 		settings.createNewCustomWorkflow();
 		settings.autoAcceptValue(customWorkflowValues.get(0));
@@ -53,17 +55,11 @@ public class AccountsPayableSettings extends BaseTestCase {
 		Common.sleep(3000);
 
         //Scroll up
-        Settings.scrollUp();
-       
-        APModuleCreation apModule = invoice.createNew();
-		Common.sleep(3000);
 
-		//click to AP()
-		apModule.clickAPLink();
-		
-		//Click to New Invoice
-		apModule.clickNewInvoice();
-		Common.sleep(3000);
+        Settings.scrollUp();
+     
+	    //Click on invoice
+		CommonMethods.gotoRightSideAPLink("NEW INVOICE");
 		
 		//Select value from Vender DropDown
 		invoice.SelectVendor(customWorkflowValues.get(4));
@@ -107,6 +103,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		//Invoice Click on save button
 		invoice.Invoice_SaveButton();
 		Common.sleep(2000);
+		
 		//Invoice assert message verification
 		String expectedAlertMessage="Invoice was created";
 		String actualAlertMessage=invoice.gettextValue();			   
@@ -118,14 +115,22 @@ public class AccountsPayableSettings extends BaseTestCase {
 		//Invoice Create rule click on cancel button
 		invoice.CreateRule_CancelButton();
 
+		//Scroll up
+		Settings.scrollUp();
+		Common.sleep(2000);
+		
+		//Click on sorting arrow
+		Common.click("SORTING_ARROW_XPATH");
+		Common.sleep(4000);
+
 		//Search invoice
-		invoiceCreationListAction=new InvoiceCreationListActions();
-		invoiceCreationListAction.searchInvoice(invoiceNo);
+		//CommonMethods.searchByNumberOrName(invoiceNo);
 		
 		boolean isAutoApproveInvoiceLinkVisible=settings.verificationForAutoApproveLink(customWorkflowValues.get(4), invoiceNo,customWorkflowValues.get(25));
 		assertTrue(isAutoApproveInvoiceLinkVisible, "Auto approve link should be seen as per custom workflow");
 		Reporter.log(" Auto approve link is visible as per custom workflow");
 
+		//Logout
 	     LogoutFromPage.logout();
 	}
 	
@@ -140,15 +145,9 @@ public class AccountsPayableSettings extends BaseTestCase {
 
 		//Scroll up
 		Settings.scrollUp();
-
-		APModuleCreation apModule = invoice.createNew();
 		
-		//click to AP()
-		apModule.clickAPLink();
-		
-		//Click to New Invoice
-		apModule.clickNewInvoice();
-		Common.sleep(3000);
+	    //Click on invoice
+		CommonMethods.gotoRightSideAPLink("NEW INVOICE");
 		
 		//Select value from Vender DropDown
 		invoice.SelectVendor(customWorkflowValues.get(4));
@@ -192,6 +191,7 @@ public class AccountsPayableSettings extends BaseTestCase {
         //Invoice Click on save button
 		invoice.Invoice_SaveButton();
 		Common.sleep(2000);
+		
 		//Invoice assert message verification
 		String expectedAlertMessage="Invoice was created";
 		String actualAlertMessage=invoice.gettextValue();			   
@@ -204,13 +204,17 @@ public class AccountsPayableSettings extends BaseTestCase {
 		//Invoice Create rule click on cancel button
 		invoice.CreateRule_CancelButton();
 		
-		//Scroll up
+        //Scroll up
         Settings.scrollUp();
-		
-		//Search invoice
-        invoiceCreationListAction=new InvoiceCreationListActions();
-		invoiceCreationListAction.searchInvoice(invoiceNo);
-		
+        Common.sleep(2000);
+
+        //Click on sorting arrow
+        Common.click("SORTING_ARROW_XPATH");
+        Common.sleep(4000);
+          
+        //Search
+        //CommonMethods.searchByNumberOrName(invoiceNo);
+		 
 		boolean isautoCreatePaymentLinkvisible=settings.verificationForCreatePayment(customWorkflowValues.get(4), invoiceNo,customWorkflowValues.get(26));
 		assertTrue(isautoCreatePaymentLinkvisible, "create payment link should be visible as per custom workflow");
 		Reporter.log(" Create Payment link is visible as per custom workflow");
@@ -224,20 +228,13 @@ public class AccountsPayableSettings extends BaseTestCase {
 
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(loginTestData.get(8), loginTestData.get(9));
-
-		InvoiceCreationForm invoice = new InvoiceCreationForm();
-	    Settings settings=new Settings();
+		
 		//Scroll up
 		Settings.scrollUp();
 
-		APModuleCreation apModule = invoice.createNew();
-		//click to AP()
-		apModule.clickAPLink();
-		
-		//Click to New Invoice
-		apModule.clickNewInvoice();
-		Common.sleep(3000);
-		
+		//Click on invoice
+		CommonMethods.gotoRightSideAPLink("NEW INVOICE");
+
 		//Select value from Vender DropDown
 		invoice.SelectVendor(customWorkflowValues.get(4));
 		
@@ -280,6 +277,7 @@ public class AccountsPayableSettings extends BaseTestCase {
         //Invoice Click on save button
 		invoice.Invoice_SaveButton();
 		Common.sleep(2000);
+		
 		//Invoice assert message verification
 		String expectedAlertMessage="Invoice was created";
 		String actualAlertMessage=invoice.gettextValue();			   
@@ -291,30 +289,32 @@ public class AccountsPayableSettings extends BaseTestCase {
 		//Invoice Create rule click on cancel button
 		invoice.CreateRule_CancelButton();
 
+        //Search invoice
+		//CommonMethods.searchByNumberOrName(invoiceNo);
+       
 		//Scroll up
         Settings.scrollUp();
-       
-		//Search invoice
-        invoiceCreationListAction=new InvoiceCreationListActions();
-		invoiceCreationListAction.searchInvoice(invoiceNo);
-		//Verification of view payment
+        Common.sleep(2000);
+
+        //Click on sorting arrow
+        Common.click("SORTING_ARROW_XPATH");
+        Common.sleep(4000);		
+        
+        //Verification of view payment
 		settings.verificationForViewPayment(customWorkflowValues.get(4), invoiceNo);
 		
 		//get payment id
 		payId=settings.getPaymentId();
 	    Common.sleep(2000);
 
-	    //open menu
-	    settings.clickOnOpenMenu();
-	    
-	    //click on payment
-	    settings.clickOnPaymentMenu();
+	    //Click on payments
+	    CommonMethods.gotoLeftAPLink("Payments");
 	
 	    //Search
-	    invoiceCreationListAction=new InvoiceCreationListActions();
-		invoiceCreationListAction.searchInvoice(invoiceNo);
-	    
-		//Verification of approve payment
+	    //CommonMethods.searchByNumberOrName(invoiceNo);
+	      Common.sleep(2000);
+		
+	      //Verification of approve payment
 	    boolean isapprovePaymentVisible=settings.verificationForApprovePayment(customWorkflowValues.get(4),payId,customWorkflowValues.get(27));
 	    assertTrue(isapprovePaymentVisible, "Approve payment link should be visible as per custom workflow");
 
@@ -328,20 +328,11 @@ public class AccountsPayableSettings extends BaseTestCase {
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(loginTestData.get(8), loginTestData.get(9));
 
-		InvoiceCreationForm invoice = new InvoiceCreationForm();
-		Settings settings=new Settings();
-
 		//Scroll up
 		Settings.scrollUp();
-
-		APModuleCreation apModule = invoice.createNew();
-		
-		//click to AP()
-		apModule.clickAPLink();
-		
-		//Click to New Invoice
-		apModule.clickNewInvoice();
-		Common.sleep(3000);
+        
+		//Click on invoice
+		CommonMethods.gotoRightSideAPLink("NEW INVOICE");
 		
 		//Select value from Vender DropDown
 		invoice.SelectVendor(customWorkflowValues.get(4));
@@ -349,8 +340,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		//Get Invoice number
 		invoiceNo=invoice.getAttributeValueInvoiceNo();
 		
-
-		//Select value from Net Term 
+        //Select value from Net Term 
 		invoice.SelectNetTerm(customWorkflowValues.get(5));
 
 		//select value from Location dropdown
@@ -386,6 +376,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		 //Invoice Click on save button
 		invoice.Invoice_SaveButton();
 		Common.sleep(2000);
+		
 		//Invoice assert message verification
 		String expectedAlertMessage="Invoice was created";
 		String actualAlertMessage=invoice.gettextValue();			   
@@ -397,27 +388,28 @@ public class AccountsPayableSettings extends BaseTestCase {
 		//Invoice Create rule click on cancel button
 		invoice.CreateRule_CancelButton();
 
-		//Scroll up
-        Settings.scrollUp();
-       
 		//Search invoice
-        invoiceCreationListAction=new InvoiceCreationListActions();
-		invoiceCreationListAction.searchInvoice(invoiceNo);
-		//Verification of view payment
+        //CommonMethods.searchByNumberOrName(invoiceNo);
+		
+        //Scroll up
+        Settings.scrollUp();
+        Common.sleep(2000);
+
+        //Click on sorting arrow
+        Common.click("SORTING_ARROW_XPATH");
+        Common.sleep(4000);		
+        
+        //Verification of view payment
 		settings.verificationForViewPayment(customWorkflowValues.get(4), invoiceNo);
 		
 		//get payment id
 		payId=settings.getPaymentId();
 	    		
-		//open menu
-	    settings.clickOnOpenMenu();
-	    
-	    //click on payment
-	    settings.clickOnPaymentMenu();
+		//Click on payments
+	    CommonMethods.gotoLeftAPLink("Payments");
 	
 	    //Search
-	    invoiceCreationListAction=new InvoiceCreationListActions();
-		invoiceCreationListAction.searchInvoice(invoiceNo);
+	    //CommonMethods.searchByNumberOrName(invoiceNo);
 		
 		boolean issendPaymentLinkvisible=settings.verificationForSendPayment(customWorkflowValues.get(4),payId,customWorkflowValues.get(28));
 		assertTrue(issendPaymentLinkvisible, "send payment link should be visible as per custom workflow");
@@ -429,7 +421,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 	}
 	
 	
-	@Test
+	/*@Test
 	@TestDetails(author="Ruchira.Mhaisurkar",description="This sets the custom workflow for Goods Receipt")
 	public void createCustomWorkflowForGoodsReceipt()
 	{
@@ -451,5 +443,5 @@ public class AccountsPayableSettings extends BaseTestCase {
 		 
 		 
 		 
-	}
+	}*/
 }

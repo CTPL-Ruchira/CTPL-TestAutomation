@@ -1,23 +1,13 @@
 package com.netChain2.selenium.pageObjects.accountsReceivable.createClients;
 
 import org.openqa.selenium.Keys;
-import org.testng.Reporter;
-
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
-import com.netChain2.selenium.pageObjects.common.arCreation.ARModuleCreation;
-import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class ClientsCreationForm {
 	private static int count=1;
 	private static int flag=1;
-	
-	public ARModuleCreation createNew() {
-		CommonMethods.scrollUp();
-		Common.click("AR_CREATE_NEW_PLUSE_BUTTON_XPATH");
-		return new ARModuleCreation();
-	}
-	
+		
 	//Set Company Profile Our Company tab
 	public void setCompanyProfile(String ourCmp, String ourMission,String productService){
     	Common.sendKeys("AR_COMP_PROFILE_OUR_COMPANY_XPATH", ourCmp);
@@ -220,6 +210,7 @@ public class ClientsCreationForm {
 		EnterTitle(title);
 		selectPaymentReceiver();
 		clickAssociateEmpNextButton();
+		clickBookingAccntAddLineButton();
 		SetBookingAccount(location,dept,bookingAcc);
 		clickBookingAccountNextButton();
 		transactionDetails(terms,regNo,paymentMethod);
@@ -234,26 +225,16 @@ public class ClientsCreationForm {
 		setEmailOnInvoiceDelivery(E_mail);
 		setNotes(notes);
 		clickSaveButton();
-	}
-	//String SetBookingAccount,String transactionDetails,String setClientIdentity,String setBillingAddress,String setContactDetails ,String SelectCompanyTire,String setEmailOnInvoiceDelivery) {
-	
+	}	
 	
 	//Verify Client List 	
 	public Boolean verifyClientOnList(String expectedClientName) 
 	 {
-	  boolean flag=false;
-	  Common.sleep(6000);
-	  System.out.println("expectedClientName"+expectedClientName);
-	  CommonMethods.searchByNumberOrName(expectedClientName);
-	  Common.sleep(2000);
-	  
+	  boolean flag=false;	  
 	  String actualClientNameOnList=Common.getText("AR_CLIENT_LIST_XPATH");
 	  if(actualClientNameOnList.equals(expectedClientName))
 	  {
 	   flag=true;
-	   System.out.println("Client displayed on list");
-	   Reporter.log("Client present on list and verified");
-	   Reporter.log("Client added is present on Netchain Platform and The Connection is done successfully");
 	  }
 	  else
 	  {
@@ -268,11 +249,10 @@ public class ClientsCreationForm {
 		if(actualTitleValue.equals(expectedTitleValue)) {
 			return true;
 		}
-		else {
+		else
+		{
 			return false;
-		}
-		
-		
+		}	
 		
 	}	 
 }
