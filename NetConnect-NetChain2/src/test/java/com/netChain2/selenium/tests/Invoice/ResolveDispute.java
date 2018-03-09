@@ -124,7 +124,7 @@ public class ResolveDispute extends BaseTestCase
 		invoiceCreationListAction=new InvoiceCreationListActions();
 		invoiceCreationListAction.searchInvoice(invoiceNo);
 		
-		id.clickAndOpenInvoicePreview();
+		id.clickAndOpenInvoicePreview(invoiceNo);
 		id.openDispute(invoiceTestData.get(6));
 		id.editFieldsForDispute(invoiceTestData.get(6), invoiceDisputeData.get(0), invoiceDisputeData.get(1), invoiceDisputeData.get(2));
 		id.sendDispute();
@@ -221,7 +221,7 @@ public class ResolveDispute extends BaseTestCase
 		invoiceCreationListAction=new InvoiceCreationListActions();
 		invoiceCreationListAction.searchInvoice(invoiceNo);
 		
-		id.clickAndOpenInvoicePreview();
+		id.clickAndOpenInvoicePreview(invoiceNo);
 		id.approveDispute();
 		
 		//Check original amount displayed is correct
