@@ -23,12 +23,9 @@ public class InvoiceDispute
 		return balanceDue;
 	}
 
-	public void clickAndOpenInvoicePreview(String invoiceNo)
+	public void clickAndOpenInvoicePreview()
 	{
-		Common.click("SORTING_ARROW_XPATH");
-		String xpath="//div[@class='react-bs-container-body']//tr/td[3]//div[text()='"+invoiceNo+"']/ancestor::tr[1]/td[4]//div[@class='text']";
-		WebElement elem=Common.findElement(xpath);
-		elem.click();
+		Common.click("INVOICE_SEARCH_VENDOR_NAME_XPATH");
 		Common.sleep(2000);
 		Common.click("INVOICE_PREVIEW_BANNER_XPATH");
 	}

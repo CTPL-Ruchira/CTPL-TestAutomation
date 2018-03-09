@@ -49,8 +49,13 @@ public class AccountsPayableSettings extends BaseTestCase {
 		settings.autocreatePaymentValue(customWorkflowValues.get(2));
 		settings.autoapprovePaymentValue(customWorkflowValues.get(3));
 		settings.clickOnFinishButton();
- 
-		//Scroll up
+
+		//click to create new
+		InvoiceCreationForm invoice = new InvoiceCreationForm();
+		Common.sleep(3000);
+
+        //Scroll up
+
         Settings.scrollUp();
      
 	    //Click on invoice
@@ -134,6 +139,9 @@ public class AccountsPayableSettings extends BaseTestCase {
 
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(loginTestData.get(8), loginTestData.get(9));
+
+		InvoiceCreationForm invoice = new InvoiceCreationForm();
+		Settings settings=new Settings();
 
 		//Scroll up
 		Settings.scrollUp();
@@ -426,7 +434,7 @@ public class AccountsPayableSettings extends BaseTestCase {
 		 
 		 //Verification point
 		 boolean isGrCustomWorkflowSet=settings.verificationForGrWorkflowCreation();
-		 assertFalse(false, "GR custom workflow is set");
+		 assertFalse(isGrCustomWorkflowSet, "GR custom workflow is set");
 		 Common.sleep(5000);
 		 Reporter.log("Custom Worflow for Goods Receipt is set successfully");
 		 
