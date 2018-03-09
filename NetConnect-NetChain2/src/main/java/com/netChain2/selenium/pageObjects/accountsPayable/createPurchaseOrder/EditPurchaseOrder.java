@@ -18,7 +18,8 @@ public class EditPurchaseOrder
 	
 	public void verifyCreatedPurchaseOrder(String vendorName, String poNumber)
 	{
-		String xPath= "//div[text()='"+vendorName+"']/ancestor::div[@class='item']/div[2]/div[text()='"+poNumber+"']/ancestor::div[@class='item']/div[10]/div/a[text()='Approve']";
+		Common.click("SORTING_ARROW_XPATH");
+		String xPath= "//div[text()='"+poNumber+"']/ancestor::tr[1]/td[5]//div[text()='"+vendorName+"']/ancestor::tr[1]//td[11]//div//a[text()='Approve']";
 		System.out.println("Before displayed");
 		try {
 		WebElement ele=Common.findElement(xPath);
