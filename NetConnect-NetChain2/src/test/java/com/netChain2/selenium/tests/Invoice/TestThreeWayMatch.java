@@ -74,7 +74,7 @@ public class TestThreeWayMatch extends BaseTestCase
 		
 		CommonMethods.gotoRightSideAPLink("NEW GOODS RECEIPT");
 		goodsReceiptForm=new GoodsReceiptForm();
-		goodsReceiptForm.createGoodsReceipt(goodsReceiptTestData.get(0), goodsReceiptTestData.get(1), poNumber, "100", goodsReceiptTestData.get(5));
+		goodsReceiptForm.createGoodsReceipt(goodsReceiptTestData.get(0), goodsReceiptTestData.get(1), poNumber, goodsReceiptTestData.get(5));
 	
 		CommonMethods.gotoRightSideAPLink("NEW INVOICE");
 		invoiceCreationForm=new InvoiceCreationForm();
@@ -99,7 +99,7 @@ public class TestThreeWayMatch extends BaseTestCase
 		
 		CommonMethods.gotoRightSideAPLink("NEW GOODS RECEIPT");
 		goodsReceiptForm=new GoodsReceiptForm();
-		goodsReceiptForm.createGoodsReceipt("Techie", goodsReceiptTestData.get(1), poNumber, "100", goodsReceiptTestData.get(5));
+		goodsReceiptForm.createGoodsReceipt("Techie", goodsReceiptTestData.get(1), poNumber, "100");
 		String grNumber=goodsReceiptForm.getGrNumber();
 		threeWayMatch=new ThreeWayMatch();
 		boolean isGrCreated=threeWayMatch.verifyGoodReceiptOnList(grNumber, "Techie");
