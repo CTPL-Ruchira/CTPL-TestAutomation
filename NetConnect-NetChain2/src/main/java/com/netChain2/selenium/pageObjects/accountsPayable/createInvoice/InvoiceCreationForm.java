@@ -312,6 +312,15 @@ public class InvoiceCreationForm {
 			
 			valElement.click();
 		}
-
+		
+		public void createInvoiceForThreeWayMatch_AmtChange(String vendorName,String location,String productName,String poNumber,String flag)
+		{
+			SelectVendor(vendorName);
+			SelectLocation(location);
+			selectProductOrServices(productName, flag);
+			selectPoNumberfromdropdown(poNumber, flag);
+		}
+		
+		
 }
 
