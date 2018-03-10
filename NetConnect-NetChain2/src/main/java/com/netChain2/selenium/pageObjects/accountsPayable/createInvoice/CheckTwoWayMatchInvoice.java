@@ -77,8 +77,8 @@ public class CheckTwoWayMatchInvoice {
 
   //Check Status discrepant
   public boolean CheckInvoiceStatus_Discrepant(String VendorName, String InvoiceNumber,String expectedvalue) {
-	  String InvoiceStatusLocaterDiscrepant="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+VendorName+"']/ancestor::tr[1]/td[6]//div[@class='text']";
-	  WebElement ele=Common.findElement(InvoiceStatusLocaterDiscrepant);
+	  String invoiceStatusLocaterDiscrepant="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+VendorName+"']/ancestor::tr[1]/td[6]//div[@class='text']";
+	  WebElement ele=Common.findElement(invoiceStatusLocaterDiscrepant);
 	  String ActualValue= ele.getText();
 	  Common.sleep(3000);
 	  String ExpectedValue=expectedvalue;
@@ -96,8 +96,8 @@ public class CheckTwoWayMatchInvoice {
   
 //Check Status accepted for threshhold
   public boolean CheckInvoiceStatus_accepted(String VendorName, String InvoiceNumber) {
-      String InvoiceStatusLocaterAccepted="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[5]/div[@class='text']";
-       WebElement ele=Common.findElement(InvoiceStatusLocaterAccepted);
+      String invoiceStatusLocaterAccepted="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[5]/div[@class='text']";
+       WebElement ele=Common.findElement(invoiceStatusLocaterAccepted);
        String ActualValue= ele.getText();
         Common.sleep(3000);
 	    String ExpectedValue="Accepted";
@@ -204,8 +204,8 @@ public class CheckTwoWayMatchInvoice {
   //Check Invoice status
   public boolean CheckInvoiceStatus_CreatePayment(String VendorName, String InvoiceNumber,String expectedvalue)
 	{
-		String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+VendorName+"']/ancestor::tr[1]/td[10]//a[text()='Create Payment']";
-		WebElement element=Common.findElement(InvoiceLocator);
+		String invoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+VendorName+"']/ancestor::tr[1]/td[10]//a[text()='Create Payment']";
+		WebElement element=Common.findElement(invoiceLocator);
 	    String ActualValue= element.getText();
 	    String expectedValue=expectedvalue;
 	   
@@ -222,8 +222,8 @@ public class CheckTwoWayMatchInvoice {
 //Check Status approved for threshhold
 	public boolean CheckInvoiceStatus_approved(String vendorName, String invoiceNumber) {
 		//String InvoiceStatusLocaterAccepted="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[5]/div[@class='text']";
-		String InvoiceStatusLocaterAccepted="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[6]//div[@class='text']";
-		WebElement ele=Common.findElement(InvoiceStatusLocaterAccepted);
+		String invoiceStatusLocaterAccepted="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[6]//div[@class='text']";
+		WebElement ele=Common.findElement(invoiceStatusLocaterAccepted);
 		String ActualValue= ele.getText();
 		Common.sleep(3000);
 		String ExpectedValue="Approved";
@@ -241,8 +241,8 @@ public class CheckTwoWayMatchInvoice {
 	
 	//Click on approve payment 
 		public boolean checkApprovePayment(String vendorName, String paymentId,String expectedValue) {
-			String InvoiceStatusApprovePayment="//div[text()='"+paymentId+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[10]//a[text()='Approve Payment']";
-			WebElement Element4=Common.findElement(InvoiceStatusApprovePayment);
+			String invoiceStatusApprovePayment="//div[text()='"+paymentId+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[10]//a[text()='Approve Payment']";
+			WebElement Element4=Common.findElement(invoiceStatusApprovePayment);
 			String ActualValue= Element4.getText();
 			Common.sleep(3000);
 			String ExpectedValue=expectedValue;
@@ -258,5 +258,5 @@ public class CheckTwoWayMatchInvoice {
 
 		}  
 	
-
+	
 }
