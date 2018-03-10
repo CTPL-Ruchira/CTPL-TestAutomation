@@ -70,7 +70,7 @@ public class TestThreeWayMatch
 		
 		CommonMethods.gotoRightSideAPLink("NEW GOODS RECEIPT");
 		goodsReceiptForm=new GoodsReceiptForm();
-		goodsReceiptForm.createGoodsReceipt(goodsReceiptTestData.get(0), goodsReceiptTestData.get(1), poNumber, "100", goodsReceiptTestData.get(5));
+		goodsReceiptForm.createGoodsReceipt(goodsReceiptTestData.get(0), goodsReceiptTestData.get(1), poNumber, goodsReceiptTestData.get(5));
 	
 		CommonMethods.gotoRightSideAPLink("NEW INVOICE");
 		invoiceCreationForm=new InvoiceCreationForm();
