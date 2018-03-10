@@ -3,6 +3,7 @@ package com.netChain2.selenium.pageObjects.accountsPayable.createInvoice;
 import org.openqa.selenium.WebElement;
 
 import com.netChain2.engine.Common;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class ThreeWayMatch 
 {
@@ -20,5 +21,17 @@ public class ThreeWayMatch
 		WebElement ele2=Common.findElement(createPaymentXpath);
 		System.out.println("Ghhah"+ele2.getText());
 				
+	}
+	
+	public boolean verifyGoodReceiptOnList(String grNumber, String vendorName)
+	{
+		CommonMethods.searchByNumberOrName(grNumber);
+		String vendorNameFromList=Common.getText("GR_LIST_VENDORNAME_XPATH");
+		if(vendorName.equals(vendorNameFromList))
+			return true;
+		else
+			return false;
+		
+		
 	}
 }
