@@ -139,6 +139,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		
 		//Delete invoice
 		CommonMethods.deleteInvoice(invoiceNo, vendorNameInPo);
+		Common.sleep(3000);
 		
 		//go to purchase order
 		CommonMethods.gotoLeftAPLink("Purchase Orders");
@@ -147,10 +148,11 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
 		Common.sleep(2000);
 		
+		//Logout
 		LogoutFromPage.logout();
 	}
 
-	@Test(dependsOnMethods="testCreateInvoice_CreatePayment")
+    @Test(dependsOnMethods="testCreateInvoice_CreatePayment")
 	@TestDetails(author="Roshni.Mehta",description="QtyMisMatchedByEditPo")
 	public void  CreateInvoice_DiscrepantQtyMisMatchedByEditPo()
 	{
@@ -218,6 +220,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		//Change Quantity
 		TwoWayMatch.SelectQuantity_Invoice(testDataInvoice2.get(11));
 
+		//Select rate
 		TwoWayMatch.SelectRate_Invoice(testdatatwowaymatch.get(28));
 
 		//Select Save button
@@ -324,11 +327,19 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		CommonMethods.gotoLeftAPLink("Invoices");
 		Common.sleep(3000);
 
+	    //Delete invoice
+		CommonMethods.deleteInvoice(invoiceNo, vendorNameInPo);
+		Common.sleep(3000);
 		
+		//go to purchase order
+		CommonMethods.gotoLeftAPLink("Purchase Orders");
+		
+		//delete PO
+		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
 		
 		//Logout
 		LogoutFromPage.logout();
-	} 
+	}
 
 	@Test(dependsOnMethods="CreateInvoice_DiscrepantQtyMisMatchedByEditPo")
 	@TestDetails(author="Roshni.Mehta",description="QtyMisMatchedByEditInvoice")
@@ -529,11 +540,25 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		assertTrue(isApprovePayment, "approve payment lik is not visible");
 		Reporter.log("approve payment link is visible as per custom workflow");
 
+		//Invoices
+		CommonMethods.gotoLeftAPLink("Invoices");
+		Common.sleep(3000);
+
+	    //Delete invoice
+		CommonMethods.deleteInvoice(invoiceNo, vendorNameInPo);
+		Common.sleep(3000);
+		
+		//go to purchase order
+		CommonMethods.gotoLeftAPLink("Purchase Orders");
+		
+		//delete PO
+		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
+	   
 		//Logout
 		LogoutFromPage.logout();
 	}
 
-	@Test(dependsOnMethods="CreateInvoice_DiscrepantQtyMisMatchedByEditInvoice")
+    @Test(dependsOnMethods="CreateInvoice_DiscrepantQtyMisMatchedByEditInvoice")
 	@TestDetails(author="Roshni.Mehta",description="Po not found")
 	public void poNotFound()
 	{
@@ -726,12 +751,25 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		assertTrue(isApprovePayment, "approve payment lik is not visible");
 		Reporter.log("approve payment link is visible as per custom workflow");
 
+		//Invoices
+		CommonMethods.gotoLeftAPLink("Invoices");
+		Common.sleep(3000);
+
+	    //Delete invoice
+		CommonMethods.deleteInvoice(invoiceNo, vendorNameInPo);
+		Common.sleep(3000);
+		
+		//go to purchase order
+		CommonMethods.gotoLeftAPLink("Purchase Orders");
+		
+		//delete PO
+		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
+		
 		//logout
 		LogoutFromPage.logout();
 	}	
 
-
-	@Test(dependsOnMethods="poNotFound")
+    @Test(dependsOnMethods="poNotFound")
 	@TestDetails(author="Roshni.Mehta",description="TwoWayMatch with Amount by edit invoice")
 
 	public void CreateInvoice_DiscrepantAmountByEditInvoice() 
@@ -911,7 +949,21 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		boolean isApprovePayment =  TwoWayMatch.checkApprovePayment(vendorNameInPo, payId,testPurchaseOrder.get(22));
 		assertTrue(isApprovePayment, "approve payment lik is not visible");
 		Reporter.log("approve payment link is visible as per custom workflow");
+		
+		//Invoices
+		CommonMethods.gotoLeftAPLink("Invoices");
+		Common.sleep(3000);
 
+	    //Delete invoice
+		CommonMethods.deleteInvoice(invoiceNo, vendorNameInPo);
+		Common.sleep(3000);
+		
+		//go to purchase order
+		CommonMethods.gotoLeftAPLink("Purchase Orders");
+		
+		//delete PO
+		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
+		
 		LogoutFromPage.logout();
 	}
 
@@ -1107,11 +1159,24 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		assertTrue(isApprovePayment, "approve payment lik is not visible");
 		Reporter.log("approve payment link is visible as per custom workflow");
 
+		//Invoices
+		CommonMethods.gotoLeftAPLink("Invoices");
+		Common.sleep(3000);
+
+	    //Delete invoice
+		CommonMethods.deleteInvoice(invoiceNo, vendorNameInPo);
+		Common.sleep(3000);
+		
+		//go to purchase order
+		CommonMethods.gotoLeftAPLink("Purchase Orders");
+		
+		//delete PO
+		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
+		
 		//Logout
 		LogoutFromPage.logout();
 	}	
-
-
+   
 	@Test(dependsOnMethods="CreateInvoice_DiscrepantAmountMisMatchedByEditPo")
 	@TestDetails(author="Ruchira.Mhaisurkar",description="TwoWayMatch with qty within threshold limit")
 	public void testCreateInvoice_QtyWithinThresholdLimit()
@@ -1273,11 +1338,26 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		boolean isApprovePayment =  TwoWayMatch.checkApprovePayment(vendorNameInPo, payId,testPurchaseOrder.get(22));
 		assertTrue(isApprovePayment, "approve payment lik is not visible");
 		Reporter.log("approve payment link is visible as per custom workflow");
+		
+		//Invoices
+		CommonMethods.gotoLeftAPLink("Invoices");
+		Common.sleep(3000);
+
+	    //Delete invoice
+		CommonMethods.deleteInvoice(invoiceNo, vendorNameInPo);
+		Common.sleep(3000);
+		
+		//go to purchase order
+		CommonMethods.gotoLeftAPLink("Purchase Orders");
+		
+		//delete PO
+		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
+		
+		//Logout
 		LogoutFromPage.logout();
 	}
 
-
-	@Test(dependsOnMethods= {"testCreateInvoice_QtyWithinThresholdLimit"})
+    @Test(dependsOnMethods= {"testCreateInvoice_QtyWithinThresholdLimit"})
 	@TestDetails(author="Ruchira.Mhaisurkar",description="TwoWayMatch with Amount within threshold limit")
 	public void testCreateInvoice_AmountWithinThresholdLimit()
 	{
@@ -1433,6 +1513,21 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		assertTrue(isApprovePayment, "approve payment lik is not visible");
 		Reporter.log("approve payment link is visible as per custom workflow");
 
+		//Invoices
+		CommonMethods.gotoLeftAPLink("Invoices");
+		Common.sleep(3000);
+
+	    //Delete invoice
+		CommonMethods.deleteInvoice(invoiceNo, vendorNameInPo);
+		Common.sleep(3000);
+		
+		//go to purchase order
+		CommonMethods.gotoLeftAPLink("Purchase Orders");
+		
+		//delete PO
+		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
+		
+		//logout
 		LogoutFromPage.logout();
 	}
 
