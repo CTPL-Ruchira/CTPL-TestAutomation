@@ -72,22 +72,22 @@ public class Settings
 	
 	public void autoAcceptValue(String value) {
       Common.sendKeys("INVOICE_WORKFLOW_AUTOACCEPT_INVOICE_TEXTBOX_XPATH", value);
-      Common.sleep(2000);
+      Common.sleep(1000);
 	}
 	
 
 	public void autoAprroveValue(String value) {
       Common.sendKeys("INVOICE_WORKFLOW_AUTOAPPROVE_INVOICE_TEXTBOX_XPATH", value);
-      Common.sleep(2000);
+      Common.sleep(1000);
 	}
 	
 	public void autocreatePaymentValue(String value) {
 	      Common.sendKeys("INVOICE_WORKFLOW_AUTOCREATEPAYMENT_INVOICE_TEXTBOX_XPATH", value);
-	      Common.sleep(2000);
+	      Common.sleep(1000);
 	}
 	public void autoapprovePaymentValue(String value) {
 	      Common.sendKeys("INVOICE_WORKFLOW_AUTOAPPROVEPAYMENT_INVOICE_TEXTBOX_XPATH", value);
-	      Common.sleep(3000);
+	      Common.sleep(1000);
 	}
 
 	private String getLocatorValue(String xpathName)

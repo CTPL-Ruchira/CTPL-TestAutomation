@@ -120,4 +120,18 @@ public class CommonMethods
 		actionXpathElement.click();
 	}
 	
+	//delete invoice
+	public static void deleteInvoice(String invoiceNumber,String vendorName) {
+		String deleteButton="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[11]//div[@class='removeWrapper']/button";
+		WebElement element=Common.findElement(deleteButton);
+		element.click();
+		Common.click("INVOICE_DELETE_CONFIRM_BUTTON_XPATH");
+		Common.sleep(2000);
+}
+	//delete invoice
+		public static void deletePO(String invoiceNumber,String vendorName) {
+			String deleteButton="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[5]//div[text()='"+vendorName+"']/ancestor::tr/td[13]/div[@class='column']/button/i[@data-tip='Delete PO.']";
+			WebElement element=Common.findElement(deleteButton);
+			element.click();
+	}
 }

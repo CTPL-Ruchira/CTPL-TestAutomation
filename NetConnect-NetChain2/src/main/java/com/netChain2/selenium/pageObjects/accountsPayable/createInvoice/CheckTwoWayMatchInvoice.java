@@ -53,8 +53,8 @@ public class CheckTwoWayMatchInvoice {
 	}
 
    //Accept link on invoice
-   public void InvoiceAcceptLinkClick(String VendorName, String InvoiceNumber) {
-	   String InvoiceStatusAcceptInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[text()='Accept Invoice']";
+   public void InvoiceAcceptLinkClick(String vendorName, String invoiceNumber) {
+	   String InvoiceStatusAcceptInvoice="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[10]//a[text()='Accept Invoice']";
 	   WebElement Element2=Common.findElement(InvoiceStatusAcceptInvoice);
 	   Element2.click();
   }
@@ -76,12 +76,12 @@ public class CheckTwoWayMatchInvoice {
   }
 
   //Check Status discrepant
-  public boolean CheckInvoiceStatus_Discrepant(String VendorName, String InvoiceNumber) {
-	  String InvoiceStatusLocaterDiscrepant="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[5]/div[@class='text']";
-	  WebElement ele=Common.findElement(InvoiceStatusLocaterDiscrepant);
+  public boolean CheckInvoiceStatus_Discrepant(String VendorName, String InvoiceNumber,String expectedvalue) {
+	  String invoiceStatusLocaterDiscrepant="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+VendorName+"']/ancestor::tr[1]/td[6]//div[@class='text']";
+	  WebElement ele=Common.findElement(invoiceStatusLocaterDiscrepant);
 	  String ActualValue= ele.getText();
 	  Common.sleep(3000);
-	  String ExpectedValue="Discrepant";
+	  String ExpectedValue=expectedvalue;
 
 	  if(ActualValue.equals(ExpectedValue))
 	  {
@@ -96,8 +96,8 @@ public class CheckTwoWayMatchInvoice {
   
 //Check Status accepted for threshhold
   public boolean CheckInvoiceStatus_accepted(String VendorName, String InvoiceNumber) {
-      String InvoiceStatusLocaterAccepted="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[5]/div[@class='text']";
-       WebElement ele=Common.findElement(InvoiceStatusLocaterAccepted);
+      String invoiceStatusLocaterAccepted="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[5]/div[@class='text']";
+       WebElement ele=Common.findElement(invoiceStatusLocaterAccepted);
        String ActualValue= ele.getText();
         Common.sleep(3000);
 	    String ExpectedValue="Accepted";
@@ -113,8 +113,8 @@ public class CheckTwoWayMatchInvoice {
 			
 		     }
 //Approve po in invoice
-  public void clickOnUnapproveUpdate(String VendorName, String poNumber) {
-	  String approvePo="//div[text()='"+VendorName+"']/ancestor::div[2]/div[2]/div[text()='"+poNumber+"']/ancestor::div[2]/div[9]/div[@class='text']/a[1]";
+  public void clickOnUnapproveUpdate(String vendorName, String poNumber) {
+	  String approvePo="//table[@class='table']//tr/td[3]//div[text()='"+poNumber+"']/ancestor::tr/td[5]//div[text()='"+vendorName+"']/ancestor::tr/td[11]//div/a[text()='Unapprove/Update']";
 	  WebElement Element2=Common.findElement(approvePo);
 	  Element2.click();
   }
@@ -132,12 +132,12 @@ public class CheckTwoWayMatchInvoice {
 	  Element2.click();
   }
   public void editPoLinkClick(String VendorName, String InvoiceNumber) {
-	   String editPo="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[text()='Edit PO']";
+	   String editPo="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+VendorName+"']/ancestor::tr[1]/td[10]//a[text()='Edit PO']";
 	   WebElement Element2=Common.findElement(editPo);
 	   Element2.click();
 }
-  public void clickOnVendor(String VendorName, String InvoiceNumber) {
-	  String clickVendor="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']";
+  public void clickOnVendor(String vendorName, String invoiceNumber) {
+	  String clickVendor="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']";
 	  WebElement Element2=Common.findElement(clickVendor);
 	  Element2.click();
   }
@@ -202,14 +202,14 @@ public class CheckTwoWayMatchInvoice {
    }
   
   //Check Invoice status
-  public boolean CheckInvoiceStatus_CreatePayment(String VendorName, String InvoiceNumber)
+  public boolean CheckInvoiceStatus_CreatePayment(String VendorName, String InvoiceNumber,String expectedvalue)
 	{
-		String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[2]";
-		WebElement element=Common.findElement(InvoiceLocator);
+		String invoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+VendorName+"']/ancestor::tr[1]/td[10]//a[text()='Create Payment']";
+		WebElement element=Common.findElement(invoiceLocator);
 	    String ActualValue= element.getText();
-	    String ExpectedValue="Create Payment";
+	    String expectedValue=expectedvalue;
 	   
-	   if(ActualValue.equals(ExpectedValue))
+	   if(ActualValue.equals(expectedValue))
 			{
 				return true;
 				
@@ -220,9 +220,10 @@ public class CheckTwoWayMatchInvoice {
 			
 		     }
 //Check Status approved for threshhold
-	public boolean CheckInvoiceStatus_approved(String VendorName, String InvoiceNumber) {
-		String InvoiceStatusLocaterAccepted="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[5]/div[@class='text']";
-		WebElement ele=Common.findElement(InvoiceStatusLocaterAccepted);
+	public boolean CheckInvoiceStatus_approved(String vendorName, String invoiceNumber) {
+		//String InvoiceStatusLocaterAccepted="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[5]/div[@class='text']";
+		String invoiceStatusLocaterAccepted="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[6]//div[@class='text']";
+		WebElement ele=Common.findElement(invoiceStatusLocaterAccepted);
 		String ActualValue= ele.getText();
 		Common.sleep(3000);
 		String ExpectedValue="Approved";
@@ -239,9 +240,9 @@ public class CheckTwoWayMatchInvoice {
 	}
 	
 	//Click on approve payment 
-		public boolean checkApprovePayment(String VendorName, String payid,String expectedValue) {
-			String InvoiceStatusApprovePayment="//div[text()='"+payid+"']/ancestor::div[2]/div[2]/div[2][text()='"+VendorName+"']/ancestor::div[2]/div[9]/div/a[text()='Approve Payment']";
-			WebElement Element4=Common.findElement(InvoiceStatusApprovePayment);
+		public boolean checkApprovePayment(String vendorName, String paymentId,String expectedValue) {
+			String invoiceStatusApprovePayment="//div[text()='"+paymentId+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[10]//a[text()='Approve Payment']";
+			WebElement Element4=Common.findElement(invoiceStatusApprovePayment);
 			String ActualValue= Element4.getText();
 			Common.sleep(3000);
 			String ExpectedValue=expectedValue;
@@ -257,5 +258,5 @@ public class CheckTwoWayMatchInvoice {
 
 		}  
 	
-
+	
 }
