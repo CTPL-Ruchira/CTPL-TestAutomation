@@ -136,6 +136,17 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		assertTrue(isCreatePaymentLinkVisible, "Custom Workflow is not set");
 		Common.sleep(5000);
 		Reporter.log("Create payment link is visible as per custom workflow");
+		
+		//Delete invoice
+		CommonMethods.deleteInvoice(invoiceNo, vendorNameInPo);
+		
+		//go to purchase order
+		CommonMethods.gotoLeftAPLink("Purchase Orders");
+		
+		//delete PO
+		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
+		Common.sleep(2000);
+		
 		LogoutFromPage.logout();
 	}
 
@@ -309,6 +320,12 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		assertTrue(isApprovePayment, "approve payment link is not visible");
 		Reporter.log("approve payment link is visible as per custom workflow");
 
+		//Invoices
+		CommonMethods.gotoLeftAPLink("Invoices");
+		Common.sleep(3000);
+
+		
+		
 		//Logout
 		LogoutFromPage.logout();
 	} 
