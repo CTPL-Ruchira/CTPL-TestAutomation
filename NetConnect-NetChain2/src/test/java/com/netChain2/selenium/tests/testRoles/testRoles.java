@@ -22,7 +22,6 @@ public class testRoles extends BaseTestCase
 	private ArrayList<String> loginTestData;
     private ArrayList<String> setRolesWorkFlow;
 	private String getInvoiceId;
-	
 	InvoiceCreationForm icf=new InvoiceCreationForm();
 	PurchaseOrderCreationForm pocf=new PurchaseOrderCreationForm();
 	Settings customWorkFlowSet=new Settings();
@@ -37,8 +36,8 @@ public class testRoles extends BaseTestCase
         setRolesWorkFlow=Common.getTestData("Netchain.CheckRoles");
 	}
    
-  /* @Test
-	@TestDetails(author="Roshni Mehta", description="This methods sets custom workflow for invoice")
+   @Test
+	@TestDetails(author="Roshni Mehta", description="This method sets custom workflow for invoice")
    public void setCustomWorkFlow() 
    {	
 	   //Login
@@ -75,15 +74,16 @@ public class testRoles extends BaseTestCase
 		role.autoApprovePaymentRoleDropdown(setRolesWorkFlow.get(7));
    
 		//Click on finish button
-		customWorkFlowSet.clickOnFinishButton();
-
-		 //Logout
-		  LogoutFromPage.logout();
+		customWorkFlowSet.clickOnCustomWorkflowSaveButton();
+        Common.sleep(2000);
+		
+        //Logout
+		LogoutFromPage.logout();
 	}	  
 		  
    @Test(dependsOnMethods="setCustomWorkFlow")
-   @TestDetails(author="Roshni Mehta", description="This methods verify action acceptance pending for differenr roles")
-   public void checkActionAcceptancePending() 
+   @TestDetails(author="Roshni Mehta", description="This method verify action acceptance pending for differenr roles")
+   public void verifyActionAcceptancePending() 
    {
 	   //Login
 	   loginPage.login(loginTestData.get(10), loginTestData.get(11));
@@ -153,15 +153,15 @@ public class testRoles extends BaseTestCase
 
 	   //Verification of acceptance 
 	   role.verificationForAcceptancePending(setRolesWorkFlow.get(8), getInvoiceId, setRolesWorkFlow.get(20));
-	   Common.sleep(1000);
+	   Common.sleep(2000);
 
 	   //Logout
 	   LogoutFromPage.logout();
    }
 
-   @Test(dependsOnMethods="checkActionAcceptancePending")
-   @TestDetails(author="Roshni Mehta", description="This methods verify action approve pending for different roles")
-   public void checkActionApprovalPending() 
+   @Test(dependsOnMethods="verifyActionAcceptancePending")
+   @TestDetails(author="Roshni Mehta", description="This method verify action approve pending for different roles")
+   public void verifyActionApprovalPending() 
    {
 	   //Login
 	   loginPage.login(loginTestData.get(10), loginTestData.get(11));
@@ -231,14 +231,15 @@ public class testRoles extends BaseTestCase
 	 
 	   //Verfication of accept invoice
 	   customWorkFlowSet.verificationForAutoApproveLink(setRolesWorkFlow.get(8), getInvoiceId, setRolesWorkFlow.get(25));
-	  
-	   //Logout
+	   Common.sleep(2000);
+	   
+	  //Logout
 	   LogoutFromPage.logout();
     }
    
-   @Test(dependsOnMethods="checkActionApprovalPending")
+   @Test(dependsOnMethods="verifyActionApprovalPending")
    @TestDetails(author="Roshni Mehta", description="This method verify action create payment pending for different roles")
-   public void checkActionPendingPayment() 
+   public void verifyActionPendingPayment() 
    {
 	   //Login
 	   loginPage.login(loginTestData.get(10), loginTestData.get(11));
@@ -308,15 +309,16 @@ public class testRoles extends BaseTestCase
 	 
 	   //Verification for action payment pending
 	   role.verificationForPaymentPending(setRolesWorkFlow.get(8), getInvoiceId, setRolesWorkFlow.get(28));
-	      
+	   Common.sleep(2000);  
+	   
 	   //Logout
 	   LogoutFromPage.logout();
-     }*/
+     }
    
-   @Test
-	//@Test(dependsOnMethods="checkActionPendingPayment")
+  
+   @Test(dependsOnMethods="verifyActionPendingPayment")
    @TestDetails(author="Roshni Mehta", description="This methods verify action approve payment pending for different roles")
-   public void checkActionapprovePayment() 
+   public void verifyActionApprovePayment() 
    {
 	   //Login
 	   loginPage.login(loginTestData.get(10), loginTestData.get(11));
@@ -345,8 +347,11 @@ public class testRoles extends BaseTestCase
 	
 	   //Click on payments
 	   CommonMethods.gotoLeftAPLink("Payments");
+	  
+	   //Scroll up
+	   Settings.scrollUp();
 	 
-	  //Verification for action payment pending
+	   //Verification for action payment pending
 	   role.verificationForApprovalPending(setRolesWorkFlow.get(8), getInvoiceId,setRolesWorkFlow.get(24));
 	   
 	   //Logout
@@ -382,6 +387,8 @@ public class testRoles extends BaseTestCase
 	   
 	   //Verification for approve payment
 	   customWorkFlowSet.verificationForApprovePayment(setRolesWorkFlow.get(8), getInvoiceId,setRolesWorkFlow.get(24));
+	   
+	   Common.sleep(2000);
 
 	   //Logout
 	   LogoutFromPage.logout();

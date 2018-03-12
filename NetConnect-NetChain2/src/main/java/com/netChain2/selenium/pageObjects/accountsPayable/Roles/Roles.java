@@ -59,7 +59,7 @@ public class Roles {
 	//Invoice creation method
 	public void invoiceCreationFormMessageMemo(String messageToVendor,String memo) 
 	{
-        //Message to vendor
+		//Message to vendor
 		setMessageToVendor(messageToVendor);
 
 		//Memo
