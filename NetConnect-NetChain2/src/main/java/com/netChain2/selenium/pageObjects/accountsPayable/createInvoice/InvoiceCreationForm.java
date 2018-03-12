@@ -8,7 +8,7 @@ import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 
 public class InvoiceCreationForm {
-	
+
 	private String invoiceNumberAutopopulated;
 
 	public String getInvoiceNumberAutopopulated() {
@@ -20,193 +20,194 @@ public class InvoiceCreationForm {
 		Common.click("CREATENEW_BUTTON_XPATH");
 		return new APModuleCreation();
 	}
-	
+
 	//Set product and services 
 	public void setProductsAndServices(String value){
-    	Common.sendKeys("NEW_VENDOR_COMPANY_PROFILE3_XPATH", value);
-    }
-	
+		Common.sendKeys("NEW_VENDOR_COMPANY_PROFILE3_XPATH", value);
+	}
+
 	//select vendor name from dropdown in invoice page 
 	public void SelectVendor(String vendorName) {
-	Common.select("AP_CREDIT_MEMO_SELECT_VENDOR_XPATH", vendorName);
-	Common.sleep(2000);
+		Common.sleep(2000);
+		Common.select("AP_CREDIT_MEMO_SELECT_VENDOR_XPATH", vendorName);
+		Common.sleep(2000);
 	}
-	
+
 	//select invoice number
 	public String getAttributeValueInvoiceNo(){
-  		return Common.getAttribute("INVOICE_NUMBER_XPATH");
-    
-    }
-	
+		return Common.getAttribute("INVOICE_NUMBER_XPATH");
+
+	}
+
 	//select Net Term from dropdown 
 	public void SelectNetTerm(String value) {
 		Common.select("SELECT_INVOICE_NET_TERM_XPATH", value);
-		}
-	
+	}
+
 	//Select Location from dropdown
 	public void SelectLocation(String value) {
 		Common.select("SELECT_INVOICE_LOCATION_XPATH", value);
 		invoiceNumberAutopopulated=Common.getAttribute("INVOICE_NUMBER_XPATH");
-		}
+	}
 	/*//Select Location from Dropdown Runtime
 		public void selectLocationRuntime(String selectlocation) {
 				Common.select("SELECT_INVOICE_LOCATION_XPATH", selectlocation);
 		}*/
-	
+
 	//Select account booking account 
 	public void SelectBookingAccount(String bookingAccount ) {
 		Common.select("DROPDOWN_BOOKING_ACCOUNT_INVOICE_XPATH", bookingAccount);
-		} 
-	
+	} 
+
 	// Select Account Description
 	public void AccountDetails_Description(String description) {
-	 Common.sendKeys("CREATE_INVOICE_ACCOUNT_DESCRIPTION_XPATH", description);
-    }
-	
+		Common.sendKeys("CREATE_INVOICE_ACCOUNT_DESCRIPTION_XPATH", description);
+	}
+
 	//Select Account amount 
 	public String AccountDetails_Amount(String value) {
 		Common.sendKeys("CREATE_INVOICE_AMOUNT_FIELD_XPATH", value);
 		return value;
-		 }
-	
+	}
+
 	//Select Product and services for product1
 	public void SelectProductAndServicesDrp(String productName) {
 		Common.select("CREATE_INVOICE_SELECT_PRODUCT_XPATH", productName); 
 	}
-	
+
 	// Select Item details department for product1
 	public void SelectItemDetailsDepartment(String department) {
-			Common.select("CREATE_INVOICE_ITEM_DETAILS_DEPARTMENT_XPATH", department);
-		}
-	 
+		Common.select("CREATE_INVOICE_ITEM_DETAILS_DEPARTMENT_XPATH", department);
+	}
+
 	//Select Booking Amount for product1
-	 public void SelectBookingAccount_Item(String value) {
-			Common.select("CREATE_INVOICE_BOOKING_ACCOUNT_XPATH", value);
-			}
-		
-	 // Select Invoice description for product1
+	public void SelectBookingAccount_Item(String value) {
+		Common.select("CREATE_INVOICE_BOOKING_ACCOUNT_XPATH", value);
+	}
+
+	// Select Invoice description for product1
 	public void Invoice_Description(String value) {
-    Common.sendKeys("CREATE_INVOICE_DESC_FIELD_XPATH", value);
-    }
-	
+		Common.sendKeys("CREATE_INVOICE_DESC_FIELD_XPATH", value);
+	}
+
 	//Send Measure for product1
-	 public void Invoice_SelectMeasure(String measure) {
-	 Common.sendKeys("CREATE_INVOICE_MEASURE_XPATH", measure);
-   }
-	 //Select Quantity for product1
-    public void Invoice_Quantity(String quantity) {
-	 Common.sendKeys("CREATE_INVOICE_QTY_XPATH", quantity);
-   }
-  
-    //Select Invoice Rate for 1st product
-    public void Invoice_Rate(String value) {
-	 Common.sendKeys("CREATE_INVOICE_RATE_XPATH", value);
-   }
+	public void Invoice_SelectMeasure(String measure) {
+		Common.sendKeys("CREATE_INVOICE_MEASURE_XPATH", measure);
+	}
+	//Select Quantity for product1
+	public void Invoice_Quantity(String quantity) {
+		Common.sendKeys("CREATE_INVOICE_QTY_XPATH", quantity);
+	}
 
-    // Add line button for adding new product
-    public void Add_Line_Button() {
-   	 Common.click("CREATE_INVOICE_ADD_LINE_ITEM_DETAILS_XPATH");
-     Common.sleep(5000);
-    }
+	//Select Invoice Rate for 1st product
+	public void Invoice_Rate(String value) {
+		Common.sendKeys("CREATE_INVOICE_RATE_XPATH", value);
+	}
 
-    //Select 2nd product from product dropdown
-    public void SelectProductAndServicesDrp2(String value) {
+	// Add line button for adding new product
+	public void Add_Line_Button() {
+		Common.click("CREATE_INVOICE_ADD_LINE_ITEM_DETAILS_XPATH");
+		Common.sleep(5000);
+	}
+
+	//Select 2nd product from product dropdown
+	public void SelectProductAndServicesDrp2(String value) {
 		Common.select("CREATE_INVOICE_SELECT_PRODUCT_DROPDOWN2_XPATH", value); 
 	}
-    
 
-     //Select Booking Amount for 2nd product
-     public void SelectBookingAccount2_Item(String value) {
+
+	//Select Booking Amount for 2nd product
+	public void SelectBookingAccount2_Item(String value) {
 		Common.select("CREATE_INVOICE_BOOKING_ACCOUNT_2_XPATH", value);
-		}
+	}
 
-     //Send description for 2nd product
-    public void Invoice_Description2(String value) {
-        Common.sendKeys("CREATE_INVOICE_SELECT_DESCRIPTION_2_XPATH", value);
-        }
-  
-    //Send Measure for 2nd product
-  	 public void Invoice_SelectMeasure2(String value) {
-  	 Common.sendKeys("CREATE_INVOICE_MEASURE_2_XPATH", value);
-  	}
-    
-  	 //Select Quantity for 2nd product
-      public void Invoice_Quantity2(String value) {
-  	  Common.sendKeys("CREATE_INVOICE_QTY_2_XPATH", value);
-  	  }
-    
-      //Select Rate for 2nd product
-       public void Invoice_Rate2(String value) {
-  	   Common.sendKeys("CREATE_INVOICE_RATE_2_XPATH", value);
-  	  }
-  	 
-      // Add line button for adding 3rd product
-       public void Add_Line_Button_2() {
-      	 Common.click("CREATE_INVOICE_ADD_LINE_ITEM_DETAILS_2_XPATH");
-         Common.sleep(5000);
-       } 
-     
-       //Select 3rd product from item dropdown 
-    public void SelectProductAndServicesDrp3(String value) {
+	//Send description for 2nd product
+	public void Invoice_Description2(String value) {
+		Common.sendKeys("CREATE_INVOICE_SELECT_DESCRIPTION_2_XPATH", value);
+	}
+
+	//Send Measure for 2nd product
+	public void Invoice_SelectMeasure2(String value) {
+		Common.sendKeys("CREATE_INVOICE_MEASURE_2_XPATH", value);
+	}
+
+	//Select Quantity for 2nd product
+	public void Invoice_Quantity2(String value) {
+		Common.sendKeys("CREATE_INVOICE_QTY_2_XPATH", value);
+	}
+
+	//Select Rate for 2nd product
+	public void Invoice_Rate2(String value) {
+		Common.sendKeys("CREATE_INVOICE_RATE_2_XPATH", value);
+	}
+
+	// Add line button for adding 3rd product
+	public void Add_Line_Button_2() {
+		Common.click("CREATE_INVOICE_ADD_LINE_ITEM_DETAILS_2_XPATH");
+		Common.sleep(5000);
+	} 
+
+	//Select 3rd product from item dropdown 
+	public void SelectProductAndServicesDrp3(String value) {
 		Common.select("CREATE_INVOICE_SELECT_PRODUCT_DROPDOWN3_XPATH", value); 
 	}
-    
-      //Select Booking Amount for 3rd product
-	 public void SelectBookingAccount3_Item(String value) {
-			Common.select("CREATE_INVOICE_BOOKING_ACCOUNT_3_XPATH", value);
-			}
-    
+
+	//Select Booking Amount for 3rd product
+	public void SelectBookingAccount3_Item(String value) {
+		Common.select("CREATE_INVOICE_BOOKING_ACCOUNT_3_XPATH", value);
+	}
+
 	//Send description for 3rd product
-	 public void Invoice_Description3(String value) {
-	        Common.sendKeys("CREATE_INVOICE_SELECT_DESCRIPTION_3_XPATH", value);
-	        }
-	 
-	 //Send measure for 3rd product
-	 public void Invoice_SelectMeasure3(String value) {
-	  	 Common.sendKeys("CREATE_INVOICE_MEASURE_3_XPATH", value);
-	  	}
-    
+	public void Invoice_Description3(String value) {
+		Common.sendKeys("CREATE_INVOICE_SELECT_DESCRIPTION_3_XPATH", value);
+	}
+
+	//Send measure for 3rd product
+	public void Invoice_SelectMeasure3(String value) {
+		Common.sendKeys("CREATE_INVOICE_MEASURE_3_XPATH", value);
+	}
+
 	//Select Quantity for 3rd product
-     public void Invoice_Quantity3(String value) {
- 	  Common.sendKeys("CREATE_INVOICE_QTY_3_XPATH", value);
- 	  }
-   
-
-     //Select Rate for 3rd product
-      public void Invoice_Rate3(String value) {
- 	   Common.sendKeys("CREATE_INVOICE_RATE_3_XPATH", value);
- 	  }
- 	 
-    
-      //Send Message to Vendor 
-      public void Invoice_MessageToVendor(String value) {
-	   Common.sendKeys("INVOICE_MSG_TO_VENDOR_XPATH", value);
-   }
-  
-    //Send Memo
-    public void Invoice_Memo(String value) {
-	   Common.sendKeys("INVOICE_MEMO_XPATH", value);
-  }   
-  	//Click on Save button
-    public void Invoice_SaveButton() {
-     Common.click("INVOICE_SAVE_BUTTON_XPATH");
-  	}
-  	
-    //Alert Message 
-    public String gettextValue() {
-  		return Common.getText("INVOICE_ALERT_MESSAGE_SUCCESSFULLY_XPATH");
-    
-    }
-    
-    //Create Rule invoice cancel button
-    public void CreateRule_CancelButton() {
-    	Common.click("INVOICE_CREATE_RULE_CANCEL_BUTTON_XPATH");
-  	}
+	public void Invoice_Quantity3(String value) {
+		Common.sendKeys("CREATE_INVOICE_QTY_3_XPATH", value);
+	}
 
 
-    public boolean verifyTotalAmountCalculatedAndShown(double Amount,double PreviousAmount)
+	//Select Rate for 3rd product
+	public void Invoice_Rate3(String value) {
+		Common.sendKeys("CREATE_INVOICE_RATE_3_XPATH", value);
+	}
+
+
+	//Send Message to Vendor 
+	public void Invoice_MessageToVendor(String value) {
+		Common.sendKeys("INVOICE_MSG_TO_VENDOR_XPATH", value);
+	}
+
+	//Send Memo
+	public void Invoice_Memo(String value) {
+		Common.sendKeys("INVOICE_MEMO_XPATH", value);
+	}   
+	//Click on Save button
+	public void Invoice_SaveButton() {
+		Common.click("INVOICE_SAVE_BUTTON_XPATH");
+	}
+
+	//Alert Message 
+	public String gettextValue() {
+		return Common.getText("INVOICE_ALERT_MESSAGE_SUCCESSFULLY_XPATH");
+
+	}
+
+	//Create Rule invoice cancel button
+	public void CreateRule_CancelButton() {
+		Common.click("INVOICE_CREATE_RULE_CANCEL_BUTTON_XPATH");
+	}
+
+
+	public boolean verifyTotalAmountCalculatedAndShown(double Amount,double PreviousAmount)
 	{
-    	PreviousAmount=Common.roundNumberToTwoDecimalValue(PreviousAmount);
+		PreviousAmount=Common.roundNumberToTwoDecimalValue(PreviousAmount);
 		System.out.println("AmountAmount--"+Amount);
 		System.out.println("PreviousAmountPreviousAmount--"+PreviousAmount);
 		String amountDisplayed=Common.getText("INVOICE_AMOUNT_XPATH");
@@ -222,19 +223,19 @@ public class InvoiceCreationForm {
 		{
 			return false;
 		}
-    }
-    
-    public void setVendorDetails(String vendorName, String netTermValue, String locationName) {
+	}
+
+	public void setVendorDetails(String vendorName, String netTermValue, String locationName) {
 		SelectVendor(vendorName);
 		SelectNetTerm(netTermValue);
 		SelectLocation(locationName);
-		}
+	}
 
 	public void setAccountDetails(String bookingAccountType, String description, String amount) {
 		SelectBookingAccount(bookingAccountType);
 		AccountDetails_Description(description);
 		AccountDetails_Amount(amount);
-		}
+	}
 
 	public boolean verifyStatusAndActionForInvoice(String vendorName, String invoiceNo) 
 	{
@@ -242,80 +243,80 @@ public class InvoiceCreationForm {
 		WebElement ele=Common.findElement(xpath);
 		return ele.isDisplayed();
 	}
-	
+
 	//CLICK ON SAME AS MAILING ADDRESS
-		public void clickSameAsMailingAdd()
-		{
-			Common.click("CLICK_SAME_AS_MAILING_ADDRESS_XPATH");
-		}
-		
-		//invoice Creation Form Method
-		//public void createInvoice(String selectclient,String selectTerms,String location,String bAccCode,String desc,String amt,String msg,String memo)
-		public void createInvoice(String selectclient,String selectTerms,String location) 
-		{
-			SelectVendor(selectclient);
-			Common.sleep(4000);
-			SelectNetTerm(selectTerms);
-			SelectLocation(location);
-			/*Common.sleep(2000);
+	public void clickSameAsMailingAdd()
+	{
+		Common.click("CLICK_SAME_AS_MAILING_ADDRESS_XPATH");
+	}
+
+	//invoice Creation Form Method
+	//public void createInvoice(String selectclient,String selectTerms,String location,String bAccCode,String desc,String amt,String msg,String memo)
+	public void createInvoice(String selectclient,String selectTerms,String location) 
+	{
+		SelectVendor(selectclient);
+		Common.sleep(4000);
+		SelectNetTerm(selectTerms);
+		SelectLocation(location);
+		/*Common.sleep(2000);
 			clickSameAsMailingAdd();*/
-			
-			/*SelectBookingAccount(bAccCode);
+
+		/*SelectBookingAccount(bAccCode);
 			AccountDetails_Description(desc);
 			AccountDetails_Amount(amt);*/
-			/*Invoice_MessageToVendor(msg);
+		/*Invoice_MessageToVendor(msg);
 			Invoice_Memo(memo);*/
-			
-		}
-		
-		public void createInvoiceForThreewaymatch(String vendorName,String netTerms,String location,String productName, String poNumber, String messageToVendor,String memo, String flag)
-		{
-			Common.sleep(1000);
-			SelectVendor(vendorName);
-			//SelectNetTerm(netTerms);
-			SelectLocation(location);
-			selectProductOrServices(productName, flag);
-			selectPoNumberfromdropdown(poNumber, flag);
-			Invoice_MessageToVendor(messageToVendor);
-			Invoice_Memo(memo);
-			Invoice_SaveButton();
-			CreateRule_CancelButton();
-		}
-		
-		private void selectPoNumberfromdropdown(String poNumber, String flag) 
-		{
-			String dropLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[4]";
-			
-			String valueLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[4]/option[text()='"+poNumber+"']";
-			selectDropdownValues(dropLocator, valueLocator);
-		}
 
-		public void selectProductOrServices(String productName, String flag)
-		{
-			String dropLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[1]";
-			
-			String valueLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[1]/option[text()='"+productName+"']";
-			selectDropdownValues(dropLocator, valueLocator);
-			
-		}
-		
-		public void selectDropdownValues(String dropLocator, String valueLocator)
-		{
-			WebElement dropElement=Common.findElement(dropLocator);
-			
-			dropElement.click();
-			WebElement valElement=Common.findElement(valueLocator);
-			
-			valElement.click();
-		}
-		
-		//Invoice creation for 3way match for amount change in invoice
-		public void createInvoiceForThreeWayMatch_AmtChange(String vendorName,String location,String productName,String poNumber,String flag)
-		{
-			SelectVendor(vendorName);
-			SelectLocation(location);
-			selectProductOrServices(productName, flag);
-			selectPoNumberfromdropdown(poNumber, flag);
-		}
+	}
+
+	public void createInvoiceForThreewaymatch(String vendorName,String netTerms,String location,String productName, String poNumber, String messageToVendor,String memo, String flag)
+	{
+		Common.sleep(1000);
+		SelectVendor(vendorName);
+		//SelectNetTerm(netTerms);
+		SelectLocation(location);
+		selectProductOrServices(productName, flag);
+		selectPoNumberfromdropdown(poNumber, flag);
+		Invoice_MessageToVendor(messageToVendor);
+		Invoice_Memo(memo);
+		Invoice_SaveButton();
+		CreateRule_CancelButton();
+	}
+
+	private void selectPoNumberfromdropdown(String poNumber, String flag) 
+	{
+		String dropLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[4]";
+
+		String valueLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[4]/option[text()='"+poNumber+"']";
+		selectDropdownValues(dropLocator, valueLocator);
+	}
+
+	public void selectProductOrServices(String productName, String flag)
+	{
+		String dropLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[1]";
+
+		String valueLocator="//div[@class='productService']/div[contains(@class,'Line')]["+flag+"]/select[1]/option[text()='"+productName+"']";
+		selectDropdownValues(dropLocator, valueLocator);
+
+	}
+
+	public void selectDropdownValues(String dropLocator, String valueLocator)
+	{
+		WebElement dropElement=Common.findElement(dropLocator);
+
+		dropElement.click();
+		WebElement valElement=Common.findElement(valueLocator);
+
+		valElement.click();
+	}
+
+	//Invoice creation for 3way match for amount change in invoice
+	public void createInvoiceForThreeWayMatch_AmtChange(String vendorName,String location,String productName,String poNumber,String flag)
+	{
+		SelectVendor(vendorName);
+		SelectLocation(location);
+		selectProductOrServices(productName, flag);
+		selectPoNumberfromdropdown(poNumber, flag);
+	}
 }
 
