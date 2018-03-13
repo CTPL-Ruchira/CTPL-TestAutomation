@@ -291,9 +291,9 @@ public class Settings
 		clickOnIsGrEditAllowedYes();
 		selectRoleToAdjustGrFromDropdown();
 		clickOnFinishButton();
-		clickCreateNewGrCustomWorkflow();
-		Common.sleep(2000);
-		CommonMethods.logoutFromWorkflowPage();
+		//clickCreateNewGrCustomWorkflow();
+		//Common.sleep(2000);
+		//CommonMethods.logoutFromWorkflowPage();
 		
 	}
 }
