@@ -11,6 +11,7 @@ import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceC
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.ThreeWayMatch;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.EditPurchaseOrder;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
+import com.netChain2.selenium.pageObjects.accountsPayable.settings.Settings;
 import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
@@ -20,6 +21,9 @@ public class TestThreeWayMatch extends BaseTestCase
 	private ArrayList<String> poTestData;
 	private ArrayList<String> poQtyRateData;
 	private ArrayList<String> goodsReceiptTestData;
+	private ArrayList<String> loginTestData;
+	private ArrayList<String> grCustomWorkflowvalues;
+	
 	PurchaseOrderCreationForm purchaseOrderCreationForm;
 	InvoiceCreationForm invoiceCreationForm;
 	GoodsReceiptForm goodsReceiptForm;
@@ -30,9 +34,27 @@ public class TestThreeWayMatch extends BaseTestCase
 		poTestData 		= Common.getTestData("NetchainTest.PO");
 		poQtyRateData 	= Common.getTestData("NetchainTest.POdataForThreewaymatch");
 		goodsReceiptTestData = Common.getTestData("NetchainTest.GoodsReceipt");
-		
+		loginTestData = Common.getTestData("NetchainTest.Login");
+		grCustomWorkflowvalues=Common.getTestData("NetchainTest.SetGRCustomWorkflow");
 	}
 	
+	
+	public void createCustomWorkflowForGoodsReceipt()
+	{
+		 LoginPage loginPage = new LoginPage();
+		 loginPage.login(loginTestData.get(0), loginTestData.get(1));
+		 
+		 Settings settings=new Settings();
+		 settings.CreateGRCustomWorkflow(grCustomWorkflowvalues.get(0));
+		 
+		 
+		 //Verification point
+		 boolean isGrCustomWorkflowSet=settings.verificationForGrWorkflowCreation();
+		 assertFalse(isGrCustomWorkflowSet, "GR custom workflow is set");
+		 Common.sleep(5000);
+		
+			 
+	}
 	/*@Test
 	public void testThreewaymatch()
 	{
@@ -83,7 +105,7 @@ public class TestThreeWayMatch extends BaseTestCase
 	}
 	*/
 	
-	@Test
+	@Test(enabled=false)
 	public void testThreewaymatch3()
 	{
 		LoginPage loginPage = new LoginPage();

@@ -46,6 +46,7 @@ public class POtoSOConnection extends BaseTestCase {
 			
 			CommonMethods.gotoRightSideAPLink("NEW PURCHASE ORDER");
 			
+			Common.sleep(2000);
 			Common.selectFromDropdown("VENDOR_DROPDOWN_XPATH", "PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH", testDataCreatePO.get(0));
 			purchaseOrder.selectLocation(testDataCreatePO.get(1));
 			String rate=testDataCreatePO.get(8);
@@ -179,22 +180,26 @@ public class POtoSOConnection extends BaseTestCase {
 	        //Search invoice
 	        actions.searchInvoice(payId);
 	        Common.sleep(4000);
+	        
+	        Common.click("SORTING_ARROW_XPATH");
 	            
 	        //Click on approve button
 	        actions.clickOnApprovePayment(cName,payId);
 	        
 	        //Click on payment button
             actions.sendPaymentButton();
-            Common.sleep(3000);
+            Common.sleep(4000);
 	   
             //refresh page 
 	        Common.getDriver().navigate().refresh();
 	        Common.sleep(3000);
 	           
 	         //Payment search by id
-	        /* actions.SearchPaymentId(payId);
-	         Common.sleep(3000);
-	         */
+	        actions.searchInvoice(payId);
+	         Common.sleep(4000);
+	         
+	         Common.click("SORTING_ARROW_XPATH");
+	         
 	         //Verfication Action
 	         boolean isActionProcessing= actions.verificationOnProcessingLink(cName,payId,testDataCreatePO.get(16));
 	         BaseTestCase.assertTrue(isActionProcessing, " AP Payment action is not processing");

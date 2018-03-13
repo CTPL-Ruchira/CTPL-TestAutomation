@@ -10,7 +10,7 @@ public class GoodsReceiptForm
 		return grNumber;
 	}
 
-	public void createGoodsReceipt(String vendorName, String location, String poNumber, String okQty, String defectiveQty) 
+	public void createGoodsReceipt(String vendorName, String location, String poNumber, String okQty) 
 	{
 		Common.sleep(2000);
 		selectVendorFromDropdown(vendorName);
@@ -18,7 +18,7 @@ public class GoodsReceiptForm
 		selectPoNumberFromDropdown(poNumber);
 		Common.sleep(5000);
 		enterOkQualityForItemDetails(okQty);
-		enterDefectiveQtyForItemDetails(defectiveQty);
+		//enterDefectiveQtyForItemDetails(defectiveQty);
 		saveGR();
 	}
 	
