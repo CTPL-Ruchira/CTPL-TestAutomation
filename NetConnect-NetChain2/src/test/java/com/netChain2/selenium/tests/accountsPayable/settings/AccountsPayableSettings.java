@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
-import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.CheckTwoWayMatchInvoice;
+
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationForm;
 import com.netChain2.selenium.pageObjects.accountsPayable.createInvoice.InvoiceCreationListActions;
 import com.netChain2.selenium.pageObjects.accountsPayable.settings.Settings;
@@ -48,8 +48,8 @@ public class AccountsPayableSettings extends BaseTestCase {
 		settings.autoAprroveValue(customWorkflowValues.get(1));
 		settings.autocreatePaymentValue(customWorkflowValues.get(2));
 		settings.autoapprovePaymentValue(customWorkflowValues.get(3));
-		settings.clickOnFinishButton();
-
+	    settings.clickOnCustomWorkflowSaveButton();
+		
 		//click to create new
 		InvoiceCreationForm invoice = new InvoiceCreationForm();
 		Common.sleep(3000);
@@ -322,6 +322,7 @@ public class AccountsPayableSettings extends BaseTestCase {
      	LogoutFromPage.logout();
 		}
 
+	
 	@Test(dependsOnMethods= "checkautoApprovePayment")
 	public void checksendPayment() {
 
@@ -404,10 +405,11 @@ public class AccountsPayableSettings extends BaseTestCase {
 		
 		//get payment id
 		payId=settings.getPaymentId();
-	    		
+	   
 		//Click on payments
 	    CommonMethods.gotoLeftAPLink("Payments");
-	
+	    Common.sleep(2000);
+	    
 	    //Search
 	    //CommonMethods.searchByNumberOrName(invoiceNo);
 		
