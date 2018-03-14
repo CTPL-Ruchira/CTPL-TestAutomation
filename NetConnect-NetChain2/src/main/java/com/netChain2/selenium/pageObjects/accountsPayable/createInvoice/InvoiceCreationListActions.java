@@ -3,6 +3,7 @@ package com.netChain2.selenium.pageObjects.accountsPayable.createInvoice;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import com.netChain2.engine.Common;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class InvoiceCreationListActions
 {
@@ -21,7 +22,7 @@ public class InvoiceCreationListActions
 	}
 
 	public void clickOnAcceptInvoice(String VendorName, String InvoiceNumber) {
-		//String InvoiceStatusAcceptInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[text()='Accept Invoice']";
+		CommonMethods.scrollUp();
 		String InvoiceStatusAcceptInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]//a[text()='Accept Invoice']";
 		WebElement Element2=Common.findElement(InvoiceStatusAcceptInvoice);
 		Element2.click();

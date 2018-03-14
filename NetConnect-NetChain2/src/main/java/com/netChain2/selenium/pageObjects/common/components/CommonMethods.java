@@ -15,7 +15,7 @@ public class CommonMethods
 	public static void searchByNumberOrName(String searchTerm)
 	{
 		Common.sleep(2000);
-		Common.sendKeys("SEARCH_INPUT_XPATH", searchTerm);
+		Common.sendKeys("PO_SEARCH_BOX_XPATH", searchTerm);
 	}
 	
 	public static void scrollUp()
