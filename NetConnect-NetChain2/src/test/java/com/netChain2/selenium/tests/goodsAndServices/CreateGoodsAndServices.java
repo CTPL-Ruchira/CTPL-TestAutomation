@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import com.netChain2.engine.BaseTestCase;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createGoodsAndServices.GoodsAndServicesCreationForm;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 import com.netChain2.selenium.pageObjects.common.loginPage.LoginPage;
 import com.netChain2.selenium.pageObjects.common.logout.LogoutFromPage;
 import com.netChain2.utils.CustomAnnotation.TestDetails;
@@ -41,7 +42,7 @@ public class CreateGoodsAndServices {
 		//click goods and services lable
 		goodsAndServices.clickGoodsAndServices();
 		Common.sleep(2000);
-		
+		CommonMethods.scrollUp();
 		//click things we buy lable
 		goodsAndServices.clickThingsWeBuy();
 		//click Add New Goods 
