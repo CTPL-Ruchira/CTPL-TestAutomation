@@ -136,7 +136,7 @@ public class CommonMethods
 	}
 
 		//To append random string to email address in vendor creation form
-		 public static String generateRandomString1(String value) 
+		 public static String generateRandomStringForEmail(String value) 
 		 {
 			 String randomString = RandomStringUtils.randomAlphabetic(5); 
 			 return value.concat(randomString+"@gmail.com"); 
