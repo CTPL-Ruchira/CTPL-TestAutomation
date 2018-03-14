@@ -1,8 +1,10 @@
 package com.netChain2.selenium.pageObjects.accountsReceivable.createClients;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import com.netChain2.engine.Common;
 import com.netChain2.selenium.pageObjects.accountsPayable.createPurchaseOrder.PurchaseOrderCreationForm;
+import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class ClientsCreationForm {
 	private static int count=1;
@@ -197,11 +199,17 @@ public class ClientsCreationForm {
 	public void clickSaveButton() {
 		Common.click("AR_CLIENT_DETAILS_SAVE_BUTTON_XPATH");
 	}
+	//scroll down
+	public void scrolldown() {
+		JavascriptExecutor jse = (JavascriptExecutor)Common.getDriver();
+		jse.executeScript("scroll(0, 170);");
+	}
 	
 	//Create non connected Client in One Method
 	public void createClientMethod(String ourCompany,String OurMission,String ProductService,String name,String email,String phone,String title,String location,String dept,String bookingAcc,String terms,String regNo,String paymentMethod,String ctitle,String fname,String lname,String suffix,String cName,String dName,String bussinesstype,String other,String streetAdd,String city,String state,String zip,String cemail,String cphone,String mobile,String fax,String website,String accNo,String cTire,String E_mail,String notes) 
 	{
 		setCompanyProfile(ourCompany,OurMission,ProductService);
+		scrolldown();
 		clickCompanyProfileNextButton();
 		clickAddEmpButton();
 		EnterName(name);

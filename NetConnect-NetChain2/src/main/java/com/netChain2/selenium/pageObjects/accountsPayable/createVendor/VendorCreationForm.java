@@ -21,6 +21,7 @@ public class VendorCreationForm {
 
 	private String companyName;
 	private String displayName;
+	private String emailAddress;
 
 	WebDriver driver=Common.getDriver();
 
@@ -186,7 +187,7 @@ public class VendorCreationForm {
 	{
 		Common.click("PRODUCT_DETAILS_TAB_XPATH");
 		Common.sleep(3000);
-    }
+	}
 
 	//Booking Account tab-->To select the product from product list
 	public void selectProduct() 
@@ -214,7 +215,7 @@ public class VendorCreationForm {
 	//Getting the company name
 	public String getCompanyName()
 	{
-		
+
 		return companyName;
 	}
 
@@ -222,14 +223,14 @@ public class VendorCreationForm {
 	public String setDisplayName(String value)
 	{
 		displayName=Common.generateRandomString(value);
-		
+
 		return displayName;
 	}
 
 	//Getting display name
 	public String getDisplayName()
 	{
-		
+
 		return displayName;
 	}
 
@@ -239,14 +240,14 @@ public class VendorCreationForm {
 	{
 
 		Common.sendKeys("TITLE_FIELD_XPATH", value10);
-        Common.sendKeys("FIRST_NAME_XPATH", value11);
+		Common.sendKeys("FIRST_NAME_XPATH", value11);
 		Common.sendKeys("LAST_NAME_XPATH", value12);
 		Common.sendKeys("COMPANY_NAME_XPATH",setCompanyName(value13) );
 		Common.sendKeys("DISPLAY_NAME_XPATH", setDisplayName(value14));
 		Common.sendKeys("BUSINESS_TYPE_XPATH", value15);
 		Common.sendKeys("OTHER_FIELD_XPATH", value16);
-		
-        WebElement displaynamechkbox=Common.getElement("DISPLAY_NAME_CHECKBOX_XPATH");
+
+		WebElement displaynamechkbox=Common.getElement("DISPLAY_NAME_CHECKBOX_XPATH");
 		displaynamechkbox.click();
 
 		Common.sendKeys("STREET_ADD_XPATH", value17);
@@ -254,14 +255,14 @@ public class VendorCreationForm {
 		Common.sendKeys("STATE_XPATH", value19);
 		Common.sendKeys("ZIP_XPATH", value20);
 		((JavascriptExecutor) driver).executeScript("scroll(0,-250);");
-        Common.sendKeys("EMAIL_ID_XPATH", value21);
+		Common.sendKeys("EMAIL_ID_XPATH",setEmailAddress(value21));
 		Common.sendKeys("PHONE_XPATH", value22);
-	    Common.sendKeys("MOBILE_XPATH", value23);
+		Common.sendKeys("MOBILE_XPATH", value23);
 		Common.sendKeys("FAX_XPATH", value24);
-	    Common.sendKeys("WEBSITE_XPATH", value25);
-	    Common.sendKeys("NOTES_FIELD_XPATH", value26);
-		
-        WebElement savebutton=Common.getElement("VENDOR_SAVE_BUTTON_XPATH");
+		Common.sendKeys("WEBSITE_XPATH", value25);
+		Common.sendKeys("NOTES_FIELD_XPATH", value26);
+
+		WebElement savebutton=Common.getElement("VENDOR_SAVE_BUTTON_XPATH");
 		savebutton.click();
 
 	}
@@ -286,7 +287,7 @@ public class VendorCreationForm {
 			System.out.println("Vendor not created");
 
 		}
-        return flag;
+		return flag;
 
 	}
 	public void selectProductforConnectedvendor(String value) 
@@ -297,7 +298,7 @@ public class VendorCreationForm {
 		rightarrowbtn.click();
 		Common.sleep(2000);
 	}
-	
+
 	//set suffix from contact detail
 	public void setsuffix(String sffix) 
 	{
@@ -312,29 +313,40 @@ public class VendorCreationForm {
 			return false;
 		}
 	}
-	
+
 	public Boolean verifyVendorOnListForConnected(String expectedClientName) 
-	 {
-	  boolean flag=false;
-	  Common.sleep(6000);
-	  System.out.println("expectedVendorName"+expectedClientName);
-	  CommonMethods.searchByNumberOrName(expectedClientName);
-	  Common.sleep(1000);
-	  
-	  String actualClientNameOnList=Common.getText("AR_CLIENT_LIST_XPATH");
-	  if(actualClientNameOnList.equals(expectedClientName))
-	  {
-	   flag=true;
-	   System.out.println("Vendor displayed on list");
-	   Reporter.log("Vendor present on list and verified");
-	   Reporter.log("Vendor added is present on Netchain Platform and The Connection is done successfully");
-	  }
-	  else
-	  {
-	   System.out.println("Vendor not created");
-	  }
-	  return flag;
-	 }
+	{
+		boolean flag=false;
+		Common.sleep(6000);
+		System.out.println("expectedVendorName"+expectedClientName);
+		CommonMethods.searchByNumberOrName(expectedClientName);
+		Common.sleep(1000);
+
+		String actualClientNameOnList=Common.getText("AR_CLIENT_LIST_XPATH");
+		if(actualClientNameOnList.equals(expectedClientName))
+		{
+			flag=true;
+			System.out.println("Vendor displayed on list");
+			Reporter.log("Vendor present on list and verified");
+			Reporter.log("Vendor added is present on Netchain Platform and The Connection is done successfully");
+		}
+		else
+		{
+			System.out.println("Vendor not created");
+		}
+		return flag;
+	}
+	
+
+	public String setEmailAddress(String value)
+	{
+		emailAddress=CommonMethods.generateRandomStringForEmail(value);
+		return  emailAddress;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
 
 
 

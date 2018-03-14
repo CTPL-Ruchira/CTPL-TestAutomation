@@ -26,8 +26,11 @@ public class ThreeWayMatch
 
 	public boolean verifyGoodReceiptOnList(String grNumber, String vendorName)
 	{
-		CommonMethods.searchByNumberOrName(grNumber);
+		Common.click("SORTING_ARROW_XPATH");
+		Common.click("GR_DATE_SORTING_ARROW_XPATH");
+	    Common.sleep(4000);
 		String vendorNameFromList=Common.getText("GR_LIST_VENDORNAME_XPATH");
+		System.out.println();
 		if(vendorName.equals(vendorNameFromList))
 			return true;
 		else

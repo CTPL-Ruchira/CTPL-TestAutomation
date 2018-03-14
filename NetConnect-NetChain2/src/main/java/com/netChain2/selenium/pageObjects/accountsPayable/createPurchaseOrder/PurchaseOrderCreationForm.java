@@ -88,7 +88,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 	public void selectVendor(String vendorName)
 	{
 		Common.getElement("VENDOR_DROPDOWN_XPATH").click();
-		Common.sleep(1000);
+		Common.sleep(2000);
 		List<WebElement> list=Common.getElements("PO_VENDOR_ALL_DROPDOWN_VALUES_XPATH");
 		for(WebElement ele : list)
 		{

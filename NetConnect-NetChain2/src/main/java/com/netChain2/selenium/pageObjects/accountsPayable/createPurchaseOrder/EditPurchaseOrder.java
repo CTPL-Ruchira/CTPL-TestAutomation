@@ -21,6 +21,7 @@ public class EditPurchaseOrder
 	{
 		CommonMethods.scrollUp();
 		Common.click("SORTING_ARROW_XPATH");
+		Common.click("PO_DATE_SORTING_ARROW_XPATH");
 		String xPath= "//div[text()='"+poNumber+"']/ancestor::tr[1]/td[5]//div[text()='"+vendorName+"']/ancestor::tr[1]//td[11]//div//a[text()='Approve']";
 		System.out.println("Before displayed");
 		try {
