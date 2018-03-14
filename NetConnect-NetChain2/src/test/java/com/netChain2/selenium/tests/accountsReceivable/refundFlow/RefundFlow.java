@@ -53,6 +53,7 @@ public class RefundFlow {
 
 		// create Non Connected Client
 		clientName = Common.generateRandomString(testDataClients.get(17));
+		String email=CommonMethods.generateRandomStringForEmail(testDataClients.get(25));
 
 		arClients.createClientMethod(testDataClients.get(0), testDataClients.get(1), testDataClients.get(2),
 				testDataClients.get(3), testDataClients.get(4), testDataClients.get(5), testDataClients.get(6),
@@ -60,7 +61,7 @@ public class RefundFlow {
 				testDataClients.get(11), testDataClients.get(12), testDataClients.get(13), testDataClients.get(14),
 				testDataClients.get(15), testDataClients.get(16), clientName, testDataClients.get(18),
 				testDataClients.get(19), testDataClients.get(20), testDataClients.get(21), testDataClients.get(22),
-				testDataClients.get(23), testDataClients.get(24), testDataClients.get(25), testDataClients.get(26),
+				testDataClients.get(23), testDataClients.get(24), email, testDataClients.get(26),
 				testDataClients.get(27), testDataClients.get(28), testDataClients.get(29), testDataClients.get(30),
 				testDataClients.get(31), testDataClients.get(32), testDataClients.get(33));
  
@@ -144,9 +145,11 @@ public class RefundFlow {
 	{
 		// Go to AR new refund
 		CommonMethods.gotoRightSideARLink("NEW REFUND");
-		Common.sleep(2000);
+		Common.sleep(5000);
 		// get refund Id
 		String refundId = refund.getRefundID();
+		Common.sleep(2000);
+		
 		refund.setRefund(clientName, testDataPaymentReceipt.get(9));
 
 		CommonMethods.scrollUp();

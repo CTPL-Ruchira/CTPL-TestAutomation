@@ -25,13 +25,11 @@ public class CreateVendor extends BaseTestCase{
 	@BeforeClass
 	//To launch the browser
 	public void setUp() {
-
-
 		testData = Common.getTestData("NetchainTest.Login");
 		testData1 = Common.getTestData("NetchainTest.CreateVendor");
 		testData2 = Common.getTestData("NetchainTest.CreateVendorNeg");
 	}
-    @Test
+	@Test
 	@TestDetails(author="Ruchira.Mhaisurkar", description="Positive test case for vendor creation")
 	public void VendorCreation() 
 	{
@@ -39,15 +37,13 @@ public class CreateVendor extends BaseTestCase{
 		loginPage.login(testData.get(0), testData.get(1));
 		Common.sleep(2000);
 
-		InvoiceCreationForm invoice = new InvoiceCreationForm();
 		CommonMethods.gotoRightSideAPLink("NEW VENDOR");
-		
+
 		VendorCreationForm vendorCreation = new VendorCreationForm();
 
 		vendorCreation.setCompanyProfileTab(testData1.get(0), testData1.get(1), testData1.get(2));
 		Common.sleep(2000);
 		vendorCreation.clickAddEmployeeButton();
-
 		vendorCreation.EnterName(testData1.get(3));
 		vendorCreation.EnterEmail(testData1.get(4));
 		vendorCreation.EnterPhoneNumber(testData1.get(5));
@@ -59,7 +55,6 @@ public class CreateVendor extends BaseTestCase{
 
 		vendorCreation.bookingAccntAddLineButton();
 		Common.sleep(1000);
-
 
 		vendorCreation.selectLocation(testData1.get(7));
 
@@ -80,8 +75,7 @@ public class CreateVendor extends BaseTestCase{
 		vendorCreation.vendorDetailsTab(testData1.get(10), testData1.get(11), testData1.get(12), testData1.get(13), testData1.get(14), testData1.get(15), testData1.get(16), testData1.get(17), testData1.get(18), testData1.get(19), testData1.get(20), testData1.get(21), testData1.get(22), testData1.get(23), testData1.get(24), testData1.get(25), testData1.get(26));
 
 		//Check and test title of the Vendor list
-
-		String ActualTitleValue=Common.getDriver().getTitle();
+        String ActualTitleValue=Common.getDriver().getTitle();
 		System.out.println(ActualTitleValue);
 		String ExpectedTitleValue=testData1.get(27);
 		System.out.println(ExpectedTitleValue);
@@ -97,9 +91,9 @@ public class CreateVendor extends BaseTestCase{
 
 		Boolean status=vendorCreation.verifyVendorOnList(vendorCreation.getCompanyName());
 		BaseTestCase.assertTrue(status, "Vendor not created");
-		
+
 		LogoutFromPage.logout();
-}
+	}
 
 
 	//Negative Test Case
@@ -107,18 +101,11 @@ public class CreateVendor extends BaseTestCase{
 	@TestDetails(author="Ruchira.Mhaisurkar",description="Negative test case for Create Vendor")
 	public void VendorCreationNegative() 
 	{
-        LoginPage loginPage = new LoginPage();
+		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(0), testData.get(1));
 		Common.sleep(2000);
 
-		InvoiceCreationForm invoice = new InvoiceCreationForm();
-		Common.sleep(6000);
-		APModuleCreation apModule = invoice.createNew();
-		Common.sleep(2000);
-		apModule.clickAPLink();
-		Common.sleep(2000);
-		apModule.clickNewVendorLink();
-
+		CommonMethods.gotoRightSideAPLink("NEW VENDOR");
 		VendorCreationForm vendorCreation = new VendorCreationForm();
 
 		vendorCreation.setCompanyProfileTab(testData2.get(0), testData2.get(1), testData2.get(2));
@@ -137,14 +124,14 @@ public class CreateVendor extends BaseTestCase{
 
 		vendorCreation.bookingAccntAddLineButton();
 		Common.sleep(1000);
-        vendorCreation.selectLocation(testData2.get(7));
-        vendorCreation.selectDepartment(testData2.get(8));
-        vendorCreation.selectBookingAccount(testData2.get(9));
-        vendorCreation.clickNextButton3();
-        vendorCreation.goToProductDetailsTab();
-        vendorCreation.selectProduct();
-        vendorCreation.clickNextButton4();
-        vendorCreation.vendorDetailsTab(testData2.get(10), testData2.get(11), testData2.get(12), testData2.get(13), testData2.get(14), testData2.get(15), testData2.get(16), testData2.get(17), testData2.get(18), testData2.get(19), testData2.get(20), testData2.get(21), testData2.get(22), testData2.get(23), testData2.get(24), testData2.get(25), testData2.get(26));
+		vendorCreation.selectLocation(testData2.get(7));
+		vendorCreation.selectDepartment(testData2.get(8));
+		vendorCreation.selectBookingAccount(testData2.get(9));
+		vendorCreation.clickNextButton3();
+		vendorCreation.goToProductDetailsTab();
+		vendorCreation.selectProduct();
+		vendorCreation.clickNextButton4();
+		vendorCreation.vendorDetailsTab(testData2.get(10), testData2.get(11), testData2.get(12), testData2.get(13), testData2.get(14), testData2.get(15), testData2.get(16), testData2.get(17), testData2.get(18), testData2.get(19), testData2.get(20), testData2.get(21), testData2.get(22), testData2.get(23), testData2.get(24), testData2.get(25), testData2.get(26));
 
 		//Check and test the negative alert message
 
@@ -158,7 +145,7 @@ public class CreateVendor extends BaseTestCase{
 		{
 			BaseTestCase.assertTrue(true, "Vendor not created as the email id is invalid");
 		}
-
+		Reporter.log("Vendor cannot be created as the email address is invalid");
 		LogoutFromPage.logout();
 		Common.sleep(2000);
 

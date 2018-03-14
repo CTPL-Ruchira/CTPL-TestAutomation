@@ -134,4 +134,11 @@ public class CommonMethods
 			WebElement element=Common.findElement(deleteButton);
 			element.click();
 	}
+
+		//To append random string to email address in vendor creation form
+		 public static String generateRandomStringForEmail(String value) 
+		 {
+			 String randomString = RandomStringUtils.randomAlphabetic(5); 
+			 return value.concat(randomString+"@gmail.com"); 
+		 }
 }
