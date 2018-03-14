@@ -336,10 +336,11 @@ public class VendorCreationForm {
 		}
 		return flag;
 	}
+	
 
 	public String setEmailAddress(String value)
 	{
-		emailAddress=CommonMethods.generateRandomString1(value);
+		emailAddress=CommonMethods.generateRandomStringForEmail(value);
 		return  emailAddress;
 	}
 
