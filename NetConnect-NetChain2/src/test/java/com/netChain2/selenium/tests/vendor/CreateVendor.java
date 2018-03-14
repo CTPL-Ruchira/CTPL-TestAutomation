@@ -75,8 +75,7 @@ public class CreateVendor extends BaseTestCase{
 		vendorCreation.vendorDetailsTab(testData1.get(10), testData1.get(11), testData1.get(12), testData1.get(13), testData1.get(14), testData1.get(15), testData1.get(16), testData1.get(17), testData1.get(18), testData1.get(19), testData1.get(20), testData1.get(21), testData1.get(22), testData1.get(23), testData1.get(24), testData1.get(25), testData1.get(26));
 
 		//Check and test title of the Vendor list
-
-		String ActualTitleValue=Common.getDriver().getTitle();
+        String ActualTitleValue=Common.getDriver().getTitle();
 		System.out.println(ActualTitleValue);
 		String ExpectedTitleValue=testData1.get(27);
 		System.out.println(ExpectedTitleValue);
