@@ -5,11 +5,14 @@ import com.netChain2.engine.Common;
 public class GoodsReceiptForm 
 {
 
+	private String grAccount;
+	
 	public void createGoodsReceipt(String vendorName, String location, String poNumber, String okQty) 
 	{
 		Common.sleep(2000);
 		selectVendorFromDropdown(vendorName);
 		selectLocation(location);
+		setGrAccuralAccount();
 		selectPoNumberFromDropdown(poNumber);
 		Common.sleep(5000);
 		enterOkQualityForItemDetails(okQty);
@@ -106,5 +109,16 @@ public class GoodsReceiptForm
 		//String getProductNameFromPage=Common.getSelecedValue(locator)
 		
 	}
+	//Get GR accural account 
+		public void setGrAccuralAccount()
+		{
+			grAccount= Common.getAttribute("GR_ACCURAL_ACCOUNT_XPATH");
+		}
 
+		public String getGrAccount() 
+		{
+			return grAccount;
+		}
+
+	
 }
