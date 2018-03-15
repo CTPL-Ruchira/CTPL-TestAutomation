@@ -43,7 +43,7 @@ public class RefundFlow {
 
 	@Test
 	@TestDetails(author = "Shital.Patil", description = "This method will create a new client from Account receivable > New client")
-	public void createclient() {
+	public void createClientForRefundFlow() {
 
 		LoginPage loginPage = new LoginPage();
 		loginPage.login(testData.get(6), testData.get(7));
@@ -64,6 +64,8 @@ public class RefundFlow {
 				testDataClients.get(23), testDataClients.get(24), email, testDataClients.get(26),
 				testDataClients.get(27), testDataClients.get(28), testDataClients.get(29), testDataClients.get(30),
 				testDataClients.get(31), testDataClients.get(32), testDataClients.get(33));
+		
+		CommonMethods.scrollUp();
  
 		// search client and verify client in list
 		action.searchInvoice(clientName);
@@ -74,8 +76,8 @@ public class RefundFlow {
 		Reporter.log("Client present on list and verified");
 	}
 
-	@Test(dependsOnMethods = { "createclient" })
-	public void createARInvoice() 
+	@Test(dependsOnMethods = { "createClientForRefundFlow" })
+	public void createARInvoiceForRefundFlow() 
 	{
 		// create AR invoice of that client and Go To AR new invoice Link
 		CommonMethods.gotoRightSideARLink("NEW INVOICE");
@@ -95,6 +97,7 @@ public class RefundFlow {
 		// invoice verification
 		CommonMethods.scrollUp();
 		CommonMethods.scrollUp();
+		Common.sleep(2000);
 		Common.click("SORTING_ARROW_XPATH");
 		//CommonMethods.scrollDown();
 		Common.sleep(2000);
@@ -104,8 +107,8 @@ public class RefundFlow {
 
 	}
 
-	@Test(dependsOnMethods = { "createARInvoice" })
-	public void createARPaymentReceipt()
+	@Test(dependsOnMethods = { "createARInvoiceForRefundFlow" })
+	public void createARPaymentReceiptForRefundFlow()
 	{
 		CommonMethods.scrollUp();
 		
@@ -131,8 +134,9 @@ public class RefundFlow {
 		// verification on payment Receipt page
 		// CommonMethods.searchByNumberOrName(prId);
 		CommonMethods.scrollUp();
+		Common.sleep(3000);
 		Common.click("SORTING_ARROW_XPATH");
-		Common.sleep(2000);
+		Common.sleep(1000);
 
 		Boolean status = refund.verifyPaymentReceiptOnList(prId);
 		BaseTestCase.assertTrue(status, "payment receipt not created");
@@ -140,7 +144,7 @@ public class RefundFlow {
 
 	}
 
-	@Test(dependsOnMethods = { "createARPaymentReceipt" })
+	@Test(dependsOnMethods = { "createARPaymentReceiptForRefundFlow" })
 	public void createARNewRefund() 
 	{
 		// Go to AR new refund
@@ -148,6 +152,7 @@ public class RefundFlow {
 		Common.sleep(5000);
 		// get refund Id
 		String refundId = refund.getRefundID();
+		System.out.println("attribute +"+refundId);
 		Common.sleep(2000);
 		
 		refund.setRefund(clientName, testDataPaymentReceipt.get(9));
