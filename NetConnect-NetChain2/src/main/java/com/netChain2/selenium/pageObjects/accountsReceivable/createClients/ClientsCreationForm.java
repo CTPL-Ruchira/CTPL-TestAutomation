@@ -84,7 +84,9 @@ public class ClientsCreationForm {
 	
 	//click Booking Account Add new Line 
 	public void clickBookingAccntAddLineButton() {
+		Common.sleep(2000);
 		Common.click("BOOKING_ACCOUNT_ADD_LINE_BUTTON_XPATH");
+		Common.sleep(2000);
 	}
 	
 	//Select Location On Booking Account
