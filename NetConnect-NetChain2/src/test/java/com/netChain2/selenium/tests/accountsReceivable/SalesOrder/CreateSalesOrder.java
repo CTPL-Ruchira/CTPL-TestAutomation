@@ -97,7 +97,7 @@ public class CreateSalesOrder extends BaseTestCase {
 	
 		SOCreation.typeMessage(testData3.get(8));
 		SOCreation.typeMemo(testData3.get(9));
-		//SOCreation.approvalBy(testData3.get(10));
+		SOCreation.approvalBy(testData3.get(10));
 		SOCreation.shipBy(testData3.get(11));
 		
 		SOCreation.clickSaveButton();
