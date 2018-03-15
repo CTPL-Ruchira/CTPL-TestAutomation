@@ -211,13 +211,15 @@ public class ClientsCreationForm {
 		setCompanyProfile(ourCompany,OurMission,ProductService);
 		scrolldown();
 		clickCompanyProfileNextButton();
-		clickAddEmpButton();
+		CommonMethods.scrollUp();
+		Common.click("CLIENT_BOOKING_ACCOUNT_TAB_XPATH");
+		/*clickAddEmpButton();
 		EnterName(name);
 		EnterEmail(email);
 		EnterPhoneNumber(phone);
 		EnterTitle(title);
 		selectPaymentReceiver();
-		clickAssociateEmpNextButton();
+		clickAssociateEmpNextButton();*/
 		clickBookingAccntAddLineButton();
 		SetBookingAccount(location,dept,bookingAcc);
 		clickBookingAccountNextButton();
