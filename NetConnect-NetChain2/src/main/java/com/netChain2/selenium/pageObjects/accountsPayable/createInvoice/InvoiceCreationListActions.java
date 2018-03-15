@@ -28,7 +28,7 @@ public class InvoiceCreationListActions
 	}
 	
 	//Scroll up
-	public static void scrollUp()
+	public void scrollUp()
 	{
 		JavascriptExecutor jse = (JavascriptExecutor)Common.getDriver();
 		jse.executeScript("scroll(0, -250);");
