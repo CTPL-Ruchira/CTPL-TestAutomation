@@ -41,4 +41,50 @@ public class ThreeWayMatch
 		Common.sleep(8000);
 	}
 	
+	public void clickInvoiceEditPoLink(String vendorName, String invoiceNumber)
+	{
+		String InvoiceStatusEditPo="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[10]//a[text()='Edit PO']";
+		   WebElement Element2=Common.findElement(InvoiceStatusEditPo);
+		   Element2.click();
+	}
+	public void clickUnapproveOnPoList(String poNumber,String vendorName)
+	{
+		String PoUnapproveStatus="//table[@class='table']//tr/td[3]//div[text()='"+poNumber+"']/ancestor::tr/td[5]//div[text()='"+vendorName+"']/ancestor::tr/td[11]//div/a[text()='Unapprove/Update']";
+		WebElement element3=Common.findElement(PoUnapproveStatus);
+		element3.click();
+	}
+	
+	//Verification to check Approved status of Purchase Order
+	public boolean checkApprovedStatusOnPoList(String poNumber,String vendorName,String expectedValue)
+	{
+		String poStatusApproved="//table[@class='table']//tr/td[3]//div[text()='"+poNumber+"']/ancestor::tr/td[5]//div[text()='"+vendorName+"']/ancestor::tr/td[11]//div/p[text()='Approved']";
+		WebElement ele=Common.findElement(poStatusApproved);
+		String actualValue=ele.getText();
+		String expectedvalue="Approved";
+		 if(actualValue.equals(expectedvalue))
+		 {
+			 return true;
+		 }
+		 else
+		 {
+			 return false;
+		 }
+	}
+	
+	
+	
+	//Verification to check GR Accural Account
+	public boolean checkGrAccuralAccount(String actualValue,String expectedValue)
+	{
+	    if(actualValue.equals(expectedValue))
+	    {
+	    	return true;
+	    }
+	    else
+	    {
+	    	return false;
+	    }
+		
+	}
 }
+
