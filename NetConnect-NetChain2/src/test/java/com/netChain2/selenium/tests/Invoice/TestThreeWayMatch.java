@@ -65,7 +65,8 @@ public class TestThreeWayMatch
 		
 		CommonMethods.gotoRightSideAPLink("NEW PURCHASE ORDER");
 		purchaseOrderCreationForm = new PurchaseOrderCreationForm();
-		purchaseOrderCreationForm.createPurchaseOrder(poTestData.get(0), poTestData.get(1), poTestData.get(2), poTestData.get(3), poTestData.get(4), poTestData.get(5), poTestData.get(6), poTestData.get(7), poQtyRateData.get(2),  poQtyRateData.get(3), poTestData.get(10),poTestData.get(11), poTestData.get(12), poTestData.get(13), 1);
+		//purchaseOrderCreationForm.createPurchaseOrder(poTestData.get(0), poTestData.get(1), poTestData.get(2), poTestData.get(3), poTestData.get(4), poTestData.get(5), poTestData.get(6), poTestData.get(7), poQtyRateData.get(2),  poQtyRateData.get(3), poTestData.get(10),poTestData.get(11), poTestData.get(12), poTestData.get(13), 1);
+		purchaseOrderCreationForm.createPurchaseOrder("Vendor12", "pune", "Yes", "Product1", "Department1", "Fuel", "description", "measure", "100",  "50", "message to vendor","memo", "test", "DHL", 1);
 		String poNumber=String.valueOf(PurchaseOrderCreationForm.getPoNumber());
 		
 		CommonMethods.gotoRightSideAPLink("NEW GOODS RECEIPT");
@@ -74,7 +75,7 @@ public class TestThreeWayMatch
 	
 		CommonMethods.gotoRightSideAPLink("NEW INVOICE");
 		invoiceCreationForm=new InvoiceCreationForm();
-		invoiceCreationForm.createInvoiceForThreewaymatch(poTestData.get(0), "30", poTestData.get(1), poTestData.get(3), poNumber, "messageToVendor", "memo", "1");
+		invoiceCreationForm.createInvoiceForThreewaymatch("Vendor12", "30", "pune", "Product1", poNumber, "messageToVendor", "memo", "1");
 		
 	}
 }
