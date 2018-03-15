@@ -107,7 +107,7 @@ public class CommonMethods
 	public static void verifyAndClickOnActionForPo(String poNumber, String vendorName,String status) {
       Common.click("SORTING_ARROW_XPATH");
       Common.sleep(4000);
-      String verificationOfStatus="//div[text()='"+poNumber+"']/ancestor::tr[1]/td[5]//div[text()='"+vendorName+"']/ancestor::tr[1]//td[11]//div//a[text()='"+status+"']";
+      String verificationOfStatus="//div[text()='"+poNumber+"']/ancestor::tr[1]/td[5]//div[text()='"+vendorName+"']/ancestor::tr[1]//td[10]//a[text()='"+status+"']";
 	  WebElement poStatus=Common.findElement(verificationOfStatus);
 	  poStatus.click();
 	}
@@ -130,7 +130,7 @@ public class CommonMethods
 }
 	//delete invoice
 		public static void deletePO(String invoiceNumber,String vendorName) {
-			String deleteButton="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[5]//div[text()='"+vendorName+"']/ancestor::tr/td[13]/div[@class='column']/button/i[@data-tip='Delete PO.']";
+			String deleteButton="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[5]//div[text()='"+vendorName+"']/ancestor::tr/td[12]/div[@class='column']/button/i[@data-tip='Delete PO.']";
 			WebElement element=Common.findElement(deleteButton);
 			element.click();
 	}

@@ -395,7 +395,7 @@ public class PurchaseOrderCreationForm extends BaseTestCase
 		enterMargin(margin);
 		Common.sleep(3000);
 		clickPoModalSaveButton();
-		
+		Common.sleep(4000);
 		
 		
 	}
