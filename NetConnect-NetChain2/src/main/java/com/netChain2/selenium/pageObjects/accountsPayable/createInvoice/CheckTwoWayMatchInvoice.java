@@ -114,7 +114,7 @@ public class CheckTwoWayMatchInvoice {
 		     }
 //Approve po in invoice
   public void clickOnUnapproveUpdate(String vendorName, String poNumber) {
-	  String approvePo="//table[@class='table']//tr/td[3]//div[text()='"+poNumber+"']/ancestor::tr/td[5]//div[text()='"+vendorName+"']/ancestor::tr/td[11]//div/a[text()='Unapprove/Update']";
+	  String approvePo="//table[@class='table']//tr/td[3]//div[text()='"+poNumber+"']/ancestor::tr/td[5]//div[text()='"+vendorName+"']/ancestor::tr/td[10]//a[text()='Unapprove/Update']";
 	  WebElement Element2=Common.findElement(approvePo);
 	  Element2.click();
   }
