@@ -23,6 +23,22 @@ public class ThreeWayMatch
 				
 	}
 	
+
+	public boolean verifyGoodReceiptOnList(String grNumber, String vendorName)
+	{
+		Common.click("SORTING_ARROW_XPATH");
+		Common.click("GR_DATE_SORTING_ARROW_XPATH");
+	    Common.sleep(4000);
+		String vendorNameFromList=Common.getText("GR_LIST_VENDORNAME_XPATH");
+		System.out.println();
+		if(vendorName.equals(vendorNameFromList))
+			return true;
+		else
+			return false;
+		
+		
+	}
+
 	//To go on inv preview page by clicking on discrepant
 	public void clickDiscrepant(String invoiceNo,String vendorName) {
 		String xpath="//div[text()='"+invoiceNo+"']/ancestor::tr[1]/td[4]//div[text()='"+vendorName+"']/ancestor::tr[1]/td[6]//div[@class='text']";
@@ -86,5 +102,6 @@ public class ThreeWayMatch
 	    }
 		
 	}
+
 }
 
