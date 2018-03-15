@@ -43,17 +43,19 @@ public class CreateVendor extends BaseTestCase{
 
 		vendorCreation.setCompanyProfileTab(testData1.get(0), testData1.get(1), testData1.get(2));
 		Common.sleep(2000);
-		vendorCreation.clickAddEmployeeButton();
+		/*vendorCreation.clickAddEmployeeButton();
 		vendorCreation.EnterName(testData1.get(3));
 		vendorCreation.EnterEmail(testData1.get(4));
 		vendorCreation.EnterPhoneNumber(testData1.get(5));
 		vendorCreation.EnterTitle(testData1.get(6));
-		vendorCreation.selectPaymentReceiver();
+		vendorCreation.selectPaymentReceiver();*/
 
-		vendorCreation.clickNextButton2();
-		Common.sleep(1000);
-
-		vendorCreation.bookingAccntAddLineButton();
+		/*vendorCreation.clickNextButton2();
+		Common.sleep(1000);*/
+		CommonMethods.scrollUp();
+		Common.click("BOOKING_ACCOUNT_TAB_XPATH");
+		
+        vendorCreation.bookingAccntAddLineButton();
 		Common.sleep(1000);
 
 		vendorCreation.selectLocation(testData1.get(7));
@@ -110,19 +112,19 @@ public class CreateVendor extends BaseTestCase{
 
 		vendorCreation.setCompanyProfileTab(testData2.get(0), testData2.get(1), testData2.get(2));
 		Common.sleep(2000);
-		vendorCreation.clickAddEmployeeButton();
+		
+		/*vendorCreation.clickAddEmployeeButton();
 		Common.sleep(2000);
-
-		vendorCreation.EnterName(testData2.get(3));
+        vendorCreation.EnterName(testData2.get(3));
 		vendorCreation.EnterEmail(testData2.get(4));
 		vendorCreation.EnterPhoneNumber(testData2.get(5));
-		vendorCreation.EnterTitle(testData2.get(6));
-		vendorCreation.selectPaymentReceiver();
-
-		vendorCreation.clickNextButton2();
-		Common.sleep(1000);
-
-		vendorCreation.bookingAccntAddLineButton();
+		vendorCreation.EnterTitle(testData2.get(6))
+		vendorCreation.selectPaymentReceiver();*/
+		
+		CommonMethods.scrollUp();
+		Common.click("BOOKING_ACCOUNT_TAB_XPATH");
+		
+        vendorCreation.bookingAccntAddLineButton();
 		Common.sleep(1000);
 		vendorCreation.selectLocation(testData2.get(7));
 		vendorCreation.selectDepartment(testData2.get(8));
