@@ -4,6 +4,11 @@ import com.netChain2.engine.Common;
 
 public class GoodsReceiptForm 
 {
+	private String grNumber;
+
+	public String getGrNumber() {
+		return grNumber;
+	}
 
 	public void createGoodsReceipt(String vendorName, String location, String poNumber, String okQty) 
 	{
@@ -55,6 +60,7 @@ public class GoodsReceiptForm
 	public void selectLocation(String locationName)
 	{
 		Common.select("LOCATION_DROPDOWN_XPATH", locationName);
+		grNumber=Common.getAttribute("GR_NUMBER_FROM_NEW_GR_ID");
 	}
 
 	public boolean verifyAutopopulatedValuesForVendor(String emailAddress, String location, String streetAddress, String city, String state, String zip) 
