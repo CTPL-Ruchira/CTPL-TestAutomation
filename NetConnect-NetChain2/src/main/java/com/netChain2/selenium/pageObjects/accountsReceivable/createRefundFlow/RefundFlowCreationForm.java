@@ -13,11 +13,6 @@ public class RefundFlowCreationForm {
 			String desc, String currancy, String Amount) {
 		Common.sendKeys("AR_PAYMENT_RECEIPT_BATCHNO_XPATH", batchNo);
 		Common.select("AR_PAYMENT_RECEIPT_SELECT_CLIENT_XPATH", selectClient);
-
-		/*
-		 * Common.click("AR_PAYMENT_RECEIPT_PAYMENT_DATE_XPATH");
-		 * Common.sendKeys("AR_PAYMENT_RECEIPT_PAYMENT_DATE_XPATH", "09252013");
-		 */
 		Common.select("AR_PAYMENT_RECEIPT_PAYMENT_METHOD_XPATH", paymentMethod);
 		Common.sendKeys("AR_PAYMENT_RECEIPT_REF_NO_XPATH", RefNo);
 		Common.sendKeys("AR_PAYMENT_RECEIPT_DESC_XPATH", desc);
@@ -61,7 +56,6 @@ public class RefundFlowCreationForm {
 		String xpath = "//table[@class='table']//tr/td[2]//div[text()='" + paymentreceiptId + "']";
 		WebElement actualInvoice = Common.findElement(xpath);
 		String actualinvoiceList = actualInvoice.getText();
-		System.out.println("actual valuesdsfdsf"+actualinvoiceList);
 		if (actualinvoiceList.equals(paymentreceiptId)) {
 			flag = true;
 			Reporter.log("Payment receipt genrate on list and verified");
