@@ -26,6 +26,8 @@ public class POtoSOConnection extends BaseTestCase {
 	public String clientname;
 	POandSOConnectionForm soList=new POandSOConnectionForm();
 	InvoiceCreationListActions actions=new InvoiceCreationListActions();
+	CreditMemoCreationForm creditmemo = new CreditMemoCreationForm();
+	PurchaseOrderCreationForm purchaseOrder = new PurchaseOrderCreationForm();
 	
 	@BeforeClass
 	public void setUp() {
@@ -41,7 +43,6 @@ public class POtoSOConnection extends BaseTestCase {
 			LoginPage loginPage = new LoginPage();
 			loginPage.login(testDatalg.get(0), testDatalg.get(1));
 			
-			PurchaseOrderCreationForm purchaseOrder = new PurchaseOrderCreationForm();
 			Reporter.log("AP Company(TechBite) Login");
 			
 			CommonMethods.gotoRightSideAPLink("NEW PURCHASE ORDER");
@@ -72,8 +73,7 @@ public class POtoSOConnection extends BaseTestCase {
 			EditPurchaseOrder epo=new EditPurchaseOrder();
 			CommonMethods.scrollUp();
 			//epo.searchPurchaseOrder(Integer.toString(PurchaseOrderCreationForm.getPoNumber()));
-			Common.click("SORTING_ARROW_XPATH");
-			
+					
 			epo.verifyPurchaseOrderForConnectedVendor(testDataCreatePO.get(0), Integer.toString(PurchaseOrderCreationForm.getPoNumber()));
 			Reporter.log("AP Create Purchase Order successfully ");
 			Common.sleep(3000);
@@ -112,15 +112,14 @@ public class POtoSOConnection extends BaseTestCase {
 		String ExpectedTitleValue=testDataCreatePO.get(13);
 			
 		boolean istitleCorrect=soList.verifyTitleMatched(ActualTitleValue, ExpectedTitleValue);
-		BaseTestCase.assertTrue(istitleCorrect, "Redirected to Invoice list,Invoice created succesfully");
+		assertTrue(istitleCorrect, "Redirected to Invoice list,Invoice created succesfully");
 		
-		CreditMemoCreationForm creditmemo = new CreditMemoCreationForm();
 		CommonMethods.scrollUp();
 		
 		Common.click("SORTING_ARROW_XPATH");
 
 		Boolean status=creditmemo.verifyInvoiceOnList(invoiceno,clientname);
-		BaseTestCase.assertTrue(status, "Invoice not created");
+		assertTrue(status, "Invoice not created");
 		Reporter.log("AR Invoice created successfully",true);
 		
 		LogoutFromPage.logout();
@@ -137,7 +136,7 @@ public class POtoSOConnection extends BaseTestCase {
 			
 			String cName=testDataCreatePO.get(0);
 			
-			CreditMemoCreationForm creditmemo = new CreditMemoCreationForm();
+			
 			CommonMethods.scrollUp();
 			
 			Common.click("SORTING_ARROW_XPATH");
@@ -159,7 +158,7 @@ public class POtoSOConnection extends BaseTestCase {
 	           
 	        //Click on payment banner 
 	         actions.bannerClick();
-	         Common.sleep(4000);
+	         Common.sleep(2000);
 	         
 	        //Get payment id
 	        payId= actions.getPaymentId();
@@ -174,15 +173,12 @@ public class POtoSOConnection extends BaseTestCase {
 	        String ActualAlertMessage2=actions.gettextValue();			   
 	   
 	        boolean check3= ExpectedAlertMessage2.equals(ActualAlertMessage2);
-	        BaseTestCase.assertTrue(check3, "Payment creation failed");
+	        assertTrue(check3, "Payment creation failed");
 	        Reporter.log("AP Payment was created successfully");
 	           
 	        //Search invoice
 	        actions.searchInvoice(payId);
-	        Common.sleep(4000);
 	        
-	        Common.click("SORTING_ARROW_XPATH");
-	            
 	        //Click on approve button
 	        actions.clickOnApprovePayment(cName,payId);
 	        
@@ -194,18 +190,15 @@ public class POtoSOConnection extends BaseTestCase {
 	        Common.getDriver().navigate().refresh();
 	        Common.sleep(3000);
 	           
-	         //Payment search by id
+	        //Payment search by id
 	        actions.searchInvoice(payId);
-	         Common.sleep(4000);
-	         
-	         Common.click("SORTING_ARROW_XPATH");
-	         
-	         //Verfication Action
-	         boolean isActionProcessing= actions.verificationOnProcessingLink(cName,payId,testDataCreatePO.get(16));
-	         BaseTestCase.assertTrue(isActionProcessing, " AP Payment action is not processing");
-             Reporter.log("AP Payment action is processing for sent payment");		
 
-			 LogoutFromPage.logout();
+	        //Verfication Action
+	        boolean isActionProcessing= actions.verificationOnProcessingLink(cName,payId,testDataCreatePO.get(16));
+	        assertTrue(isActionProcessing, " AP Payment action is not processing");
+	        Reporter.log("AP Payment action is processing for sent payment");		
+
+	        LogoutFromPage.logout();
 	 }
 	 
 	 @Test(dependsOnMethods= {"checkAPinvoiceAction"})
@@ -222,7 +215,7 @@ public class POtoSOConnection extends BaseTestCase {
 			String statusAR=testDataCreatePO.get(14);
 			
 			boolean st=soList.verifyPaymetStatusMatched(clientname, payId,statusAR);
-			BaseTestCase.assertTrue(st, " AR-AP Payment status not matched");
+			assertTrue(st, " AR-AP Payment status not matched");
 	        Reporter.log(" AP-AR Payment status Matched for connected company");
 	        
 	        LogoutFromPage.logout();

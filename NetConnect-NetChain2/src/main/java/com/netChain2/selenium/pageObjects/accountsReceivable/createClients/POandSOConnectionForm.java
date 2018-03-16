@@ -3,12 +3,11 @@ package com.netChain2.selenium.pageObjects.accountsReceivable.createClients;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 import com.netChain2.engine.Common;
-import com.netChain2.selenium.pageObjects.common.components.CommonMethods;
 
 public class POandSOConnectionForm {
 	
-	public void clickAccept(String ClientName, String poNumber) {
-		String soSearchAccept="//div[text()='"+poNumber+"']/ancestor::div[2]/div[4]/div[text()='"+ClientName+"']/ancestor::div[2]/div[11]/div/div/button[@id='share']";
+	public void clickAccept(String clientName, String poNumber) {
+		String soSearchAccept="//div[text()='"+poNumber+"']/ancestor::div[2]/div[4]/div[text()='"+clientName+"']/ancestor::div[2]/div[11]/div/div/button[@id='share']";
 		WebElement eleAccept=Common.findElement(soSearchAccept);
 		eleAccept.click();
 	}
@@ -21,7 +20,6 @@ public class POandSOConnectionForm {
 	public void verifySOList(String clientName, String poNumber)
 	{
 		Common.sleep(3000);
-		System.out.println("geting so list");
 		String st="//table[@class='table']//tr/td[5]//div[text()='"+clientName+"']/ancestor::tr/td[7]//div[text()='"+poNumber+"']//ancestor::tr/td[12]//div/button[@data-tip='Accept']";
 		WebElement ele=Common.findElement(st);
 		ele.click();
@@ -34,9 +32,9 @@ public class POandSOConnectionForm {
 		ele.click();	
 	}
 	
-	public void getClientName(String ClientName, String poNumber) 
+	public void getClientName(String clientName, String poNumber) 
 	{		
-	    String soGetClientName="//div[text()='"+poNumber+"']/ancestor::div[2]/div[4]/div[text()='"+ClientName+"']";
+	    String soGetClientName="//div[text()='"+poNumber+"']/ancestor::div[2]/div[4]/div[text()='"+clientName+"']";
 		WebElement eleAccept=Common.findElement(soGetClientName);
 		eleAccept.getText();
 	}
