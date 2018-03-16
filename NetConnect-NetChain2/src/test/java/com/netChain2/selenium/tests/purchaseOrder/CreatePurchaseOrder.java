@@ -55,13 +55,11 @@ public class CreatePurchaseOrder extends BaseTestCase{
 		purchaseOrder.addProductRuntime(runtimeProductName,poRuntimeData.get(1),poRuntimeData.get(2),poRuntimeData.get(3),poRuntimeData.get(4),poRuntimeData.get(5),poRuntimeData.get(6),poRuntimeData.get(7),"value","value");
 		String vendorNameFromModal=purchaseOrder.getVendorName();
 		String vendorNameFromDropdown=purchaseOrder.getVendorNameDropdown();
-		System.out.println("vendorNameFromModal"+vendorNameFromModal);
-		System.out.println("vendorNameFromDropdown"+vendorNameFromDropdown);
+		
 		String productNameFromModal=purchaseOrder.getProductName();
-		//String productNameFromDropdown=purchaseOrder.getProductNameDropdown();
+		
 		String productNameFromDropdown=purchaseOrder.getProductNamePresentInDropdown(productNameFromModal);
-		System.out.println("productNameFromModal:"+productNameFromModal);
-		System.out.println("productNameFromDropdown:"+productNameFromDropdown);
+		
 		
 		boolean status=purchaseOrder.verifyVendorNameInModalAndDropdown(vendorNameFromModal, vendorNameFromDropdown);
 		assertTrue(status, "Vendor name in modal does not match with the vendor name in dropdown ");
@@ -133,7 +131,7 @@ public class CreatePurchaseOrder extends BaseTestCase{
 		epo.searchPurchaseOrder(Integer.toString(PurchaseOrderCreationForm.getPoNumber()));
 		
 		epo.verifyCreatedPurchaseOrder(invoiceData.get(0), Integer.toString(PurchaseOrderCreationForm.getPoNumber()));
-		
+		LogoutFromPage.logout();
 	}
 	
 	

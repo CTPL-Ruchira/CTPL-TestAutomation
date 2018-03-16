@@ -84,25 +84,27 @@ public class ClientsCreationForm {
 	
 	//click Booking Account Add new Line 
 	public void clickBookingAccntAddLineButton() {
+		Common.sleep(2000);
 		Common.click("BOOKING_ACCOUNT_ADD_LINE_BUTTON_XPATH");
+		Common.sleep(2000);
 	}
 	
 	//Select Location On Booking Account
-	public void SelectLocation(String value) {
+	public void SelectLocation(String value, String flag) {
 		String selectLocation="//table[@class='table table-bordered']//tr["+flag+"]//td[1]";
 		String xpath="//table[@class='table table-bordered']//tr["+flag+"]//td[1]/center/select/option[text()='"+value+"']";
 		new PurchaseOrderCreationForm().selectDropdownValues(selectLocation, xpath);
 	}
 
 	//select Department on booking Account
-	public void SelectDepartment(String value) {
+	public void SelectDepartment(String value, String flag) {
 		String selectDept="//table[@class='table table-bordered']//tr["+flag+"]//td[2]";
 		String xpath="//table[@class='table table-bordered']//tr["+flag+"]//td[2]/center/select/option[text()='"+value+"']";
 		new PurchaseOrderCreationForm().selectDropdownValues(selectDept, xpath);
 	}
 	
 	//select Booking Account 
-	public void SelectBookingAcc(String value) {
+	public void SelectBookingAcc(String value, String flag) {
 		String selectBookingAcc="//table[@class='table table-bordered']//tr["+flag+"]//td[3]";
 		String xpath="//table[@class='table table-bordered']//tr["+flag+"]//td[3]/center/select/option[text()='"+value+"']";
 		new PurchaseOrderCreationForm().selectDropdownValues(selectBookingAcc, xpath);
@@ -111,9 +113,9 @@ public class ClientsCreationForm {
 	public void SetBookingAccount(String location,String dept,String bookingAcc)
 	{
 		Common.sleep(2000);
-		SelectLocation(location);
-		SelectDepartment(dept);
-		SelectBookingAcc(bookingAcc);
+		SelectLocation(location, "1");
+		SelectDepartment(dept, "1");
+		SelectBookingAcc(bookingAcc, "1");
 		flag=flag+1;
 		Common.sleep(2000);	
 	}
@@ -211,13 +213,15 @@ public class ClientsCreationForm {
 		setCompanyProfile(ourCompany,OurMission,ProductService);
 		scrolldown();
 		clickCompanyProfileNextButton();
-		clickAddEmpButton();
+		CommonMethods.scrollUp();
+		Common.click("CLIENT_BOOKING_ACCOUNT_TAB_XPATH");
+		/*clickAddEmpButton();
 		EnterName(name);
 		EnterEmail(email);
 		EnterPhoneNumber(phone);
 		EnterTitle(title);
 		selectPaymentReceiver();
-		clickAssociateEmpNextButton();
+		clickAssociateEmpNextButton();*/
 		clickBookingAccntAddLineButton();
 		SetBookingAccount(location,dept,bookingAcc);
 		clickBookingAccountNextButton();

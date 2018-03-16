@@ -49,6 +49,10 @@ public class RefundFlowCreationForm {
 	public String getRefundID() {
 		return Common.getText("AR_GET_REFUND_ID_XPATH");
 	}
+	//
+	public String getRefundIDforRefundFlow() {
+		return Common.getAttribute("AR_GET_REFUND_ID_XPATH");
+	}
 
 	// verification payment receipt page
 	public boolean verifyPaymentReceiptOnList(String paymentreceiptId) {
@@ -57,6 +61,7 @@ public class RefundFlowCreationForm {
 		String xpath = "//table[@class='table']//tr/td[2]//div[text()='" + paymentreceiptId + "']";
 		WebElement actualInvoice = Common.findElement(xpath);
 		String actualinvoiceList = actualInvoice.getText();
+		System.out.println("actual valuesdsfdsf"+actualinvoiceList);
 		if (actualinvoiceList.equals(paymentreceiptId)) {
 			flag = true;
 			Reporter.log("Payment receipt genrate on list and verified");
