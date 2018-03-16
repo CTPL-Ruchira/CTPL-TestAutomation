@@ -39,6 +39,7 @@ public class EditPurchaseOrder
 	
 	public boolean verifyPurchaseOrderForConnectedVendor(String vendorName, String poNumber)
 	{
+		Common.click("SORTING_ARROW_XPATH");
 		 boolean flag=false;
 		  Common.sleep(2000);
 		  String xpath="//table[@class='table']//tr/td[3]//div[text()='"+poNumber+"']/ancestor::tr/td[5]//div[text()='"+vendorName+"']";
