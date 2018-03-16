@@ -76,6 +76,6 @@ public class TestThreeWayMatch
 		CommonMethods.gotoRightSideAPLink("NEW INVOICE");
 		invoiceCreationForm=new InvoiceCreationForm();
 		invoiceCreationForm.createInvoiceForThreewaymatch("Vendor12", "30", "pune", "Product1", poNumber, "messageToVendor", "memo", "1");
-		
+		LogoutFromPage.logout();
 	}
 }
