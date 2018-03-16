@@ -1,5 +1,7 @@
 package com.netChain2.testListnerAdapter;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -7,6 +9,8 @@ import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
+
+import com.netChain2.engine.Common;
 
 public class TestNGListner extends TestListenerAdapter {
 	
@@ -63,6 +67,7 @@ public class TestNGListner extends TestListenerAdapter {
 		failCount++;
 		executionCount++;
 		logMessage();
+		takeScreenshot(result);
 	}
 	
 	
@@ -82,6 +87,17 @@ public class TestNGListner extends TestListenerAdapter {
 	public static void logMessage() {
 		
 		System.out.println("Run Statistics: " +"Total Executed: " +executionCount+ " , Pass Count: " +passCount+ " , Fail Count: " +failCount+ " , Skip Count: " + skipCount );
+	}
+	
+	public void takeScreenshot(ITestResult result)
+	{
+		currentTestClass = result.getTestClass().getName();
+		currentTestMethod = result.getName();
+		String callerClass = currentTestClass.substring(currentTestClass.lastIndexOf(".")+1);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy_HH-mm-ss");
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());			
+		String timeStamp = sdf.format(timestamp);
+		Common.captureScreenshot(callerClass + "_" + currentTestMethod + "_" + timeStamp);
 	}
 
 }
