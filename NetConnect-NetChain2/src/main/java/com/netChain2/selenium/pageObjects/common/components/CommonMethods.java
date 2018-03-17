@@ -129,8 +129,9 @@ public class CommonMethods
 		Common.sleep(2000);
 }
 	//delete invoice
-		public static void deletePO(String invoiceNumber,String vendorName) {
-			String deleteButton="//div[text()='"+invoiceNumber+"']/ancestor::tr[1]/td[5]//div[text()='"+vendorName+"']/ancestor::tr/td[12]/div[@class='column']/button/i[@data-tip='Delete PO.']";
+		public static void deletePO(String poNumber,String vendorName) {
+			Common.sleep(2000);
+			String deleteButton="//div[text()='"+poNumber+"']/ancestor::tr[1]/td[5]//div[text()='"+vendorName+"']/ancestor::tr/td[12]/div[@class='column']/button[3]";
 			WebElement element=Common.findElement(deleteButton);
 			element.click();
 	}
