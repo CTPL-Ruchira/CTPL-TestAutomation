@@ -145,8 +145,8 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		CommonMethods.gotoLeftAPLink("Purchase Orders");
 		
 		//delete PO
-		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
-		Common.sleep(2000);
+		//CommonMethods.deletePO(poNumber, vendorNameInPo);
+		//Common.sleep(2000);
 		
 		//Logout
 		LogoutFromPage.logout();
@@ -335,13 +335,13 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		CommonMethods.gotoLeftAPLink("Purchase Orders");
 		
 		//delete PO
-		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
+		//CommonMethods.deletePO(poNumber, vendorNameInPo);
 		
 		//Logout
 		LogoutFromPage.logout();
 	}
 
-	@Test(dependsOnMethods="CreateInvoice_DiscrepantQtyMisMatchedByEditPo")
+    @Test(dependsOnMethods="CreateInvoice_DiscrepantQtyMisMatchedByEditPo")
 	@TestDetails(author="Roshni.Mehta",description="QtyMisMatchedByEditInvoice")
 	public void CreateInvoice_DiscrepantQtyMisMatchedByEditInvoice() 
 	{
@@ -552,8 +552,9 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		CommonMethods.gotoLeftAPLink("Purchase Orders");
 		
 		//delete PO
-		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
-	   
+		//CommonMethods.deletePO(poNumber, vendorNameInPo);
+	   // Common.sleep(3000);
+		
 		//Logout
 		LogoutFromPage.logout();
 	}
@@ -763,7 +764,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		CommonMethods.gotoLeftAPLink("Purchase Orders");
 		
 		//delete PO
-		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
+		//CommonMethods.deletePO(poNumber, vendorNameInPo);
 		
 		//logout
 		LogoutFromPage.logout();
@@ -962,8 +963,8 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		CommonMethods.gotoLeftAPLink("Purchase Orders");
 		
 		//delete PO
-		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
-		
+		//CommonMethods.deletePO(poNumber, vendorNameInPo);
+	
 		LogoutFromPage.logout();
 	}
 
@@ -1171,7 +1172,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		CommonMethods.gotoLeftAPLink("Purchase Orders");
 		
 		//delete PO
-		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
+		//CommonMethods.deletePO(poNumber, vendorNameInPo);
 		
 		//Logout
 		LogoutFromPage.logout();
@@ -1351,7 +1352,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		CommonMethods.gotoLeftAPLink("Purchase Orders");
 		
 		//delete PO
-		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
+		//CommonMethods.deletePO(poNumber, vendorNameInPo);
 		
 		//Logout
 		LogoutFromPage.logout();
@@ -1525,7 +1526,7 @@ public class POTwoWayMatchInvoiceByQuantity extends BaseTestCase {
 		CommonMethods.gotoLeftAPLink("Purchase Orders");
 		
 		//delete PO
-		CommonMethods.deletePO(invoiceNo, vendorNameInPo);
+		//CommonMethods.deletePO(poNumber, vendorNameInPo);
 		
 		//logout
 		LogoutFromPage.logout();
