@@ -38,7 +38,7 @@ public class InvoiceDispute
 		
 		Common.click("INVOICE_OPEN_DISPUTE_BUTTON_XPATH");
 		Common.sleep(5000);
-		getDisputeButtonLocator(productServiceName).click();
+		//getDisputeButtonLocator(productServiceName).click();
 		getBookingAccountAmountFromModal();
 		
 	}
@@ -87,32 +87,32 @@ public class InvoiceDispute
 	private void getAmountAndBalanceDue(String prodServicesName) 
 	{
 		amount=Common.getText("INVOICE_OPEN_DISPUTE_BALANCE_DUE_XPATH");
-		String xpath="//input[@value='"+prodServicesName+"']/ancestor::div[1]/p[8]";
+		String xpath="//div[@class='Modal']//p[text()='"+prodServicesName+"']/ancestor::div[1]/following-sibling::div[2]/p[3]";
 		balanceDue=Common.findElement(xpath).getText();
 		
 	}
 
 	private void saveEditedDisputeValues(String prodServicesName) 
 	{
-		String xpathForSaveButton="//input[@value='"+prodServicesName+"']/ancestor::div[1]//p[@class='input-Dispute']";
+		String xpathForSaveButton="//div[@class='Modal']//p[text()='"+prodServicesName+"']/ancestor::div[1]/following-sibling::div[2]//button[@class='input-Dispute']";
 		Common.findElement(xpathForSaveButton).click();
 	}
 
 	private void addCommentToDispute(String valueForComment, String prodServicesName) 
 	{
-		String xpathForCommentInputField="//input[@value='"+prodServicesName+"']/ancestor::div[1]//input[@name='resonForDesputed']";
+		String xpathForCommentInputField="//div[@class='Modal']//p[text()='"+prodServicesName+"']/ancestor::div[1]/following-sibling::div[2]//input[@name='resonForDesputed']";
 		Common.findElement(xpathForCommentInputField).sendKeys(Keys.HOME,Keys.chord(Keys.SHIFT,Keys.END),valueForComment);
 	}
 
 	private void editRate(String valueForRate, String prodServicesName) 
 	{
-		String xpathForQuantityInputField="//input[@value='"+prodServicesName+"']/ancestor::div[1]//input[@name='UnitPrice']";
+		String xpathForQuantityInputField="//div[@class='Modal']//p[text()='"+prodServicesName+"']/ancestor::div[1]/following-sibling::div[2]//input[@name='UnitPrice']";
 		Common.findElement(xpathForQuantityInputField).sendKeys(Keys.HOME,Keys.chord(Keys.SHIFT,Keys.END),valueForRate);
 	}
 
 	private void editQuantity(String valueForQuantity, String prodServicesName) 
 	{
-		String xpathForQuantityInputField="//input[@value='"+prodServicesName+"']/ancestor::div[1]//input[@name='Qty']";
+		String xpathForQuantityInputField="//div[@class='Modal']//p[text()='"+prodServicesName+"']/ancestor::div[1]/following-sibling::div[2]//input[@name='Qty']";
 		//Common.findElement(xpathForQuantityInputField).clear();
 		Common.findElement(xpathForQuantityInputField).sendKeys(Keys.HOME,Keys.chord(Keys.SHIFT,Keys.END),valueForQuantity);	
 	}
