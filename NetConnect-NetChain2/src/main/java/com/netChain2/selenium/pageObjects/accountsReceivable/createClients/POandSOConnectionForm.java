@@ -81,7 +81,8 @@ public class POandSOConnectionForm {
 	public void verifyAPInvoiceOnListandClickAccept(String clientName,String ino) 
 	 {
 	  Common.sleep(2000);
-	  String acceptXpath="//table[@class='table']//tr/td[3]//div[text()='"+ino+"']/ancestor::tr/td[4]//div[text()='"+clientName+"']/ancestor::tr/td[10]//div/button[@data-tip='Accept']";
+	  String acceptXpath="//table[@class='table']//tr[1]/td[1]/ancestor::tr/td[4]//div[text()='"+clientName+"']/ancestor::tr/td[10]//div/button[@data-tip='Accept']";
+	  //String acceptXpath="//table[@class='table']//tr/td[3]//div[text()='"+ino+"']/ancestor::tr/td[4]//div[text()='"+clientName+"']/ancestor::tr/td[10]//div/button[@data-tip='Accept']";
 	  WebElement ele=Common.findElement(acceptXpath);
 	  ele.click();
 	 }
@@ -111,5 +112,20 @@ public class POandSOConnectionForm {
 
 		  return flag;
 	}
-	
+	//
+	public void clickOnApproveInvoice(String VendorName, String InvoiceNumber) {
+		//String InvoiceStatusApproveInvoice="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div/div/a[text()='Approve Invoices']";
+		String InvoiceStatusApproveInvoice="//table[@class='table']//tr[1]/td[1]/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]//a[text()='Approve Invoices']";
+		WebElement Element3=Common.findElement(InvoiceStatusApproveInvoice);
+		Element3.click();
+	}
+	//create payment
+	public void clickOnCreatePaymentLink(String VendorName, String InvoiceNumber)
+	{
+		
+		//String InvoiceLocator="//div[text()='"+InvoiceNumber+"']/ancestor::div[2]/div[2]/div[text()='"+VendorName+"']/ancestor::div[2]/div[9]/div[@class='text']/div[@class='text']/div/a[text()='Create Payment']";
+		String InvoiceLocator="//table[@class='table']//tr[1]/td[1]/ancestor::tr[1]//div[text()='"+VendorName+"']/ancestor::tr[1]//a[text()='Create Payment']";
+		WebElement element=Common.findElement(InvoiceLocator);
+		element.click();
+	} 
 }
