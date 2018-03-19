@@ -155,7 +155,7 @@ public class POtoSOConnection extends BaseTestCase {
 			//click on Yes Accept Only modal PopUp
 			actions.ModalApproveButton();
 			
-			actions.clickOnCreatePaymentLink(testDataCreatePO.get(0),invoiceno);
+			soList.clickOnCreatePaymentLink(testDataCreatePO.get(0),invoiceno);
 	           Common.sleep(2000);
 	           
 	        //Click on payment banner 
