@@ -140,6 +140,8 @@ public class POtoSOConnection extends BaseTestCase {
 			CommonMethods.scrollUp();
 			
 			Common.click("SORTING_ARROW_XPATH");
+			Common.sleep(2000);
+			//Common.click("SORTING_ARROW_CREATED_DATE_XPATH");
 		    
 			//Search Invoice by Company Name and click Accept icon 
 			soList.verifyAPInvoiceOnListandClickAccept(cName, invoiceno);
@@ -148,7 +150,7 @@ public class POtoSOConnection extends BaseTestCase {
 						
 			//Click On Approve Invoice Link
 			
-			actions.clickOnApproveInvoice(cName, invoiceno);
+			soList.clickOnApproveInvoice(cName, invoiceno);
 			
 			//click on Yes Accept Only modal PopUp
 			actions.ModalApproveButton();
