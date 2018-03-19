@@ -143,5 +143,14 @@ public class Roles {
 		}
 
 	}
-
+	
+	//Verification for payment pending
+		public void clickOnViewPayment(String vendorName,String invoiceId ) 
+		{
+			String viewPaymentXpath="//table[@class='table']//tr/td[3]//div[text()='"+invoiceId+"']/ancestor::tr/td[4]//div[text()='"+vendorName+"']/ancestor::tr/td[10]//div/a[@title='View Pending']";
+			WebElement viewPayment=Common.findElement(viewPaymentXpath);
+			viewPayment.click();
+     }
+		
+		
 }
